@@ -1,13 +1,19 @@
 # Phase 0: adoption experiment preparation
 
+> Current scope: adoption instructions only. Imported-provenance gate friction
+> is an integration outcome; semantic review recall is not a Serene effectiveness
+> measure. The [research map](../README.md) supersedes the earlier sequencing below.
+> The next Serene evaluation is [safety prioritization](../triage/SQL-SAFETY-STUDY.md).
+
 Status: larger protocol remains a candidate; a separately scoped nine-run
 [exploratory adoption pilot](exploratory/REPORT.md) is complete.
 Author-created SQLite layout preflight is available in [preflight/REPORT.md](preflight/REPORT.md); it is not a model-study result.
 
-Sequence: README PR #2 (merged) -> repository scan PR #3 (merged) -> adoption experiment ->
-AI review pilot. Do not infer adoption from deterministic CLI tests or begin the
-review pilot before assessing adoption results. Runtime API and raw-sql-rules
-remain unchanged by this preparation.
+Sequence recorded historically: README PR #2 and repository scan PR #3 merged,
+then adoption feasibility and a mixed general-review pilot were run. Current
+research boundaries are in the [research map](../README.md). This document governs
+adoption questions only; it does not require a general-review study to establish
+Serene's construction-safety triage utility. Runtime API and Rules stay unchanged.
 
 ## Questions
 
@@ -120,10 +126,11 @@ if none qualifies, report NOT-YET and the blocking patterns. Even 12/12 is only 
 pilot result. Null and negative results are useful. A refinement requires a new
 packet freeze and separate results, not replacement of failed runs.
 
-After assessment, choose the instruction/profile for the separately frozen
-[AI review pilot](../triage/AI-STUDY.md). Preserve its D versus C primary comparison,
-48 independent review runs, outside-construction defects and blinded adjudication.
-Do not reuse adoption tasks as held-out review tasks.
+After assessment, report adoption feasibility separately. The next Serene
+[safety-prioritization study](../triage/SQL-SAFETY-STUDY.md) uses matched source and
+construction/provenance outcomes against grep. The old 48-run mixed general-review
+proposal is historical, not a prerequisite or the next Serene effectiveness test.
+Do not reuse adoption tasks as held-out safety-prioritization tasks.
 
 ## Separate layout comparison and Rules decision
 
@@ -162,8 +169,9 @@ protocol above. Its 96 adoption runs and separate layout study remain unperforme
 The smallest instruction and Rules-only comparison remain open. A separately
 frozen [small review pilot](../triage/exploratory/REPORT.md) then completed twelve
 Luna/medium sessions. It reached a known-defect recall ceiling and exposed contract
-ambiguities and one format failure. Larger replication is not automatic; stronger
-task contracts and meaningful discovery difficulty require a new freeze.
+ambiguities and one format failure. That historical general-review
+result cannot decide safety-triage utility. The scope-corrected safety plan requires
+its own construction oracle, prioritization budget and new packet freeze.
 Keep Draft status; no Rules change follows from these exploratory counts.
 
 ## Model cost preference for subsequent fresh-agent work

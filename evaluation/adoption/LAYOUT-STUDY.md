@@ -1,5 +1,9 @@
 # Layout comparison: dedicated file versus authoritative definition
 
+> Independent Rules integration/layout track. SQL discovery, binding/execution
+> follow-through and layout friction do not enter the Serene safety-triage score.
+> See the [research map](../README.md).
+
 Status: AI STUDY NOT RUN; protocol candidate. No isolated model task packets or
 model runs have been completed. Author-created paired SQLite preflight evidence is
 recorded in [preflight/REPORT.md](preflight/REPORT.md); it is not layout-effect evidence. This study is separate from the A-H instruction
@@ -103,7 +107,9 @@ functional correctness blocks a favorable policy conclusion.
 - If results are mixed, incomplete or inconclusive, retain the current policy and
   report the uncertainty. A four-task pilot is not broad proof of equivalence.
 
-No policy branch is selected yet. An independent model runner remains unavailable.
+No policy branch is selected yet. Instruction-scoped Work fresh sessions have
+been exercised in other pilots, but this layout study has not been frozen or run;
+physical packet isolation remains unavailable.
 Real SQLite/Node-driver preflight is available; formal frozen-study DB verification
 and any other target DB/driver still require separate execution. See the preflight
 report for the narrow observed results and remaining work.

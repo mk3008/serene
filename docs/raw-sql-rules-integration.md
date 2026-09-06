@@ -80,8 +80,11 @@ Contracts or Defaults 2-4, a separate evidence-backed Raw SQL Rules v0.3 PR prop
 an authoritative-definition default becomes an option. If dedicated files clearly
 win, retain that default and then consider Serene cross-file provenance or reviewed
 exceptions. Inconclusive evidence means no policy change. This PR changes neither
-Raw SQL Rules nor Serene's runtime/audit capabilities, and supplies no measured
-adoption or layout-effect results.
+Raw SQL Rules nor Serene's runtime/audit capabilities, and supplies no controlled
+layout-effect results. The later [coding pilot](../evaluation/adoption/exploratory/REPORT.md)
+provides limited adoption feasibility and import-only gate-friction evidence.
+These are integration outcomes, not SQL-safety triage effectiveness. Keep the
+[research questions](../evaluation/README.md) and their scores separate.
 
 
 The [SQLite preflight](../evaluation/adoption/preflight/REPORT.md) now reproduces

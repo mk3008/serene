@@ -1,5 +1,10 @@
 # AI review experiment: follow-up protocol (not run)
 
+> Historical mixed general-review proposal; not the next Serene evaluation.
+> The SQL-safety prioritization question is specified in
+> [SQL-SAFETY-STUDY.md](SQL-SAFETY-STUDY.md). Semantic defect recall is excluded
+> from its primary score. See the [research map](../README.md).
+
 Status: the 48-run protocol below remains unperformed. A separately scoped
 [12-run exploratory Luna/medium pilot](exploratory/REPORT.md) is complete. It found
 a frozen-defect recall ceiling, one structured-output failure and contract

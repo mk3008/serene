@@ -1,5 +1,11 @@
 # Small exploratory review results
 
+> Scope correction (PR #4): this is a historical mixed general-code-review pilot.
+> Its semantic recall ceiling is not evidence for or against Serene SQL-safety
+> triage. Prioritization and unnecessary construction deep-review effort were not
+> measured. Original answers, gold and counts remain unchanged. See the
+> [research map](../../README.md) and [replacement plan](../SQL-SAFETY-STUDY.md).
+
 Twelve fresh reviews were requested with **gpt-5.6-luna / medium**, one per task/arm.
 All four arms identified the three frozen defects in their answer text. This small,
 conspicuous task set reached a semantic recall ceiling and does not show an
@@ -75,18 +81,18 @@ style can reveal representation; this is not complete blinding or physical packe
 isolation. Shared filesystem access remained technically possible, and tool/access
 reports are self-reported rather than a full exported event trace.
 
-## Decision and next boundary
+## Corrected decision and next boundary
 
-The low-cost cohort is sufficient to reveal a recall ceiling, a format failure and
-weaknesses in the task contracts. Do not spend on an automatic larger replication
-of these tasks or promote the result to an audit value claim. Keep the runtime and
-Raw SQL Rules unchanged, and keep PR #4 Draft.
+This cohort answers a mixed general-review question. The frozen-defect recall
+ceiling cannot decide whether Serene usefully narrows SQL-safety investigation.
+The former recommendation to enlarge/harden this general-review task set is
+superseded by [SQL-safety prioritization](../SQL-SAFETY-STUDY.md). Retain the
+ambiguities, format failure, adjudication and original gold as historical evidence;
+do not rescore them into a new construction-only trial.
 
-Before a larger review study, specify identifier types/valid ranges, authenticated
-context shape, invalid-filter behavior and no-match semantics; require executable
-oracle checks for those domains; use less conspicuous, larger application tasks
-with meaningful discovery effort. Any revised task or Terra/medium comparison
-requires a new freeze and separate results. The planned 48-run review study and
-controlled dedicated-file/colocated layout comparison remain unperformed. The
-current evidence cannot decide Raw SQL Rules Default 1 or the smallest adoption
-instruction.
+The next Serene study measures referral priority, missed construction/provenance
+concerns and unnecessary deep investigation against grep. Authorization/business
+meaning belongs to a separate general-review study. Rules layout effects belong
+to the separate controlled layout study. No results are pooled across those
+questions, and no runtime or Rules change follows from this mixed pilot.
+Keep PR #4 Draft.

@@ -1,5 +1,9 @@
 # Exploratory adoption results
 
+> Scope: adoption feasibility and observed gate/integration friction. These
+> results do not measure safety-triage effectiveness or controlled layout benefit.
+> See the [research map](../../README.md) for separate outcomes.
+
 Nine fresh coding sessions completed three independently authored SQLite tasks under
 D (short Serene instruction), E (D plus ordinary audit), and F (D plus strict audit).
 All nine passed the public and hidden functional tests and used Serene correctly.
@@ -72,9 +76,9 @@ recommend strict audit as a universal adoption gate: correct imported provenance
 still requires separate review. Keep Raw SQL Rules and the runtime API unchanged;
 this is not a controlled comparison supporting a Default 1 policy change.
 
-Proceed to a separately frozen, small code-review pilot with independently authored
-paired tasks, preserving D versus C (audit versus grep) and outside-construction
-bugs. That study must measure review outcomes directly. Following the user's cost
-preference, request Luna with medium effort throughout that new cohort; Terra with
-medium effort is a candidate for a separately recorded later cohort, not an
-unreported mid-study replacement. Keep PR #4 Draft.
+The subsequently completed general-review pilot is historical mixed-review evidence,
+not a test of Serene safety-triage utility. The next Serene evaluation is the
+separate [SQL-safety prioritization plan](../../triage/SQL-SAFETY-STUDY.md).
+Keep the dedicated/colocated comparison in the Rules integration track. Neither
+semantic defect recall nor import-only gate failure enters a shared product score.
+Use explicit low-cost model settings for future fresh sessions and keep PR #4 Draft.

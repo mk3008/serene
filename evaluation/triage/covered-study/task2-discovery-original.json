@@ -1,0 +1,117 @@
+[
+  {
+    "file": "store.js",
+    "line": 2,
+    "function": "product"
+  },
+  {
+    "file": "store.js",
+    "line": 7,
+    "function": "productPage"
+  },
+  {
+    "file": "store.js",
+    "line": 12,
+    "function": "addProduct"
+  },
+  {
+    "file": "store.js",
+    "line": 17,
+    "function": "updateProduct"
+  },
+  {
+    "file": "store.js",
+    "line": 22,
+    "function": "binLevels"
+  },
+  {
+    "file": "store.js",
+    "line": 27,
+    "function": "reserveUnits"
+  },
+  {
+    "file": "store.js",
+    "line": 32,
+    "function": "reservationRow"
+  },
+  {
+    "file": "store.js",
+    "line": 37,
+    "function": "reservation"
+  },
+  {
+    "file": "store.js",
+    "line": 42,
+    "function": "releaseUnits"
+  },
+  {
+    "file": "store.js",
+    "line": 47,
+    "function": "deleteReservation"
+  },
+  {
+    "file": "store.js",
+    "line": 52,
+    "function": "insertReceipt"
+  },
+  {
+    "file": "store.js",
+    "line": 57,
+    "function": "receiptLine"
+  },
+  {
+    "file": "store.js",
+    "line": 62,
+    "function": "addOnHand"
+  },
+  {
+    "file": "store.js",
+    "line": 67,
+    "function": "postReceipt"
+  },
+  {
+    "file": "store.js",
+    "line": 72,
+    "function": "supplierSpend"
+  },
+  {
+    "file": "store.js",
+    "line": 77,
+    "function": "openReceipts"
+  },
+  {
+    "file": "store.js",
+    "line": 82,
+    "function": "receiptItems"
+  },
+  {
+    "file": "store.js",
+    "line": 87,
+    "function": "removeReceipt"
+  },
+  {
+    "file": "store.js",
+    "line": 92,
+    "function": "reservationsBySku"
+  },
+  {
+    "file": "store.js",
+    "line": 97,
+    "function": "inactiveProducts"
+  },
+  {
+    "file": "store.js",
+    "line": 104,
+    "function": "inventoryList"
+  },
+  {
+    "file": "store.js",
+    "line": 109,
+    "function": "categorySnapshot"
+  },
+  {
+    "file": "helpers.js",
+    "line": 20,
+    "function": "send"
+  }
+]

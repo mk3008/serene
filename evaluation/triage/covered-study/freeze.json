@@ -1,0 +1,74 @@
+{
+  "model": "gpt-5.6-luna",
+  "effort": "medium",
+  "fork_turns": "none",
+  "status": "before dispatch",
+  "runs": {
+    "t01": {
+      "prompt": "You are performing COVERED-SITE SQL construction triage, not execution-site discovery. A separate AI has already discovered the input site set. Discovery omissions are measured separately. Your task covers exactly that supplied set; do not search for additional execution sites or reread recognized constructions to compensate for possible discovery omissions. Ignore business semantics, authorization, performance and Rules/layout.\n\nUse ONLY python /tmp/serene-covered-run/client.py t01 '<JSON>' through exec with max_output_tokens:30000. No direct filesystem reads, other tools, agents or edits. First {\"op\":\"sites\"} and read CONTRACT.md. Then follow your arm: Raw arm: screen the supplied site set yourself, using fixed SQL/separate-value evidence and targeted follow-through as needed. Audit is unavailable. Do not perform new discovery.\n\nOperations: sites; audit (NO extra arguments; project-wide report reconciled to supplied sites); read(path,start?,end?); function(path,function OR line); investigate(same, adds targeted helper/caller ranges); finding(path,function,mechanism,impact); status; finish. Function helpers without their own execution are readable. Unknown fields fail. Example {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"someFunction\"}. All source tools return numbered ranges. Use only context needed to establish construction provenance.\n\nRead/search of undiscovered sites is not required. Matched ordinary is a construction-only skip contract, not general SQL/business correctness. Investigate every actionable or unmatched supplied site; a violation label alone is not a vulnerability. Submit a finding immediately when concrete untrusted-input-to-SQL-syntax evidence justifies it. Continue until covered set resolved or capped, then finish. Budget:32768 response-text bytes,80 requests,600 seconds. Finish remains available after cap. Every response including errors is charged.\n\nReturn JSON only: findings[{path,function,mechanism,impact}], additional_review_paths[{path,function,disposition,resolution}], ordinary_reread_reasons[], limits[], access_policy_followed. No session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "api.js": "cb7bf00c239d5036724c93aeac46e34af366c235018ce029b58f95ac60334a36",
+        "helpers.js": "3079f4f2b91b8c55881e2407fc509cca1e82229ad125aa7c5d486f8cf89255ed",
+        "schema.sql": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9",
+        "store.js": "90fac07a107412f71a21b072dddcfa8de95b609fc5c7e71288a91f2ed7e43e60"
+      }
+    },
+    "t02": {
+      "prompt": "You are performing COVERED-SITE SQL construction triage, not execution-site discovery. A separate AI has already discovered the input site set. Discovery omissions are measured separately. Your task covers exactly that supplied set; do not search for additional execution sites or reread recognized constructions to compensate for possible discovery omissions. Ignore business semantics, authorization, performance and Rules/layout.\n\nUse ONLY python /tmp/serene-covered-run/client.py t02 '<JSON>' through exec with max_output_tokens:30000. No direct filesystem reads, other tools, agents or edits. First {\"op\":\"sites\"} and read CONTRACT.md. Then follow your arm: Serene arm: call audit FIRST before reading any SQL function body. Skip individual construction screening of matched ordinary sites. Use function/investigate only on actionable/unmatched paths and their necessary helpers/callers, unless concrete contradictory construction evidence justifies an ordinary reread. Audit non-exhaustiveness belongs to Discovery, not a reason to recheck matched ordinary.\n\nOperations: sites; audit (NO extra arguments; project-wide report reconciled to supplied sites); read(path,start?,end?); function(path,function OR line); investigate(same, adds targeted helper/caller ranges); finding(path,function,mechanism,impact); status; finish. Function helpers without their own execution are readable. Unknown fields fail. Example {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"someFunction\"}. All source tools return numbered ranges. Use only context needed to establish construction provenance.\n\nRead/search of undiscovered sites is not required. Matched ordinary is a construction-only skip contract, not general SQL/business correctness. Investigate every actionable or unmatched supplied site; a violation label alone is not a vulnerability. Submit a finding immediately when concrete untrusted-input-to-SQL-syntax evidence justifies it. Continue until covered set resolved or capped, then finish. Budget:32768 response-text bytes,80 requests,600 seconds. Finish remains available after cap. Every response including errors is charged.\n\nReturn JSON only: findings[{path,function,mechanism,impact}], additional_review_paths[{path,function,disposition,resolution}], ordinary_reread_reasons[], limits[], access_policy_followed. No session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "api.js": "afe7c3c741b75ea88ea88c189c1666e39d5b51787ebdbf636b4b4450c57eb038",
+        "helpers.js": "debdcf9301ee59786da3811921fa32d3ab567bdf4c9a14b5066c8cd453f7a833",
+        "schema.sql": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9",
+        "store.js": "83e428bd63101887ca788fd53241a53efc9a5bccd9772eb4cbb2c8867bd0901d"
+      }
+    },
+    "t03": {
+      "prompt": "You are performing COVERED-SITE SQL construction triage, not execution-site discovery. A separate AI has already discovered the input site set. Discovery omissions are measured separately. Your task covers exactly that supplied set; do not search for additional execution sites or reread recognized constructions to compensate for possible discovery omissions. Ignore business semantics, authorization, performance and Rules/layout.\n\nUse ONLY python /tmp/serene-covered-run/client.py t03 '<JSON>' through exec with max_output_tokens:30000. No direct filesystem reads, other tools, agents or edits. First {\"op\":\"sites\"} and read CONTRACT.md. Then follow your arm: Serene arm: call audit FIRST before reading any SQL function body. Skip individual construction screening of matched ordinary sites. Use function/investigate only on actionable/unmatched paths and their necessary helpers/callers, unless concrete contradictory construction evidence justifies an ordinary reread. Audit non-exhaustiveness belongs to Discovery, not a reason to recheck matched ordinary.\n\nOperations: sites; audit (NO extra arguments; project-wide report reconciled to supplied sites); read(path,start?,end?); function(path,function OR line); investigate(same, adds targeted helper/caller ranges); finding(path,function,mechanism,impact); status; finish. Function helpers without their own execution are readable. Unknown fields fail. Example {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"someFunction\"}. All source tools return numbered ranges. Use only context needed to establish construction provenance.\n\nRead/search of undiscovered sites is not required. Matched ordinary is a construction-only skip contract, not general SQL/business correctness. Investigate every actionable or unmatched supplied site; a violation label alone is not a vulnerability. Submit a finding immediately when concrete untrusted-input-to-SQL-syntax evidence justifies it. Continue until covered set resolved or capped, then finish. Budget:32768 response-text bytes,80 requests,600 seconds. Finish remains available after cap. Every response including errors is charged.\n\nReturn JSON only: findings[{path,function,mechanism,impact}], additional_review_paths[{path,function,disposition,resolution}], ordinary_reread_reasons[], limits[], access_policy_followed. No session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "helpers.js": "cbeabb93aaeb49c2b5fba438a0024129f9b972729cb583be28c34844e097630f",
+        "schema.sql": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4",
+        "service.js": "65d4c192e06719f7bca972a2e3d94a61e1ba5e312323037a4137929a1997b727",
+        "store.js": "19bb33b605e4f210fade88417543c348db8652806855a22cb4a355893927e665"
+      }
+    },
+    "t04": {
+      "prompt": "You are performing COVERED-SITE SQL construction triage, not execution-site discovery. A separate AI has already discovered the input site set. Discovery omissions are measured separately. Your task covers exactly that supplied set; do not search for additional execution sites or reread recognized constructions to compensate for possible discovery omissions. Ignore business semantics, authorization, performance and Rules/layout.\n\nUse ONLY python /tmp/serene-covered-run/client.py t04 '<JSON>' through exec with max_output_tokens:30000. No direct filesystem reads, other tools, agents or edits. First {\"op\":\"sites\"} and read CONTRACT.md. Then follow your arm: Raw arm: screen the supplied site set yourself, using fixed SQL/separate-value evidence and targeted follow-through as needed. Audit is unavailable. Do not perform new discovery.\n\nOperations: sites; audit (NO extra arguments; project-wide report reconciled to supplied sites); read(path,start?,end?); function(path,function OR line); investigate(same, adds targeted helper/caller ranges); finding(path,function,mechanism,impact); status; finish. Function helpers without their own execution are readable. Unknown fields fail. Example {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"someFunction\"}. All source tools return numbered ranges. Use only context needed to establish construction provenance.\n\nRead/search of undiscovered sites is not required. Matched ordinary is a construction-only skip contract, not general SQL/business correctness. Investigate every actionable or unmatched supplied site; a violation label alone is not a vulnerability. Submit a finding immediately when concrete untrusted-input-to-SQL-syntax evidence justifies it. Continue until covered set resolved or capped, then finish. Budget:32768 response-text bytes,80 requests,600 seconds. Finish remains available after cap. Every response including errors is charged.\n\nReturn JSON only: findings[{path,function,mechanism,impact}], additional_review_paths[{path,function,disposition,resolution}], ordinary_reread_reasons[], limits[], access_policy_followed. No session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "helpers.js": "54b9e6c69537ef1e28264b2122b03d7080831d6619eeabd483485fbb24a486c0",
+        "schema.sql": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4",
+        "service.js": "d26d67f71ea5b284f22254c6c59ddd212262ec2ca7501f098c33be0fc17f61dc",
+        "store.js": "1ffa8d9352efb180858949d6504e1a9a2ae6182e362601f24989107ff2e656c3"
+      }
+    }
+  },
+  "hashes": {
+    "evaluation/triage/covered-study/.gitignore": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+    "evaluation/triage/covered-study/PROTOCOL.md": "a0dbf8abd7c9e4a3a88bb2b85221d53e4b485c4de7f04c921a712c2a96bc360d",
+    "evaluation/triage/covered-study/aggregate.py": "05157eaf9a389370509bd6608b0ec87df1af7068ad768f076b2afefdcdc0272a",
+    "evaluation/triage/covered-study/audit-reconciliation.json": "e072f06b22d77e5da03b20ff58c40db73ddca716c9d4541dcf90d2ef9928f3a1",
+    "evaluation/triage/covered-study/build-index.mjs": "957fc19412d34eae51fe9f447d4bc9fc96c25e5bfe680da7cd323c50a72b167c",
+    "evaluation/triage/covered-study/calibration-cr.jsonl": "a315713b1a0fd0b1d409c0f25dd8ea229913e7fdac2cb24f79c450adc14c5c75",
+    "evaluation/triage/covered-study/calibration-cs.jsonl": "a28e167adafe2a23f6adc48bee6dcbe22cac60f53a78e74ad249a391f2b478fa",
+    "evaluation/triage/covered-study/calibration-gate.json": "1d04cafabba7f74bd15aaeac1caa3de35f39754b2380cd62bdd99b7f3f31840e",
+    "evaluation/triage/covered-study/calibration-inputs/raw/CONTRACT.md": "d2fa6a6c0dc24910dcbb327367bf053b5a9065dfafafcd6ee3111ffba3ac4e40",
+    "evaluation/triage/covered-study/calibration-inputs/raw/ops.js": "05d441de6857090328db2dc15145dcb837dff99087a6923add97940475de62b4",
+    "evaluation/triage/covered-study/calibration-inputs/serene/CONTRACT.md": "d2fa6a6c0dc24910dcbb327367bf053b5a9065dfafafcd6ee3111ffba3ac4e40",
+    "evaluation/triage/covered-study/calibration-inputs/serene/ops.js": "b9660ca82290a6b9c0dda1bdfb78738fc1ec8f80a147ebd9138b3f4e0b094648",
+    "evaluation/triage/covered-study/client.py": "07e7c3ea68220dfcd78411d8dacb15958d7c3baef573c75353240109aaf55f60",
+    "evaluation/triage/covered-study/controller.py": "c79b65012da8d996752e8b21b4494ed556b8702818cbe1a0771caa0eb9e38478",
+    "evaluation/triage/covered-study/discovery-reconciliation.json": "abe553e468a45a92d345a6b72dbe97c3bc9a8f5e5cb27a2a2271521e24225c4d",
+    "evaluation/triage/covered-study/discovery-scores.json": "e034c720035c6d4228a70e7513c4548510bcf7efb3fdb1c864c2f598ad7445eb",
+    "evaluation/triage/covered-study/participant-prompt.txt": "94cc9698ee72e6dc4c4c9f928d7869871d8fb1e83ddf2c47e8d3094deacb9aa7",
+    "evaluation/triage/covered-study/prepare.py": "a1ea994f467fd9535e7713cda2d39c526d7efaca3df659faff998e03834137a2",
+    "evaluation/triage/covered-study/run-config.json": "cffd95905d5fca380f6e2ee5f280d178ae7a1078c09b6b5048cb0299a82d8e92",
+    "evaluation/triage/covered-study/task1-discovery-original.json": "88dd583277463a37dbc5e93a0f13f55909904df4f9ca7dfa4f1750cfdcfa885e",
+    "evaluation/triage/covered-study/task2-discovery-original.json": "4bf936e2292eafd3c061d52e0250e536d763cc9febc318d3180b464712a91d87",
+    "evaluation/triage/covered-study/test_controller.py": "1ca3264d6c4e67a360741dc1d7192b0f556eb0fcdad29fe93bbe32f87c307ccc",
+    "tooling/cli.mjs": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c",
+    "tooling/audit.mjs": "3568b38997c80cceb1cce49e24d2d1d16072e4ac77602f90a5778abda75d6555"
+  }
+}

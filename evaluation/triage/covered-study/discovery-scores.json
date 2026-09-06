@@ -1,0 +1,38 @@
+{
+  "task1": {
+    "gold_sites": 23,
+    "exact_hits": 21,
+    "missed_locations": [
+      [
+        "store.js",
+        104,
+        "paymentFeed"
+      ],
+      [
+        "store.js",
+        110,
+        "revenueSummary"
+      ]
+    ],
+    "false_locations": [
+      [
+        "api.js",
+        104,
+        "paymentFeed"
+      ],
+      [
+        "api.js",
+        110,
+        "revenueSummary"
+      ]
+    ],
+    "reported_count": 23
+  },
+  "task2": {
+    "gold_sites": 23,
+    "exact_hits": 23,
+    "missed_locations": [],
+    "false_locations": [],
+    "reported_count": 23
+  }
+}

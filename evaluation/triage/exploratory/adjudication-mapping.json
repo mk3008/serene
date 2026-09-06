@@ -1,0 +1,50 @@
+[
+  {
+    "case": "case01",
+    "run": "v05"
+  },
+  {
+    "case": "case02",
+    "run": "v08"
+  },
+  {
+    "case": "case03",
+    "run": "v07"
+  },
+  {
+    "case": "case04",
+    "run": "v06"
+  },
+  {
+    "case": "case05",
+    "run": "v10"
+  },
+  {
+    "case": "case06",
+    "run": "v01"
+  },
+  {
+    "case": "case07",
+    "run": "v04"
+  },
+  {
+    "case": "case08",
+    "run": "v11"
+  },
+  {
+    "case": "case09",
+    "run": "v09"
+  },
+  {
+    "case": "case10",
+    "run": "v03"
+  },
+  {
+    "case": "case11",
+    "run": "v12"
+  },
+  {
+    "case": "case12",
+    "run": "v02"
+  }
+]

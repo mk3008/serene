@@ -1,0 +1,56 @@
+{
+  "arms": {
+    "A": {
+      "runs": 3,
+      "semantic_gold_hits": 3,
+      "gold_total": 3,
+      "structured_gold_hits": 3,
+      "format_valid": 3,
+      "inspected_hits": 12,
+      "inspected_total": 12,
+      "additional_findings": 3
+    },
+    "B": {
+      "runs": 3,
+      "semantic_gold_hits": 3,
+      "gold_total": 3,
+      "structured_gold_hits": 3,
+      "format_valid": 3,
+      "inspected_hits": 12,
+      "inspected_total": 12,
+      "additional_findings": 1
+    },
+    "C": {
+      "runs": 3,
+      "semantic_gold_hits": 3,
+      "gold_total": 3,
+      "structured_gold_hits": 1,
+      "format_valid": 2,
+      "inspected_hits": 12,
+      "inspected_total": 12,
+      "additional_findings": 1
+    },
+    "D": {
+      "runs": 3,
+      "semantic_gold_hits": 3,
+      "gold_total": 3,
+      "structured_gold_hits": 3,
+      "format_valid": 3,
+      "inspected_hits": 12,
+      "inspected_total": 12,
+      "additional_findings": 4
+    }
+  },
+  "recomputed_case_totals": {
+    "gold_hits": 12,
+    "gold_total": 12,
+    "inspected_hits": 48,
+    "inspected_total": 48,
+    "ambiguous_count": 5,
+    "false_positive_count": 0
+  },
+  "semantic_scoring_of_invalid_output_separate": true,
+  "definitively_false_subclaims": 1,
+  "additional_claims_with_root_or_adjudicator_contract_disagreement": 9,
+  "gold_revised": false
+}

@@ -160,6 +160,18 @@ strict audit blocked the two correct dedicated-source implementations in its arm
 This does not fulfill the physical isolation/model metadata gates of the larger
 protocol above. Its 96 adoption runs and separate layout study remain unperformed.
 The smallest instruction and Rules-only comparison remain open. A separately
-frozen small review pilot is the next step, using the user's requested low-cost
-model selection (Luna/medium initially; Terra/medium as a later cohort option).
+frozen [small review pilot](../triage/exploratory/REPORT.md) then completed twelve
+Luna/medium sessions. It reached a known-defect recall ceiling and exposed contract
+ambiguities and one format failure. Larger replication is not automatic; stronger
+task contracts and meaningful discovery difficulty require a new freeze.
 Keep Draft status; no Rules change follows from these exploratory counts.
+
+## Model cost preference for subsequent fresh-agent work
+
+The user requested low-cost choices on 2026-09-06. Prefer an explicitly selected
+Luna configuration (the completed review cohort used medium effort); use
+Terra/medium for bounded checks that warrant it or separately frozen comparison
+cohorts. Keep model/effort constant within an experimental comparison. Record
+requested aliases and distinguish them from unavailable served snapshot/token
+metadata. Do not silently inherit an expensive configuration or retry with a more
+expensive model merely to obtain a favorable result.

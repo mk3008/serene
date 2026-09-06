@@ -1,0 +1,95 @@
+{
+  "batches": [
+    {
+      "dispatchLowerBound": "2026-09-06T11:54:37.297Z",
+      "dispatchUpperBound": "2026-09-06T11:55:26.215Z",
+      "runs": [
+        "v01",
+        "v02",
+        "v03"
+      ]
+    },
+    {
+      "dispatchLowerBound": "2026-09-06T11:55:50.781Z",
+      "dispatchUpperBound": "2026-09-06T11:56:48.532Z",
+      "runs": [
+        "v04",
+        "v05",
+        "v06"
+      ]
+    },
+    {
+      "dispatchLowerBound": "2026-09-06T11:57:11.992Z",
+      "dispatchUpperBound": "2026-09-06T11:58:11.721Z",
+      "runs": [
+        "v07",
+        "v08",
+        "v09"
+      ]
+    },
+    {
+      "dispatchLowerBound": "2026-09-06T11:58:11.721Z",
+      "dispatchUpperBound": "2026-09-06T11:59:15.149Z",
+      "runs": [
+        "v10",
+        "v11",
+        "v12"
+      ]
+    }
+  ],
+  "model_token_usage": null,
+  "notes": "Batch bounds and root observations; not clean per-model latency. No timeout, retry or model substitution.",
+  "observations": [
+    {
+      "completion_observed": "2026-09-06T11:55:50.781Z",
+      "run": "v01"
+    },
+    {
+      "completion_observed": "2026-09-06T11:55:50.781Z",
+      "run": "v02"
+    },
+    {
+      "completion_observed": "2026-09-06T11:56:48.532Z",
+      "run": "v03"
+    },
+    {
+      "completion_observed": "2026-09-06T11:57:11.992Z",
+      "run": "v04"
+    },
+    {
+      "completion_observed": "2026-09-06T11:57:11.992Z",
+      "run": "v05"
+    },
+    {
+      "completion_observed": "2026-09-06T11:58:11.720Z",
+      "run": "v06"
+    },
+    {
+      "completion_observed": "2026-09-06T11:58:11.721Z",
+      "run": "v07"
+    },
+    {
+      "completion_observed": "2026-09-06T11:59:15.149Z",
+      "run": "v08"
+    },
+    {
+      "completion_observed": "2026-09-06T11:59:15.149Z",
+      "run": "v09"
+    },
+    {
+      "completion_observed": "2026-09-06T11:59:15.149Z",
+      "run": "v10"
+    },
+    {
+      "completion_observed": "2026-09-06T11:59:45.300Z",
+      "run": "v11"
+    },
+    {
+      "completion_observed": "2026-09-06T12:00:13.551Z",
+      "run": "v12"
+    }
+  ],
+  "requested_effort": "medium",
+  "requested_model": "gpt-5.6-luna",
+  "served_snapshot": null
+}

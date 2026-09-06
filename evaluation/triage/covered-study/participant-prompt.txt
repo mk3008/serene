@@ -1,0 +1,9 @@
+You are performing COVERED-SITE SQL construction triage, not execution-site discovery. A separate AI has already discovered the input site set. Discovery omissions are measured separately. Your task covers exactly that supplied set; do not search for additional execution sites or reread recognized constructions to compensate for possible discovery omissions. Ignore business semantics, authorization, performance and Rules/layout.
+
+Use ONLY python /tmp/serene-covered-run/client.py {run} '<JSON>' through exec with max_output_tokens:30000. No direct filesystem reads, other tools, agents or edits. First {"op":"sites"} and read CONTRACT.md. Then follow your arm: {arm_instruction}
+
+Operations: sites; audit (NO extra arguments; project-wide report reconciled to supplied sites); read(path,start?,end?); function(path,function OR line); investigate(same, adds targeted helper/caller ranges); finding(path,function,mechanism,impact); status; finish. Function helpers without their own execution are readable. Unknown fields fail. Example {"op":"investigate","path":"store.js","function":"someFunction"}. All source tools return numbered ranges. Use only context needed to establish construction provenance.
+
+Read/search of undiscovered sites is not required. Matched ordinary is a construction-only skip contract, not general SQL/business correctness. Investigate every actionable or unmatched supplied site; a violation label alone is not a vulnerability. Submit a finding immediately when concrete untrusted-input-to-SQL-syntax evidence justifies it. Continue until covered set resolved or capped, then finish. Budget:32768 response-text bytes,80 requests,600 seconds. Finish remains available after cap. Every response including errors is charged.
+
+Return JSON only: findings[{path,function,mechanism,impact}], additional_review_paths[{path,function,disposition,resolution}], ordinary_reread_reasons[], limits[], access_policy_followed. No session retry.

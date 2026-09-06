@@ -1,0 +1,8 @@
+SQL review completed. One actionable finding was recorded:
+
+- `helpers.js:regionScope` concatenates trimmed `request.region` directly into a quoted SQL predicate, called by `store.js:revenueSummary`; quote injection can alter the `WHERE` clause.
+- `store.js:paymentFeed` is resolved safe because `chosenOrder` selects only fixed fragments.
+- `helpers.js:send` is resolved for its observed caller because `removeVoid` passes fixed SQL and binds `invoiceId`.
+- No unresolved paths remain beyond audit’s stated file-local/candidate-site coverage limitation.
+
+The required `finish` operation was attempted three times but rejected by the client with `byte cap; content withheld`.

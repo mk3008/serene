@@ -1,0 +1,65 @@
+{
+  "scope": "Independent pre-freeze static validation of the specified task definitions, converter, controller, and supplied validation evidence; no experiment execution, network access, or input edits.",
+  "verdict": "pass_with_evidence_bound_ambiguities",
+  "blockers": [],
+  "ambiguities": [
+    "The supplied artifacts establish internal consistency and recorded equivalence, but this review did not independently rerun smoke/witness or native-driver traces.",
+    "The requested claim that these are not a prior repeated synthetic calibration cannot be proved from the permitted inputs alone. The code shows two small related illustrative applications (billing and warehouse), not production systems; no production representativeness claim is warranted.",
+    "Controller deep-site accounting is an exposure-based proxy. It records owner and dependency spans that were delivered, but cannot establish a reviewer/model mental-depth requirement or private reasoning."
+  ],
+  "checks": {
+    "pairing": {
+      "status": "pass",
+      "details": "All non-JS files are identical. Serene JS preserves source function names, ordering, control flow, dynamic construction, imported helper behavior, and dangerous helper provenance; changes are the uniform Serene import plus bind(sql`literal`, values) declarations and direct-call rewrites. Task1 quote-style normalization inside template literals is semantically equivalent."
+    },
+    "converter": {
+      "status": "pass",
+      "details": "convert.mjs reads only its input directory, does not read gold/oracle files, and applies one syntactic rule: direct two-argument .query call whose first argument is a static string literal and whose enclosing statement is a block-level return/variable/expression statement. It leaves dynamic query text and wrapper forwarding unchanged. It prepends the import uniformly to every JS file, including files with zero conversions; this is a benign but unnecessary module dependency."
+    },
+    "gold": {
+      "status": "pass",
+      "per_task": {
+        "direct_execution_sites": 23,
+        "dangerous": 1,
+        "needs_investigation": 3
+      },
+      "details": "Each task has exactly one dangerous helper-provenance path (revenueSummary/categorySnapshot), three conceptual investigation paths (imported finite order helper, dangerous helper provenance, imported send wrapper), and wrapper follow-through correctly maps removeVoid/purgeReservation to actual helpers.send db.query execution. The finite-map item is N because caller-only screening cannot resolve it; it is not an N claim for an immediately visible finite choice."
+    },
+    "finite_map_hazards": {
+      "status": "pass",
+      "details": "chosenOrder and stockOrder use Object.freeze plus Object.hasOwn, so inherited/prototype property names fall back to a fixed source default. No prototype/map flaw was found in the intended controls."
+    },
+    "site_index_and_logger": {
+      "status": "pass",
+      "details": "site-index-validation.json contains raw and Serene entries for task1 and task2, each with 23 sites and dependency_expanded_count_after_both_reads=3. The three dependency sites per variant are order-helper owner, dangerous-helper owner, and send direct execution with reverse caller span. controller.py stores owner spans (function start/end) and imported dependency spans, then increments deep coverage only when both are exposed; it is not declaration-only accounting."
+    },
+    "paired_native_evidence": {
+      "status": "pass_as_recorded",
+      "details": "pair-validation.json records task1 smoke=29, task1 witness=2, task2 smoke=29, task2 witness=2, for 62 paired native execution records total; every supplied record is marked equivalent."
+    },
+    "metric_limits": {
+      "status": "pass_with_limitations",
+      "details": "The controller measures returned bytes, request/time caps, source lines delivered, and dependency-expanded-site exposure. It supports a controlled source-access/coverage metric, not enforcement or observation of mental depth, private reasoning, physical isolation, or production performance."
+    },
+    "construction_and_representativeness": {
+      "status": "pass_with_limitations",
+      "details": "No unintended SQL construction flaw was found beyond the deliberately retained dangerous helper path in each raw/Serene pair. The tasks are small illustrative billing and warehouse apps with parallel structure; appropriate claims are limited to these examples and their recorded traces, with no production or broad representativeness claim."
+    }
+  },
+  "evidence_integrity": {
+    "source_inputs_reviewed": [
+      "tasks/task1",
+      "tasks/task2",
+      "convert.mjs",
+      "pair-validation.json",
+      "controller.py",
+      "site-index-validation.json"
+    ],
+    "not_reviewed_or_used": [
+      "prior experiments",
+      "network sources",
+      "other-agent outputs"
+    ],
+    "no_scored_runs_or_gold_changes": true
+  }
+}

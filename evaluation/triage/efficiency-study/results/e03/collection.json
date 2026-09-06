@@ -1,0 +1,26 @@
+{
+  "run": "e03",
+  "protected_changes": [],
+  "requests": 17,
+  "bytes": 56322,
+  "expanded_sites": 3,
+  "elapsed_seconds": 57.11136722564697,
+  "failed_requests": [
+    8,
+    11
+  ],
+  "finding_events": [
+    {
+      "sequence": 12,
+      "request": {
+        "op": "finding",
+        "path": "store.js",
+        "function": "revenueSummary",
+        "mechanism": "request.region is converted only by String(...).trim(), then regionScope interpolates it into `region = ' + value + '`; the resulting scope is concatenated directly into the db.query SQL text at the WHERE clause.",
+        "impact": "An untrusted region containing a quote and SQL syntax can terminate the literal and alter the query predicate (and potentially append additional SQL if the driver permits it), so runtime input controls SQL syntax instead of remaining a bound value."
+      }
+    }
+  ],
+  "finish": true,
+  "model_token_usage": null
+}

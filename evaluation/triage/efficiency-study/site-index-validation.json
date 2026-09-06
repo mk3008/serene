@@ -1,0 +1,1066 @@
+[
+  {
+    "task": "task1",
+    "variant": "raw",
+    "sites": [
+      {
+        "id": "store.js:2",
+        "path": "store.js",
+        "function": "findInvoice",
+        "line": 2,
+        "start": 1,
+        "end": 5,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:7",
+        "path": "store.js",
+        "function": "listOpen",
+        "line": 7,
+        "start": 6,
+        "end": 10,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:12",
+        "path": "store.js",
+        "function": "insertInvoice",
+        "line": 12,
+        "start": 11,
+        "end": 15,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:17",
+        "path": "store.js",
+        "function": "deleteInvoiceLines",
+        "line": 17,
+        "start": 16,
+        "end": 20,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:22",
+        "path": "store.js",
+        "function": "insertInvoiceLine",
+        "line": 22,
+        "start": 21,
+        "end": 25,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:27",
+        "path": "store.js",
+        "function": "repriceInvoice",
+        "line": 27,
+        "start": 26,
+        "end": 30,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:32",
+        "path": "store.js",
+        "function": "markInvoiceSent",
+        "line": 32,
+        "start": 31,
+        "end": 35,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:37",
+        "path": "store.js",
+        "function": "addPayment",
+        "line": 37,
+        "start": 36,
+        "end": 40,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:42",
+        "path": "store.js",
+        "function": "completeInvoice",
+        "line": 42,
+        "start": 41,
+        "end": 45,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:47",
+        "path": "store.js",
+        "function": "overdueAccounts",
+        "line": 47,
+        "start": 46,
+        "end": 50,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:52",
+        "path": "store.js",
+        "function": "customerStatement",
+        "line": 52,
+        "start": 51,
+        "end": 55,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:57",
+        "path": "store.js",
+        "function": "findCustomer",
+        "line": 57,
+        "start": 56,
+        "end": 60,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:62",
+        "path": "store.js",
+        "function": "searchCustomer",
+        "line": 62,
+        "start": 61,
+        "end": 65,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:67",
+        "path": "store.js",
+        "function": "createCustomer",
+        "line": 67,
+        "start": 66,
+        "end": 70,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:72",
+        "path": "store.js",
+        "function": "changeCredit",
+        "line": 72,
+        "start": 71,
+        "end": 75,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:77",
+        "path": "store.js",
+        "function": "activeRegions",
+        "line": 77,
+        "start": 76,
+        "end": 80,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:82",
+        "path": "store.js",
+        "function": "dailyCash",
+        "line": 82,
+        "start": 81,
+        "end": 85,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:87",
+        "path": "store.js",
+        "function": "productTotals",
+        "line": 87,
+        "start": 86,
+        "end": 90,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:92",
+        "path": "store.js",
+        "function": "invoiceCount",
+        "line": 92,
+        "start": 91,
+        "end": 95,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:97",
+        "path": "store.js",
+        "function": "recentNotes",
+        "line": 97,
+        "start": 96,
+        "end": 101,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:104",
+        "path": "store.js",
+        "function": "paymentFeed",
+        "line": 104,
+        "start": 102,
+        "end": 106,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 5,
+            "end": 12
+          }
+        ]
+      },
+      {
+        "id": "store.js:110",
+        "path": "store.js",
+        "function": "revenueSummary",
+        "line": 110,
+        "start": 107,
+        "end": 112,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 13,
+            "end": 15
+          },
+          {
+            "path": "helpers.js",
+            "start": 16,
+            "end": 18
+          }
+        ]
+      },
+      {
+        "id": "helpers.js:20",
+        "path": "helpers.js",
+        "function": "send",
+        "line": 20,
+        "start": 19,
+        "end": 21,
+        "dependencies": [
+          "store.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "store.js",
+            "start": 113,
+            "end": 116
+          }
+        ]
+      }
+    ],
+    "dependency_expanded_count_after_both_reads": 3
+  },
+  {
+    "task": "task1",
+    "variant": "serene",
+    "sites": [
+      {
+        "id": "store.js:5",
+        "path": "store.js",
+        "function": "findInvoice",
+        "line": 5,
+        "start": 3,
+        "end": 8,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:11",
+        "path": "store.js",
+        "function": "listOpen",
+        "line": 11,
+        "start": 9,
+        "end": 14,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:17",
+        "path": "store.js",
+        "function": "insertInvoice",
+        "line": 17,
+        "start": 15,
+        "end": 20,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:23",
+        "path": "store.js",
+        "function": "deleteInvoiceLines",
+        "line": 23,
+        "start": 21,
+        "end": 26,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:29",
+        "path": "store.js",
+        "function": "insertInvoiceLine",
+        "line": 29,
+        "start": 27,
+        "end": 32,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:35",
+        "path": "store.js",
+        "function": "repriceInvoice",
+        "line": 35,
+        "start": 33,
+        "end": 38,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:41",
+        "path": "store.js",
+        "function": "markInvoiceSent",
+        "line": 41,
+        "start": 39,
+        "end": 44,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:47",
+        "path": "store.js",
+        "function": "addPayment",
+        "line": 47,
+        "start": 45,
+        "end": 50,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:53",
+        "path": "store.js",
+        "function": "completeInvoice",
+        "line": 53,
+        "start": 51,
+        "end": 56,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:59",
+        "path": "store.js",
+        "function": "overdueAccounts",
+        "line": 59,
+        "start": 57,
+        "end": 62,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:65",
+        "path": "store.js",
+        "function": "customerStatement",
+        "line": 65,
+        "start": 63,
+        "end": 68,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:71",
+        "path": "store.js",
+        "function": "findCustomer",
+        "line": 71,
+        "start": 69,
+        "end": 74,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:77",
+        "path": "store.js",
+        "function": "searchCustomer",
+        "line": 77,
+        "start": 75,
+        "end": 80,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:83",
+        "path": "store.js",
+        "function": "createCustomer",
+        "line": 83,
+        "start": 81,
+        "end": 86,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:89",
+        "path": "store.js",
+        "function": "changeCredit",
+        "line": 89,
+        "start": 87,
+        "end": 92,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:95",
+        "path": "store.js",
+        "function": "activeRegions",
+        "line": 95,
+        "start": 93,
+        "end": 98,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:101",
+        "path": "store.js",
+        "function": "dailyCash",
+        "line": 101,
+        "start": 99,
+        "end": 104,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:107",
+        "path": "store.js",
+        "function": "productTotals",
+        "line": 107,
+        "start": 105,
+        "end": 110,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:113",
+        "path": "store.js",
+        "function": "invoiceCount",
+        "line": 113,
+        "start": 111,
+        "end": 116,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:119",
+        "path": "store.js",
+        "function": "recentNotes",
+        "line": 119,
+        "start": 117,
+        "end": 123,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:126",
+        "path": "store.js",
+        "function": "paymentFeed",
+        "line": 126,
+        "start": 124,
+        "end": 128,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 7,
+            "end": 14
+          }
+        ]
+      },
+      {
+        "id": "store.js:132",
+        "path": "store.js",
+        "function": "revenueSummary",
+        "line": 132,
+        "start": 129,
+        "end": 134,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 15,
+            "end": 17
+          },
+          {
+            "path": "helpers.js",
+            "start": 18,
+            "end": 20
+          }
+        ]
+      },
+      {
+        "id": "helpers.js:22",
+        "path": "helpers.js",
+        "function": "send",
+        "line": 22,
+        "start": 21,
+        "end": 23,
+        "dependencies": [
+          "store.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "store.js",
+            "start": 135,
+            "end": 138
+          }
+        ]
+      }
+    ],
+    "dependency_expanded_count_after_both_reads": 3
+  },
+  {
+    "task": "task2",
+    "variant": "raw",
+    "sites": [
+      {
+        "id": "store.js:2",
+        "path": "store.js",
+        "function": "product",
+        "line": 2,
+        "start": 1,
+        "end": 5,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:7",
+        "path": "store.js",
+        "function": "productPage",
+        "line": 7,
+        "start": 6,
+        "end": 10,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:12",
+        "path": "store.js",
+        "function": "addProduct",
+        "line": 12,
+        "start": 11,
+        "end": 15,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:17",
+        "path": "store.js",
+        "function": "updateProduct",
+        "line": 17,
+        "start": 16,
+        "end": 20,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:22",
+        "path": "store.js",
+        "function": "binLevels",
+        "line": 22,
+        "start": 21,
+        "end": 25,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:27",
+        "path": "store.js",
+        "function": "reserveUnits",
+        "line": 27,
+        "start": 26,
+        "end": 30,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:32",
+        "path": "store.js",
+        "function": "reservationRow",
+        "line": 32,
+        "start": 31,
+        "end": 35,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:37",
+        "path": "store.js",
+        "function": "reservation",
+        "line": 37,
+        "start": 36,
+        "end": 40,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:42",
+        "path": "store.js",
+        "function": "releaseUnits",
+        "line": 42,
+        "start": 41,
+        "end": 45,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:47",
+        "path": "store.js",
+        "function": "deleteReservation",
+        "line": 47,
+        "start": 46,
+        "end": 50,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:52",
+        "path": "store.js",
+        "function": "insertReceipt",
+        "line": 52,
+        "start": 51,
+        "end": 55,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:57",
+        "path": "store.js",
+        "function": "receiptLine",
+        "line": 57,
+        "start": 56,
+        "end": 60,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:62",
+        "path": "store.js",
+        "function": "addOnHand",
+        "line": 62,
+        "start": 61,
+        "end": 65,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:67",
+        "path": "store.js",
+        "function": "postReceipt",
+        "line": 67,
+        "start": 66,
+        "end": 70,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:72",
+        "path": "store.js",
+        "function": "supplierSpend",
+        "line": 72,
+        "start": 71,
+        "end": 75,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:77",
+        "path": "store.js",
+        "function": "openReceipts",
+        "line": 77,
+        "start": 76,
+        "end": 80,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:82",
+        "path": "store.js",
+        "function": "receiptItems",
+        "line": 82,
+        "start": 81,
+        "end": 85,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:87",
+        "path": "store.js",
+        "function": "removeReceipt",
+        "line": 87,
+        "start": 86,
+        "end": 90,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:92",
+        "path": "store.js",
+        "function": "reservationsBySku",
+        "line": 92,
+        "start": 91,
+        "end": 95,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:97",
+        "path": "store.js",
+        "function": "inactiveProducts",
+        "line": 97,
+        "start": 96,
+        "end": 101,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:104",
+        "path": "store.js",
+        "function": "inventoryList",
+        "line": 104,
+        "start": 102,
+        "end": 105,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 5,
+            "end": 12
+          }
+        ]
+      },
+      {
+        "id": "store.js:109",
+        "path": "store.js",
+        "function": "categorySnapshot",
+        "line": 109,
+        "start": 106,
+        "end": 111,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 13,
+            "end": 15
+          },
+          {
+            "path": "helpers.js",
+            "start": 16,
+            "end": 18
+          }
+        ]
+      },
+      {
+        "id": "helpers.js:20",
+        "path": "helpers.js",
+        "function": "send",
+        "line": 20,
+        "start": 19,
+        "end": 21,
+        "dependencies": [
+          "store.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "store.js",
+            "start": 112,
+            "end": 115
+          }
+        ]
+      }
+    ],
+    "dependency_expanded_count_after_both_reads": 3
+  },
+  {
+    "task": "task2",
+    "variant": "serene",
+    "sites": [
+      {
+        "id": "store.js:5",
+        "path": "store.js",
+        "function": "product",
+        "line": 5,
+        "start": 3,
+        "end": 8,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:11",
+        "path": "store.js",
+        "function": "productPage",
+        "line": 11,
+        "start": 9,
+        "end": 14,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:17",
+        "path": "store.js",
+        "function": "addProduct",
+        "line": 17,
+        "start": 15,
+        "end": 20,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:23",
+        "path": "store.js",
+        "function": "updateProduct",
+        "line": 23,
+        "start": 21,
+        "end": 26,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:29",
+        "path": "store.js",
+        "function": "binLevels",
+        "line": 29,
+        "start": 27,
+        "end": 32,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:35",
+        "path": "store.js",
+        "function": "reserveUnits",
+        "line": 35,
+        "start": 33,
+        "end": 38,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:41",
+        "path": "store.js",
+        "function": "reservationRow",
+        "line": 41,
+        "start": 39,
+        "end": 44,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:47",
+        "path": "store.js",
+        "function": "reservation",
+        "line": 47,
+        "start": 45,
+        "end": 50,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:53",
+        "path": "store.js",
+        "function": "releaseUnits",
+        "line": 53,
+        "start": 51,
+        "end": 56,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:59",
+        "path": "store.js",
+        "function": "deleteReservation",
+        "line": 59,
+        "start": 57,
+        "end": 62,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:65",
+        "path": "store.js",
+        "function": "insertReceipt",
+        "line": 65,
+        "start": 63,
+        "end": 68,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:71",
+        "path": "store.js",
+        "function": "receiptLine",
+        "line": 71,
+        "start": 69,
+        "end": 74,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:77",
+        "path": "store.js",
+        "function": "addOnHand",
+        "line": 77,
+        "start": 75,
+        "end": 80,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:83",
+        "path": "store.js",
+        "function": "postReceipt",
+        "line": 83,
+        "start": 81,
+        "end": 86,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:89",
+        "path": "store.js",
+        "function": "supplierSpend",
+        "line": 89,
+        "start": 87,
+        "end": 92,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:95",
+        "path": "store.js",
+        "function": "openReceipts",
+        "line": 95,
+        "start": 93,
+        "end": 98,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:101",
+        "path": "store.js",
+        "function": "receiptItems",
+        "line": 101,
+        "start": 99,
+        "end": 104,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:107",
+        "path": "store.js",
+        "function": "removeReceipt",
+        "line": 107,
+        "start": 105,
+        "end": 110,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:113",
+        "path": "store.js",
+        "function": "reservationsBySku",
+        "line": 113,
+        "start": 111,
+        "end": 116,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:119",
+        "path": "store.js",
+        "function": "inactiveProducts",
+        "line": 119,
+        "start": 117,
+        "end": 123,
+        "dependencies": [],
+        "dependency_spans": []
+      },
+      {
+        "id": "store.js:126",
+        "path": "store.js",
+        "function": "inventoryList",
+        "line": 126,
+        "start": 124,
+        "end": 127,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 7,
+            "end": 14
+          }
+        ]
+      },
+      {
+        "id": "store.js:131",
+        "path": "store.js",
+        "function": "categorySnapshot",
+        "line": 131,
+        "start": 128,
+        "end": 133,
+        "dependencies": [
+          "helpers.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "helpers.js",
+            "start": 15,
+            "end": 17
+          },
+          {
+            "path": "helpers.js",
+            "start": 18,
+            "end": 20
+          }
+        ]
+      },
+      {
+        "id": "helpers.js:22",
+        "path": "helpers.js",
+        "function": "send",
+        "line": 22,
+        "start": 21,
+        "end": 23,
+        "dependencies": [
+          "store.js"
+        ],
+        "dependency_spans": [
+          {
+            "path": "store.js",
+            "start": 134,
+            "end": 137
+          }
+        ]
+      }
+    ],
+    "dependency_expanded_count_after_both_reads": 3
+  }
+]

@@ -55,7 +55,32 @@ test('cooked template escape semantics match runtime', () => {
   assert.equal(rows[0].level, 'ordinary');
 });
 test('parse failures do not disappear as a clean inventory', () => {
-  assert.ok(auditSource('const = ;').some(f => f.code === 'PARSE_ERROR'));
+  const parseError = auditSource('const = ;').find(f => f.code === 'PARSE_ERROR');
+  assert.ok(parseError);
+  assert.equal(parseError.function, null);
+});
+
+test('findings carry only authoritative nearest lexical function names', () => {
+  const cases = [
+    ['named declaration', 'function declared(db) { const q = bind(literalSql`SELECT 1`); db.query(q.text); }', 'declared', 'ordinary'],
+    ['identifier-bound arrow', 'const assigned = db => { const q = bind(literalSql`SELECT 1`); db.query(q.text); };', 'assigned', 'ordinary'],
+    ['named method', 'class Store { load(db) { const q = bind(literalSql`SELECT 1`); db.query(q.text); } }', 'load', 'ordinary'],
+    ['anonymous nested callback', 'function outer(db) { return input.map(() => db.query("SELECT 1")); }', null, 'review-required'],
+    ['top level', 'db.query("SELECT 1");', null, 'review-required'],
+  ];
+  for (const [label, source, name, level] of cases) {
+    const row = sink(source)[0];
+    assert.equal(row.function, name, label);
+    assert.equal(row.level, level, label);
+  }
+});
+
+test('function metadata adds one scalar output field', () => {
+  const row = sink('db.query("SELECT 1");')[0];
+  const withoutFunction = { ...row };
+  delete withoutFunction.function;
+  assert.equal(Buffer.byteLength(JSON.stringify(row)) - Buffer.byteLength(JSON.stringify(withoutFunction)),
+    Buffer.byteLength(',"function":null'));
 });
 test('computed calls are review-required and explicit additional sink names are supported', () => {
   assert.equal(auditSource('db[method](input)')[0].level, 'review-required');
@@ -75,6 +100,28 @@ test('CLI exit policy, JSON inventory and input errors', () => {
     assert.equal(run([join(dir, 'missing.ts')]).status, 2);
     assert.equal(run(['--unknown']).status, 2);
     assert.equal(run([]).status, 2);
+  } finally { rmSync(dir, {recursive:true, force:true}); }
+});
+
+test('CLI actionable-only counts execution candidates once and omits ordinary details', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'serene-actionable-'));
+  const file = join(dir, 'input.ts');
+  const run = args => spawnSync(process.execPath, ['tooling/cli.mjs', ...args], {encoding:'utf8'});
+  try {
+    writeFileSync(file, `${imports}
+const q = bind(literalSql\`SELECT 1\`);
+db.query(q.text);
+db.execute(input);
+db.query('SELECT ' + input);`);
+    const result = run(['--actionable-only', file]);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.deepEqual(report.executionSiteCounts, { ordinary: 1, 'review-required': 1, violation: 1 });
+    assert.equal(report.findings.length, 2);
+    assert.ok(report.findings.every(finding => finding.level !== 'ordinary'));
+    assert.deepEqual(report.findings.map(finding => finding.boundary), ['driver-candidate', 'driver-candidate']);
+    assert.match(report.scope, /candidate driver execution sites only/);
+    assert.equal(run(['--strict', '--actionable-only', file]).status, 1);
   } finally { rmSync(dir, {recursive:true, force:true}); }
 });
 

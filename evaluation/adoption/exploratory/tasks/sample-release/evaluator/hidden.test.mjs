@@ -1,0 +1,15 @@
+import { DatabaseSync } from 'node:sqlite';
+import assert from 'node:assert/strict';
+import test from 'node:test';
+const schema="CREATE TABLE samples(tenant_id TEXT NOT NULL,sample_id TEXT NOT NULL,state TEXT NOT NULL,PRIMARY KEY(tenant_id,sample_id)); CREATE TABLE releases(tenant_id TEXT NOT NULL,sample_id TEXT NOT NULL,operator TEXT NOT NULL,PRIMARY KEY(tenant_id,sample_id),FOREIGN KEY(tenant_id,sample_id) REFERENCES samples(tenant_id,sample_id));";
+const seed="INSERT INTO samples VALUES ('lab-a','a','ready'),('lab-a','b','ready'),('lab-a','c','held'),('lab-b','a','ready');";
+function db(){const d=new DatabaseSync(':memory:');d.exec(schema);d.exec(seed);return d;}
+import {pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+if(!process.env.PILOT_TARGET)throw new Error('PILOT_TARGET is required');
+const { releaseSamples }=await import(pathToFileURL(resolve(process.env.PILOT_TARGET,'src/operation.mjs')).href);
+test('tenant and exact operator',()=>{const d=db();const operator="O'Neil $sampleId";assert.deepEqual(releaseSamples(d,{tenantId:'lab-b',sampleIds:['a'],operator}),[{sampleId:'a',state:'released',operator}]);assert.equal(d.prepare("SELECT state FROM samples WHERE tenant_id='lab-a' AND sample_id='a'").get().state,'ready');assert.equal(d.prepare('SELECT operator FROM releases').get().operator,operator);d.close();});
+test('rollback for missing held and duplicate IDs',()=>{for(const ids of [['a','missing'],['a','c'],['a','a']]){const d=db();assert.throws(()=>releaseSamples(d,{tenantId:'lab-a',sampleIds:ids,operator:'J'}));assert.equal(d.prepare("SELECT state FROM samples WHERE tenant_id='lab-a' AND sample_id='a'").get().state,'ready');assert.equal(d.prepare('SELECT count(*) AS n FROM releases').get().n,0);assert.equal(d.isTransaction,false);d.close();}});
+test('insert failure rolls back earlier work',()=>{const d=db();d.exec("INSERT INTO releases VALUES ('lab-a','b','existing')");assert.throws(()=>releaseSamples(d,{tenantId:'lab-a',sampleIds:['a','b'],operator:'J'}));assert.deepEqual(d.prepare("SELECT state FROM samples WHERE tenant_id='lab-a' AND sample_id IN ('a','b') ORDER BY sample_id").all().map(r=>r.state),['ready','ready']);assert.deepEqual(d.prepare('SELECT sample_id,operator FROM releases').all().map(r=>({...r})),[{sample_id:'b',operator:'existing'}]);assert.equal(d.isTransaction,false);d.close();});
+test('return order is input order',()=>{const d=db();assert.deepEqual(releaseSamples(d,{tenantId:'lab-a',sampleIds:['b','a'],operator:'R'}),[{sampleId:'b',state:'released',operator:'R'},{sampleId:'a',state:'released',operator:'R'}]);d.close();});
+test('empty and already released',()=>{const d=db();assert.deepEqual(releaseSamples(d,{tenantId:'lab-a',sampleIds:[],operator:'J'}),[]);releaseSamples(d,{tenantId:'lab-a',sampleIds:['a'],operator:'first'});assert.throws(()=>releaseSamples(d,{tenantId:'lab-a',sampleIds:['b','a'],operator:'second'}));assert.equal(d.prepare("SELECT state FROM samples WHERE tenant_id='lab-a' AND sample_id='b'").get().state,'ready');d.close();});

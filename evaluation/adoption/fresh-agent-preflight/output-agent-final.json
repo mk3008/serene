@@ -1,0 +1,44 @@
+{
+  "normal": {
+    "exit_code": 0,
+    "output_complete": true,
+    "output_truncated": false,
+    "findings": [
+      {
+        "file": "input.ts",
+        "line": 1,
+        "column": 1,
+        "level": "review-required",
+        "code": "UNRESOLVED",
+        "detail": "SQL provenance cannot be established in this file.",
+        "boundary": "driver-candidate"
+      }
+    ],
+    "tool_reported_original_token_count": 99
+  },
+  "strict": {
+    "exit_code": 1,
+    "output_complete": true,
+    "output_truncated": false,
+    "findings": [
+      {
+        "file": "input.ts",
+        "line": 1,
+        "column": 1,
+        "level": "review-required",
+        "code": "UNRESOLVED",
+        "detail": "SQL provenance cannot be established in this file.",
+        "boundary": "driver-candidate"
+      }
+    ],
+    "tool_reported_original_token_count": 99
+  },
+  "preserved_tool_responses": "/tmp/serene-fresh-preflight/output/audit-tool-responses.json",
+  "model_identifier": null,
+  "reasoning_setting": null,
+  "model_input_token_count": null,
+  "model_output_token_count": null,
+  "prior_author_conversation_supplied": false,
+  "context_observation": "I observed the task assignment and platform/environment instructions, but no prior author conversation. This is an observation of my supplied context, not a platform guarantee of isolation.",
+  "preservation_note": "The normal response was saved immediately. The first attempt to add the strict response failed patch validation; the subsequent update successfully preserved both complete responses."
+}

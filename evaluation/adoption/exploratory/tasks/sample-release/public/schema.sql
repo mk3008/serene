@@ -1,0 +1,1 @@
+CREATE TABLE samples(tenant_id TEXT NOT NULL,sample_id TEXT NOT NULL,state TEXT NOT NULL,PRIMARY KEY(tenant_id,sample_id)); CREATE TABLE releases(tenant_id TEXT NOT NULL,sample_id TEXT NOT NULL,operator TEXT NOT NULL,PRIMARY KEY(tenant_id,sample_id),FOREIGN KEY(tenant_id,sample_id) REFERENCES samples(tenant_id,sample_id));

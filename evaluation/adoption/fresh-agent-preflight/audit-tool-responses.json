@@ -1,0 +1,16 @@
+{
+  "normal": {
+    "chunk_id": "0931c7",
+    "exit_code": 0,
+    "original_token_count": 99,
+    "output": "{\n  \"files\": [\n    \"input.ts\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"input.ts\",\n      \"line\": 1,\n      \"column\": 1,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+    "wall_time_seconds": 0.16052824
+  },
+  "strict": {
+    "chunk_id": "3a0626",
+    "exit_code": 1,
+    "original_token_count": 99,
+    "output": "{\n  \"files\": [\n    \"input.ts\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"input.ts\",\n      \"line\": 1,\n      \"column\": 1,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+    "wall_time_seconds": 0.119843829
+  }
+}

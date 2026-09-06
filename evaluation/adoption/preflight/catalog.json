@@ -1,0 +1,37 @@
+{
+  "status": "author-created development fixtures; not held-out or frozen model packets",
+  "tasks": {
+    "lookup": {
+      "requirement": "Read the selected tenant account. Return null when it does not belong to that tenant. Never interpret accountId as SQL.",
+      "definitions": [
+        "findAccount"
+      ],
+      "applicationExecutionSites": 1
+    },
+    "transfer": {
+      "requirement": "Transfer positive integer funds between different accounts of one tenant atomically. Insufficient funds or a missing/other-tenant target must leave both balances unchanged.",
+      "definitions": [
+        "debit",
+        "credit"
+      ],
+      "applicationExecutionSites": 2
+    },
+    "fulfill": {
+      "requirement": "Ship the ordered batch atomically. For each tenant-owned pending order: read it, reserve its stock, record shipment, then mark shipped. Return results in request order. Roll back the whole batch if a later order or stock check fails.",
+      "definitions": [
+        "findOrder",
+        "reserve",
+        "logShipment",
+        "closeOrder"
+      ],
+      "applicationExecutionSites": 4
+    },
+    "shared": {
+      "requirement": "Two public callers share one authoritative account lookup: return its name or check whether it can spend a positive integer amount. Both enforce tenant ownership; do not duplicate SQL.",
+      "definitions": [
+        "findAccount"
+      ],
+      "applicationExecutionSites": 2
+    }
+  }
+}

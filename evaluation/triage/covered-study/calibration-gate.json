@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "runs": {
+    "cr": {
+      "exposed_functions": [
+        "alpha",
+        "beta",
+        "gamma"
+      ],
+      "finished": true,
+      "finding_count": 1,
+      "bytes": 1613,
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "final_format": "prose instead of requested JSON"
+    },
+    "cs": {
+      "exposed_functions": [
+        "gamma"
+      ],
+      "finished": true,
+      "finding_count": 1,
+      "bytes": 2066,
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "final_format": "prose instead of requested JSON"
+    }
+  },
+  "gate": "Raw screened supplied set; Serene omitted both ordinary bodies, investigated actionable and finished. Final JSON format not relied upon; controller findings authoritative."
+}

@@ -1,0 +1,7 @@
+SQL review completed and submitted. Found one concrete issue:
+
+- `helpers.js:regionScope` embeds trimmed `request.region` directly inside a quoted SQL fragment.
+- `store.js:revenueSummary` concatenates that fragment into the query.
+- This permits SQL injection through the revenue report path.
+
+All other SQL paths were screened: fixed SQL with bound parameters, or `chosenOrder`’s finite hard-coded mapping, were marked resolved safe. `audit` was unavailable.

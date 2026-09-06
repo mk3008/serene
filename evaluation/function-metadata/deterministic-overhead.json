@@ -1,0 +1,167 @@
+{
+  "method": "each TypeScript file once (README excluded); exact controller JSON wire envelopes including newline; current audit/filter; no AI rerun",
+  "fixed_all_file_reads": [
+    {
+      "task": "ticketing",
+      "file": "contracts.ts",
+      "ordinary_sites": 0,
+      "function_fields": 0,
+      "with_function_wire_bytes": 752,
+      "without_function_wire_bytes": 752,
+      "metadata_bytes": 0,
+      "metadata_percent_of_wire": 0.0
+    },
+    {
+      "task": "ticketing",
+      "file": "maintenance.ts",
+      "ordinary_sites": 1,
+      "function_fields": 1,
+      "with_function_wire_bytes": 1635,
+      "without_function_wire_bytes": 1607,
+      "metadata_bytes": 28,
+      "metadata_percent_of_wire": 1.7125382262996942
+    },
+    {
+      "task": "ticketing",
+      "file": "operations.ts",
+      "ordinary_sites": 4,
+      "function_fields": 4,
+      "with_function_wire_bytes": 985,
+      "without_function_wire_bytes": 860,
+      "metadata_bytes": 125,
+      "metadata_percent_of_wire": 12.690355329949238
+    },
+    {
+      "task": "ticketing",
+      "file": "reporting.ts",
+      "ordinary_sites": 2,
+      "function_fields": 2,
+      "with_function_wire_bytes": 1309,
+      "without_function_wire_bytes": 1237,
+      "metadata_bytes": 72,
+      "metadata_percent_of_wire": 5.500381970970206
+    },
+    {
+      "task": "stockroom",
+      "file": "contracts.ts",
+      "ordinary_sites": 0,
+      "function_fields": 0,
+      "with_function_wire_bytes": 752,
+      "without_function_wire_bytes": 752,
+      "metadata_bytes": 0,
+      "metadata_percent_of_wire": 0.0
+    },
+    {
+      "task": "stockroom",
+      "file": "maintenance.ts",
+      "ordinary_sites": 1,
+      "function_fields": 1,
+      "with_function_wire_bytes": 1646,
+      "without_function_wire_bytes": 1615,
+      "metadata_bytes": 31,
+      "metadata_percent_of_wire": 1.8833535844471445
+    },
+    {
+      "task": "stockroom",
+      "file": "operations.ts",
+      "ordinary_sites": 4,
+      "function_fields": 4,
+      "with_function_wire_bytes": 984,
+      "without_function_wire_bytes": 860,
+      "metadata_bytes": 124,
+      "metadata_percent_of_wire": 12.601626016260163
+    },
+    {
+      "task": "stockroom",
+      "file": "reporting.ts",
+      "ordinary_sites": 2,
+      "function_fields": 2,
+      "with_function_wire_bytes": 1306,
+      "without_function_wire_bytes": 1241,
+      "metadata_bytes": 65,
+      "metadata_percent_of_wire": 4.977029096477795
+    }
+  ],
+  "audit_findings": [
+    {
+      "task": "ticketing",
+      "file": "contracts.ts",
+      "finding_count": 0,
+      "function_fields": 0,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 2,
+      "without_default_function_bytes": 2,
+      "metadata_bytes": 0
+    },
+    {
+      "task": "ticketing",
+      "file": "maintenance.ts",
+      "finding_count": 4,
+      "function_fields": 4,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 963,
+      "without_default_function_bytes": 842,
+      "metadata_bytes": 121
+    },
+    {
+      "task": "ticketing",
+      "file": "operations.ts",
+      "finding_count": 12,
+      "function_fields": 12,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 2941,
+      "without_default_function_bytes": 2566,
+      "metadata_bytes": 375
+    },
+    {
+      "task": "ticketing",
+      "file": "reporting.ts",
+      "finding_count": 7,
+      "function_fields": 7,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 1719,
+      "without_default_function_bytes": 1472,
+      "metadata_bytes": 247
+    },
+    {
+      "task": "stockroom",
+      "file": "contracts.ts",
+      "finding_count": 0,
+      "function_fields": 0,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 2,
+      "without_default_function_bytes": 2,
+      "metadata_bytes": 0
+    },
+    {
+      "task": "stockroom",
+      "file": "maintenance.ts",
+      "finding_count": 4,
+      "function_fields": 4,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 972,
+      "without_default_function_bytes": 842,
+      "metadata_bytes": 130
+    },
+    {
+      "task": "stockroom",
+      "file": "operations.ts",
+      "finding_count": 12,
+      "function_fields": 12,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 2938,
+      "without_default_function_bytes": 2566,
+      "metadata_bytes": 372
+    },
+    {
+      "task": "stockroom",
+      "file": "reporting.ts",
+      "finding_count": 7,
+      "function_fields": 7,
+      "serializer": "json.dumps default separators",
+      "with_default_function_bytes": 1698,
+      "without_default_function_bytes": 1472,
+      "metadata_bytes": 226
+    }
+  ]
+}

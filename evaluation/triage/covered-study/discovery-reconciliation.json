@@ -1,0 +1,319 @@
+{
+  "task1": {
+    "reported": [
+      {
+        "file": "store.js",
+        "line": 2,
+        "function": "findInvoice"
+      },
+      {
+        "file": "store.js",
+        "line": 7,
+        "function": "listOpen"
+      },
+      {
+        "file": "store.js",
+        "line": 12,
+        "function": "insertInvoice"
+      },
+      {
+        "file": "store.js",
+        "line": 17,
+        "function": "deleteInvoiceLines"
+      },
+      {
+        "file": "store.js",
+        "line": 22,
+        "function": "insertInvoiceLine"
+      },
+      {
+        "file": "store.js",
+        "line": 27,
+        "function": "repriceInvoice"
+      },
+      {
+        "file": "store.js",
+        "line": 32,
+        "function": "markInvoiceSent"
+      },
+      {
+        "file": "store.js",
+        "line": 37,
+        "function": "addPayment"
+      },
+      {
+        "file": "store.js",
+        "line": 42,
+        "function": "completeInvoice"
+      },
+      {
+        "file": "store.js",
+        "line": 47,
+        "function": "overdueAccounts"
+      },
+      {
+        "file": "store.js",
+        "line": 52,
+        "function": "customerStatement"
+      },
+      {
+        "file": "store.js",
+        "line": 57,
+        "function": "findCustomer"
+      },
+      {
+        "file": "store.js",
+        "line": 62,
+        "function": "searchCustomer"
+      },
+      {
+        "file": "store.js",
+        "line": 67,
+        "function": "createCustomer"
+      },
+      {
+        "file": "store.js",
+        "line": 72,
+        "function": "changeCredit"
+      },
+      {
+        "file": "store.js",
+        "line": 77,
+        "function": "activeRegions"
+      },
+      {
+        "file": "store.js",
+        "line": 82,
+        "function": "dailyCash"
+      },
+      {
+        "file": "store.js",
+        "line": 87,
+        "function": "productTotals"
+      },
+      {
+        "file": "store.js",
+        "line": 92,
+        "function": "invoiceCount"
+      },
+      {
+        "file": "store.js",
+        "line": 97,
+        "function": "recentNotes"
+      },
+      {
+        "file": "api.js",
+        "line": 104,
+        "function": "paymentFeed"
+      },
+      {
+        "file": "api.js",
+        "line": 110,
+        "function": "revenueSummary"
+      },
+      {
+        "file": "helpers.js",
+        "line": 20,
+        "function": "send"
+      }
+    ],
+    "normalized_ids": [
+      "store.js:findInvoice",
+      "store.js:listOpen",
+      "store.js:insertInvoice",
+      "store.js:deleteInvoiceLines",
+      "store.js:insertInvoiceLine",
+      "store.js:repriceInvoice",
+      "store.js:markInvoiceSent",
+      "store.js:addPayment",
+      "store.js:completeInvoice",
+      "store.js:overdueAccounts",
+      "store.js:customerStatement",
+      "store.js:findCustomer",
+      "store.js:searchCustomer",
+      "store.js:createCustomer",
+      "store.js:changeCredit",
+      "store.js:activeRegions",
+      "store.js:dailyCash",
+      "store.js:productTotals",
+      "store.js:invoiceCount",
+      "store.js:recentNotes",
+      "store.js:paymentFeed",
+      "store.js:revenueSummary",
+      "helpers.js:send"
+    ],
+    "normalizations": [
+      {
+        "reported": {
+          "file": "api.js",
+          "line": 104,
+          "function": "paymentFeed"
+        },
+        "resolved": {
+          "path": "store.js",
+          "line": 104,
+          "function": "paymentFeed"
+        },
+        "method": "unique exact function name in source AST; no gold"
+      },
+      {
+        "reported": {
+          "file": "api.js",
+          "line": 110,
+          "function": "revenueSummary"
+        },
+        "resolved": {
+          "path": "store.js",
+          "line": 110,
+          "function": "revenueSummary"
+        },
+        "method": "unique exact function name in source AST; no gold"
+      }
+    ]
+  },
+  "task2": {
+    "reported": [
+      {
+        "file": "store.js",
+        "line": 2,
+        "function": "product"
+      },
+      {
+        "file": "store.js",
+        "line": 7,
+        "function": "productPage"
+      },
+      {
+        "file": "store.js",
+        "line": 12,
+        "function": "addProduct"
+      },
+      {
+        "file": "store.js",
+        "line": 17,
+        "function": "updateProduct"
+      },
+      {
+        "file": "store.js",
+        "line": 22,
+        "function": "binLevels"
+      },
+      {
+        "file": "store.js",
+        "line": 27,
+        "function": "reserveUnits"
+      },
+      {
+        "file": "store.js",
+        "line": 32,
+        "function": "reservationRow"
+      },
+      {
+        "file": "store.js",
+        "line": 37,
+        "function": "reservation"
+      },
+      {
+        "file": "store.js",
+        "line": 42,
+        "function": "releaseUnits"
+      },
+      {
+        "file": "store.js",
+        "line": 47,
+        "function": "deleteReservation"
+      },
+      {
+        "file": "store.js",
+        "line": 52,
+        "function": "insertReceipt"
+      },
+      {
+        "file": "store.js",
+        "line": 57,
+        "function": "receiptLine"
+      },
+      {
+        "file": "store.js",
+        "line": 62,
+        "function": "addOnHand"
+      },
+      {
+        "file": "store.js",
+        "line": 67,
+        "function": "postReceipt"
+      },
+      {
+        "file": "store.js",
+        "line": 72,
+        "function": "supplierSpend"
+      },
+      {
+        "file": "store.js",
+        "line": 77,
+        "function": "openReceipts"
+      },
+      {
+        "file": "store.js",
+        "line": 82,
+        "function": "receiptItems"
+      },
+      {
+        "file": "store.js",
+        "line": 87,
+        "function": "removeReceipt"
+      },
+      {
+        "file": "store.js",
+        "line": 92,
+        "function": "reservationsBySku"
+      },
+      {
+        "file": "store.js",
+        "line": 97,
+        "function": "inactiveProducts"
+      },
+      {
+        "file": "store.js",
+        "line": 104,
+        "function": "inventoryList"
+      },
+      {
+        "file": "store.js",
+        "line": 109,
+        "function": "categorySnapshot"
+      },
+      {
+        "file": "helpers.js",
+        "line": 20,
+        "function": "send"
+      }
+    ],
+    "normalized_ids": [
+      "store.js:product",
+      "store.js:productPage",
+      "store.js:addProduct",
+      "store.js:updateProduct",
+      "store.js:binLevels",
+      "store.js:reserveUnits",
+      "store.js:reservationRow",
+      "store.js:reservation",
+      "store.js:releaseUnits",
+      "store.js:deleteReservation",
+      "store.js:insertReceipt",
+      "store.js:receiptLine",
+      "store.js:addOnHand",
+      "store.js:postReceipt",
+      "store.js:supplierSpend",
+      "store.js:openReceipts",
+      "store.js:receiptItems",
+      "store.js:removeReceipt",
+      "store.js:reservationsBySku",
+      "store.js:inactiveProducts",
+      "store.js:inventoryList",
+      "store.js:categorySnapshot",
+      "helpers.js:send"
+    ],
+    "normalizations": []
+  }
+}

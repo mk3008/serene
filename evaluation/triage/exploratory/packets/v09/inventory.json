@@ -1,0 +1,17 @@
+[
+  {
+    "file": "source.mjs",
+    "line": 23,
+    "source": "  return db.query(text, params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 35,
+    "source": "  return db.query(text, { tenantId: ctx.tenantId });"
+  },
+  {
+    "file": "source.mjs",
+    "line": 44,
+    "source": "  return db.query(bound.text, bound.params);"
+  }
+]

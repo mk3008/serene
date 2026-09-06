@@ -1,0 +1,41 @@
+{
+  "source": "collaboration.list_agents after observation; task names and parentage",
+  "preparation": [
+    {
+      "name": "/root/discovery_mechanics_tasks",
+      "model": "gpt-5.6-terra",
+      "effort": "medium"
+    },
+    {
+      "name": "/root/discovery_mechanics_validate",
+      "model": "gpt-5.6-terra",
+      "effort": "medium"
+    }
+  ],
+  "participants": [
+    {
+      "name": "/root/observe_d1",
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "status": "completed",
+      "children": []
+    },
+    {
+      "name": "/root/observe_d2",
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "status": "completed",
+      "children": []
+    },
+    {
+      "name": "/root/observe_d3",
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "status": "completed",
+      "children": []
+    }
+  ]
+}

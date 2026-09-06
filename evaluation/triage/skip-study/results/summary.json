@@ -1,0 +1,436 @@
+[
+  {
+    "run": "s01",
+    "task": "task1",
+    "variant": "raw",
+    "first_correct_finding": {
+      "sequence": 24,
+      "response_bytes": 25590,
+      "requests": 24,
+      "elapsed_seconds": 33.157418727874756,
+      "successful_operations": {
+        "read": 3,
+        "list": 1,
+        "search": 12,
+        "function": 4,
+        "investigate": 1,
+        "finding": 1
+      },
+      "failed_requests": [
+        15,
+        22
+      ],
+      "unique_source_lines": 85,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": null,
+      "ordinary_control_functions_exposed": [
+        "findInvoice",
+        "listOpen",
+        "insertInvoice",
+        "deleteInvoiceLines",
+        "insertInvoiceLine",
+        "repriceInvoice",
+        "markInvoiceSent",
+        "addPayment",
+        "completeInvoice",
+        "overdueAccounts",
+        "customerStatement",
+        "findCustomer",
+        "searchCustomer",
+        "createCustomer",
+        "changeCredit",
+        "activeRegions",
+        "dailyCash",
+        "productTotals",
+        "invoiceCount",
+        "recentNotes"
+      ]
+    },
+    "finish": {
+      "sequence": 26,
+      "response_bytes": 25737,
+      "requests": 26,
+      "elapsed_seconds": 63.60530972480774,
+      "successful_operations": {
+        "read": 3,
+        "list": 1,
+        "search": 12,
+        "function": 4,
+        "investigate": 1,
+        "finding": 1,
+        "status": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        15,
+        22
+      ],
+      "unique_source_lines": 85,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": null,
+      "ordinary_control_functions_exposed": [
+        "findInvoice",
+        "listOpen",
+        "insertInvoice",
+        "deleteInvoiceLines",
+        "insertInvoiceLine",
+        "repriceInvoice",
+        "markInvoiceSent",
+        "addPayment",
+        "completeInvoice",
+        "overdueAccounts",
+        "customerStatement",
+        "findCustomer",
+        "searchCustomer",
+        "createCustomer",
+        "changeCredit",
+        "activeRegions",
+        "dailyCash",
+        "productTotals",
+        "invoiceCount",
+        "recentNotes"
+      ]
+    },
+    "discovery_at_byte_checkpoints": {
+      "4096": false,
+      "8192": false,
+      "16384": false,
+      "32768": true
+    }
+  },
+  {
+    "run": "s02",
+    "task": "task1",
+    "variant": "serene",
+    "first_correct_finding": {
+      "sequence": 21,
+      "response_bytes": 29348,
+      "requests": 21,
+      "elapsed_seconds": 44.11269998550415,
+      "successful_operations": {
+        "list": 1,
+        "read": 5,
+        "status": 1,
+        "search": 7,
+        "audit": 3,
+        "investigate": 3,
+        "finding": 1
+      },
+      "failed_requests": [],
+      "unique_source_lines": 190,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "ordinary_control_functions_exposed": [
+        "findInvoice",
+        "listOpen",
+        "insertInvoice",
+        "deleteInvoiceLines",
+        "insertInvoiceLine",
+        "repriceInvoice",
+        "markInvoiceSent",
+        "addPayment",
+        "completeInvoice",
+        "overdueAccounts",
+        "customerStatement",
+        "findCustomer",
+        "searchCustomer",
+        "createCustomer",
+        "changeCredit",
+        "activeRegions",
+        "dailyCash",
+        "productTotals",
+        "invoiceCount",
+        "recentNotes"
+      ]
+    },
+    "finish": {
+      "sequence": 28,
+      "response_bytes": 32924,
+      "requests": 28,
+      "elapsed_seconds": 73.96029281616211,
+      "successful_operations": {
+        "list": 1,
+        "read": 5,
+        "status": 1,
+        "search": 9,
+        "audit": 3,
+        "investigate": 3,
+        "finding": 1
+      },
+      "failed_requests": [
+        23,
+        24,
+        26,
+        27,
+        28
+      ],
+      "unique_source_lines": 190,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "ordinary_control_functions_exposed": [
+        "findInvoice",
+        "listOpen",
+        "insertInvoice",
+        "deleteInvoiceLines",
+        "insertInvoiceLine",
+        "repriceInvoice",
+        "markInvoiceSent",
+        "addPayment",
+        "completeInvoice",
+        "overdueAccounts",
+        "customerStatement",
+        "findCustomer",
+        "searchCustomer",
+        "createCustomer",
+        "changeCredit",
+        "activeRegions",
+        "dailyCash",
+        "productTotals",
+        "invoiceCount",
+        "recentNotes"
+      ]
+    },
+    "discovery_at_byte_checkpoints": {
+      "4096": false,
+      "8192": false,
+      "16384": false,
+      "32768": true
+    }
+  },
+  {
+    "run": "s03",
+    "task": "task2",
+    "variant": "serene",
+    "first_correct_finding": {
+      "sequence": 13,
+      "response_bytes": 23462,
+      "requests": 13,
+      "elapsed_seconds": 31.97884440422058,
+      "successful_operations": {
+        "list": 1,
+        "read": 5,
+        "audit": 1,
+        "search": 2,
+        "investigate": 3,
+        "finding": 1
+      },
+      "failed_requests": [],
+      "unique_source_lines": 188,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "ordinary_control_functions_exposed": [
+        "product",
+        "productPage",
+        "addProduct",
+        "updateProduct",
+        "binLevels",
+        "reserveUnits",
+        "reservationRow",
+        "reservation",
+        "releaseUnits",
+        "deleteReservation",
+        "insertReceipt",
+        "receiptLine",
+        "addOnHand",
+        "postReceipt",
+        "supplierSpend",
+        "openReceipts",
+        "receiptItems",
+        "removeReceipt",
+        "reservationsBySku",
+        "inactiveProducts"
+      ]
+    },
+    "finish": {
+      "sequence": 20,
+      "response_bytes": 28692,
+      "requests": 20,
+      "elapsed_seconds": 52.254618406295776,
+      "successful_operations": {
+        "list": 1,
+        "read": 6,
+        "audit": 1,
+        "search": 6,
+        "investigate": 3,
+        "finding": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        16
+      ],
+      "unique_source_lines": 192,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "ordinary_control_functions_exposed": [
+        "product",
+        "productPage",
+        "addProduct",
+        "updateProduct",
+        "binLevels",
+        "reserveUnits",
+        "reservationRow",
+        "reservation",
+        "releaseUnits",
+        "deleteReservation",
+        "insertReceipt",
+        "receiptLine",
+        "addOnHand",
+        "postReceipt",
+        "supplierSpend",
+        "openReceipts",
+        "receiptItems",
+        "removeReceipt",
+        "reservationsBySku",
+        "inactiveProducts"
+      ]
+    },
+    "discovery_at_byte_checkpoints": {
+      "4096": false,
+      "8192": false,
+      "16384": false,
+      "32768": true
+    }
+  },
+  {
+    "run": "s04",
+    "task": "task2",
+    "variant": "raw",
+    "first_correct_finding": {
+      "sequence": 14,
+      "response_bytes": 24075,
+      "requests": 14,
+      "elapsed_seconds": 37.11238193511963,
+      "successful_operations": {
+        "list": 1,
+        "read": 4,
+        "search": 7,
+        "finding": 1
+      },
+      "failed_requests": [
+        3
+      ],
+      "unique_source_lines": 161,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": null,
+      "ordinary_control_functions_exposed": [
+        "product",
+        "productPage",
+        "addProduct",
+        "updateProduct",
+        "binLevels",
+        "reserveUnits",
+        "reservationRow",
+        "reservation",
+        "releaseUnits",
+        "deleteReservation",
+        "insertReceipt",
+        "receiptLine",
+        "addOnHand",
+        "postReceipt",
+        "supplierSpend",
+        "openReceipts",
+        "receiptItems",
+        "removeReceipt",
+        "reservationsBySku",
+        "inactiveProducts"
+      ]
+    },
+    "finish": {
+      "sequence": 25,
+      "response_bytes": 28404,
+      "requests": 25,
+      "elapsed_seconds": 70.20827627182007,
+      "successful_operations": {
+        "list": 1,
+        "read": 4,
+        "search": 12,
+        "finding": 1,
+        "investigate": 4,
+        "status": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        3
+      ],
+      "unique_source_lines": 161,
+      "site_bodies_exposed": 23,
+      "ordinary_control_bodies_exposed": 20,
+      "ordinary_control_bodies_omitted": 0,
+      "N_bodies_exposed": 3,
+      "context_expanded_sites": 3,
+      "audit_counts": null,
+      "ordinary_control_functions_exposed": [
+        "product",
+        "productPage",
+        "addProduct",
+        "updateProduct",
+        "binLevels",
+        "reserveUnits",
+        "reservationRow",
+        "reservation",
+        "releaseUnits",
+        "deleteReservation",
+        "insertReceipt",
+        "receiptLine",
+        "addOnHand",
+        "postReceipt",
+        "supplierSpend",
+        "openReceipts",
+        "receiptItems",
+        "removeReceipt",
+        "reservationsBySku",
+        "inactiveProducts"
+      ]
+    },
+    "discovery_at_byte_checkpoints": {
+      "4096": false,
+      "8192": false,
+      "16384": false,
+      "32768": true
+    }
+  }
+]

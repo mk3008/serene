@@ -1,0 +1,92 @@
+{
+  "task": "wrapper-aliases",
+  "execution": [
+    {
+      "file": "src/gateway.ts",
+      "line": 4,
+      "function": "writeRecord",
+      "reason": "Driver.execute is the concrete host-driver invocation."
+    },
+    {
+      "file": "src/gateway.ts",
+      "line": 8,
+      "function": "readRecords",
+      "reason": "Driver.query is the concrete host-driver invocation."
+    },
+    {
+      "file": "src/gateway.ts",
+      "line": 12,
+      "function": "openFeed",
+      "reason": "Driver.stream is the concrete host-driver invocation."
+    },
+    {
+      "file": "src/warehouseGateway.ts",
+      "line": 4,
+      "function": "recordArrival",
+      "reason": "Driver.execute is the concrete host-driver invocation."
+    },
+    {
+      "file": "src/warehouseGateway.ts",
+      "line": 8,
+      "function": "findDock",
+      "reason": "Driver.query is the concrete host-driver invocation."
+    }
+  ],
+  "wrapper_callers": [
+    {
+      "file": "src/orders.ts",
+      "line": 5,
+      "function": "closeOrder",
+      "calls_execution_function": "writeRecord",
+      "via": "dispatch re-export"
+    },
+    {
+      "file": "src/orders.ts",
+      "line": 9,
+      "function": "ordersFor",
+      "calls_execution_function": "readRecords",
+      "via": "fetchRows re-export"
+    },
+    {
+      "file": "src/shipping.ts",
+      "line": 5,
+      "function": "receive",
+      "calls_execution_function": "recordArrival",
+      "via": "arrive re-export"
+    },
+    {
+      "file": "src/shipping.ts",
+      "line": 9,
+      "function": "dockBoard",
+      "calls_execution_function": "findDock",
+      "via": "lookupDock re-export"
+    },
+    {
+      "file": "src/shipping.ts",
+      "line": 13,
+      "function": "followLateShipments",
+      "calls_execution_function": "openFeed",
+      "via": "watchRows re-export"
+    }
+  ],
+  "negative_controls": [
+    {
+      "file": "src/notes.ts",
+      "line": 6,
+      "function": "previewPlan",
+      "reason": "prepare returns metadata and does not invoke a statement."
+    },
+    {
+      "file": "src/notes.ts",
+      "line": 10,
+      "function": "renderSqlBadge",
+      "reason": "Formats text only."
+    },
+    {
+      "file": "src/notes.ts",
+      "line": 3,
+      "function": "shipmentQueryLabel",
+      "reason": "A label is not an invocation."
+    }
+  ]
+}

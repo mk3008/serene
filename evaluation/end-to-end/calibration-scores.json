@@ -1,0 +1,174 @@
+[
+  {
+    "run": "cr2",
+    "task": "calibration",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 4,
+    "discovered_records": 4,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 0,
+    "jsonl_input_records": null,
+    "jsonl_output_records": null,
+    "candidate_loss": null,
+    "payload_preserved": null,
+    "classifications": {},
+    "unmatched_reasons": {},
+    "ordinary_total": 2,
+    "ordinary_seen_discovery": 2,
+    "ordinary_full_body_seen_discovery": 2,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 0,
+    "ordinary_self_screened_any_stage": 2,
+    "actionable_unmatched_investigated": [
+      "searchCalibration",
+      "sendCalibrationSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "operations.ts",
+        "line": 27,
+        "function": "searchCalibration",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the ILIKE SQL string inside single quotes, allowing input to alter SQL syntax before db.query executes",
+        "impact": "An HTTP-controlled phrase can inject SQL predicates or statements into the calibration query"
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 7,
+    "response_bytes_to_source_located_diagnosis": 5424,
+    "total_response_bytes": 5467,
+    "total_request_bytes": 1970,
+    "handoff_jsonl_input_bytes": 0,
+    "handoff_jsonl_output_bytes": 0,
+    "stages": {
+      "discovery": {
+        "calls": 6,
+        "read_calls": 3,
+        "search_calls": 1,
+        "response_bytes": 5381,
+        "request_bytes": 872,
+        "source_text_bytes": 2093,
+        "source_line_deliveries": 59,
+        "unique_source_lines": 53
+      },
+      "handoff": {
+        "calls": 0,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 0,
+        "request_bytes": 0,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1098,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "errors": [],
+    "wall_seconds": 33.44841384887695
+  },
+  {
+    "run": "cs2",
+    "task": "calibration",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 4,
+    "discovered_records": 4,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 1,
+    "jsonl_input_records": 4,
+    "jsonl_output_records": 4,
+    "candidate_loss": 0,
+    "payload_preserved": true,
+    "classifications": {
+      "ordinary": 2,
+      "violation": 1,
+      "unmatched": 1
+    },
+    "unmatched_reasons": {
+      "no-execution-match": 1
+    },
+    "ordinary_total": 2,
+    "ordinary_seen_discovery": 2,
+    "ordinary_full_body_seen_discovery": 2,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 2,
+    "ordinary_self_screened_any_stage": 2,
+    "actionable_unmatched_investigated": [
+      "searchCalibration",
+      "sendCalibrationSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [
+      "sendCalibrationSnapshot"
+    ],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "operations.ts",
+        "line": 29,
+        "function": "searchCalibration",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL text inside the ILIKE pattern, allowing quotes and SQL syntax to alter the statement.",
+        "impact": "An HTTP-controlled phrase can break out of the string literal and inject predicates or additional SQL executed by db.query."
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 8,
+    "response_bytes_to_source_located_diagnosis": 6985,
+    "total_response_bytes": 7593,
+    "total_request_bytes": 1865,
+    "handoff_jsonl_input_bytes": 638,
+    "handoff_jsonl_output_bytes": 1307,
+    "stages": {
+      "discovery": {
+        "calls": 6,
+        "read_calls": 2,
+        "search_calls": 2,
+        "response_bytes": 5384,
+        "request_bytes": 812,
+        "source_text_bytes": 2145,
+        "source_line_deliveries": 58,
+        "unique_source_lines": 50
+      },
+      "handoff": {
+        "calls": 1,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 1558,
+        "request_bytes": 16,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 3,
+        "read_calls": 1,
+        "search_calls": 0,
+        "response_bytes": 651,
+        "request_bytes": 1037,
+        "source_text_bytes": 172,
+        "source_line_deliveries": 7,
+        "unique_source_lines": 7
+      }
+    },
+    "errors": [],
+    "wall_seconds": 43.80231595039368
+  }
+]

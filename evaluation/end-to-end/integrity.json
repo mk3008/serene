@@ -1,0 +1,31 @@
+{
+  "changed_frozen_files": [],
+  "repository_dependencies_unchanged": {
+    "tooling/audit.mjs": true,
+    "evaluation/candidate-handoff/handoff.mjs": true,
+    "dist/index.js": true,
+    "package-lock.json": true
+  },
+  "staged_roots": {
+    "tr": {
+      "git_status": "",
+      "revision_matches": true,
+      "source_matches": true
+    },
+    "ts": {
+      "git_status": "",
+      "revision_matches": true,
+      "source_matches": true
+    },
+    "sr": {
+      "git_status": "",
+      "revision_matches": true,
+      "source_matches": true
+    },
+    "ss": {
+      "git_status": "",
+      "revision_matches": true,
+      "source_matches": true
+    }
+  }
+}

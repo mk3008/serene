@@ -1,0 +1,27 @@
+[
+  {
+    "file": "source.mjs",
+    "line": 16,
+    "source": "    return db.query(bound.text, bound.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 22,
+    "source": "  return db.query(bound.text, bound.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 32,
+    "source": "  return db.query(bound.text, bound.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 40,
+    "source": "  return db.query(bound.text, bound.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 47,
+    "source": "  return db.query(bound.text, bound.params);"
+  }
+]

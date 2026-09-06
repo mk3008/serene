@@ -1,0 +1,3266 @@
+{
+  "runs": [
+    {
+      "run": "ts",
+      "task": "ticketing",
+      "arm": "serene",
+      "finished": true,
+      "gold_sites": 10,
+      "discovered_records": 10,
+      "discovery_recall": 1.0,
+      "discovery_precision": 1.0,
+      "discovery_missing": [],
+      "discovery_extra": [],
+      "candidate_invalid_coordinate_records": 0,
+      "candidate_duplicate_coordinate_records": 0,
+      "dispositions_complete": true,
+      "disposition_missing": [],
+      "disposition_extra": [],
+      "ordinary_total": 7,
+      "ordinary_body_exposed_any_stage": 0,
+      "ordinary_body_fully_exposed_any_stage": 0,
+      "ordinary_positive_marker_sites_delivered": 7,
+      "ordinary_invalid_marker_sites": [],
+      "ordinary_actually_skipped": 7,
+      "ordinary_skipped_functions": [
+        "listOpenTickets",
+        "findTicketById",
+        "assignTicket",
+        "closeResolvedTickets",
+        "loadRequesterHistory",
+        "countQueueByPriority",
+        "reopenTicket"
+      ],
+      "actionable_full_body_read_and_disposed": [
+        "searchTicketing",
+        "purgeTicketingPreview"
+      ],
+      "unmatched_full_body_read_and_disposed": [
+        "sendTicketingSnapshot"
+      ],
+      "nonordinary_not_full_body_read_or_not_disposed": [],
+      "danger_coordinate_findings_preliminary": 1,
+      "danger_coordinate_finding_requests": [
+        {
+          "op": "finding",
+          "file": "reporting.ts",
+          "line": 29,
+          "function": "searchTicketing",
+          "mechanism": "UntrustedInput phrase is concatenated directly into a quoted ILIKE SQL literal, allowing input to terminate the literal and inject SQL syntax.",
+          "impact": "An HTTP supplied phrase can alter the WHERE clause or append additional SQL depending on driver behavior."
+        }
+      ],
+      "first_preliminary_diagnosis_sequence": 10,
+      "response_bytes_through_first_preliminary_diagnosis": 7547,
+      "finding_requests": [
+        {
+          "op": "finding",
+          "file": "reporting.ts",
+          "line": 29,
+          "function": "searchTicketing",
+          "mechanism": "UntrustedInput phrase is concatenated directly into a quoted ILIKE SQL literal, allowing input to terminate the literal and inject SQL syntax.",
+          "impact": "An HTTP supplied phrase can alter the WHERE clause or append additional SQL depending on driver behavior."
+        }
+      ],
+      "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+      "correspondence": {
+        "per_event": [
+          {
+            "primitive_rows": 7,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 5,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 6,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 6,
+            "filter_batches": 5,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 3,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 4,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 2,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 13,
+            "filter_batches": 4,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "maintenance.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 3,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 3,
+                "file": "contracts.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 3,
+                "file": "contracts.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 29,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 5,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 6,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 7,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 8,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 9,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 10,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 11,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 12,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 13,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 14,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 15,
+                "outputs": [
+                  7
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 16,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 17,
+                "outputs": [
+                  9
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 18,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 19,
+                "outputs": [
+                  11
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 20,
+                "outputs": [
+                  12
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 21,
+                "outputs": [
+                  13
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 22,
+                "outputs": [
+                  14
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 23,
+                "outputs": [
+                  15
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 24,
+                "outputs": [
+                  16
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 25,
+                "outputs": [
+                  17
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 26,
+                "outputs": [
+                  18
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 27,
+                "outputs": [
+                  19
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 28,
+                "outputs": [
+                  20
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 43,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 5,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 6,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 7,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 8,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 9,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 10,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 11,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 12,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 13,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 14,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 15,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 16,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 17,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 18,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 19,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 20,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 21,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 22,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 23,
+                "outputs": [
+                  7
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 24,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 25,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 26,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 27,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 28,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 29,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 30,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 31,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 32,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 33,
+                "outputs": [
+                  9
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 34,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 35,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 36,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 37,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 38,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 39,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 40,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 41,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 42,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 32,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 5,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 6,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 7,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 8,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 9,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 10,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 11,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 12,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 13,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 14,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 15,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 16,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 17,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 18,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 19,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 20,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 21,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 22,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 23,
+                "outputs": [
+                  7
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 24,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 25,
+                "outputs": [
+                  9
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 26,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 27,
+                "outputs": [
+                  11
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 28,
+                "outputs": [
+                  12
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 29,
+                "outputs": [
+                  13
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 30,
+                "outputs": [
+                  14
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 31,
+                "outputs": [
+                  15
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          }
+        ],
+        "all_primitive_rows_represented": true,
+        "match_row_loss": 0,
+        "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+      },
+      "total_calls": 11,
+      "total_response_bytes": 7590,
+      "total_request_bytes": 3422,
+      "total_source_text_bytes": 2176,
+      "stages": {
+        "discovery": {
+          "calls": 9,
+          "read_calls": 4,
+          "search_calls": 3,
+          "response_bytes": 7504,
+          "request_bytes": 2041,
+          "source_text_bytes": 2176,
+          "source_line_deliveries": 62,
+          "unique_source_lines": 52
+        },
+        "review": {
+          "calls": 2,
+          "read_calls": 0,
+          "search_calls": 0,
+          "response_bytes": 86,
+          "request_bytes": 1381,
+          "source_text_bytes": 0,
+          "source_line_deliveries": 0,
+          "unique_source_lines": 0
+        }
+      },
+      "filter_internal": {
+        "events": 7,
+        "input_bytes": 24408,
+        "output_bytes": 14470,
+        "seconds": 0,
+        "time_recorded": false
+      },
+      "wire_accounting": {
+        "response_bytes_recomputed": true,
+        "response_byte_mismatch_sequences": [],
+        "source_text_bytes_recomputed": true,
+        "source_text_byte_mismatch_sequences": []
+      },
+      "errors": [],
+      "wall_seconds": 52.52432417869568,
+      "function_metadata": {
+        "candidate_annotations": {
+          "checked": [
+            {
+              "site": [
+                "reporting.ts",
+                12,
+                9
+              ],
+              "actual": "loadRequesterHistory",
+              "expected": "loadRequesterHistory",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "reporting.ts",
+                22,
+                9
+              ],
+              "actual": "countQueueByPriority",
+              "expected": "countQueueByPriority",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                12,
+                9
+              ],
+              "actual": "listOpenTickets",
+              "expected": "listOpenTickets",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                22,
+                9
+              ],
+              "actual": "findTicketById",
+              "expected": "findTicketById",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                32,
+                9
+              ],
+              "actual": "assignTicket",
+              "expected": "assignTicket",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                42,
+                9
+              ],
+              "actual": "closeResolvedTickets",
+              "expected": "closeResolvedTickets",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "maintenance.ts",
+                12,
+                9
+              ],
+              "actual": "reopenTicket",
+              "expected": "reopenTicket",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            }
+          ],
+          "missing": [],
+          "wrong": [],
+          "exact": 7,
+          "expected_sites": 7
+        },
+        "all_candidate_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              12,
+              9
+            ],
+            "actual": "loadRequesterHistory",
+            "expected": "loadRequesterHistory",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              22,
+              9
+            ],
+            "actual": "countQueueByPriority",
+            "expected": "countQueueByPriority",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              31,
+              9
+            ],
+            "actual": "searchTicketing",
+            "expected": "searchTicketing",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              12,
+              9
+            ],
+            "actual": "listOpenTickets",
+            "expected": "listOpenTickets",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              22,
+              9
+            ],
+            "actual": "findTicketById",
+            "expected": "findTicketById",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              32,
+              9
+            ],
+            "actual": "assignTicket",
+            "expected": "assignTicket",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              42,
+              9
+            ],
+            "actual": "closeResolvedTickets",
+            "expected": "closeResolvedTickets",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              12,
+              9
+            ],
+            "actual": "reopenTicket",
+            "expected": "reopenTicket",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              16,
+              9
+            ],
+            "actual": "purgeTicketingPreview",
+            "expected": "purgeTicketingPreview",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              24,
+              9
+            ],
+            "actual": "sendTicketingSnapshot",
+            "expected": "sendTicketingSnapshot",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "finding_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              29
+            ],
+            "actual": "searchTicketing",
+            "expected": "searchTicketing",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "disposition_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "loadRequesterHistory",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              22,
+              9
+            ],
+            "actual": null,
+            "expected": "countQueueByPriority",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              31,
+              9
+            ],
+            "actual": null,
+            "expected": "searchTicketing",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "listOpenTickets",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              22,
+              9
+            ],
+            "actual": null,
+            "expected": "findTicketById",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              32,
+              9
+            ],
+            "actual": null,
+            "expected": "assignTicket",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              42,
+              9
+            ],
+            "actual": null,
+            "expected": "closeResolvedTickets",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "reopenTicket",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              16,
+              9
+            ],
+            "actual": null,
+            "expected": "purgeTicketingPreview",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              24,
+              9
+            ],
+            "actual": null,
+            "expected": "sendTicketingSnapshot",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "candidate_missing_or_wrong": [],
+        "candidate_exact": 7,
+        "all_candidate_exact": 10
+      }
+    },
+    {
+      "run": "ss",
+      "task": "stockroom",
+      "arm": "serene",
+      "finished": true,
+      "gold_sites": 10,
+      "discovered_records": 10,
+      "discovery_recall": 1.0,
+      "discovery_precision": 1.0,
+      "discovery_missing": [],
+      "discovery_extra": [],
+      "candidate_invalid_coordinate_records": 0,
+      "candidate_duplicate_coordinate_records": 0,
+      "dispositions_complete": true,
+      "disposition_missing": [],
+      "disposition_extra": [],
+      "ordinary_total": 7,
+      "ordinary_body_exposed_any_stage": 0,
+      "ordinary_body_fully_exposed_any_stage": 0,
+      "ordinary_positive_marker_sites_delivered": 7,
+      "ordinary_invalid_marker_sites": [],
+      "ordinary_actually_skipped": 7,
+      "ordinary_skipped_functions": [
+        "listReorderItems",
+        "findBinBalance",
+        "reserveStock",
+        "releaseReservation",
+        "loadSupplierItems",
+        "countItemsByZone",
+        "receiveShipment"
+      ],
+      "actionable_full_body_read_and_disposed": [
+        "searchStockroom",
+        "purgeStockroomPreview"
+      ],
+      "unmatched_full_body_read_and_disposed": [
+        "sendStockroomSnapshot"
+      ],
+      "nonordinary_not_full_body_read_or_not_disposed": [],
+      "danger_coordinate_findings_preliminary": 1,
+      "danger_coordinate_finding_requests": [
+        {
+          "op": "finding",
+          "file": "reporting.ts",
+          "line": 29,
+          "function": "searchStockroom",
+          "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string used by db.query, allowing injected SQL syntax.",
+          "impact": "Attacker-controlled phrase can alter the WHERE clause and inject arbitrary SQL syntax."
+        }
+      ],
+      "first_preliminary_diagnosis_sequence": 19,
+      "response_bytes_through_first_preliminary_diagnosis": 9654,
+      "finding_requests": [
+        {
+          "op": "finding",
+          "file": "reporting.ts",
+          "line": 29,
+          "function": "searchStockroom",
+          "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string used by db.query, allowing injected SQL syntax.",
+          "impact": "Attacker-controlled phrase can alter the WHERE clause and inject arbitrary SQL syntax."
+        }
+      ],
+      "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+      "correspondence": {
+        "per_event": [
+          {
+            "primitive_rows": 7,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 5,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 6,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 1,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 1,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 1,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "README.md",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 5,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 4,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 2,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 6,
+            "filter_batches": 3,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 5,
+            "filter_batches": 3,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 2,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "contracts.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 4,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 5,
+            "filter_batches": 2,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 10,
+            "filter_batches": 3,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 1,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "operations.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "operations.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "operations.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 2,
+                "file": "operations.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 29,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 5,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 6,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 7,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 8,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 9,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 10,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 11,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 12,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 13,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 14,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 15,
+                "outputs": [
+                  7
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 16,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 17,
+                "outputs": [
+                  9
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 18,
+                "outputs": [
+                  10
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 19,
+                "outputs": [
+                  11
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 20,
+                "outputs": [
+                  12
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 21,
+                "outputs": [
+                  13
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 22,
+                "outputs": [
+                  14
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 23,
+                "outputs": [
+                  15
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 24,
+                "outputs": [
+                  16
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 25,
+                "outputs": [
+                  17
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 26,
+                "outputs": [
+                  18
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 27,
+                "outputs": [
+                  19
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "maintenance.ts",
+                "input": 28,
+                "outputs": [
+                  20
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 7,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 3,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 4,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 5,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 6,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          },
+          {
+            "primitive_rows": 13,
+            "filter_batches": 1,
+            "entries": [
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 0,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 1,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 2,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 3,
+                "outputs": [
+                  0
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 4,
+                "outputs": [
+                  1
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 5,
+                "outputs": [
+                  2
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 6,
+                "outputs": [
+                  3
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 7,
+                "outputs": [
+                  4
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 8,
+                "outputs": [
+                  5
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 9,
+                "outputs": [
+                  6
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 10,
+                "outputs": [
+                  7
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 11,
+                "outputs": [
+                  8
+                ],
+                "valid": true
+              },
+              {
+                "batch": 0,
+                "file": "reporting.ts",
+                "input": 12,
+                "outputs": [
+                  9
+                ],
+                "valid": true
+              }
+            ],
+            "all_inputs_represented": true,
+            "all_output_indexes_valid": true,
+            "match_row_loss": 0,
+            "missing_inputs": [],
+            "unexpected_or_ambiguous_batch_files": [],
+            "invalid_entries": []
+          }
+        ],
+        "all_primitive_rows_represented": true,
+        "match_row_loss": 0,
+        "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+      },
+      "total_calls": 20,
+      "total_response_bytes": 9697,
+      "total_request_bytes": 3544,
+      "total_source_text_bytes": 2028,
+      "stages": {
+        "discovery": {
+          "calls": 15,
+          "read_calls": 1,
+          "search_calls": 12,
+          "response_bytes": 6605,
+          "request_bytes": 1954,
+          "source_text_bytes": 1212,
+          "source_line_deliveries": 25,
+          "unique_source_lines": 13
+        },
+        "review": {
+          "calls": 5,
+          "read_calls": 3,
+          "search_calls": 0,
+          "response_bytes": 3092,
+          "request_bytes": 1590,
+          "source_text_bytes": 816,
+          "source_line_deliveries": 36,
+          "unique_source_lines": 29
+        }
+      },
+      "filter_internal": {
+        "events": 16,
+        "input_bytes": 35539,
+        "output_bytes": 20433,
+        "seconds": 0,
+        "time_recorded": false
+      },
+      "wire_accounting": {
+        "response_bytes_recomputed": true,
+        "response_byte_mismatch_sequences": [],
+        "source_text_bytes_recomputed": true,
+        "source_text_byte_mismatch_sequences": []
+      },
+      "errors": [],
+      "wall_seconds": 59.65943193435669,
+      "function_metadata": {
+        "candidate_annotations": {
+          "checked": [
+            {
+              "site": [
+                "reporting.ts",
+                12,
+                9
+              ],
+              "actual": "loadSupplierItems",
+              "expected": "loadSupplierItems",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "reporting.ts",
+                22,
+                9
+              ],
+              "actual": "countItemsByZone",
+              "expected": "countItemsByZone",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                12,
+                9
+              ],
+              "actual": "listReorderItems",
+              "expected": "listReorderItems",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                22,
+                9
+              ],
+              "actual": "findBinBalance",
+              "expected": "findBinBalance",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                32,
+                9
+              ],
+              "actual": "reserveStock",
+              "expected": "reserveStock",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "operations.ts",
+                42,
+                9
+              ],
+              "actual": "releaseReservation",
+              "expected": "releaseReservation",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            },
+            {
+              "site": [
+                "maintenance.ts",
+                12,
+                9
+              ],
+              "actual": "receiveShipment",
+              "expected": "receiveShipment",
+              "exact": true,
+              "invalid_schema_or_coordinate": false
+            }
+          ],
+          "missing": [],
+          "wrong": [],
+          "exact": 7,
+          "expected_sites": 7
+        },
+        "all_candidate_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              12,
+              9
+            ],
+            "actual": "loadSupplierItems",
+            "expected": "loadSupplierItems",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              22,
+              9
+            ],
+            "actual": "countItemsByZone",
+            "expected": "countItemsByZone",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              31,
+              9
+            ],
+            "actual": null,
+            "expected": "searchStockroom",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              12,
+              9
+            ],
+            "actual": "listReorderItems",
+            "expected": "listReorderItems",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              22,
+              9
+            ],
+            "actual": "findBinBalance",
+            "expected": "findBinBalance",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              32,
+              9
+            ],
+            "actual": "reserveStock",
+            "expected": "reserveStock",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              42,
+              9
+            ],
+            "actual": "releaseReservation",
+            "expected": "releaseReservation",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              12,
+              9
+            ],
+            "actual": "receiveShipment",
+            "expected": "receiveShipment",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              16,
+              9
+            ],
+            "actual": null,
+            "expected": "purgeStockroomPreview",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              24,
+              9
+            ],
+            "actual": null,
+            "expected": "sendStockroomSnapshot",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "finding_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              29
+            ],
+            "actual": "searchStockroom",
+            "expected": "searchStockroom",
+            "exact": true,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "disposition_annotations": [
+          {
+            "site": [
+              "reporting.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "loadSupplierItems",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              22,
+              9
+            ],
+            "actual": null,
+            "expected": "countItemsByZone",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "reporting.ts",
+              31,
+              9
+            ],
+            "actual": null,
+            "expected": "searchStockroom",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "listReorderItems",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              22,
+              9
+            ],
+            "actual": null,
+            "expected": "findBinBalance",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              32,
+              9
+            ],
+            "actual": null,
+            "expected": "reserveStock",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "operations.ts",
+              42,
+              9
+            ],
+            "actual": null,
+            "expected": "releaseReservation",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              12,
+              9
+            ],
+            "actual": null,
+            "expected": "receiveShipment",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              16,
+              9
+            ],
+            "actual": null,
+            "expected": "purgeStockroomPreview",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          },
+          {
+            "site": [
+              "maintenance.ts",
+              24,
+              9
+            ],
+            "actual": null,
+            "expected": "sendStockroomSnapshot",
+            "exact": false,
+            "invalid_schema_or_coordinate": false
+          }
+        ],
+        "candidate_missing_or_wrong": [],
+        "candidate_exact": 7,
+        "all_candidate_exact": 7
+      }
+    }
+  ],
+  "raw_references": {
+    "tr": "../pre-exposure/results/tr.jsonl",
+    "sr": "../pre-exposure/results/sr.jsonl"
+  }
+}

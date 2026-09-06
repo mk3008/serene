@@ -1,0 +1,29 @@
+{
+  "run": "e01",
+  "protected_changes": [],
+  "requests": 16,
+  "bytes": 26171,
+  "expanded_sites": 3,
+  "elapsed_seconds": 52.26690912246704,
+  "failed_requests": [
+    2,
+    8,
+    9,
+    13,
+    15
+  ],
+  "finding_events": [
+    {
+      "sequence": 12,
+      "request": {
+        "op": "finding",
+        "path": "store.js",
+        "function": "categorySnapshot",
+        "mechanism": "categorySnapshot passes request.category through categoryName into categoryScope, which constructs the WHERE fragment with string concatenation and then concatenates that fragment into the SQL sent to db.query; the category is request-controlled and values is empty.",
+        "impact": "A crafted category can inject quotes, operators, or additional SQL syntax into the WHERE clause, changing the report query and potentially broadening it or causing altered behavior depending on the SQLite driver. Bind the category as a named value instead of interpolating it."
+      }
+    }
+  ],
+  "finish": true,
+  "model_token_usage": null
+}

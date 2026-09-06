@@ -1,0 +1,36 @@
+{
+  "runs": {
+    "probe": {
+      "root": "/tmp/serene-function-metadata/repos/probe",
+      "revision": "df10114ec42103f0b07437f844afe04476bca8e5",
+      "task": "ticketing",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "ts": {
+      "root": "/tmp/serene-function-metadata/repos/ts",
+      "revision": "df10114ec42103f0b07437f844afe04476bca8e5",
+      "task": "ticketing",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "ss": {
+      "root": "/tmp/serene-function-metadata/repos/ss",
+      "revision": "7d2cfc8321486c12dd8d1efb604c43af0790d5c2",
+      "task": "stockroom",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "probe2": {
+      "root": "/tmp/serene-function-metadata/repos/probe2",
+      "revision": "85299b6200f3664b05f3e2eb395755c1649fd439",
+      "task": "ticketing",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    }
+  },
+  "raw_references": {
+    "tr": "../pre-exposure/results/tr.jsonl",
+    "sr": "../pre-exposure/results/sr.jsonl"
+  }
+}

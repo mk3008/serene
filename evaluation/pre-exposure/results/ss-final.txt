@@ -1,0 +1,5 @@
+Review finished. I recorded 10 SQL execution candidates and dispositions. One vulnerability was found and submitted:
+
+- `reporting.ts:29`, `searchStockroom`: `UntrustedInput` is concatenated into the `ILIKE` SQL string, enabling SQL injection.
+
+Other ordinary-marked sites were skipped per Serene markers; remaining static maintenance queries were classified safe.

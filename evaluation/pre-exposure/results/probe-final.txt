@@ -1,0 +1,5 @@
+Review completed and recorder finished.
+Discovered 10 SQL execution sites across reporting.ts, operations.ts, and maintenance.ts.
+Serene-marked candidates recorded as skip-ordinary.
+Found and submitted one SQL injection: reporting.ts:31, searchTicketing; untrusted phrase is concatenated into SQL before db.query.
+Constant SQL sites in maintenance.ts:16 and maintenance.ts:24 dispositioned safe.

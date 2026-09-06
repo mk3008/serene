@@ -1,0 +1,1 @@
+Review finished. Revision `62a0af42eb25dfeb88f5e260de142548faeee85b`; discovered and screened 10 SQL execution sites. Recorded one SQL injection finding in `reporting.ts:27` (`searchStockroom`), where `UntrustedInput phrase` is concatenated into SQL. All other sites were classified `skip-ordinary` as parameterized or constant SQL.

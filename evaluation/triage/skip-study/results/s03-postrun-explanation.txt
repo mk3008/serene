@@ -1,0 +1,3 @@
+Post-run explanation only. Requested after completion, without tools or rescoring.
+
+I read the full `store.js` after the audit to inspect the two reported string-construction violations at lines 126 and 131, trace their helper inputs, and verify nearby imports/call structure. The single range read included all 20 ordinary functions, so it exposed their bodies even though the audit marked them ordinary. There was no unavailable navigation or contrary evidence requiring review of those ordinary sites; this was overbroad screening caused by using one contiguous read instead of narrowly reading the flagged ranges/functions.

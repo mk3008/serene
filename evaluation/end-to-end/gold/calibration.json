@@ -1,0 +1,113 @@
+{
+  "task": "calibration",
+  "records": [
+    {
+      "variant": "raw",
+      "file": "raw/operations.ts",
+      "line": 10,
+      "column": 9,
+      "function": "listActive",
+      "functionBodyStartLine": 3,
+      "functionBodyEndLine": 11,
+      "classification": "ordinary",
+      "expectedVulnerability": false,
+      "driverMethod": "query",
+      "auditExpectedClassification": "review-required"
+    },
+    {
+      "variant": "raw",
+      "file": "raw/operations.ts",
+      "line": 20,
+      "column": 9,
+      "function": "markComplete",
+      "functionBodyStartLine": 13,
+      "functionBodyEndLine": 21,
+      "classification": "ordinary",
+      "expectedVulnerability": false,
+      "driverMethod": "execute",
+      "auditExpectedClassification": "review-required"
+    },
+    {
+      "variant": "raw",
+      "file": "raw/operations.ts",
+      "line": 29,
+      "column": 9,
+      "function": "searchCalibration",
+      "functionBodyStartLine": 23,
+      "functionBodyEndLine": 30,
+      "classification": "violation",
+      "expectedVulnerability": true,
+      "driverMethod": "query",
+      "auditExpectedClassification": "violation"
+    },
+    {
+      "variant": "raw",
+      "file": "raw/operations.ts",
+      "line": 33,
+      "column": 9,
+      "function": "sendCalibrationSnapshot",
+      "functionBodyStartLine": 32,
+      "functionBodyEndLine": 38,
+      "classification": "unmatched",
+      "expectedVulnerability": false,
+      "driverMethod": "sendSql",
+      "auditExpectedClassification": "unmatched"
+    },
+    {
+      "variant": "serene",
+      "file": "serene/operations.ts",
+      "line": 12,
+      "column": 9,
+      "function": "listActive",
+      "functionBodyStartLine": 5,
+      "functionBodyEndLine": 13,
+      "classification": "ordinary",
+      "expectedVulnerability": false,
+      "driverMethod": "query",
+      "auditExpectedClassification": "ordinary"
+    },
+    {
+      "variant": "serene",
+      "file": "serene/operations.ts",
+      "line": 22,
+      "column": 9,
+      "function": "markComplete",
+      "functionBodyStartLine": 15,
+      "functionBodyEndLine": 23,
+      "classification": "ordinary",
+      "expectedVulnerability": false,
+      "driverMethod": "execute",
+      "auditExpectedClassification": "ordinary"
+    },
+    {
+      "variant": "serene",
+      "file": "serene/operations.ts",
+      "line": 31,
+      "column": 9,
+      "function": "searchCalibration",
+      "functionBodyStartLine": 25,
+      "functionBodyEndLine": 32,
+      "classification": "violation",
+      "expectedVulnerability": true,
+      "driverMethod": "query",
+      "auditExpectedClassification": "violation"
+    },
+    {
+      "variant": "serene",
+      "file": "serene/operations.ts",
+      "line": 35,
+      "column": 9,
+      "function": "sendCalibrationSnapshot",
+      "functionBodyStartLine": 34,
+      "functionBodyEndLine": 40,
+      "classification": "unmatched",
+      "expectedVulnerability": false,
+      "driverMethod": "sendSql",
+      "auditExpectedClassification": "unmatched"
+    }
+  ],
+  "classificationNotes": {
+    "classification": "Manual SQL-construction category used for paired review comparison.",
+    "auditExpectedClassification": "Expected Serene audit outcome for the concrete execution site; raw fixed SQL remains review-required because it has no Serene provenance."
+  }
+}

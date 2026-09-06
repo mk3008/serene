@@ -1,0 +1,1 @@
+Completed the fresh `tr` review. Discovered 10 SQL execution sites, screened and reviewed each, recorded one confirmed SQL injection in `reporting.ts:27` (`searchTicketing`, direct concatenation of `UntrustedInput` into SQL), recorded dispositions for all candidates, and finished the controller run successfully.

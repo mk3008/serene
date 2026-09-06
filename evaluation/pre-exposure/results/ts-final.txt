@@ -1,0 +1,5 @@
+Review completed and recorder finished.
+
+- Discovered 10 execution candidates.
+- Submitted one SQL injection finding in `reporting.ts`, `searchTicketing` line 31: `UntrustedInput phrase` is concatenated into SQL passed to `db.query`.
+- Recorded dispositions for all candidates, including Serene `skip-ordinary` markers and two safe static SQL calls in `maintenance.ts`.

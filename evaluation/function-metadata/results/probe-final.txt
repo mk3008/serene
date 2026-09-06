@@ -1,0 +1,6 @@
+Review completed and recorder finished.
+
+- Identified 10 SQL execution candidates.
+- Marked 7 positively identified Serene sites as `skip-ordinary`.
+- Found one SQL injection in `reporting.ts:29` (`searchTicketing`): `UntrustedInput phrase` is concatenated into SQL syntax.
+- Marked constant SQL in `maintenance.ts:16` and `maintenance.ts:24` safe.

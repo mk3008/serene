@@ -1,0 +1,117 @@
+[
+  {
+    "file": "store.js",
+    "line": 2,
+    "function": "findInvoice"
+  },
+  {
+    "file": "store.js",
+    "line": 7,
+    "function": "listOpen"
+  },
+  {
+    "file": "store.js",
+    "line": 12,
+    "function": "insertInvoice"
+  },
+  {
+    "file": "store.js",
+    "line": 17,
+    "function": "deleteInvoiceLines"
+  },
+  {
+    "file": "store.js",
+    "line": 22,
+    "function": "insertInvoiceLine"
+  },
+  {
+    "file": "store.js",
+    "line": 27,
+    "function": "repriceInvoice"
+  },
+  {
+    "file": "store.js",
+    "line": 32,
+    "function": "markInvoiceSent"
+  },
+  {
+    "file": "store.js",
+    "line": 37,
+    "function": "addPayment"
+  },
+  {
+    "file": "store.js",
+    "line": 42,
+    "function": "completeInvoice"
+  },
+  {
+    "file": "store.js",
+    "line": 47,
+    "function": "overdueAccounts"
+  },
+  {
+    "file": "store.js",
+    "line": 52,
+    "function": "customerStatement"
+  },
+  {
+    "file": "store.js",
+    "line": 57,
+    "function": "findCustomer"
+  },
+  {
+    "file": "store.js",
+    "line": 62,
+    "function": "searchCustomer"
+  },
+  {
+    "file": "store.js",
+    "line": 67,
+    "function": "createCustomer"
+  },
+  {
+    "file": "store.js",
+    "line": 72,
+    "function": "changeCredit"
+  },
+  {
+    "file": "store.js",
+    "line": 77,
+    "function": "activeRegions"
+  },
+  {
+    "file": "store.js",
+    "line": 82,
+    "function": "dailyCash"
+  },
+  {
+    "file": "store.js",
+    "line": 87,
+    "function": "productTotals"
+  },
+  {
+    "file": "store.js",
+    "line": 92,
+    "function": "invoiceCount"
+  },
+  {
+    "file": "store.js",
+    "line": 97,
+    "function": "recentNotes"
+  },
+  {
+    "file": "api.js",
+    "line": 104,
+    "function": "paymentFeed"
+  },
+  {
+    "file": "api.js",
+    "line": 110,
+    "function": "revenueSummary"
+  },
+  {
+    "file": "helpers.js",
+    "line": 20,
+    "function": "send"
+  }
+]

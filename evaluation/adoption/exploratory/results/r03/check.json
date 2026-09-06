@@ -1,0 +1,11 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "check"
+  ],
+  "exit": 1,
+  "stdout": "\n> check\n> npm test && node node_modules/@mk3008/serene/tooling/cli.mjs --sink=prepare --strict src\n\n\n> test\n> node --test public.test.mjs\n\n\u2714 confirms a pending reservation (1.999754ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 1\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 78.869962\n{\n  \"files\": [\n    \"src/operation.mjs\",\n    \"src/sql/confirm.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 17,\n      \"boundary\": \"serene\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 7,\n      \"column\": 15,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/sql/confirm.mjs\",\n      \"line\": 3,\n      \"column\": 20,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+  "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n",
+  "timeout": false
+}

@@ -1,0 +1,907 @@
+{
+  "task": "meadow",
+  "seed": 7182,
+  "synthetic_calibration": true,
+  "sites": [
+    {
+      "site": "op00/listItems0",
+      "file": "op00.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op00/listItems1",
+      "file": "op00.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op00/listItems2",
+      "file": "op00.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op00/listItems3",
+      "file": "op00.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op00/listItems4",
+      "file": "op00.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op01/listItems0",
+      "file": "op01.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op01/listItems1",
+      "file": "op01.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op01/listItems2",
+      "file": "op01.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op01/listItems3",
+      "file": "op01.mjs",
+      "function": "listItems3",
+      "construction": "finite",
+      "D": false,
+      "N": true,
+      "evidence": "trace finite source-owned order and direction"
+    },
+    {
+      "site": "op01/listItems4",
+      "file": "op01.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op02/listItems0",
+      "file": "op02.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op02/listItems1",
+      "file": "op02.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op02/listItems2",
+      "file": "op02.mjs",
+      "function": "listItems2",
+      "construction": "finite",
+      "D": false,
+      "N": true,
+      "evidence": "trace finite source-owned order and direction"
+    },
+    {
+      "site": "op02/listItems3",
+      "file": "op02.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op02/listItems4",
+      "file": "op02.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op03/listItems0",
+      "file": "op03.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op03/listItems1",
+      "file": "op03.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op03/listItems2",
+      "file": "op03.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op03/listItems3",
+      "file": "op03.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op03/listItems4",
+      "file": "op03.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op04/listItems0",
+      "file": "op04.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op04/listItems1",
+      "file": "op04.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op04/listItems2",
+      "file": "op04.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op04/listItems3",
+      "file": "op04.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op04/listItems4",
+      "file": "op04.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op05/listItems0",
+      "file": "op05.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op05/listItems1",
+      "file": "op05.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op05/listItems2",
+      "file": "op05.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op05/listItems3",
+      "file": "op05.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op05/listItems4",
+      "file": "op05.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op06/listItems0",
+      "file": "op06.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op06/listItems1",
+      "file": "op06.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op06/listItems2",
+      "file": "op06.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op06/listItems3",
+      "file": "op06.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op06/listItems4",
+      "file": "op06.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op07/listItems0",
+      "file": "op07.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op07/listItems1",
+      "file": "op07.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op07/listItems2",
+      "file": "op07.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op07/listItems3",
+      "file": "op07.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op07/listItems4",
+      "file": "op07.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op08/listItems0",
+      "file": "op08.mjs",
+      "function": "listItems0",
+      "construction": "finite",
+      "D": false,
+      "N": true,
+      "evidence": "trace finite source-owned order and direction"
+    },
+    {
+      "site": "op08/listItems1",
+      "file": "op08.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op08/listItems2",
+      "file": "op08.mjs",
+      "function": "listItems2",
+      "construction": "finite",
+      "D": false,
+      "N": true,
+      "evidence": "trace finite source-owned order and direction"
+    },
+    {
+      "site": "op08/listItems3",
+      "file": "op08.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op08/listItems4",
+      "file": "op08.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op09/listItems0",
+      "file": "op09.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op09/listItems1",
+      "file": "op09.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op09/listItems2",
+      "file": "op09.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op09/listItems3",
+      "file": "op09.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op09/listItems4",
+      "file": "op09.mjs",
+      "function": "listItems4",
+      "construction": "finite",
+      "D": false,
+      "N": true,
+      "evidence": "trace finite source-owned order and direction"
+    },
+    {
+      "site": "op10/listItems0",
+      "file": "op10.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op10/listItems1",
+      "file": "op10.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op10/listItems2",
+      "file": "op10.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op10/listItems3",
+      "file": "op10.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op10/listItems4",
+      "file": "op10.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op11/listItems0",
+      "file": "op11.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op11/listItems1",
+      "file": "op11.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op11/listItems2",
+      "file": "op11.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op11/listItems3",
+      "file": "op11.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op11/listItems4",
+      "file": "op11.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op12/listItems0",
+      "file": "op12.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op12/listItems1",
+      "file": "op12.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op12/listItems2",
+      "file": "op12.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op12/listItems3",
+      "file": "op12.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op12/listItems4",
+      "file": "op12.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op13/listItems0",
+      "file": "op13.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op13/listItems1",
+      "file": "op13.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op13/listItems2",
+      "file": "op13.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op13/listItems3",
+      "file": "op13.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op13/listItems4",
+      "file": "op13.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op14/listItems0",
+      "file": "op14.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op14/listItems1",
+      "file": "op14.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op14/listItems2",
+      "file": "op14.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op14/listItems3",
+      "file": "op14.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op14/listItems4",
+      "file": "op14.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op15/listItems0",
+      "file": "op15.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op15/listItems1",
+      "file": "op15.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op15/listItems2",
+      "file": "op15.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op15/listItems3",
+      "file": "op15.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op15/listItems4",
+      "file": "op15.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op16/listItems0",
+      "file": "op16.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op16/listItems1",
+      "file": "op16.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op16/listItems2",
+      "file": "op16.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op16/listItems3",
+      "file": "op16.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op16/listItems4",
+      "file": "op16.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op17/listItems0",
+      "file": "op17.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op17/listItems1",
+      "file": "op17.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op17/listItems2",
+      "file": "op17.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op17/listItems3",
+      "file": "op17.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op17/listItems4",
+      "file": "op17.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op18/listItems0",
+      "file": "op18.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op18/listItems1",
+      "file": "op18.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op18/listItems2",
+      "file": "op18.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op18/listItems3",
+      "file": "op18.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op18/listItems4",
+      "file": "op18.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op19/listItems0",
+      "file": "op19.mjs",
+      "function": "listItems0",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op19/listItems1",
+      "file": "op19.mjs",
+      "function": "listItems1",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op19/listItems2",
+      "file": "op19.mjs",
+      "function": "listItems2",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op19/listItems3",
+      "file": "op19.mjs",
+      "function": "listItems3",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    },
+    {
+      "site": "op19/listItems4",
+      "file": "op19.mjs",
+      "function": "listItems4",
+      "construction": "fixed",
+      "D": false,
+      "N": false,
+      "evidence": "fixed SQL plus native named parameters"
+    }
+  ]
+}

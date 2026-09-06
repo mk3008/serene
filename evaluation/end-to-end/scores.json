@@ -1,0 +1,377 @@
+[
+  {
+    "run": "tr",
+    "task": "ticketing",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 0,
+    "jsonl_input_records": null,
+    "jsonl_output_records": null,
+    "candidate_loss": null,
+    "payload_preserved": null,
+    "classifications": {},
+    "unmatched_reasons": {},
+    "ordinary_total": 7,
+    "ordinary_seen_discovery": 7,
+    "ordinary_full_body_seen_discovery": 7,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 0,
+    "ordinary_self_screened_any_stage": 7,
+    "actionable_unmatched_investigated": [
+      "searchTicketing",
+      "purgeTicketingPreview",
+      "sendTicketingSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string inside an ILIKE pattern, allowing attacker-controlled quotes and SQL syntax to alter the query.",
+        "impact": "HTTP-sourced input can inject SQL into the ticket search query."
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 12,
+    "response_bytes_to_source_located_diagnosis": 11699,
+    "total_response_bytes": 11742,
+    "total_request_bytes": 4917,
+    "handoff_jsonl_input_bytes": 0,
+    "handoff_jsonl_output_bytes": 0,
+    "stages": {
+      "discovery": {
+        "calls": 11,
+        "read_calls": 5,
+        "search_calls": 3,
+        "response_bytes": 11656,
+        "request_bytes": 2976,
+        "source_text_bytes": 4551,
+        "source_line_deliveries": 130,
+        "unique_source_lines": 113
+      },
+      "handoff": {
+        "calls": 0,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 0,
+        "request_bytes": 0,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1941,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "errors": [
+      {
+        "sequence": 3,
+        "error": "invalid path"
+      },
+      {
+        "sequence": 10,
+        "error": "unknown request fields"
+      }
+    ],
+    "wall_seconds": 50.95294785499573
+  },
+  {
+    "run": "ts",
+    "task": "ticketing",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 1,
+    "jsonl_input_records": 10,
+    "jsonl_output_records": 10,
+    "candidate_loss": 0,
+    "payload_preserved": true,
+    "classifications": {
+      "ordinary": 7,
+      "review-required": 1,
+      "unmatched": 1,
+      "violation": 1
+    },
+    "unmatched_reasons": {
+      "no-execution-match": 1
+    },
+    "ordinary_total": 7,
+    "ordinary_seen_discovery": 7,
+    "ordinary_full_body_seen_discovery": 7,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 7,
+    "ordinary_self_screened_any_stage": 7,
+    "actionable_unmatched_investigated": [
+      "searchTicketing",
+      "purgeTicketingPreview",
+      "sendTicketingSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 29,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated into the SQL string used by db.query, allowing injected SQL syntax to terminate the ILIKE literal and append/alter clauses.",
+        "impact": "HTTP-controlled phrase can alter the reporting query, enabling SQL injection."
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 12,
+    "response_bytes_to_source_located_diagnosis": 15688,
+    "total_response_bytes": 15731,
+    "total_request_bytes": 3263,
+    "handoff_jsonl_input_bytes": 1610,
+    "handoff_jsonl_output_bytes": 3434,
+    "stages": {
+      "discovery": {
+        "calls": 10,
+        "read_calls": 5,
+        "search_calls": 3,
+        "response_bytes": 11666,
+        "request_bytes": 1903,
+        "source_text_bytes": 4396,
+        "source_line_deliveries": 134,
+        "unique_source_lines": 119
+      },
+      "handoff": {
+        "calls": 1,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 3979,
+        "request_bytes": 16,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1344,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "errors": [
+      {
+        "sequence": 3,
+        "error": "invalid path"
+      }
+    ],
+    "wall_seconds": 51.27077126502991
+  },
+  {
+    "run": "sr",
+    "task": "stockroom",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 0,
+    "jsonl_input_records": null,
+    "jsonl_output_records": null,
+    "candidate_loss": null,
+    "payload_preserved": null,
+    "classifications": {},
+    "unmatched_reasons": {},
+    "ordinary_total": 7,
+    "ordinary_seen_discovery": 7,
+    "ordinary_full_body_seen_discovery": 7,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 0,
+    "ordinary_self_screened_any_stage": 7,
+    "actionable_unmatched_investigated": [
+      "searchStockroom",
+      "purgeStockroomPreview",
+      "sendStockroomSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL ILIKE string literal, allowing input to break out of the quoted pattern and inject SQL syntax.",
+        "impact": "An HTTP-controlled phrase can alter the query text executed by db.query, enabling injected predicates or additional SQL depending on driver behavior."
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 16,
+    "response_bytes_to_source_located_diagnosis": 11178,
+    "total_response_bytes": 11221,
+    "total_request_bytes": 3775,
+    "handoff_jsonl_input_bytes": 0,
+    "handoff_jsonl_output_bytes": 0,
+    "stages": {
+      "discovery": {
+        "calls": 15,
+        "read_calls": 5,
+        "search_calls": 8,
+        "response_bytes": 11135,
+        "request_bytes": 2313,
+        "source_text_bytes": 4066,
+        "source_line_deliveries": 126,
+        "unique_source_lines": 113
+      },
+      "handoff": {
+        "calls": 0,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 0,
+        "request_bytes": 0,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1462,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "errors": [],
+    "wall_seconds": 55.11747217178345
+  },
+  {
+    "run": "ss",
+    "task": "stockroom",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 1,
+    "jsonl_input_records": 10,
+    "jsonl_output_records": 10,
+    "candidate_loss": 0,
+    "payload_preserved": true,
+    "classifications": {
+      "ordinary": 7,
+      "violation": 1,
+      "review-required": 1,
+      "unmatched": 1
+    },
+    "unmatched_reasons": {
+      "no-execution-match": 1
+    },
+    "ordinary_total": 7,
+    "ordinary_seen_discovery": 7,
+    "ordinary_full_body_seen_discovery": 7,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 7,
+    "ordinary_self_screened_any_stage": 7,
+    "actionable_unmatched_investigated": [
+      "searchStockroom",
+      "purgeStockroomPreview",
+      "sendStockroomSnapshot"
+    ],
+    "actionable_unmatched_read_after_handoff": [
+      "sendStockroomSnapshot"
+    ],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 29,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated directly into an ILIKE SQL string, allowing quote/operator injection before db.query executes it.",
+        "impact": "Attacker-controlled input can alter the WHERE clause and injected SQL syntax executes through the database query driver."
+      }
+    ],
+    "source_located_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 17,
+    "response_bytes_to_source_located_diagnosis": 16782,
+    "total_response_bytes": 16825,
+    "total_request_bytes": 3604,
+    "handoff_jsonl_input_bytes": 1605,
+    "handoff_jsonl_output_bytes": 3429,
+    "stages": {
+      "discovery": {
+        "calls": 14,
+        "read_calls": 5,
+        "search_calls": 7,
+        "response_bytes": 12200,
+        "request_bytes": 2005,
+        "source_text_bytes": 4520,
+        "source_line_deliveries": 137,
+        "unique_source_lines": 119
+      },
+      "handoff": {
+        "calls": 1,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 3974,
+        "request_bytes": 16,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 3,
+        "read_calls": 1,
+        "search_calls": 0,
+        "response_bytes": 651,
+        "request_bytes": 1583,
+        "source_text_bytes": 165,
+        "source_line_deliveries": 7,
+        "unique_source_lines": 7
+      }
+    },
+    "errors": [
+      {
+        "sequence": 4,
+        "error": "rg: regex parse error:\n    (?:execute()\n    ^\nerror: unclosed group\n"
+      },
+      {
+        "sequence": 6,
+        "error": "rg: regex parse error:\n    (?:query()\n    ^\nerror: unclosed group\n"
+      },
+      {
+        "sequence": 8,
+        "error": "invalid path"
+      }
+    ],
+    "wall_seconds": 58.58999562263489
+  }
+]

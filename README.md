@@ -6,6 +6,8 @@ Keep your SQL. Keep your native driver. Add a small boundary that reviewers can 
 
 Serene is for TypeScript/JavaScript teams that prefer raw SQL but want humans and AI reviewers to distinguish fixed, parameterized SQL from code that deserves additional review.
 
+The goal is to focus deep SQL-construction review on the paths that need it, using recognized construction to avoid repeated investigation without replacing SQL review.
+
 It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
@@ -87,7 +89,9 @@ Then run:
 npx --no-install serene-audit src
 ```
 
-Use `serene-audit .` for repository-wide inventory, or pass individual files.
+Use `serene-audit .` for repository-wide inventory, or pass individual files. For concise review triage, use `serene-audit --actionable-only src`: it reports counts only for candidate driver execution sites and lists only review-required or violation findings. The default JSON inventory remains complete.
+
+Findings include source locations and function names for navigation; see [audit coverage](docs/review-coverage.md).
 
 Findings are intentionally simple:
 
@@ -98,6 +102,8 @@ Findings are intentionally simple:
 | `violation` | A detected Serene boundary violation |
 
 The audit is deliberately conservative and file-local. See [review coverage](docs/review-coverage.md) for what it can and cannot discover.
+
+The CLI provides the review signal; it does not force an AI agent to invoke or consume it. Evaluation shows that integration timing matters: filtering source-bearing responses before model delivery can avoid ordinary-body exposure, while adding Serene only after the agent has already read those bodies can add cost instead. The pre-exposure host/filter used in that study is not a shipped CLI feature. See the [evaluation map](evaluation/README.md).
 
 ## Dynamic ORDER BY without dynamic SQL
 
@@ -122,7 +128,7 @@ Runtime input chooses a reviewed key, not a SQL fragment.
 - [Security contract](docs/security.md) — guarantees, non-guarantees, and review responsibilities.
 - [Review coverage](docs/review-coverage.md) — what source inspection detects, refers, or may miss.
 - [Binding verification](docs/parameter-scanning-verification.md) — detailed parameter behavior and regression evidence.
-- [Evaluation report](evaluation/triage/REPORT.md) — historical triage experiments and their limits.
+- [Evaluation map](evaluation/README.md) — current research questions, AI-review evidence, and limits.
 
 ## Development
 

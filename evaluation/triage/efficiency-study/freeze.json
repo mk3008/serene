@@ -1,0 +1,169 @@
+{
+  "status": "EXECUTION_FREEZE_BEFORE_SCORED_RUNS",
+  "seed": 20260910,
+  "runs": [
+    {
+      "run": "e01",
+      "task": "task2",
+      "arm": "R",
+      "variant": "raw",
+      "requested_model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "budget": {
+        "deep_sites": 10,
+        "seconds": 600,
+        "bytes": 262144,
+        "requests": 80
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify any dangerous runtime influence on SQL syntax and paths needing additional investigation. Use your normal source-search/navigation strategy; prioritize as you judge appropriate. You need not deeply inspect paths already supported by fixed SQL and separate values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nAccess source ONLY through: python /tmp/serene-efficiency-run/client.py e01 '<JSON request>'. Do not inspect filesystem/client/controller/config/logs directly or use other network/agents. Use max_output_tokens:30000 for each exec response. The interface returns all permitted results without gold judgments. Available operations: {\"op\":\"list\"}; {\"op\":\"read\",\"path\":\"CONTRACT.md\",\"start\":1,\"end\":80}; {\"op\":\"search\",\"pattern\":\"query|execute\",\"regex\":true,\"case_sensitive\":false}; {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"functionName\"}; {\"op\":\"audit\"} when available; {\"op\":\"status\"}; {\"op\":\"finding\",\"path\":\"file.js\",\"function\":\"functionName\",\"mechanism\":\"concrete source evidence\",\"impact\":\"SQL-safety consequence\"}; {\"op\":\"finish\"}.\n\nRead CONTRACT.md and any SUPPORT.md first. Investigate returns a function's file and local dependency context. Source reads/searches automatically count dependency-context expansions, even without investigate. You may read ranges or search normally; do not perform extra work solely to increment counters. Budget: 10 unique expanded/context-retrieved SQL sites, 600 seconds, 262144 returned payload bytes, 80 requests. Caps reject new content; preserve failures. Submit a finding through the interface as soon as you can justify its mechanism rather than saving all findings for the final answer. Continue the review until you consider it complete or reach the budget. Do not infer how many hazards exist. Tool categories are triage evidence, not proof of safety or defects.\n\nAt completion call finish and return JSON (at most1200words): {\"findings\":[{\"path\":\"...\",\"function\":\"...\",\"mechanism\":\"...\",\"impact\":\"...\"}],\"additional_review_paths\":[{\"path\":\"...\",\"function\":\"...\",\"disposition\":\"resolved-safe|dangerous|unresolved\",\"reason\":\"...\"}],\"limits\":[],\"access_policy_followed\":true}. No source edits or output files. Do not retry this review in another session.\n",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2"
+        },
+        {
+          "path": "helpers.js",
+          "sha256": "54b9e6c69537ef1e28264b2122b03d7080831d6619eeabd483485fbb24a486c0"
+        },
+        {
+          "path": "schema.sql",
+          "sha256": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4"
+        },
+        {
+          "path": "service.js",
+          "sha256": "d26d67f71ea5b284f22254c6c59ddd212262ec2ca7501f098c33be0fc17f61dc"
+        },
+        {
+          "path": "store.js",
+          "sha256": "1ffa8d9352efb180858949d6504e1a9a2ae6182e362601f24989107ff2e656c3"
+        }
+      ]
+    },
+    {
+      "run": "e02",
+      "task": "task2",
+      "arm": "S",
+      "variant": "serene",
+      "requested_model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "budget": {
+        "deep_sites": 10,
+        "seconds": 600,
+        "bytes": 262144,
+        "requests": 80
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify any dangerous runtime influence on SQL syntax and paths needing additional investigation. Use your normal source-search/navigation strategy; prioritize as you judge appropriate. You need not deeply inspect paths already supported by fixed SQL and separate values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nAccess source ONLY through: python /tmp/serene-efficiency-run/client.py e02 '<JSON request>'. Do not inspect filesystem/client/controller/config/logs directly or use other network/agents. Use max_output_tokens:30000 for each exec response. The interface returns all permitted results without gold judgments. Available operations: {\"op\":\"list\"}; {\"op\":\"read\",\"path\":\"CONTRACT.md\",\"start\":1,\"end\":80}; {\"op\":\"search\",\"pattern\":\"query|execute\",\"regex\":true,\"case_sensitive\":false}; {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"functionName\"}; {\"op\":\"audit\"} when available; {\"op\":\"status\"}; {\"op\":\"finding\",\"path\":\"file.js\",\"function\":\"functionName\",\"mechanism\":\"concrete source evidence\",\"impact\":\"SQL-safety consequence\"}; {\"op\":\"finish\"}.\n\nRead CONTRACT.md and any SUPPORT.md first. Investigate returns a function's file and local dependency context. Source reads/searches automatically count dependency-context expansions, even without investigate. You may read ranges or search normally; do not perform extra work solely to increment counters. Budget: 10 unique expanded/context-retrieved SQL sites, 600 seconds, 262144 returned payload bytes, 80 requests. Caps reject new content; preserve failures. Submit a finding through the interface as soon as you can justify its mechanism rather than saving all findings for the final answer. Continue the review until you consider it complete or reach the budget. Do not infer how many hazards exist. Tool categories are triage evidence, not proof of safety or defects.\n\nAt completion call finish and return JSON (at most1200words): {\"findings\":[{\"path\":\"...\",\"function\":\"...\",\"mechanism\":\"...\",\"impact\":\"...\"}],\"additional_review_paths\":[{\"path\":\"...\",\"function\":\"...\",\"disposition\":\"resolved-safe|dangerous|unresolved\",\"reason\":\"...\"}],\"limits\":[],\"access_policy_followed\":true}. No source edits or output files. Do not retry this review in another session.\n",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "ba550425c7cec2ea6ac42d19d1b8b06d6dad6b811cae36f78970b0823e23d297"
+        },
+        {
+          "path": "helpers.js",
+          "sha256": "cbeabb93aaeb49c2b5fba438a0024129f9b972729cb583be28c34844e097630f"
+        },
+        {
+          "path": "schema.sql",
+          "sha256": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4"
+        },
+        {
+          "path": "service.js",
+          "sha256": "65d4c192e06719f7bca972a2e3d94a61e1ba5e312323037a4137929a1997b727"
+        },
+        {
+          "path": "store.js",
+          "sha256": "19bb33b605e4f210fade88417543c348db8652806855a22cb4a355893927e665"
+        }
+      ]
+    },
+    {
+      "run": "e03",
+      "task": "task1",
+      "arm": "S",
+      "variant": "serene",
+      "requested_model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "budget": {
+        "deep_sites": 10,
+        "seconds": 600,
+        "bytes": 262144,
+        "requests": 80
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify any dangerous runtime influence on SQL syntax and paths needing additional investigation. Use your normal source-search/navigation strategy; prioritize as you judge appropriate. You need not deeply inspect paths already supported by fixed SQL and separate values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nAccess source ONLY through: python /tmp/serene-efficiency-run/client.py e03 '<JSON request>'. Do not inspect filesystem/client/controller/config/logs directly or use other network/agents. Use max_output_tokens:30000 for each exec response. The interface returns all permitted results without gold judgments. Available operations: {\"op\":\"list\"}; {\"op\":\"read\",\"path\":\"CONTRACT.md\",\"start\":1,\"end\":80}; {\"op\":\"search\",\"pattern\":\"query|execute\",\"regex\":true,\"case_sensitive\":false}; {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"functionName\"}; {\"op\":\"audit\"} when available; {\"op\":\"status\"}; {\"op\":\"finding\",\"path\":\"file.js\",\"function\":\"functionName\",\"mechanism\":\"concrete source evidence\",\"impact\":\"SQL-safety consequence\"}; {\"op\":\"finish\"}.\n\nRead CONTRACT.md and any SUPPORT.md first. Investigate returns a function's file and local dependency context. Source reads/searches automatically count dependency-context expansions, even without investigate. You may read ranges or search normally; do not perform extra work solely to increment counters. Budget: 10 unique expanded/context-retrieved SQL sites, 600 seconds, 262144 returned payload bytes, 80 requests. Caps reject new content; preserve failures. Submit a finding through the interface as soon as you can justify its mechanism rather than saving all findings for the final answer. Continue the review until you consider it complete or reach the budget. Do not infer how many hazards exist. Tool categories are triage evidence, not proof of safety or defects.\n\nAt completion call finish and return JSON (at most1200words): {\"findings\":[{\"path\":\"...\",\"function\":\"...\",\"mechanism\":\"...\",\"impact\":\"...\"}],\"additional_review_paths\":[{\"path\":\"...\",\"function\":\"...\",\"disposition\":\"resolved-safe|dangerous|unresolved\",\"reason\":\"...\"}],\"limits\":[],\"access_policy_followed\":true}. No source edits or output files. Do not retry this review in another session.\n",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "ba550425c7cec2ea6ac42d19d1b8b06d6dad6b811cae36f78970b0823e23d297"
+        },
+        {
+          "path": "api.js",
+          "sha256": "afe7c3c741b75ea88ea88c189c1666e39d5b51787ebdbf636b4b4450c57eb038"
+        },
+        {
+          "path": "helpers.js",
+          "sha256": "debdcf9301ee59786da3811921fa32d3ab567bdf4c9a14b5066c8cd453f7a833"
+        },
+        {
+          "path": "schema.sql",
+          "sha256": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9"
+        },
+        {
+          "path": "store.js",
+          "sha256": "83e428bd63101887ca788fd53241a53efc9a5bccd9772eb4cbb2c8867bd0901d"
+        }
+      ]
+    },
+    {
+      "run": "e04",
+      "task": "task1",
+      "arm": "R",
+      "variant": "raw",
+      "requested_model": "gpt-5.6-luna",
+      "effort": "medium",
+      "fork_turns": "none",
+      "budget": {
+        "deep_sites": 10,
+        "seconds": 600,
+        "bytes": 262144,
+        "requests": 80
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify any dangerous runtime influence on SQL syntax and paths needing additional investigation. Use your normal source-search/navigation strategy; prioritize as you judge appropriate. You need not deeply inspect paths already supported by fixed SQL and separate values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nAccess source ONLY through: python /tmp/serene-efficiency-run/client.py e04 '<JSON request>'. Do not inspect filesystem/client/controller/config/logs directly or use other network/agents. Use max_output_tokens:30000 for each exec response. The interface returns all permitted results without gold judgments. Available operations: {\"op\":\"list\"}; {\"op\":\"read\",\"path\":\"CONTRACT.md\",\"start\":1,\"end\":80}; {\"op\":\"search\",\"pattern\":\"query|execute\",\"regex\":true,\"case_sensitive\":false}; {\"op\":\"investigate\",\"path\":\"store.js\",\"function\":\"functionName\"}; {\"op\":\"audit\"} when available; {\"op\":\"status\"}; {\"op\":\"finding\",\"path\":\"file.js\",\"function\":\"functionName\",\"mechanism\":\"concrete source evidence\",\"impact\":\"SQL-safety consequence\"}; {\"op\":\"finish\"}.\n\nRead CONTRACT.md and any SUPPORT.md first. Investigate returns a function's file and local dependency context. Source reads/searches automatically count dependency-context expansions, even without investigate. You may read ranges or search normally; do not perform extra work solely to increment counters. Budget: 10 unique expanded/context-retrieved SQL sites, 600 seconds, 262144 returned payload bytes, 80 requests. Caps reject new content; preserve failures. Submit a finding through the interface as soon as you can justify its mechanism rather than saving all findings for the final answer. Continue the review until you consider it complete or reach the budget. Do not infer how many hazards exist. Tool categories are triage evidence, not proof of safety or defects.\n\nAt completion call finish and return JSON (at most1200words): {\"findings\":[{\"path\":\"...\",\"function\":\"...\",\"mechanism\":\"...\",\"impact\":\"...\"}],\"additional_review_paths\":[{\"path\":\"...\",\"function\":\"...\",\"disposition\":\"resolved-safe|dangerous|unresolved\",\"reason\":\"...\"}],\"limits\":[],\"access_policy_followed\":true}. No source edits or output files. Do not retry this review in another session.\n",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2"
+        },
+        {
+          "path": "api.js",
+          "sha256": "cb7bf00c239d5036724c93aeac46e34af366c235018ce029b58f95ac60334a36"
+        },
+        {
+          "path": "helpers.js",
+          "sha256": "3079f4f2b91b8c55881e2407fc509cca1e82229ad125aa7c5d486f8cf89255ed"
+        },
+        {
+          "path": "schema.sql",
+          "sha256": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9"
+        },
+        {
+          "path": "store.js",
+          "sha256": "90fac07a107412f71a21b072dddcfa8de95b609fc5c7e71288a91f2ed7e43e60"
+        }
+      ]
+    }
+  ],
+  "authorization": "PR4 comment5559536423: after corrections/calibration proceed without further plan review",
+  "served_snapshot": null,
+  "token_usage": null
+}

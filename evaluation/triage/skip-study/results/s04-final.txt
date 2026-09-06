@@ -1,0 +1,6 @@
+SQL review completed. One actionable finding was submitted:
+
+- `helpers.js:categoryScope` concatenates untrusted `category` input directly into a quoted SQL literal. `categoryName` only trims/coerces it, and `service.inventoryReport → store.categorySnapshot` supplies route input, enabling SQL syntax injection.
+- `stockOrder` was resolved safe because it uses a finite frozen mapping.
+- All other SQL call sites use bound named parameters.
+- No unresolved paths; review completed under the client-only access policy.

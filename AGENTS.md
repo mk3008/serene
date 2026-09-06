@@ -11,3 +11,6 @@ review triage as the product boundary and docs/design.md as the rationale.
   completion. Do not weaken tests to fit an implementation.
 - Run npm run check and check the packed artifact when changing package exports.
 - Do not publish to npm or change external repository settings without authorization.
+
+When designing, changing, or interpreting an evaluation, check the research question
+and primary outcomes in evaluation/README.md before proceeding.

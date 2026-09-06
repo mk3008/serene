@@ -1,0 +1,31 @@
+{
+  "s01": {
+    "other_source": 1923,
+    "control_or_error": 282,
+    "mixed_source": 19602,
+    "ordinary_source": 2947,
+    "N_source": 836
+  },
+  "s02": {
+    "control_or_error": 335,
+    "other_source": 2556,
+    "mixed_source": 17191,
+    "ordinary_source": 4878,
+    "audit": 2985,
+    "N_source": 1403
+  },
+  "s03": {
+    "control_or_error": 198,
+    "other_source": 1925,
+    "audit": 999,
+    "N_source": 1365,
+    "mixed_source": 18975
+  },
+  "s04": {
+    "control_or_error": 228,
+    "other_source": 1933,
+    "mixed_source": 17017,
+    "ordinary_source": 4065,
+    "N_source": 832
+  }
+}

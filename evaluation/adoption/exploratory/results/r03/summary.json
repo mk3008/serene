@@ -1,0 +1,53 @@
+{
+  "run_id": "r03",
+  "task": "reservation-confirmation",
+  "arm": "F",
+  "public_exit": 0,
+  "hidden_exit": 0,
+  "check_exit": 1,
+  "audit_exit": 0,
+  "strict_exit": 1,
+  "protected_changes": [],
+  "source_files": [
+    {
+      "path": "src/operation.mjs",
+      "sha256": "941bc3e6d3567a1353d4bb91903ed52790b77077341c587ed5d5dc34075edf5d",
+      "changed": true
+    },
+    {
+      "path": "src/sql/confirm.mjs",
+      "sha256": "db4095a7158a7507d3d11b89b16772e1d2ed8d17af86bd7f0c72661cd8181ce4",
+      "changed": true
+    }
+  ],
+  "findings": [
+    {
+      "file": "src/operation.mjs",
+      "line": 6,
+      "column": 17,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 7,
+      "column": 15,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/sql/confirm.mjs",
+      "line": 3,
+      "column": 20,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "model_token_usage": null
+}

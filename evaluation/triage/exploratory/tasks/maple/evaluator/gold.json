@@ -1,0 +1,28 @@
+{
+  "task_id": "maple",
+  "defects": [],
+  "execution_sites": {
+    "raw": [
+      14,
+      19,
+      28,
+      35,
+      41
+    ],
+    "serene": [
+      16,
+      22,
+      32,
+      40,
+      47
+    ],
+    "safe": [
+      "listProjects uses a finite source-defined order map and binds tenantId/archived",
+      "projectById, projectTotals, and visibleProjectNames use fixed SQL, named binding, and tenant scoping"
+    ],
+    "expected_review": "no intentional defect; accept only a finding that identifies a concrete contract violation in the supplied source"
+  },
+  "matching": {
+    "reject": "generic claims that dynamic SQL, runtime input, or Serene usage is inherently unsafe without a concrete contract violation"
+  }
+}

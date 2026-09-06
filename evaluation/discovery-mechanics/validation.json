@@ -1,0 +1,111 @@
+{
+  "scope": "Independent read-only validation of discovery-mechanics tasks and gold inventories. No triage gold or result artifacts were read.",
+  "outcome": "blocked_by_public_contract_ambiguity",
+  "exact_counts": {
+    "tasks": 3,
+    "typescript_source_files": 21,
+    "gold_execution_locations": 16,
+    "verified_direct_driver_calls": 16,
+    "gold_wrapper_callers": 8,
+    "verified_wrapper_callers": 8,
+    "gold_negative_controls": 10,
+    "verified_negative_controls": 10,
+    "typescript_parse_diagnostics": 0,
+    "bundler_mode_typecheck_diagnostics": 0,
+    "node_next_import_extension_diagnostics": 29
+  },
+  "typescript_validation": {
+    "parser": "typescript 5.9.3 createSourceFile",
+    "result": "All 21 task source files parsed with zero diagnostics.",
+    "semantic_check": "typescript 5.9.3, --module ESNext --moduleResolution bundler, zero diagnostics.",
+    "configuration_note": "A separate NodeNext check reports 29 TS2835 extension diagnostics because fixture imports omit .js extensions in this package's ESM context. This is a module-resolution configuration issue, not a parse failure."
+  },
+  "tasks": {
+    "driver-operations": {
+      "public_contract": "README identifies SqlPool, SqlClient, and BatchDriver as host-provided external interfaces; db.ts declares query, execute, prepare, and batch.",
+      "execution": [
+        "src/catalog.ts:4 listShelf -> SqlPool.query",
+        "src/catalog.ts:8 renameSku -> SqlPool.execute",
+        "src/receipts.ts:4 receiptFor -> SqlClient.query",
+        "src/receipts.ts:8 markEmailed -> SqlClient.execute",
+        "src/reconcile.ts:4 postCounts -> BatchDriver.batch",
+        "src/reconcile.ts:11 clearStaging -> SqlPool.execute"
+      ],
+      "negative_controls": [
+        "src/catalog.ts:12 catalogLookupText returns text only",
+        "src/reconcile.ts:15 stageStatement calls SqlPool.prepare",
+        "src/diagnostics.ts:8 buildPreview builds text only"
+      ],
+      "wrapper_import_alias_linkage": "No wrapper-caller entries in gold. main.ts directly imports and invokes all six execution-containing functions.",
+      "status": "direct execution locations and controls match source; prepare classification is not explicitly stated by this task's public README or db.ts."
+    },
+    "mixed-ledger": {
+      "public_contract": "README and contracts.ts explicitly classify execute, query, and iterate as statement invocation, and transaction as scope-only; prepare returns metadata.",
+      "execution": [
+        "src/ledgerStore.ts:7 LedgerStore.addEntry -> LedgerSession.execute",
+        "src/ledgerStore.ts:11 LedgerStore.entriesFor -> LedgerSession.query",
+        "src/ledgerStore.ts:15 LedgerStore.eraseDraft -> LedgerSession.execute",
+        "src/reporting.ts:9 journalFeed -> LedgerDriver.iterate",
+        "src/maintenance.ts:4 pruneJournal -> LedgerDriver.execute"
+      ],
+      "wrapper_callers": [
+        "src/posting.ts:7 postTransfer -> LedgerStore.addEntry via transaction callback and class adapter (the function invokes the same execution site twice, at posting.ts:7 and :8)",
+        "src/posting.ts:13 discardDraft -> LedgerStore.eraseDraft via transaction callback and class adapter",
+        "src/reporting.ts:5 balances -> LedgerStore.entriesFor via class adapter"
+      ],
+      "negative_controls": [
+        "src/maintenance.ts:8 draftPreview -> LedgerDriver.prepare",
+        "src/posting.ts:5 postTransfer -> LedgerDriver.transaction scope only",
+        "src/presentation.ts:1 queryHelp text only",
+        "src/presentation.ts:2 executeButtonText text only"
+      ],
+      "wrapper_import_alias_linkage": "posting.ts and reporting.ts import LedgerStore directly; main.ts imports postTransfer, balances, pruneJournal, and journalFeed.",
+      "status": "all gold entries and contract classifications verified."
+    },
+    "wrapper-aliases": {
+      "public_contract": "README identifies Driver as host-provided; contracts.ts declares query, execute, stream, and prepare.",
+      "execution": [
+        "src/gateway.ts:4 writeRecord -> Driver.execute",
+        "src/gateway.ts:8 readRecords -> Driver.query",
+        "src/gateway.ts:12 openFeed -> Driver.stream",
+        "src/warehouseGateway.ts:4 recordArrival -> Driver.execute",
+        "src/warehouseGateway.ts:8 findDock -> Driver.query"
+      ],
+      "wrapper_callers": [
+        "src/orders.ts:5 closeOrder -> dispatch -> access.ts re-export writeRecord -> gateway.ts:4",
+        "src/orders.ts:9 ordersFor -> fetchRows -> access.ts re-export readRecords -> gateway.ts:8",
+        "src/shipping.ts:5 receive -> arrive -> access.ts re-export recordArrival -> warehouseGateway.ts:4",
+        "src/shipping.ts:9 dockBoard -> lookupDock -> access.ts re-export findDock -> warehouseGateway.ts:8",
+        "src/shipping.ts:13 followLateShipments -> watchRows -> access.ts re-export openFeed -> gateway.ts:12"
+      ],
+      "negative_controls": [
+        "src/notes.ts:6 previewPlan -> Driver.prepare",
+        "src/notes.ts:10 renderSqlBadge formats text only",
+        "src/notes.ts:3 shipmentQueryLabel is text only"
+      ],
+      "wrapper_import_alias_linkage": "access.ts contains all five named re-exports; orders.ts and shipping.ts import their aliases from access.ts; main.ts imports and invokes all five wrapper callers.",
+      "status": "all gold locations and all alias/re-export chains match source; prepare classification conflicts with the README's unqualified statement that interface methods run statements."
+    }
+  },
+  "blockers_and_ambiguities": [
+    {
+      "severity": "blocker",
+      "task": "wrapper-aliases",
+      "location": "tasks/wrapper-aliases/README.md",
+      "issue": "The README says 'The methods on that interface run statements when called.' Driver.prepare is a method on that interface, but gold classifies notes.ts:6 previewPlan's prepare call as non-executing. The public contract needs an explicit prepare exception or narrower wording before this task is frozen."
+    },
+    {
+      "severity": "ambiguity",
+      "task": "driver-operations",
+      "location": "tasks/driver-operations/README.md and src/db.ts",
+      "issue": "Gold calls reconcile.ts:15 prepare non-executing, but neither public artifact explicitly specifies prepare's execution behavior. The type return value suggests preparation/metadata, but it does not establish the stated boundary by contract."
+    },
+    {
+      "severity": "metadata_note",
+      "task": "mixed-ledger",
+      "location": "src/posting.ts:7-8",
+      "issue": "postTransfer invokes LedgerStore.addEntry twice. Gold correctly inventories one concrete execution site and one wrapper function, but consumers must not interpret wrapper_caller count as invocation count."
+    }
+  ],
+  "freeze_recommendation": "Do not freeze observation materials until the wrapper-aliases prepare contradiction and driver-operations prepare ambiguity are resolved in the public task contracts. All source coordinates, direct-call classifications other than those prepare controls, negative controls, and wrapper/import/alias linkages otherwise validate."
+}

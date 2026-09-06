@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "node_modules/@mk3008/serene/tooling/cli.mjs",
+    "--sink=prepare",
+    "--strict",
+    "src"
+  ],
+  "exit": 1,
+  "stdout": "{\n  \"files\": [\n    \"src/operation.mjs\",\n    \"src/sql/confirm.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 17,\n      \"boundary\": \"serene\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 7,\n      \"column\": 15,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/sql/confirm.mjs\",\n      \"line\": 3,\n      \"column\": 20,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+  "stderr": "",
+  "timeout": false
+}

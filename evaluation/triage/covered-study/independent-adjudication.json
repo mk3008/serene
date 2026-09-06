@@ -1,0 +1,24 @@
+{
+  "cases": {
+    "caseA": {
+      "first_correct_sequence": 12,
+      "false_finding_count": 0,
+      "explanation": "Sequence 12 correctly identifies categorySnapshot. A concrete untrusted category such as x' OR 1=1 -- is trimmed and inserted by categoryScope, producing a predicate like p.category = 'x' OR 1=1 --' in the SQL text. The quote and operators therefore become SQL syntax before db.query prepares the statement."
+    },
+    "caseB": {
+      "first_correct_sequence": 10,
+      "false_finding_count": 0,
+      "explanation": "Sequence 10 correctly identifies revenueSummary. A concrete untrusted region such as x' OR 1=1 -- is normalized and concatenated into the scope, producing region = 'x' OR 1=1 --' in the WHERE SQL. The attacker supplied quote and operators are parsed as SQL syntax rather than bound data."
+    },
+    "caseC": {
+      "first_correct_sequence": 29,
+      "false_finding_count": 0,
+      "explanation": "Sequence 29 correctly identifies revenueSummary. With the concrete untrusted region x' OR 1=1 --, regionScope produces region = 'x' OR 1=1 --', which is appended to the WHERE clause. The quote and boolean operators reach SQL text and alter its syntax/semantics before preparation."
+    },
+    "caseD": {
+      "first_correct_sequence": 10,
+      "false_finding_count": 0,
+      "explanation": "Sequence 10 correctly identifies categorySnapshot. A concrete untrusted category such as x' OR 1=1 -- is placed into the quoted predicate, yielding p.category = 'x' OR 1=1 --' in SQL. The untrusted quote and operators therefore become SQL syntax before execution."
+    }
+  }
+}

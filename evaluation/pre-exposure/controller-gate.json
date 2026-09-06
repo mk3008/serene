@@ -1,0 +1,14 @@
+{
+  "search_primitive_matches": 10,
+  "represented_matches": 10,
+  "match_row_loss": 0,
+  "ordinary_execution_locations": 7,
+  "retained_source_match_rows": 3,
+  "search_raw_response_bytes": 1045,
+  "search_filtered_response_bytes": 907,
+  "all_file_read_raw_response_bytes": 9387,
+  "all_file_read_filtered_response_bytes": 5294,
+  "ordinary_body_exposed": 0,
+  "nonordinary_bodies_retained": 3,
+  "coverage_source": "independent fixture gold, never ordinary count"
+}

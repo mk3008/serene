@@ -1,0 +1,84 @@
+{
+  "task": "mixed-ledger",
+  "execution": [
+    {
+      "file": "src/ledgerStore.ts",
+      "line": 7,
+      "function": "LedgerStore.addEntry",
+      "reason": "LedgerSession.execute invokes a host-driver statement."
+    },
+    {
+      "file": "src/ledgerStore.ts",
+      "line": 11,
+      "function": "LedgerStore.entriesFor",
+      "reason": "LedgerSession.query invokes a host-driver statement."
+    },
+    {
+      "file": "src/ledgerStore.ts",
+      "line": 15,
+      "function": "LedgerStore.eraseDraft",
+      "reason": "LedgerSession.execute invokes a host-driver statement."
+    },
+    {
+      "file": "src/reporting.ts",
+      "line": 9,
+      "function": "journalFeed",
+      "reason": "LedgerDriver.iterate invokes a host-driver statement."
+    },
+    {
+      "file": "src/maintenance.ts",
+      "line": 4,
+      "function": "pruneJournal",
+      "reason": "LedgerDriver.execute invokes a host-driver statement."
+    }
+  ],
+  "wrapper_callers": [
+    {
+      "file": "src/posting.ts",
+      "line": 7,
+      "function": "postTransfer",
+      "calls_execution_function": "LedgerStore.addEntry",
+      "via": "transaction callback and class adapter"
+    },
+    {
+      "file": "src/posting.ts",
+      "line": 13,
+      "function": "discardDraft",
+      "calls_execution_function": "LedgerStore.eraseDraft",
+      "via": "transaction callback and class adapter"
+    },
+    {
+      "file": "src/reporting.ts",
+      "line": 5,
+      "function": "balances",
+      "calls_execution_function": "LedgerStore.entriesFor",
+      "via": "class adapter"
+    }
+  ],
+  "negative_controls": [
+    {
+      "file": "src/maintenance.ts",
+      "line": 8,
+      "function": "draftPreview",
+      "reason": "prepare is non-executing by the public contract."
+    },
+    {
+      "file": "src/posting.ts",
+      "line": 5,
+      "function": "postTransfer",
+      "reason": "transaction supplies a scope; its callback contains the statement invokes."
+    },
+    {
+      "file": "src/presentation.ts",
+      "line": 1,
+      "function": "queryHelp",
+      "reason": "User-interface text only."
+    },
+    {
+      "file": "src/presentation.ts",
+      "line": 2,
+      "function": "executeButtonText",
+      "reason": "Button text only."
+    }
+  ]
+}

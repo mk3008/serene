@@ -1,8 +1,15 @@
 # AI review experiment: follow-up protocol (not run)
 
-Status: **AI effect unmeasured**. No review answers, success rates, significance
-claims, or simulated results are supplied. This document specifies a follow-up;
-it is not a claim that a model runner or blinded task set has been implemented.
+> Historical mixed general-review proposal; not the next Serene evaluation.
+> The SQL-safety prioritization question is specified in
+> [SQL-SAFETY-STUDY.md](SQL-SAFETY-STUDY.md). Semantic defect recall is excluded
+> from its primary score. See the [research map](../README.md).
+
+Status: the 48-run protocol below remains unperformed. A separately scoped
+[12-run exploratory Luna/medium pilot](exploratory/REPORT.md) is complete. It found
+a frozen-defect recall ceiling, one structured-output failure and contract
+ambiguities; it does not establish a general AI review benefit. The original
+protocol is preserved below for a future separately frozen study.
 
 ## Question and controls
 

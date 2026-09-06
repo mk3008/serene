@@ -1,0 +1,356 @@
+{
+  "seed": 20260908,
+  "runs": [
+    {
+      "run": "v01",
+      "task": "birch",
+      "arm": "B",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v01",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v01. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v02",
+      "task": "cedar",
+      "arm": "C",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v02",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "a085c1afc35889b331078a6f23282e3a37e4d402e4de81c4bb0ac7185b946997"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v02. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v03",
+      "task": "birch",
+      "arm": "A",
+      "variant": "raw",
+      "packet": "/tmp/serene-review-pilot1/v03",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "8c686bd14c445ef3d3c7d5358298d91529eb2713545a5b23d0fa890e28f3d782"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v03. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v04",
+      "task": "cedar",
+      "arm": "A",
+      "variant": "raw",
+      "packet": "/tmp/serene-review-pilot1/v04",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "c89b267db901991a7ae78a577855d4b31f9cd4762c820e382cf8a39caca1871e"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v04. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v05",
+      "task": "maple",
+      "arm": "A",
+      "variant": "raw",
+      "packet": "/tmp/serene-review-pilot1/v05",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "f6efb6849867bf3901ea28d5201aa06b3b2094454f15d162e70a884ef6ff7633"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v05. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v06",
+      "task": "cedar",
+      "arm": "D",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v06",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "e92468c0260138aa6c017e77eff615b273735951f6018985243cc2b8a484facb"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v06. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": {
+        "command": [
+          "node",
+          "frozen-package/tooling/cli.mjs",
+          "--sink=query",
+          "source.mjs"
+        ],
+        "exit": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "run": "v07",
+      "task": "maple",
+      "arm": "B",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v07",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v07. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v08",
+      "task": "maple",
+      "arm": "C",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v08",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "2d5ce608088dfcf8ff493a9d9e355922081552e287be47ff047871d095970089"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v08. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v09",
+      "task": "birch",
+      "arm": "C",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v09",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "00862d227a5084ffd83523fe39afaa25bd3a184599a83e37df23b9aa99327e50"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v09. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v10",
+      "task": "cedar",
+      "arm": "B",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v10",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v10. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": null
+    },
+    {
+      "run": "v11",
+      "task": "maple",
+      "arm": "D",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v11",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "e1c2ad42c5fc9adfa04fb1fd7795c60dd04ebeb3b970d35c409283c8157598a4"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v11. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": {
+        "command": [
+          "node",
+          "frozen-package/tooling/cli.mjs",
+          "--sink=query",
+          "source.mjs"
+        ],
+        "exit": 0,
+        "stderr": ""
+      }
+    },
+    {
+      "run": "v12",
+      "task": "birch",
+      "arm": "D",
+      "variant": "serene",
+      "packet": "/tmp/serene-review-pilot1/v12",
+      "files": [
+        {
+          "path": "CONTRACT.md",
+          "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+        },
+        {
+          "path": "inventory.json",
+          "sha256": "711cd31ff8bcbcba659e6ce23e7dd1b5bcbaaf866cb99957d819a5549b49f64c"
+        },
+        {
+          "path": "source.mjs",
+          "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+        }
+      ],
+      "prompt": "Review the application module in /tmp/serene-review-pilot1/v12. Work only inside this directory. Read CONTRACT.md, source.mjs, and any supplied SUPPORT.md or inventory.json. Do not access other directories, network, agents, or evaluator material. Do not execute the module or modify the supplied files. You may use at most three shell calls to read files and save your answer. Spend at most ten minutes; aim for at most 1,200 words.\n\nIdentify concrete defects against the supplied contract, with location, mechanism and impact. Distinguish a proven defect from a suggestion or uncertainty. Any inventory is a list of candidate boundaries, not proof of correctness or defects; inspect the underlying source. Return no findings when none are supported. Enumerate the SQL execution sites you inspected. Save answer.json with this shape and return the same JSON as your final response:\n{\"findings\":[{\"file\":\"source.mjs\",\"line\":1,\"explanation\":\"...\",\"impact\":\"...\"}],\"inspected_sites\":[{\"file\":\"source.mjs\",\"line\":1}],\"uncertainties\":[],\"commands_and_accesses\":[],\"shell_calls\":0}\n",
+      "requested_model": "gpt-5.6-luna",
+      "requested_effort": "medium",
+      "fork_turns": "none",
+      "audit_generation": {
+        "command": [
+          "node",
+          "frozen-package/tooling/cli.mjs",
+          "--sink=query",
+          "source.mjs"
+        ],
+        "exit": 1,
+        "stderr": ""
+      }
+    }
+  ]
+}

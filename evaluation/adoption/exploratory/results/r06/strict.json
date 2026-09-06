@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "node_modules/@mk3008/serene/tooling/cli.mjs",
+    "--sink=prepare",
+    "--strict",
+    "src"
+  ],
+  "exit": 0,
+  "stdout": "{\n  \"files\": [\n    \"src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 3,\n      \"column\": 26,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 16,\n      \"column\": 17,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 17,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+  "stderr": "",
+  "timeout": false
+}

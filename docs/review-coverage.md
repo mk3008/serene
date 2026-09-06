@@ -1,8 +1,6 @@
 # What Serene can and cannot find
 
-Discovery, referral and correct defect diagnosis are separate. Only the first two
-were measured by the historical pre-redesign deterministic evaluation. AI review effectiveness is
-not measured.
+Discovery, referral, correct defect diagnosis, and review cost are separate. The historical pre-redesign deterministic evaluation measured discovery/referral mechanics only. Later AI studies evaluate bounded review workflows and their costs; they do not turn the audit into a blanket whole-program or universal-efficiency guarantee. See the [evaluation map](../evaluation/README.md).
 
 | Source pattern | Inventory behavior | Remaining review |
 | --- | --- | --- |
@@ -31,13 +29,16 @@ not a representative sample, blinded holdout, successful AI review or a statisti
 significance result. Simple grep comparators are included, but humans/AI can follow
 grep leads beyond matched lines; the experiment does not measure that behavior.
 
-Sources, oracle, initial/final raw JSON, exact hashes, case-by-case matrix and follow-
-up AI protocol are in the repository's [evaluation directory](../evaluation/triage/REPORT.md).
-No public AI effectiveness claim is justified yet.
+Later PR #4 studies add conditional AI-review evidence: covered-site triage reduced additional construction-review response cost on small supplied site sets; a later handoff added cost after source had already been read; and pre-exposure filtering could prevent ordinary-body delivery while retaining actionable paths and correct diagnosis in a mediated workflow. Those results have different connection points and must not be pooled into one product score. They do not establish universal token, billing, latency, or automatic-agent adoption benefits. See the [evaluation map](../evaluation/README.md) for the evidence boundaries.
 
 The API redesign keeps alias regressions in the current unit suite, but does not
 relabel or rerun the frozen corpus against a different API. Those aggregate numbers
 are historical and are not a measurement of the new `sql` API.
+
+Every finding carries `function` as supplemental lexical location metadata. It is a
+name only when the nearest enclosing function syntax supplies one confidently;
+anonymous callbacks and unsupported function-like syntax are `null` and never
+inherit a named outer function. This label does not affect classification.
 
 ## Selecting source files
 
@@ -60,6 +61,14 @@ Exit 1 means a violation, or any review-required finding with `--strict`. Exit 0
 is not approval of every SQL path. Recursive selection does not add cross-file
 provenance or exhaustive sink discovery. For example, an imported SQL definition
 can remain review-required even when both files are selected.
+
+`--actionable-only` retains the selected `files` and `skipped` coverage records, but
+reports `executionSiteCounts` from `driver-candidate` findings only. This prevents a
+single execution path from being counted again for its `serene` construction or
+binding boundaries. Its `findings` list omits ordinary rows and retains every
+review-required or violation row, including source parse errors and computed calls.
+The counts are therefore an inventory of recognized candidate execution sites, not a
+count of all SQL execution in the application.
 
 Use `serene-audit --strict src` as a gate only where all review-required paths are
 intended to block. Legitimate native SQL exceptions and unresolved provenance still

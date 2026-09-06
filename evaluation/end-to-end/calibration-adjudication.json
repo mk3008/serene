@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent mechanism/impact adjudication of the fresh cr2/cs2 calibration pair. No scored run had started at review time.",
+  "verdict": "pass-calibration-gate",
+  "gateEvidence": {
+    "revisedGate": "calibration-gate.json reports every behavioral check true.",
+    "discovery": "Both arms discovered exactly the four gold execution coordinates (recall and precision 1.0).",
+    "handoff": "cs2 made one successful handoff: four JSONL inputs, four outputs, zero loss, and preserved payload order. Outputs were two ordinary skip:true, one violation, and one unmatched/no-execution-match.",
+    "completion": "Both runs finished with a one-for-one disposition Counter for their four discovered candidates and no tool errors."
+  },
+  "dangerFindings": [
+    {
+      "run": "cr2",
+      "finding": "operations.ts:27 in searchCalibration",
+      "sourceEvidence": "raw/operations.ts lines 23-29 types phrase as UntrustedInput, concatenates it between SQL string fragments at line 27, then passes the resulting statement to db.query at line 29.",
+      "mechanismAdjudication": "pass: the finding accurately identifies untrusted input reaching SQL syntax through string concatenation and correctly links construction to execution.",
+      "impactAdjudication": "pass with normal driver-scope limit: a request-controlled phrase can terminate or reshape the ILIKE string literal and alter the executed query. Whether a particular driver permits additional statements is not established by this fixture, but predicate/syntax injection is established."
+    },
+    {
+      "run": "cs2",
+      "finding": "operations.ts:29 in searchCalibration",
+      "sourceEvidence": "serene/operations.ts lines 25-31 use the same UntrustedInput concatenation at line 29 and execute the resulting statement at line 31.",
+      "mechanismAdjudication": "pass: the finding accurately identifies direct concatenation inside the quoted ILIKE pattern and explains quote/syntax escape into the executed SQL text.",
+      "impactAdjudication": "pass with normal driver-scope limit: a request-controlled phrase can alter the statement executed by db.query. The claim about additional SQL is conditional on driver behavior; the demonstrated injection effect is sufficient for this construction review."
+    }
+  ],
+  "skipAndUnmatched": {
+    "ordinaryNoReread": "pass: after cs2 handoff, the only source read was operations.ts:34-40 for sendCalibrationSnapshot. No source line in listActive (5-13) or markComplete (15-23) was delivered after handoff; both dispositions are skip-ordinary.",
+    "ordinaryDiscoveryExposure": "reported, not hidden: cs2 read the complete operations.ts body during Discovery, so both ordinary bodies were seen before handoff. The scorer records two actual skips because there was no later exposure.",
+    "unmatched": "pass: cs2 retained sendCalibrationSnapshot as ordinal 4 with classification unmatched and reason no-execution-match, targeted-read its complete function after handoff, and supplied a non-skip safe disposition. Raw also discovered and disposed of its sendSql execution rather than dropping it."
+  },
+  "remainingLimits": [
+    "This calibration establishes the defined source-only workflow on one compact calibration fixture; it does not establish general review effectiveness or a scored-arm result.",
+    "The fixture proves construction-level injection. It does not specify database driver support for stacked statements, so that narrower impact detail is not inferred.",
+    "Metrics and outcomes from v1 remain preparation evidence only and are not pooled with fresh calibration or future scored runs."
+  ],
+  "freezeReadiness": "The fresh calibration pair satisfies the amended behavioral gate and the independently reviewed dangerous mechanisms/impacts. Scored freeze may proceed if the parent records the required integrity freeze before participants begin."
+}

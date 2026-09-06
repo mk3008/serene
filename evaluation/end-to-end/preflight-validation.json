@@ -1,0 +1,951 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent read-only preflight of the end-to-end fixtures, protocol, gold, controller, and real audit behavior. No fixture was modified.",
+  "verdict": "ready-for-calibration",
+  "protocolContracts": {
+    "pairing": "Pairs must preserve SQL behavior while differing in raw literals versus Serene construction.",
+    "calibrationGate": "Raw exposes ordinary source; Serene submits discovery, calls the real handoff, does not expose ordinary bodies again afterward, and records dispositions for all candidates.",
+    "measurement": "No supplied site index/gold or coordinate repair; report discovery accuracy, handoff loss/classification, source exposure, response bytes, and dangerous-site diagnosis.",
+    "controllerObservation": "controller.info reveals only the configured root revision and recursive file list; read/search return source lines; it contains no gold or sink index.",
+    "goldInterpretation": "Gold `classification` is a manual construction-category denominator for both arms. It is distinct from actual Serene handoff output: raw fixed literal calls are review-required/UNRESOLVED, while Serene fixed calls are ordinary/SCREENED_SOURCE."
+  },
+  "actualAuditAndGold": {
+    "calibration": {
+      "recordCount": 8,
+      "coordinateAndRangeStatus": "all gold ranges contain their stated call and all stated call starts match the source text",
+      "records": [
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 10,
+          "column": 9,
+          "function": "listActive",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.query(statement, [active]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 20,
+          "column": 9,
+          "function": "markComplete",
+          "functionBodyRange": [
+            13,
+            21
+          ],
+          "sourceLine": "  await db.execute(statement, [complete, jobId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 29,
+          "column": 9,
+          "function": "searchCalibration",
+          "functionBodyRange": [
+            23,
+            30
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 33,
+          "column": 9,
+          "function": "sendCalibrationSnapshot",
+          "functionBodyRange": [
+            32,
+            38
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 12,
+          "column": 9,
+          "function": "listActive",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 22,
+          "column": 9,
+          "function": "markComplete",
+          "functionBodyRange": [
+            15,
+            23
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 31,
+          "column": 9,
+          "function": "searchCalibration",
+          "functionBodyRange": [
+            25,
+            32
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 35,
+          "column": 9,
+          "function": "sendCalibrationSnapshot",
+          "functionBodyRange": [
+            34,
+            40
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        }
+      ],
+      "auditClassificationMismatches": 0,
+      "classificationInterpretation": "manualConstructionClassification is the paired review category; auditExpectedClassification is the expected real candidate-handoff result."
+    },
+    "stockroom": {
+      "recordCount": 20,
+      "coordinateAndRangeStatus": "all gold ranges contain their stated call and all stated call starts match the source text",
+      "records": [
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 10,
+          "column": 9,
+          "function": "listReorderItems",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 20,
+          "column": 9,
+          "function": "findBinBalance",
+          "functionBodyRange": [
+            13,
+            21
+          ],
+          "sourceLine": "  await db.query(statement, [binCode]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 30,
+          "column": 9,
+          "function": "reserveStock",
+          "functionBodyRange": [
+            23,
+            31
+          ],
+          "sourceLine": "  await db.execute(statement, [quantity, sku]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 40,
+          "column": 9,
+          "function": "releaseReservation",
+          "functionBodyRange": [
+            33,
+            41
+          ],
+          "sourceLine": "  await db.execute(statement, [quantity, sku]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 10,
+          "column": 9,
+          "function": "loadSupplierItems",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.query(statement, [supplierId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 20,
+          "column": 9,
+          "function": "countItemsByZone",
+          "functionBodyRange": [
+            13,
+            21
+          ],
+          "sourceLine": "  await db.query(statement, [minimum]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 29,
+          "column": 9,
+          "function": "searchStockroom",
+          "functionBodyRange": [
+            23,
+            30
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 10,
+          "column": 9,
+          "function": "receiveShipment",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.execute(statement, [quantity, sku]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 14,
+          "column": 9,
+          "function": "purgeStockroomPreview",
+          "functionBodyRange": [
+            13,
+            19
+          ],
+          "sourceLine": "  await db.execute(`",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "review-required",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 22,
+          "column": 9,
+          "function": "sendStockroomSnapshot",
+          "functionBodyRange": [
+            21,
+            27
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 12,
+          "column": 9,
+          "function": "listReorderItems",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 22,
+          "column": 9,
+          "function": "findBinBalance",
+          "functionBodyRange": [
+            15,
+            23
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 32,
+          "column": 9,
+          "function": "reserveStock",
+          "functionBodyRange": [
+            25,
+            33
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 42,
+          "column": 9,
+          "function": "releaseReservation",
+          "functionBodyRange": [
+            35,
+            43
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 12,
+          "column": 9,
+          "function": "loadSupplierItems",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 22,
+          "column": 9,
+          "function": "countItemsByZone",
+          "functionBodyRange": [
+            15,
+            23
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 31,
+          "column": 9,
+          "function": "searchStockroom",
+          "functionBodyRange": [
+            25,
+            32
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 12,
+          "column": 9,
+          "function": "receiveShipment",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 16,
+          "column": 9,
+          "function": "purgeStockroomPreview",
+          "functionBodyRange": [
+            15,
+            21
+          ],
+          "sourceLine": "  await db.execute(`",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "review-required",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 24,
+          "column": 9,
+          "function": "sendStockroomSnapshot",
+          "functionBodyRange": [
+            23,
+            29
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        }
+      ],
+      "auditClassificationMismatches": 0,
+      "classificationInterpretation": "manualConstructionClassification is the paired review category; auditExpectedClassification is the expected real candidate-handoff result."
+    },
+    "ticketing": {
+      "recordCount": 20,
+      "coordinateAndRangeStatus": "all gold ranges contain their stated call and all stated call starts match the source text",
+      "records": [
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 10,
+          "column": 9,
+          "function": "listOpenTickets",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.query(statement, [state]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 20,
+          "column": 9,
+          "function": "findTicketById",
+          "functionBodyRange": [
+            13,
+            21
+          ],
+          "sourceLine": "  await db.query(statement, [ticketId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 30,
+          "column": 9,
+          "function": "assignTicket",
+          "functionBodyRange": [
+            23,
+            31
+          ],
+          "sourceLine": "  await db.execute(statement, [agentId, ticketId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/operations.ts",
+          "line": 40,
+          "column": 9,
+          "function": "closeResolvedTickets",
+          "functionBodyRange": [
+            33,
+            41
+          ],
+          "sourceLine": "  await db.execute(statement, [closedState, resolvedState]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 10,
+          "column": 9,
+          "function": "loadRequesterHistory",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.query(statement, [requesterId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 20,
+          "column": 9,
+          "function": "countQueueByPriority",
+          "functionBodyRange": [
+            13,
+            21
+          ],
+          "sourceLine": "  await db.query(statement, [state]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/reporting.ts",
+          "line": 29,
+          "column": 9,
+          "function": "searchTicketing",
+          "functionBodyRange": [
+            23,
+            30
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 10,
+          "column": 9,
+          "function": "reopenTicket",
+          "functionBodyRange": [
+            3,
+            11
+          ],
+          "sourceLine": "  await db.execute(statement, [state, ticketId]);",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 14,
+          "column": 9,
+          "function": "purgeTicketingPreview",
+          "functionBodyRange": [
+            13,
+            19
+          ],
+          "sourceLine": "  await db.execute(`",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "review-required",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "raw",
+          "file": "raw/maintenance.ts",
+          "line": 22,
+          "column": 9,
+          "function": "sendTicketingSnapshot",
+          "functionBodyRange": [
+            21,
+            27
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 12,
+          "column": 9,
+          "function": "listOpenTickets",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 22,
+          "column": 9,
+          "function": "findTicketById",
+          "functionBodyRange": [
+            15,
+            23
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 32,
+          "column": 9,
+          "function": "assignTicket",
+          "functionBodyRange": [
+            25,
+            33
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/operations.ts",
+          "line": 42,
+          "column": 9,
+          "function": "closeResolvedTickets",
+          "functionBodyRange": [
+            35,
+            43
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 12,
+          "column": 9,
+          "function": "loadRequesterHistory",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 22,
+          "column": 9,
+          "function": "countQueueByPriority",
+          "functionBodyRange": [
+            15,
+            23
+          ],
+          "sourceLine": "  await db.query(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/reporting.ts",
+          "line": 31,
+          "column": 9,
+          "function": "searchTicketing",
+          "functionBodyRange": [
+            25,
+            32
+          ],
+          "sourceLine": "  await db.query(statement);",
+          "actualHandoffClassification": "violation",
+          "actualAuditCode": "STRING_CONSTRUCTION",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "violation",
+          "auditExpectedClassification": "violation",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 12,
+          "column": 9,
+          "function": "reopenTicket",
+          "functionBodyRange": [
+            5,
+            13
+          ],
+          "sourceLine": "  await db.execute(q.text, q.values);",
+          "actualHandoffClassification": "ordinary",
+          "actualAuditCode": "SCREENED_SOURCE",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "ordinary",
+          "auditExpectedClassification": "ordinary",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 16,
+          "column": 9,
+          "function": "purgeTicketingPreview",
+          "functionBodyRange": [
+            15,
+            21
+          ],
+          "sourceLine": "  await db.execute(`",
+          "actualHandoffClassification": "review-required",
+          "actualAuditCode": "UNRESOLVED",
+          "coordinateStatus": "exact driver-candidate",
+          "manualConstructionClassification": "review-required",
+          "auditExpectedClassification": "review-required",
+          "auditClassificationStatus": "matches"
+        },
+        {
+          "variant": "serene",
+          "file": "serene/maintenance.ts",
+          "line": 24,
+          "column": 9,
+          "function": "sendTicketingSnapshot",
+          "functionBodyRange": [
+            23,
+            29
+          ],
+          "sourceLine": "  await db.sendSql(`",
+          "actualHandoffClassification": "unmatched",
+          "actualAuditCode": "no-execution-match",
+          "coordinateStatus": "correctly has no driver-candidate",
+          "manualConstructionClassification": "unmatched",
+          "auditExpectedClassification": "unmatched",
+          "auditClassificationStatus": "matches"
+        }
+      ],
+      "auditClassificationMismatches": 0,
+      "classificationInterpretation": "manualConstructionClassification is the paired review category; auditExpectedClassification is the expected real candidate-handoff result."
+    }
+  },
+  "pairedBehavior": {
+    "calibration": {
+      "status": "passed-source-contract",
+      "evidence": "Both arms use native named-object binding for the same :name placeholders; fixed SQL text, dangerous concatenation, and reporting execution site are paired."
+    },
+    "stockroom": {
+      "status": "passed-source-contract",
+      "evidence": "Both arms use native named-object binding for the same :name placeholders; fixed SQL text, dangerous concatenation, preview control, and reporting execution site are paired."
+    },
+    "ticketing": {
+      "status": "passed-source-contract",
+      "evidence": "The Serene reopenTicket binding is `{ state: state, ticketId: ticketId }`, matching Raw. Both arms use native named-object binding."
+    },
+    "typecheck": "All 24 task TypeScript files passed `npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext`."
+  },
+  "blockers": [],
+  "limits": [
+    "This audit did not run participants or modify fixtures.",
+    "The author fixtures and staged repositories are separately frozen only after calibration; rerun the recorded checks after any source, gold, config, controller, prompt, or dependency change.",
+    "The controller records behavior rather than forcing a disposition; the statically reviewed scorer/check-calibration gate evaluates the protocol conditions once calibration event logs exist.",
+    "This validation assesses the defined source-only/audit workflow and native named-binding contract, not general SQL correctness or driver implementation beyond the task contract."
+  ],
+  "stagedControllerAndHandoffSmokeTest": {
+    "config": "/tmp/serene-e2e/config.json",
+    "result": "passed",
+    "evidence": "All six configured roots were clean git repositories at their configured revisions. Direct candidate-handoff smoke tests using every gold coordinate after stripping raw/serene prefix produced one output per input.",
+    "byArm": {
+      "raw": "fixed literals review-required/UNRESOLVED; dangerous site violation/STRING_CONSTRUCTION; sendSql unmatched/no-execution-match",
+      "serene": "fixed constructs ordinary/SCREENED_SOURCE with skip true; dangerous site violation/STRING_CONSTRUCTION; preview review-required/UNRESOLVED; sendSql unmatched/no-execution-match"
+    },
+    "noHiddenIndex": "controller itself offers revision/file-list, source read, and rg search only; the smoke test used gold solely for author validation, not agent operations."
+  },
+  "gatesAndRequirements": {
+    "gold": "passed: all 48 source call coordinates/ranges were verified, and all 48 real audit classifications match auditExpectedClassification.",
+    "handoff": "passed: all six clean staged roots exactly match config revisions. Direct real handoff over each transformed gold list exited zero and emitted one record per candidate (48 total); raw fixed sites returned review-required, Serene fixed sites ordinary with skip true, dangerous sites violation, and sendSql unmatched.",
+    "controller": "passed: `test_controller.py` passed (one source-mediated controller test). Controller info/read/search exposes revision/file list and source data only, with no gold or sink index.",
+    "scoring": "passed static review: score.py separates manual construction `classification` from observed handoff classifications, measures exact file/line/column discovery, uses Counter coverage for duplicate candidate/disposition coordinates, verifies ordinal/payload preservation, and computes actual skip only after a successful handoff with no later function-range exposure. check-calibration.py gates discovery, raw self-screening, Serene skips/actionable follow-up, handoff loss, disposition coverage, coordinate diagnosis, finish, and tool errors. No calibration event logs existed yet, so behavioral execution remains pending the calibration runs."
+  },
+  "scorerValidation": {
+    "status": "passed-static-pending-calibration-events",
+    "evidence": [
+      "`python test_controller.py` passed (1 test).",
+      "score.py reads observed handoff output rather than using gold audit classifications as observed results.",
+      "score.py uses exact coordinate tuples (file,line,column); handoff payload/ordinal validation preserves duplicate records; Counter comparison retains duplicate disposition coordinates.",
+      "skip requires matching handoff `skip`, disposition `skip-ordinary`, and no source delivery in the full function range after handoff.",
+      "check-calibration.py makes the protocol gate explicit; its mechanism review remains a deliberate human adjudication step."
+    ],
+    "limit": "results/cr.jsonl and results/cs.jsonl, calibration-scores.json, and calibration-gate.json do not exist before participant calibration; executing score/check-calibration is therefore appropriately deferred."
+  }
+}

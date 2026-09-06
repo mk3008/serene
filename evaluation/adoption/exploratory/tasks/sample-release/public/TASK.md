@@ -1,0 +1,7 @@
+# Sample Release
+
+Implement `releaseSamples(db, { tenantId, sampleIds, operator }) -> Array<{sampleId,state,operator}> (throws on failure)` in `src/operation.mjs` using Node's built-in `node:sqlite` DatabaseSync API. The database is supplied by the caller.
+
+Release every requested ready sample and insert its release record in one transaction. Return exactly sampleId,state,operator for each input sample in the original input order, with state released. Missing, held, already released, duplicate sample IDs, or an insert failure must throw and roll back all changes from the call, including earlier samples and release records. Empty sampleIds returns []. Scope every sample operation to tenantId; preserve the exact operator string. No transaction is active when called. Inputs otherwise have valid types. Each application SQL statement must have its own dedicated authoritative .mjs source file under src/sql, imported by operation.mjs. Keep SQL directly readable in that file without duplication; a named exported raw string or another fixed literal representation is allowed. Transaction control statements are exempt and may remain in operation.mjs. Bind input values using meaningful named parameters. Test setup/assertion SQL is exempt.
+
+Use the existing schema in `schema.sql`; `seed.sql` provides example data. Do not change the schema or public tests. No external dependencies are required. Run `npm test` (Node 24 or newer).

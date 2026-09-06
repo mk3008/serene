@@ -1,0 +1,596 @@
+{
+  "scope": "Source-only study scoring of nine blinded submissions; not a measured AI-review-efficacy experiment.",
+  "method": "Read only TASK.md and initial-src/final-src under this directory. No tests, network access, source modifications, or external package inspection. Counts are final-source application SQL definitions and distinct static db.prepare sites; transaction controls excluded. Empty initial TODO strings are not application SQL definitions. Subsequent clarification used only the supplied frozen public API declaration and runtime implementation, without execution.",
+  "causality": "Treatment, outcomes, coder answers, motives and timing are unavailable; no causal or gate-appeasement inference made.",
+  "summary": {
+    "cases": 9,
+    "unique_application_sql_definitions": 12,
+    "static_application_prepare_sites": 12,
+    "sites_using_serene_bound_text": 12,
+    "sites_with_visible_matching_caller_objects": 7,
+    "sites_with_external_result_shape_dependent_objects": 5,
+    "cases_with_confirmed_defects": 0,
+    "cases_with_unresolved_result_shape_dependency": [],
+    "cases_with_unverified_params_property": [],
+    "readability_and_layout_consistent_cases": 9,
+    "sites_with_verified_matching_named_parameters": 12,
+    "result_shape_dependencies_verified": true
+  },
+  "cases": [
+    {
+      "case": "case01",
+      "task": "specimen_search",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 0,
+      "sites_with_external_result_shape_dependent_named_objects": 1,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case01/final-src/operation.mjs",
+          "lines": "3-12",
+          "claim": "One directly readable fixed Serene SELECT; tenant/category equality, inclusive since, archived=0, required sort, named limit, exact selected fields."
+        },
+        {
+          "file": "case01/final-src/operation.mjs",
+          "lines": "19",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case01/final-src/operation.mjs",
+          "lines": "15-18",
+          "claim": "Named parameter object reconstructed by pairing bind-result names and values; supplied runtime lines 100-102 establish alignment and exact caller values."
+        },
+        {
+          "file": "case01/final-src/operation.mjs",
+          "lines": "19-21",
+          "claim": "Exact result projection."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    },
+    {
+      "case": "case02",
+      "task": "reservation_confirmation",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 1,
+      "sites_with_external_result_shape_dependent_named_objects": 0,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case02/final-src/sql/confirm.mjs",
+          "lines": "1-11",
+          "claim": "One directly readable fixed Serene UPDATE RETURNING; pending/tenant/reservation/version predicates, exact note, incremented version, exact output columns."
+        },
+        {
+          "file": "case02/final-src/operation.mjs",
+          "lines": "2",
+          "claim": "Statement imported from dedicated authoritative module."
+        },
+        {
+          "file": "case02/final-src/operation.mjs",
+          "lines": "7",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case02/final-src/operation.mjs",
+          "lines": "5-7",
+          "claim": "The same caller-value object supplied to bind is supplied to SQLite; object keys visibly match all named SQL placeholders."
+        },
+        {
+          "file": "case02/final-src/operation.mjs",
+          "lines": "7-8",
+          "claim": "Returned row has only SQL RETURNING fields; missing update returns null. Single UPDATE is atomic."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    },
+    {
+      "case": "case03",
+      "task": "sample_release",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 2,
+      "static_application_prepare_sites": 2,
+      "sites_using_serene_bound_text": 2,
+      "sites_with_visibly_matching_caller_named_objects": 2,
+      "sites_with_external_result_shape_dependent_named_objects": 0,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case03/final-src/sql/release.mjs",
+          "lines": "1-9",
+          "claim": "One imported fixed Serene UPDATE scoped by tenant/sample and ready state."
+        },
+        {
+          "file": "case03/final-src/sql/record.mjs",
+          "lines": "1-6",
+          "claim": "One imported fixed Serene INSERT with named tenant/sample/operator values."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "2-3",
+          "claim": "Each application statement imported from its own dedicated authoritative module."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "21",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "28",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "19-28",
+          "claim": "The same caller-value object supplied to bind is supplied to SQLite; object keys visibly match all named SQL placeholders."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "10-35",
+          "claim": "Empty list returns []; loop preserves input order and operator; one transaction rolls back upon failed readiness update or insert exception."
+        },
+        {
+          "file": "case03/final-src/operation.mjs",
+          "lines": "11-13",
+          "claim": "Duplicate IDs rejected before transaction."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 2
+    },
+    {
+      "case": "case04",
+      "task": "specimen_search",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 1,
+      "sites_with_external_result_shape_dependent_named_objects": 0,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case04/final-src/operation.mjs",
+          "lines": "3-12",
+          "claim": "One directly readable fixed Serene SELECT; tenant/category equality, inclusive since, archived=0, required sort, named limit, exact selected fields."
+        },
+        {
+          "file": "case04/final-src/operation.mjs",
+          "lines": "17",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case04/final-src/operation.mjs",
+          "lines": "15-17",
+          "claim": "The same caller-value object supplied to bind is supplied to SQLite; object keys visibly match all named SQL placeholders."
+        },
+        {
+          "file": "case04/final-src/operation.mjs",
+          "lines": "17-19",
+          "claim": "Exact result projection."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    },
+    {
+      "case": "case05",
+      "task": "reservation_confirmation",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 0,
+      "sites_with_external_result_shape_dependent_named_objects": 1,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case05/final-src/sql/confirm.mjs",
+          "lines": "1-11",
+          "claim": "One directly readable fixed Serene UPDATE RETURNING; pending/tenant/reservation/version predicates, exact note, incremented version, exact output columns."
+        },
+        {
+          "file": "case05/final-src/operation.mjs",
+          "lines": "2",
+          "claim": "Statement imported from dedicated authoritative module."
+        },
+        {
+          "file": "case05/final-src/operation.mjs",
+          "lines": "7",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case05/final-src/operation.mjs",
+          "lines": "5-6",
+          "claim": "Named parameter object reconstructed by pairing bind-result names and values; supplied runtime lines 100-102 establish alignment and exact caller values."
+        },
+        {
+          "file": "case05/final-src/operation.mjs",
+          "lines": "7-8",
+          "claim": "Returned row has only SQL RETURNING fields; missing update returns null. Single UPDATE is atomic."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    },
+    {
+      "case": "case06",
+      "task": "reservation_confirmation",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 0,
+      "sites_with_external_result_shape_dependent_named_objects": 1,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case06/final-src/sql/confirm.mjs",
+          "lines": "1-11",
+          "claim": "One directly readable fixed Serene UPDATE RETURNING; pending/tenant/reservation/version predicates, exact note, incremented version, exact output columns."
+        },
+        {
+          "file": "case06/final-src/operation.mjs",
+          "lines": "2",
+          "claim": "Statement imported from dedicated authoritative module."
+        },
+        {
+          "file": "case06/final-src/operation.mjs",
+          "lines": "7",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case06/final-src/operation.mjs",
+          "lines": "5-6",
+          "claim": "Named parameter object reconstructed by pairing bind-result names and values; supplied runtime lines 100-102 establish alignment and exact caller values."
+        },
+        {
+          "file": "case06/final-src/operation.mjs",
+          "lines": "7-8",
+          "claim": "Returned row has only SQL RETURNING fields; missing update returns null. Single UPDATE is atomic."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    },
+    {
+      "case": "case07",
+      "task": "sample_release",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 2,
+      "static_application_prepare_sites": 2,
+      "sites_using_serene_bound_text": 2,
+      "sites_with_visibly_matching_caller_named_objects": 0,
+      "sites_with_external_result_shape_dependent_named_objects": 2,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case07/final-src/sql/release.mjs",
+          "lines": "1-9",
+          "claim": "One imported fixed Serene UPDATE scoped by tenant/sample and ready state."
+        },
+        {
+          "file": "case07/final-src/sql/record.mjs",
+          "lines": "1-6",
+          "claim": "One imported fixed Serene INSERT with named tenant/sample/operator values."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "2-3",
+          "claim": "Each application statement imported from its own dedicated authoritative module."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "16",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "21",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "15-21",
+          "claim": "Both execution calls pass bind-result .params; supplied API line 26 and runtime lines 100-102 establish this matching named object exists."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "6-28",
+          "claim": "Empty list returns []; loop preserves input order and operator; one transaction rolls back upon failed readiness update or insert exception."
+        },
+        {
+          "file": "case07/final-src/operation.mjs",
+          "lines": "7-9",
+          "claim": "Duplicate IDs rejected before transaction."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 2
+    },
+    {
+      "case": "case08",
+      "task": "sample_release",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 2,
+      "static_application_prepare_sites": 2,
+      "sites_using_serene_bound_text": 2,
+      "sites_with_visibly_matching_caller_named_objects": 2,
+      "sites_with_external_result_shape_dependent_named_objects": 0,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case08/final-src/sql/release.mjs",
+          "lines": "1-9",
+          "claim": "One imported fixed Serene UPDATE scoped by tenant/sample and ready state."
+        },
+        {
+          "file": "case08/final-src/sql/record.mjs",
+          "lines": "1-6",
+          "claim": "One imported fixed Serene INSERT with named tenant/sample/operator values."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "2-3",
+          "claim": "Each application statement imported from its own dedicated authoritative module."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "14",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "21",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "12-21",
+          "claim": "The same caller-value object supplied to bind is supplied to SQLite; object keys visibly match all named SQL placeholders."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "6-28",
+          "claim": "Empty list returns []; loop preserves input order and operator; one transaction rolls back upon failed readiness update or insert exception."
+        },
+        {
+          "file": "case08/final-src/operation.mjs",
+          "lines": "11-16",
+          "claim": "Duplicate IDs fail on second ready-only update after first becomes released, then catch rolls back all changes."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 2
+    },
+    {
+      "case": "case09",
+      "task": "specimen_search",
+      "initial_application_sql_definitions": 0,
+      "initial_static_application_prepare_sites": 0,
+      "unique_application_sql_definitions": 1,
+      "static_application_prepare_sites": 1,
+      "sites_using_serene_bound_text": 1,
+      "sites_with_visibly_matching_caller_named_objects": 1,
+      "sites_with_external_result_shape_dependent_named_objects": 0,
+      "all_sites_use_serene_bound_text": true,
+      "all_sites_use_matching_named_parameters": "yes_verified_against_supplied_public_API",
+      "directly_readable_sql": true,
+      "prescribed_layout_preserved": true,
+      "one_authoritative_definition_per_statement": true,
+      "conclusion": "source_requirements_consistent",
+      "confirmed_functionality_or_binding_defects": [],
+      "potential_binding_issues": [],
+      "unnecessary_raw_application_bypass": false,
+      "fake_or_unsafe_construction_observed": false,
+      "duplicated_application_sql": false,
+      "inappropriate_colocation": false,
+      "evidence": [
+        {
+          "file": "case09/final-src/operation.mjs",
+          "lines": "3-12",
+          "claim": "One directly readable fixed Serene SELECT; tenant/category equality, inclusive since, archived=0, required sort, named limit, exact selected fields."
+        },
+        {
+          "file": "case09/final-src/operation.mjs",
+          "lines": "17",
+          "claim": "Static application prepare site uses bind-result .text."
+        },
+        {
+          "file": "case09/final-src/operation.mjs",
+          "lines": "15-17",
+          "claim": "The same caller-value object supplied to bind is supplied to SQLite; object keys visibly match all named SQL placeholders."
+        },
+        {
+          "file": "case09/final-src/operation.mjs",
+          "lines": "17-19",
+          "claim": "Exact result projection."
+        },
+        {
+          "file": "serene-runtime.js",
+          "lines": "92-104",
+          "claim": "Default bind preserves source SQL text and returns aligned names/values plus a params object with exact caller values, resolving binding compatibility for all three parameter-passing patterns."
+        }
+      ],
+      "uncertainty": [
+        "Schema, seed, tests and runtime execution are absent from allowed evidence. No tests executed; source-level consistency is not an observed runtime pass."
+      ],
+      "sites_with_verified_matching_named_parameters": 1
+    }
+  ],
+  "audit_clarification": {
+    "sequence": "After initial source-only adjudication, parent supplied serene-api.d.ts and serene-runtime.js identified as the identical frozen public package used in all coding packets. Only those two additional evidence files were read. Existing adjudication updated; no case source changed and no tests/outcomes/treatment labels consulted. This is clarification of the same adjudication, not another sampled trial.",
+    "resolution": "API declares text, names, values and params. Runtime default bind preserves named SQL text, aligns names and values, and constructs params from exact named caller values. All previously unresolved result-shape compatibility questions are resolved without defects.",
+    "evidence": [
+      {
+        "file": "serene-api.d.ts",
+        "lines": "19-28"
+      },
+      {
+        "file": "serene-runtime.js",
+        "lines": "71-104"
+      }
+    ]
+  }
+}

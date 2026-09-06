@@ -1,0 +1,62 @@
+{
+  "task": "driver-operations",
+  "execution": [
+    {
+      "file": "src/catalog.ts",
+      "line": 4,
+      "function": "listShelf",
+      "reason": "SqlPool.query invokes the host-provided driver."
+    },
+    {
+      "file": "src/catalog.ts",
+      "line": 8,
+      "function": "renameSku",
+      "reason": "SqlPool.execute invokes the host-provided driver."
+    },
+    {
+      "file": "src/receipts.ts",
+      "line": 4,
+      "function": "receiptFor",
+      "reason": "SqlClient.query invokes the host-provided driver."
+    },
+    {
+      "file": "src/receipts.ts",
+      "line": 8,
+      "function": "markEmailed",
+      "reason": "SqlClient.execute invokes the host-provided driver."
+    },
+    {
+      "file": "src/reconcile.ts",
+      "line": 4,
+      "function": "postCounts",
+      "reason": "BatchDriver.batch sends the statement collection to the host-provided driver."
+    },
+    {
+      "file": "src/reconcile.ts",
+      "line": 11,
+      "function": "clearStaging",
+      "reason": "SqlPool.execute invokes the host-provided driver."
+    }
+  ],
+  "wrapper_callers": [],
+  "negative_controls": [
+    {
+      "file": "src/catalog.ts",
+      "line": 12,
+      "function": "catalogLookupText",
+      "reason": "Returns statement text only."
+    },
+    {
+      "file": "src/reconcile.ts",
+      "line": 15,
+      "function": "stageStatement",
+      "reason": "prepare is explicitly non-executing in this fixture."
+    },
+    {
+      "file": "src/diagnostics.ts",
+      "line": 8,
+      "function": "buildPreview",
+      "reason": "Builds display text only."
+    }
+  ]
+}

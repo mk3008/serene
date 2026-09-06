@@ -1,0 +1,9 @@
+Post-run explanation only. Requested after completion, without tools or rescoring.
+
+I performed the broad searches first to discover all SQL execution sites and helper relationships before relying on the audit, since `SUPPORT.md` warned that audit is file-local and may miss execution paths. The searches exposed the two dynamic queries and the `send` forwarding helper, so there was concrete provenance evidence to investigate.
+
+I called `audit` three times because I supplied `store.js`, `helpers.js`, and `api.js` separately in parallel. Each returned the same project-wide report, so the repeated calls were redundant and increased cost. A single audit call would have been sufficient.
+
+I read the full `store.js` after the audit to inspect the flagged lines and their callers, especially `paymentFeed`, `revenueSummary`, and `removeVoid`. That gave the needed provenance context, but reading the whole file was broader than necessary and included ordinary fixed queries. A targeted read around lines 122–138, plus the relevant helper functions, would have followed the instruction more precisely.
+
+There was no missing navigation information that required the broad read. The main strategy mistake was redundant auditing and an overbroad source read. `ordinary_reread_reasons` was omitted because the final `finish` operation repeatedly failed with the client's `byte cap; content withheld` error.

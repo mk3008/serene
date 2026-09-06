@@ -1,0 +1,23 @@
+{
+  "scope": "Targeted follow-up on the two README contract blockers recorded in validation.json. No task source or gold inventory was changed or revalidated.",
+  "initial_validation_preserved": true,
+  "status": "resolved",
+  "checks": [
+    {
+      "task": "driver-operations",
+      "initial_issue": "The public contract did not explicitly state whether prepare executes.",
+      "public_contract_now": "README explicitly states that query, execute, and batch execute statements; prepare creates a handle only; describe returns metadata; neither preparation nor description executes a statement.",
+      "result": "resolved",
+      "gold_effect": "Supports the non-executing classification of src/reconcile.ts:15 stageStatement."
+    },
+    {
+      "task": "wrapper-aliases",
+      "initial_issue": "README's unqualified claim that Driver methods execute conflicted with gold's non-executing prepare control.",
+      "public_contract_now": "README narrows statement-running methods to query, execute, and stream, and explicitly says prepare returns metadata without executing.",
+      "result": "resolved",
+      "gold_effect": "Supports the non-executing classification of src/notes.ts:6 previewPlan."
+    }
+  ],
+  "unresolved": [],
+  "freeze_recommendation": "The two initial public-contract blockers are resolved. Subject to the unchanged initial coordinate/linkage validation, the public contracts no longer block freezing the observation materials."
+}

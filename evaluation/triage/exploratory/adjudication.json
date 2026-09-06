@@ -1,0 +1,174 @@
+{
+  "cases": {
+    "case01": {
+      "gold_hits": 0,
+      "gold_total": 0,
+      "finding_classifications": [
+        {"index": 0, "classification": "contract ambiguity", "gold_id": null, "rationale": "The claimed zero-ID failure is technically possible, but the contract does not establish that numeric 0 is a valid project identifier; it only requires the supplied ID to be bound. This is therefore an ambiguous edge-case interpretation rather than a definite defect."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 1,
+      "inspected_hits": 5,
+      "inspected_total": 5,
+      "format_valid": true
+    },
+    "case02": {
+      "gold_hits": 0,
+      "gold_total": 0,
+      "finding_classifications": [],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 5,
+      "inspected_total": 5,
+      "format_valid": true
+    },
+    "case03": {
+      "gold_hits": 0,
+      "gold_total": 0,
+      "finding_classifications": [],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 5,
+      "inspected_total": 5,
+      "format_valid": true
+    },
+    "case04": {
+      "gold_hits": 1,
+      "gold_total": 1,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "wrong-business-state-value", "rationale": "Correctly identifies active being mapped to enabled and the contract-required active state."},
+        {"index": 1, "classification": "contract ambiguity", "gold_id": null, "rationale": "The extra userId guard may reject a tenant-authenticated context lacking userId, but the contract does not fully define the shape of an authenticated context. The statement that userId is unnecessary is not certain enough for a confirmed defect."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 1,
+      "inspected_hits": 4,
+      "inspected_total": 4,
+      "format_valid": true
+    },
+    "case05": {
+      "gold_hits": 1,
+      "gold_total": 1,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "wrong-business-state-value", "rationale": "Correctly identifies the active-to-enabled mapping and violation of the exact active/suspended state contract."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 4,
+      "inspected_total": 4,
+      "format_valid": true
+    },
+    "case06": {
+      "gold_hits": 2,
+      "gold_total": 2,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "tenant-scope-missing", "rationale": "Correctly identifies the absent tenant_id predicate and cross-tenant disclosure."},
+        {"index": 1, "classification": "gold hit", "gold_id": "runtime-sql-concat", "rationale": "Correctly identifies concatenation of untrusted invoiceId into SQL and injection risk."},
+        {"index": 2, "classification": "confirmed newly exposed defect", "gold_id": null, "rationale": "The contract explicitly restricts present status to open, paid, or void; accepting arbitrary nonempty strings violates that input domain."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 3,
+      "inspected_total": 3,
+      "format_valid": true
+    },
+    "case07": {
+      "gold_hits": 1,
+      "gold_total": 1,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "wrong-business-state-value", "rationale": "Correctly identifies active being stored as enabled."},
+        {"index": 1, "classification": "contract ambiguity", "gold_id": null, "rationale": "The contract requires a changed row on successful update but does not specify behavior for a missing or cross-tenant subscription, so treating an empty result as a defect depends on an unstated not-found/error rule."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 1,
+      "inspected_hits": 4,
+      "inspected_total": 4,
+      "format_valid": true
+    },
+    "case08": {
+      "gold_hits": 0,
+      "gold_total": 0,
+      "finding_classifications": [
+        {"index": 0, "classification": "contract ambiguity", "gold_id": null, "rationale": "The contract does not specify whether tenantId or userId may numerically equal 0; the truthiness guard is problematic only under that unstated identifier-domain assumption."},
+        {"index": 1, "classification": "contract ambiguity", "gold_id": null, "rationale": "The zero project-ID claim relies on numeric 0 being a valid ID, which the contract does not establish."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 2,
+      "inspected_hits": 5,
+      "inspected_total": 5,
+      "format_valid": true
+    },
+    "case09": {
+      "gold_hits": 2,
+      "gold_total": 2,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "tenant-scope-missing", "rationale": "Semantically identifies the missing tenant predicate and cross-tenant disclosure."},
+        {"index": 1, "classification": "confirmed newly exposed defect", "gold_id": null, "rationale": "The contract explicitly restricts present status to open, paid, or void; arbitrary status strings are accepted and used."},
+        {"index": 2, "classification": "gold hit", "gold_id": "runtime-sql-concat", "rationale": "Semantically identifies untrusted invoiceId concatenation, syntax errors, and predicate alteration."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 3,
+      "inspected_total": 3,
+      "format_valid": false
+    },
+    "case10": {
+      "gold_hits": 2,
+      "gold_total": 2,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "tenant-scope-missing", "rationale": "Correctly identifies missing tenant scoping and cross-tenant disclosure."},
+        {"index": 1, "classification": "gold hit", "gold_id": "runtime-sql-concat", "rationale": "Correctly identifies direct concatenation of untrusted invoiceId into SQL."},
+        {"index": 2, "classification": "confirmed newly exposed defect", "gold_id": null, "rationale": "The contract explicitly limits present status values to open, paid, or void; the implementation accepts arbitrary nonempty strings."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 3,
+      "inspected_total": 3,
+      "format_valid": true
+    },
+    "case11": {
+      "gold_hits": 2,
+      "gold_total": 2,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "tenant-scope-missing", "rationale": "Correctly identifies the absent tenant_id condition and cross-tenant disclosure."},
+        {"index": 1, "classification": "gold hit", "gold_id": "runtime-sql-concat", "rationale": "Correctly identifies untrusted invoiceId concatenation and injection/syntax consequences."},
+        {"index": 2, "classification": "confirmed newly exposed defect", "gold_id": null, "rationale": "The contract explicitly limits present status values to open, paid, or void; arbitrary nonempty status values are accepted."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 3,
+      "inspected_total": 3,
+      "format_valid": true
+    },
+    "case12": {
+      "gold_hits": 1,
+      "gold_total": 1,
+      "finding_classifications": [
+        {"index": 0, "classification": "gold hit", "gold_id": "wrong-business-state-value", "rationale": "Correctly identifies active being bound as enabled despite the exact active/suspended state contract."}
+      ],
+      "false_positive_count": 0,
+      "ambiguous_count": 0,
+      "inspected_hits": 4,
+      "inspected_total": 4,
+      "format_valid": true
+    }
+  },
+  "summary": {
+    "cases": 12,
+    "gold_hits": 11,
+    "gold_total": 11,
+    "false_positive_count": 0,
+    "ambiguous_count": 5,
+    "confirmed_newly_exposed_defect_count": 4,
+    "format_valid_count": 11,
+    "format_invalid_count": 1,
+    "inspected_hits": 47,
+    "inspected_total": 47,
+    "note": "Small pilot; these counts are descriptive and are not statistical proof. Semantic findings in malformed case09 were evaluated separately from its invalid structured output."
+  },
+  "limitations": [
+    "Gold labels were treated as frozen and were not expanded by additional confirmed defects.",
+    "Contract ambiguities were retained rather than forced into gold hits or false positives.",
+    "Treatment labels and experimental arms were not inferred; source representation was not used to claim blinding.",
+    "Finding indexes are the order presented in each answer; case09 indexes are semantic indexes recovered from its malformed JSON text."
+  ]
+}

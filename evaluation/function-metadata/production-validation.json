@@ -1,0 +1,21 @@
+{
+  "scope": "Production audit metadata validation; historical evaluation and pre-exposure files were not modified.",
+  "outcomes": [
+    {
+      "command": "npm run check",
+      "result": "passed",
+      "evidence": "72 Node tests passed; lint, TypeScript checks, build, and test suite completed."
+    },
+    {
+      "command": "npm pack --json; extract archive; NodeNext consumer typecheck",
+      "result": "passed",
+      "evidence": "Packed archive contained tooling/audit.d.mts; an external consumer imported Finding and assigned finding.function to string | null."
+    },
+    {
+      "command": "compare current auditSource with HEAD auditSource over fixed pre-exposure adversarial and ticketing fixtures, omitting function",
+      "result": "passed",
+      "evidence": "All pre-existing finding fields matched across 12 source files."
+    }
+  ],
+  "metadata_contract": "Every finding has function: string | null. It is populated only for confidently named nearest lexical declarations, direct identifier-bound arrows, and identifier-named methods/accessors; anonymous or unsupported nearest function-like syntax is null."
+}

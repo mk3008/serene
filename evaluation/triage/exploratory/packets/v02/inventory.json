@@ -1,0 +1,22 @@
+[
+  {
+    "file": "source.mjs",
+    "line": 22,
+    "source": "  await db.query(boundUpdate.text, boundUpdate.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 26,
+    "source": "  return db.query(boundRead.text, boundRead.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 37,
+    "source": "  return db.query(bound.text, bound.params);"
+  },
+  {
+    "file": "source.mjs",
+    "line": 44,
+    "source": "  return db.query(bound.text, bound.params);"
+  }
+]

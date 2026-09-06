@@ -1,0 +1,1 @@
+Completed the SQL construction review. I discovered and screened 10 execution sites, recorded one confirmed SQL injection in reporting.ts:27 (searchStockroom) where UntrustedInput is concatenated into the SQL string, and finished with dispositions for all candidates.

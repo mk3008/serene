@@ -1,0 +1,1438 @@
+{
+  "task1": {
+    "matches": [
+      {
+        "id": "store.js:findInvoice",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:listOpen",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:insertInvoice",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:deleteInvoiceLines",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:insertInvoiceLine",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:repriceInvoice",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:markInvoiceSent",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:addPayment",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:completeInvoice",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:overdueAccounts",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:customerStatement",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:findCustomer",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:searchCustomer",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:createCustomer",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:changeCredit",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:activeRegions",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:dailyCash",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:productTotals",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:invoiceCount",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:recentNotes",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:paymentFeed",
+        "level": "violation"
+      },
+      {
+        "id": "store.js:revenueSummary",
+        "level": "violation"
+      },
+      {
+        "id": "helpers.js:send",
+        "level": "review-required"
+      }
+    ],
+    "unmatched": [],
+    "full_report": {
+      "files": [
+        "api.js",
+        "helpers.js",
+        "store.js"
+      ],
+      "skipped": [],
+      "findings": [
+        {
+          "file": "helpers.js",
+          "line": 22,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "store.js",
+          "line": 4,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 4,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 5,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 10,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 10,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 11,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 16,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 16,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 17,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 22,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 22,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 23,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 28,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 28,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 29,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 34,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 34,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 35,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 40,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 40,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 41,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 46,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 46,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 47,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 52,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 52,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 53,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 58,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 58,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 59,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 64,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 64,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 65,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 70,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 70,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 71,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 76,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 76,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 77,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 82,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 82,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 83,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 88,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 88,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 89,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 94,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 94,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 95,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 100,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 100,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 101,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 106,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 106,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 107,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 112,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 112,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 113,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 118,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 118,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 119,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 126,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        },
+        {
+          "file": "store.js",
+          "line": 132,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        }
+      ],
+      "scope": "file-local candidate inventory; not exhaustive driver discovery"
+    },
+    "compact_report": {
+      "files": [
+        "api.js",
+        "helpers.js",
+        "store.js"
+      ],
+      "skipped": [],
+      "executionSiteCounts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "findings": [
+        {
+          "file": "helpers.js",
+          "line": 22,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "store.js",
+          "line": 126,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        },
+        {
+          "file": "store.js",
+          "line": 132,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        }
+      ],
+      "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+    }
+  },
+  "task2": {
+    "matches": [
+      {
+        "id": "store.js:product",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:productPage",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:addProduct",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:updateProduct",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:binLevels",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:reserveUnits",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:reservationRow",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:reservation",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:releaseUnits",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:deleteReservation",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:insertReceipt",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:receiptLine",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:addOnHand",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:postReceipt",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:supplierSpend",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:openReceipts",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:receiptItems",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:removeReceipt",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:reservationsBySku",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:inactiveProducts",
+        "level": "ordinary"
+      },
+      {
+        "id": "store.js:inventoryList",
+        "level": "violation"
+      },
+      {
+        "id": "store.js:categorySnapshot",
+        "level": "violation"
+      },
+      {
+        "id": "helpers.js:send",
+        "level": "review-required"
+      }
+    ],
+    "unmatched": [],
+    "full_report": {
+      "files": [
+        "helpers.js",
+        "service.js",
+        "store.js"
+      ],
+      "skipped": [],
+      "findings": [
+        {
+          "file": "helpers.js",
+          "line": 22,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "store.js",
+          "line": 4,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 4,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 5,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 10,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 10,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 11,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 16,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 16,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 17,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 22,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 22,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 23,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 28,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 28,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 29,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 34,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 34,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 35,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 40,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 40,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 41,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 46,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 46,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 47,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 52,
+          "column": 26,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 52,
+          "column": 31,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 53,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 58,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 58,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 59,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 64,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 64,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 65,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 70,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 70,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 71,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 76,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 76,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 77,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 82,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 82,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 83,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 88,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 88,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 89,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 94,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 94,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 95,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 100,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 100,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 101,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 106,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 106,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 107,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 112,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 112,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 113,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 118,
+          "column": 27,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 118,
+          "column": 32,
+          "boundary": "serene",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 119,
+          "column": 24,
+          "boundary": "driver-candidate",
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE",
+          "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+        },
+        {
+          "file": "store.js",
+          "line": 126,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        },
+        {
+          "file": "store.js",
+          "line": 131,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        }
+      ],
+      "scope": "file-local candidate inventory; not exhaustive driver discovery"
+    },
+    "compact_report": {
+      "files": [
+        "helpers.js",
+        "service.js",
+        "store.js"
+      ],
+      "skipped": [],
+      "executionSiteCounts": {
+        "ordinary": 20,
+        "review-required": 1,
+        "violation": 2
+      },
+      "findings": [
+        {
+          "file": "helpers.js",
+          "line": 22,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "store.js",
+          "line": 126,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        },
+        {
+          "file": "store.js",
+          "line": 131,
+          "column": 22,
+          "boundary": "driver-candidate",
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION",
+          "detail": "Concatenation/interpolation at a SQL boundary."
+        }
+      ],
+      "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+    }
+  }
+}

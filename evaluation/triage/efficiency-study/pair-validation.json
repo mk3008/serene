@@ -1,0 +1,934 @@
+{
+  "node": "v24.19.0",
+  "driver": "node:sqlite",
+  "records": [
+    {
+      "task": "task1",
+      "kind": "smoke",
+      "execution_count": 29,
+      "raw_and_serene_trace": [
+        {
+          "text": "SELECT id, customer_id, status, total_cents FROM invoices WHERE id=:invoiceId",
+          "values": {
+            "invoiceId": "i1"
+          },
+          "result": [
+            {
+              "id": "i1",
+              "customer_id": "c1",
+              "status": "open",
+              "total_cents": 1000
+            }
+          ]
+        },
+        {
+          "text": "SELECT id, customer_id, due_on, total_cents FROM invoices WHERE status=:status ORDER BY due_on LIMIT :limit OFFSET :offset",
+          "values": {
+            "status": "open",
+            "limit": 10,
+            "offset": 0
+          },
+          "result": [
+            {
+              "id": "i1",
+              "customer_id": "c1",
+              "due_on": "2026-01-01",
+              "total_cents": 1000
+            },
+            {
+              "id": "i2",
+              "customer_id": "c2",
+              "due_on": "2026-01-01",
+              "total_cents": 2000
+            }
+          ]
+        },
+        {
+          "text": "INSERT INTO invoices(id, customer_id, status, total_cents, due_on, created_at, region) VALUES(:id,:customerId,:status,:totalCents,:dueOn,:createdAt,:region)",
+          "values": {
+            "id": "i3",
+            "customerId": "c1",
+            "status": "void",
+            "totalCents": 300,
+            "dueOn": "2026-03-01",
+            "createdAt": "2026-02-01",
+            "region": "west"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 3
+          }
+        },
+        {
+          "text": "DELETE FROM invoice_lines WHERE invoice_id=:invoiceId",
+          "values": {
+            "invoiceId": "i3"
+          },
+          "result": {
+            "changes": 0,
+            "lastInsertRowid": 3
+          }
+        },
+        {
+          "text": "INSERT INTO invoice_lines(invoice_id,sku,description,quantity,unit_cents) VALUES(:invoiceId,:sku,:description,:quantity,:unitCents)",
+          "values": {
+            "invoiceId": "i3",
+            "sku": "s1",
+            "description": "sample",
+            "quantity": 2,
+            "unitCents": 50
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE invoices SET total_cents=(SELECT COALESCE(SUM(quantity*unit_cents),0) FROM invoice_lines WHERE invoice_id=:invoiceId) WHERE id=:invoiceId",
+          "values": {
+            "invoiceId": "i3"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE invoices SET status='open', sent_at=:sentAt WHERE id=:invoiceId",
+          "values": {
+            "invoiceId": "i3",
+            "sentAt": "2026-02-02"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "INSERT INTO payments(id,invoice_id,amount_cents,received_at,reference) VALUES(:id,:invoiceId,:amountCents,:receivedAt,:reference)",
+          "values": {
+            "id": "p1",
+            "invoiceId": "i1",
+            "amountCents": 100,
+            "receivedAt": "2026-02-02",
+            "reference": "ref"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE invoices SET status='paid' WHERE id=:invoiceId",
+          "values": {
+            "invoiceId": "i1"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT customer_id,SUM(total_cents) balance FROM invoices WHERE status='open' AND due_on<:asOf GROUP BY customer_id",
+          "values": {
+            "asOf": "2026-03-01"
+          },
+          "result": [
+            {
+              "customer_id": "c2",
+              "balance": 2000
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,created_at,total_cents FROM invoices WHERE customer_id=:customerId AND created_at>=:from AND created_at<:to",
+          "values": {
+            "customerId": "c1",
+            "from": "2026-01-01",
+            "to": "2026-03-01"
+          },
+          "result": [
+            {
+              "id": "i1",
+              "created_at": "2026-01-01",
+              "total_cents": 1000
+            },
+            {
+              "id": "i3",
+              "created_at": "2026-02-01",
+              "total_cents": 100
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,name,email,region FROM customers WHERE id=:customerId",
+          "values": {
+            "customerId": "c1"
+          },
+          "result": []
+        },
+        {
+          "text": "SELECT id,name,email FROM customers WHERE name LIKE :term ORDER BY name LIMIT :limit OFFSET :offset",
+          "values": {
+            "term": "%",
+            "limit": 10,
+            "offset": 0
+          },
+          "result": []
+        },
+        {
+          "text": "INSERT INTO customers(id,name,email,region,credit_limit_cents) VALUES(:id,:name,:email,:region,:creditLimitCents)",
+          "values": {
+            "id": "c3",
+            "name": "Casey",
+            "email": "c@example.test",
+            "region": "west",
+            "creditLimitCents": 5000
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE customers SET credit_limit_cents=:creditLimitCents WHERE id=:customerId",
+          "values": {
+            "customerId": "c3",
+            "creditLimitCents": 6000
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT region,COUNT(*) customer_count FROM customers GROUP BY region",
+          "values": {},
+          "result": [
+            {
+              "region": "west",
+              "customer_count": 1
+            }
+          ]
+        },
+        {
+          "text": "SELECT date(received_at) day,SUM(amount_cents) cents FROM payments WHERE received_at>=:from AND received_at<:to GROUP BY date(received_at)",
+          "values": {
+            "from": "2026-01-01",
+            "to": "2026-03-01"
+          },
+          "result": [
+            {
+              "day": "2026-02-02",
+              "cents": 100
+            }
+          ]
+        },
+        {
+          "text": "SELECT sku,SUM(quantity) units FROM invoice_lines GROUP BY sku ORDER BY units DESC",
+          "values": {},
+          "result": [
+            {
+              "sku": "s1",
+              "units": 2
+            }
+          ]
+        },
+        {
+          "text": "SELECT status,COUNT(*) count FROM invoices GROUP BY status",
+          "values": {},
+          "result": [
+            {
+              "status": "open",
+              "count": 2
+            },
+            {
+              "status": "paid",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "text": "SELECT body,created_at FROM customer_notes WHERE customer_id=:customerId ORDER BY created_at DESC",
+          "values": {
+            "customerId": "c1"
+          },
+          "result": []
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY created_at DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "text": "SELECT region,COUNT(*) count,SUM(total_cents) cents FROM invoices WHERE created_at>=:from AND created_at<:to AND region = 'west' GROUP BY region",
+          "values": {
+            "from": "2026-01-01",
+            "to": "2026-03-01"
+          },
+          "result": [
+            {
+              "region": "west",
+              "count": 2,
+              "cents": 1100
+            }
+          ]
+        },
+        {
+          "text": "DELETE FROM invoices WHERE id=:invoiceId AND status='void'",
+          "values": {
+            "invoiceId": "i3"
+          },
+          "result": {
+            "changes": 0,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY created_at DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY total_cents DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            },
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY customer_id ASC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            },
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY created_at DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY created_at DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,total_cents,created_at FROM invoices ORDER BY created_at DESC LIMIT :limit",
+          "values": {
+            "limit": 25
+          },
+          "result": [
+            {
+              "id": "i3",
+              "total_cents": 100,
+              "created_at": "2026-02-01"
+            },
+            {
+              "id": "i2",
+              "total_cents": 2000,
+              "created_at": "2026-01-02"
+            },
+            {
+              "id": "i1",
+              "total_cents": 1000,
+              "created_at": "2026-01-01"
+            }
+          ]
+        }
+      ],
+      "equivalent": true
+    },
+    {
+      "task": "task1",
+      "kind": "witness",
+      "execution_count": 2,
+      "raw_and_serene_trace": [
+        {
+          "text": "SELECT region,COUNT(*) count,SUM(total_cents) cents FROM invoices WHERE created_at>=:from AND created_at<:to AND region = 'west' GROUP BY region",
+          "values": {
+            "from": "2026-01-01",
+            "to": "2026-02-01"
+          },
+          "result": [
+            {
+              "region": "west",
+              "count": 1,
+              "cents": 1000
+            }
+          ]
+        },
+        {
+          "text": "SELECT region,COUNT(*) count,SUM(total_cents) cents FROM invoices WHERE created_at>=:from AND created_at<:to AND region = 'west' OR 1=1 --' GROUP BY region",
+          "values": {
+            "from": "2026-01-01",
+            "to": "2026-02-01"
+          },
+          "result": [
+            {
+              "region": "west",
+              "count": 2,
+              "cents": 3000
+            }
+          ]
+        }
+      ],
+      "equivalent": true
+    },
+    {
+      "task": "task2",
+      "kind": "smoke",
+      "execution_count": 29,
+      "raw_and_serene_trace": [
+        {
+          "text": "SELECT sku,title,category,reorder_point FROM products WHERE sku=:sku",
+          "values": {
+            "sku": "a1"
+          },
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "category": "tools",
+              "reorder_point": 4
+            }
+          ]
+        },
+        {
+          "text": "SELECT sku,title,category FROM products WHERE sku>:after ORDER BY sku LIMIT :limit",
+          "values": {
+            "after": "",
+            "limit": 10
+          },
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "category": "tools"
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "category": "parts"
+            }
+          ]
+        },
+        {
+          "text": "INSERT INTO products(sku,title,category,reorder_point,updated_at) VALUES(:sku,:title,:category,:reorderPoint,:updatedAt)",
+          "values": {
+            "sku": "z9",
+            "title": "Zinc",
+            "category": "parts",
+            "reorderPoint": 2,
+            "updatedAt": "2026-02-01"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 3
+          }
+        },
+        {
+          "text": "UPDATE products SET title=:title,category=:category WHERE sku=:sku",
+          "values": {
+            "sku": "z9",
+            "title": "Zinc cap",
+            "category": "parts"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 3
+          }
+        },
+        {
+          "text": "SELECT warehouse,bin_code,on_hand,reserved FROM bins WHERE sku=:sku",
+          "values": {
+            "sku": "a1"
+          },
+          "result": [
+            {
+              "warehouse": "north",
+              "bin_code": "N1",
+              "on_hand": 8,
+              "reserved": 1
+            }
+          ]
+        },
+        {
+          "text": "UPDATE bins SET reserved=reserved+:quantity WHERE sku=:sku AND warehouse=:warehouse",
+          "values": {
+            "sku": "a1",
+            "warehouse": "north",
+            "quantity": 1
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 3
+          }
+        },
+        {
+          "text": "INSERT INTO reservations(id,sku,warehouse,quantity,requested_at) VALUES(:id,:sku,:warehouse,:quantity,:requestedAt)",
+          "values": {
+            "id": "r1",
+            "sku": "a1",
+            "warehouse": "north",
+            "quantity": 1,
+            "requestedAt": "2026-02-01"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT sku,warehouse,quantity FROM reservations WHERE id=:id",
+          "values": {
+            "id": "r1"
+          },
+          "result": [
+            {
+              "sku": "a1",
+              "warehouse": "north",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "text": "UPDATE bins SET reserved=reserved-:quantity WHERE sku=:sku AND warehouse=:warehouse",
+          "values": {
+            "sku": "a1",
+            "warehouse": "north",
+            "quantity": 1
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "DELETE FROM reservations WHERE id=:id",
+          "values": {
+            "id": "r1"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "INSERT INTO receipts(id,supplier_id,received_at,reference) VALUES(:id,:supplierId,:receivedAt,:reference)",
+          "values": {
+            "id": "rc1",
+            "supplierId": "sup1",
+            "receivedAt": "2026-02-01",
+            "reference": "ref"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "INSERT INTO receipt_lines(receipt_id,sku,quantity,unit_cost_cents) VALUES(:receiptId,:sku,:quantity,:unitCostCents)",
+          "values": {
+            "receiptId": "rc1",
+            "sku": "a1",
+            "quantity": 2,
+            "unitCostCents": 25
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE bins SET on_hand=on_hand+:quantity WHERE sku=:sku AND warehouse=:warehouse",
+          "values": {
+            "sku": "a1",
+            "warehouse": "north",
+            "quantity": 2
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "UPDATE receipts SET posted_at=:postedAt WHERE id=:id",
+          "values": {
+            "id": "rc1",
+            "postedAt": "2026-02-01"
+          },
+          "result": {
+            "changes": 1,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT supplier_id,SUM(quantity*unit_cost_cents) cents FROM receipts r JOIN receipt_lines l ON l.receipt_id=r.id GROUP BY supplier_id",
+          "values": {},
+          "result": [
+            {
+              "supplier_id": "sup1",
+              "cents": 50
+            }
+          ]
+        },
+        {
+          "text": "SELECT id,supplier_id,received_at FROM receipts WHERE posted_at IS NULL",
+          "values": {},
+          "result": []
+        },
+        {
+          "text": "SELECT sku,quantity FROM receipt_lines WHERE receipt_id=:receiptId",
+          "values": {
+            "receiptId": "rc1"
+          },
+          "result": [
+            {
+              "sku": "a1",
+              "quantity": 2
+            }
+          ]
+        },
+        {
+          "text": "DELETE FROM receipts WHERE id=:receiptId AND posted_at IS NULL",
+          "values": {
+            "receiptId": "rc1"
+          },
+          "result": {
+            "changes": 0,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT sku,SUM(quantity) units FROM reservations GROUP BY sku",
+          "values": {},
+          "result": []
+        },
+        {
+          "text": "SELECT sku,title FROM products WHERE updated_at<:before",
+          "values": {
+            "before": "2027-01-01"
+          },
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor"
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt"
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap"
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.sku ASC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.category,COUNT(*) count,COALESCE(SUM(b.on_hand),0) units FROM products p LEFT JOIN bins b ON b.sku=p.sku WHERE p.category = 'tools' GROUP BY p.category",
+          "values": {},
+          "result": [
+            {
+              "category": "tools",
+              "count": 1,
+              "units": 10
+            }
+          ]
+        },
+        {
+          "text": "DELETE FROM reservations WHERE id=:id",
+          "values": {
+            "id": "missing"
+          },
+          "result": {
+            "changes": 0,
+            "lastInsertRowid": 1
+          }
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.sku ASC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY available DESC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.updated_at DESC",
+          "values": {},
+          "result": [
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.sku ASC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.sku ASC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.sku,p.title,COALESCE(SUM(b.on_hand-b.reserved),0) available FROM products p LEFT JOIN bins b ON b.sku=p.sku GROUP BY p.sku ORDER BY p.sku ASC",
+          "values": {},
+          "result": [
+            {
+              "sku": "a1",
+              "title": "Anchor",
+              "available": 9
+            },
+            {
+              "sku": "b2",
+              "title": "Bolt",
+              "available": 5
+            },
+            {
+              "sku": "z9",
+              "title": "Zinc cap",
+              "available": 0
+            }
+          ]
+        }
+      ],
+      "equivalent": true
+    },
+    {
+      "task": "task2",
+      "kind": "witness",
+      "execution_count": 2,
+      "raw_and_serene_trace": [
+        {
+          "text": "SELECT p.category,COUNT(*) count,COALESCE(SUM(b.on_hand),0) units FROM products p LEFT JOIN bins b ON b.sku=p.sku WHERE p.category = 'tools' GROUP BY p.category",
+          "values": {},
+          "result": [
+            {
+              "category": "tools",
+              "count": 1,
+              "units": 8
+            }
+          ]
+        },
+        {
+          "text": "SELECT p.category,COUNT(*) count,COALESCE(SUM(b.on_hand),0) units FROM products p LEFT JOIN bins b ON b.sku=p.sku WHERE p.category = 'tools' OR 1=1 --' GROUP BY p.category",
+          "values": {},
+          "result": [
+            {
+              "category": "tools",
+              "count": 2,
+              "units": 13
+            }
+          ]
+        }
+      ],
+      "equivalent": true
+    }
+  ]
+}

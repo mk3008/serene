@@ -1,0 +1,382 @@
+{
+  "advanced_revision": {
+    "ordinal": 1,
+    "candidate": {
+      "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+      "file": "app.ts",
+      "line": 3,
+      "column": 1,
+      "kind": "execution"
+    },
+    "classification": "unmatched",
+    "skip": false,
+    "reason": "repository-revision-mismatch"
+  },
+  "fixed_cases": 21,
+  "input_records": 24,
+  "output_records": 24,
+  "candidate_loss": 0,
+  "skip_records": 3,
+  "dirty_source": {
+    "ordinal": 1,
+    "candidate": {
+      "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+      "file": "app.ts",
+      "line": 3,
+      "column": 1,
+      "kind": "execution"
+    },
+    "classification": "unmatched",
+    "skip": false,
+    "reason": "working-source-mismatch"
+  },
+  "decisions": [
+    {
+      "ordinal": 1,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "ordinary"
+      },
+      "classification": "ordinary",
+      "skip": true,
+      "reason": "SCREENED_SOURCE",
+      "matched": {
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 2,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 4,
+        "column": 1,
+        "kind": "execution",
+        "id": "review"
+      },
+      "classification": "review-required",
+      "skip": false,
+      "reason": "UNRESOLVED",
+      "matched": {
+        "file": "app.ts",
+        "line": 4,
+        "column": 1,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 3,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 5,
+        "column": 1,
+        "kind": "execution",
+        "id": "violation"
+      },
+      "classification": "violation",
+      "skip": false,
+      "reason": "STRING_CONSTRUCTION",
+      "matched": {
+        "file": "app.ts",
+        "line": 5,
+        "column": 1,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 4,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 2,
+        "column": 1,
+        "kind": "execution",
+        "id": "line-shift"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "no-execution-match"
+    },
+    {
+      "ordinal": 5,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 2,
+        "kind": "execution",
+        "id": "column-shift"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "no-execution-match"
+    },
+    {
+      "ordinal": 6,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "kind": "execution",
+        "id": "line-only"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "insufficient-coordinate"
+    },
+    {
+      "ordinal": 7,
+      "candidate": {
+        "revision": "0000000000000000000000000000000000000000",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "stale"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "revision-mismatch"
+    },
+    {
+      "ordinal": 8,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "kind": "execution",
+        "id": "function-only",
+        "function": "main"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "insufficient-coordinate"
+    },
+    {
+      "ordinal": 9,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "caller",
+        "id": "caller"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "execution-kind-unconfirmed"
+    },
+    {
+      "ordinal": 10,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 6,
+        "column": 1,
+        "kind": "execution",
+        "id": "wrapper-location"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "no-execution-match"
+    },
+    {
+      "ordinal": 11,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "wrapper",
+        "id": "wrapper-kind"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "execution-kind-unconfirmed"
+    },
+    {
+      "ordinal": 12,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "missing.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "missing-file"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "source-unavailable-or-analysis-failed"
+    },
+    {
+      "ordinal": 13,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "other.sql",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "unsupported-source"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "unsupported-source"
+    },
+    {
+      "ordinal": 14,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 7,
+        "column": 1,
+        "kind": "execution",
+        "id": "unsupported-sink"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "no-execution-match"
+    },
+    {
+      "ordinal": 15,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 8,
+        "kind": "execution",
+        "id": "nearby-ambiguous"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "insufficient-coordinate"
+    },
+    {
+      "ordinal": 16,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 8,
+        "column": 1,
+        "kind": "execution",
+        "id": "nearby-ordinary"
+      },
+      "classification": "ordinary",
+      "skip": true,
+      "reason": "SCREENED_SOURCE",
+      "matched": {
+        "file": "app.ts",
+        "line": 8,
+        "column": 1,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 17,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 8,
+        "column": 19,
+        "kind": "execution",
+        "id": "nearby-review"
+      },
+      "classification": "review-required",
+      "skip": false,
+      "reason": "UNRESOLVED",
+      "matched": {
+        "file": "app.ts",
+        "line": 8,
+        "column": 19,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 18,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "broken.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "parse-error"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "source-parse-error"
+    },
+    {
+      "ordinal": 19,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "../app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "traversal"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "invalid-path"
+    },
+    {
+      "ordinal": 20,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "id": "unknown-kind"
+      },
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "execution-kind-unconfirmed"
+    },
+    {
+      "ordinal": 21,
+      "candidate": {
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be",
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "kind": "execution",
+        "id": "ordinary"
+      },
+      "classification": "ordinary",
+      "skip": true,
+      "reason": "SCREENED_SOURCE",
+      "matched": {
+        "file": "app.ts",
+        "line": 3,
+        "column": 1,
+        "revision": "844873016f6ef342d5d780aed12aebc590e4d3be"
+      }
+    },
+    {
+      "ordinal": 22,
+      "candidate": null,
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "invalid-candidate"
+    },
+    {
+      "ordinal": 23,
+      "raw": "{broken",
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "invalid-json"
+    },
+    {
+      "ordinal": 24,
+      "raw": "",
+      "classification": "unmatched",
+      "skip": false,
+      "reason": "invalid-json"
+    }
+  ]
+}

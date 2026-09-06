@@ -1,0 +1,2190 @@
+{
+  "runs": {
+    "t01": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/efficiency-study/tasks/task1/raw",
+      "log": "/tmp/serene-covered-run/logs/t01.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "requests": 80,
+        "seconds": 600,
+        "deep_sites": 23
+      },
+      "sites": [
+        {
+          "id": "store.js:findInvoice",
+          "path": "store.js",
+          "function": "findInvoice",
+          "line": 2,
+          "column": 24,
+          "start": 1,
+          "end": 4,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:listOpen",
+          "path": "store.js",
+          "function": "listOpen",
+          "line": 7,
+          "column": 24,
+          "start": 6,
+          "end": 9,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertInvoice",
+          "path": "store.js",
+          "function": "insertInvoice",
+          "line": 12,
+          "column": 24,
+          "start": 11,
+          "end": 14,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:deleteInvoiceLines",
+          "path": "store.js",
+          "function": "deleteInvoiceLines",
+          "line": 17,
+          "column": 24,
+          "start": 16,
+          "end": 19,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertInvoiceLine",
+          "path": "store.js",
+          "function": "insertInvoiceLine",
+          "line": 22,
+          "column": 24,
+          "start": 21,
+          "end": 24,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:repriceInvoice",
+          "path": "store.js",
+          "function": "repriceInvoice",
+          "line": 27,
+          "column": 24,
+          "start": 26,
+          "end": 29,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:markInvoiceSent",
+          "path": "store.js",
+          "function": "markInvoiceSent",
+          "line": 32,
+          "column": 24,
+          "start": 31,
+          "end": 34,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addPayment",
+          "path": "store.js",
+          "function": "addPayment",
+          "line": 37,
+          "column": 24,
+          "start": 36,
+          "end": 39,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:completeInvoice",
+          "path": "store.js",
+          "function": "completeInvoice",
+          "line": 42,
+          "column": 24,
+          "start": 41,
+          "end": 44,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:overdueAccounts",
+          "path": "store.js",
+          "function": "overdueAccounts",
+          "line": 47,
+          "column": 24,
+          "start": 46,
+          "end": 49,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:customerStatement",
+          "path": "store.js",
+          "function": "customerStatement",
+          "line": 52,
+          "column": 24,
+          "start": 51,
+          "end": 54,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:findCustomer",
+          "path": "store.js",
+          "function": "findCustomer",
+          "line": 57,
+          "column": 24,
+          "start": 56,
+          "end": 59,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:searchCustomer",
+          "path": "store.js",
+          "function": "searchCustomer",
+          "line": 62,
+          "column": 24,
+          "start": 61,
+          "end": 64,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:createCustomer",
+          "path": "store.js",
+          "function": "createCustomer",
+          "line": 67,
+          "column": 24,
+          "start": 66,
+          "end": 69,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:changeCredit",
+          "path": "store.js",
+          "function": "changeCredit",
+          "line": 72,
+          "column": 24,
+          "start": 71,
+          "end": 74,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:activeRegions",
+          "path": "store.js",
+          "function": "activeRegions",
+          "line": 77,
+          "column": 24,
+          "start": 76,
+          "end": 79,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:dailyCash",
+          "path": "store.js",
+          "function": "dailyCash",
+          "line": 82,
+          "column": 24,
+          "start": 81,
+          "end": 84,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:productTotals",
+          "path": "store.js",
+          "function": "productTotals",
+          "line": 87,
+          "column": 24,
+          "start": 86,
+          "end": 89,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:invoiceCount",
+          "path": "store.js",
+          "function": "invoiceCount",
+          "line": 92,
+          "column": 24,
+          "start": 91,
+          "end": 94,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:recentNotes",
+          "path": "store.js",
+          "function": "recentNotes",
+          "line": 97,
+          "column": 24,
+          "start": 96,
+          "end": 99,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:paymentFeed",
+          "path": "store.js",
+          "function": "paymentFeed",
+          "line": 104,
+          "column": 22,
+          "start": 102,
+          "end": 106,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 5,
+              "end": 12
+            }
+          ]
+        },
+        {
+          "id": "store.js:revenueSummary",
+          "path": "store.js",
+          "function": "revenueSummary",
+          "line": 110,
+          "column": 22,
+          "start": 107,
+          "end": 112,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 13,
+              "end": 15
+            },
+            {
+              "path": "helpers.js",
+              "start": 16,
+              "end": 18
+            }
+          ]
+        },
+        {
+          "id": "helpers.js:send",
+          "path": "helpers.js",
+          "function": "send",
+          "line": 20,
+          "column": 10,
+          "start": 19,
+          "end": 21,
+          "dependency_spans": [
+            {
+              "path": "store.js",
+              "start": 113,
+              "end": 116
+            }
+          ]
+        }
+      ],
+      "functions": {
+        "api.js": {
+          "getInvoice": {
+            "path": "api.js",
+            "function": "getInvoice",
+            "start": 3,
+            "end": 6
+          },
+          "postInvoice": {
+            "path": "api.js",
+            "function": "postInvoice",
+            "start": 7,
+            "end": 12
+          },
+          "revenueReport": {
+            "path": "api.js",
+            "function": "revenueReport",
+            "start": 13,
+            "end": 15
+          },
+          "customerPage": {
+            "path": "api.js",
+            "function": "customerPage",
+            "start": 16,
+            "end": 19
+          }
+        },
+        "helpers.js": {
+          "page": {
+            "path": "helpers.js",
+            "function": "page",
+            "start": 1,
+            "end": 4
+          },
+          "chosenOrder": {
+            "path": "helpers.js",
+            "function": "chosenOrder",
+            "start": 5,
+            "end": 12
+          },
+          "normaliseRegion": {
+            "path": "helpers.js",
+            "function": "normaliseRegion",
+            "start": 13,
+            "end": 15
+          },
+          "regionScope": {
+            "path": "helpers.js",
+            "function": "regionScope",
+            "start": 16,
+            "end": 18
+          },
+          "send": {
+            "path": "helpers.js",
+            "function": "send",
+            "start": 19,
+            "end": 21
+          }
+        },
+        "store.js": {
+          "findInvoice": {
+            "path": "store.js",
+            "function": "findInvoice",
+            "start": 1,
+            "end": 4
+          },
+          "listOpen": {
+            "path": "store.js",
+            "function": "listOpen",
+            "start": 6,
+            "end": 9
+          },
+          "insertInvoice": {
+            "path": "store.js",
+            "function": "insertInvoice",
+            "start": 11,
+            "end": 14
+          },
+          "deleteInvoiceLines": {
+            "path": "store.js",
+            "function": "deleteInvoiceLines",
+            "start": 16,
+            "end": 19
+          },
+          "insertInvoiceLine": {
+            "path": "store.js",
+            "function": "insertInvoiceLine",
+            "start": 21,
+            "end": 24
+          },
+          "repriceInvoice": {
+            "path": "store.js",
+            "function": "repriceInvoice",
+            "start": 26,
+            "end": 29
+          },
+          "markInvoiceSent": {
+            "path": "store.js",
+            "function": "markInvoiceSent",
+            "start": 31,
+            "end": 34
+          },
+          "addPayment": {
+            "path": "store.js",
+            "function": "addPayment",
+            "start": 36,
+            "end": 39
+          },
+          "completeInvoice": {
+            "path": "store.js",
+            "function": "completeInvoice",
+            "start": 41,
+            "end": 44
+          },
+          "overdueAccounts": {
+            "path": "store.js",
+            "function": "overdueAccounts",
+            "start": 46,
+            "end": 49
+          },
+          "customerStatement": {
+            "path": "store.js",
+            "function": "customerStatement",
+            "start": 51,
+            "end": 54
+          },
+          "findCustomer": {
+            "path": "store.js",
+            "function": "findCustomer",
+            "start": 56,
+            "end": 59
+          },
+          "searchCustomer": {
+            "path": "store.js",
+            "function": "searchCustomer",
+            "start": 61,
+            "end": 64
+          },
+          "createCustomer": {
+            "path": "store.js",
+            "function": "createCustomer",
+            "start": 66,
+            "end": 69
+          },
+          "changeCredit": {
+            "path": "store.js",
+            "function": "changeCredit",
+            "start": 71,
+            "end": 74
+          },
+          "activeRegions": {
+            "path": "store.js",
+            "function": "activeRegions",
+            "start": 76,
+            "end": 79
+          },
+          "dailyCash": {
+            "path": "store.js",
+            "function": "dailyCash",
+            "start": 81,
+            "end": 84
+          },
+          "productTotals": {
+            "path": "store.js",
+            "function": "productTotals",
+            "start": 86,
+            "end": 89
+          },
+          "invoiceCount": {
+            "path": "store.js",
+            "function": "invoiceCount",
+            "start": 91,
+            "end": 94
+          },
+          "recentNotes": {
+            "path": "store.js",
+            "function": "recentNotes",
+            "start": 96,
+            "end": 99
+          },
+          "paymentFeed": {
+            "path": "store.js",
+            "function": "paymentFeed",
+            "start": 102,
+            "end": 106
+          },
+          "revenueSummary": {
+            "path": "store.js",
+            "function": "revenueSummary",
+            "start": 107,
+            "end": 112
+          },
+          "removeVoid": {
+            "path": "store.js",
+            "function": "removeVoid",
+            "start": 113,
+            "end": 116
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": null
+    },
+    "t02": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/efficiency-study/tasks/task1/serene",
+      "log": "/tmp/serene-covered-run/logs/t02.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "requests": 80,
+        "seconds": 600,
+        "deep_sites": 23
+      },
+      "sites": [
+        {
+          "id": "store.js:findInvoice",
+          "path": "store.js",
+          "function": "findInvoice",
+          "line": 5,
+          "column": 24,
+          "start": 3,
+          "end": 7,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:listOpen",
+          "path": "store.js",
+          "function": "listOpen",
+          "line": 11,
+          "column": 24,
+          "start": 9,
+          "end": 13,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertInvoice",
+          "path": "store.js",
+          "function": "insertInvoice",
+          "line": 17,
+          "column": 24,
+          "start": 15,
+          "end": 19,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:deleteInvoiceLines",
+          "path": "store.js",
+          "function": "deleteInvoiceLines",
+          "line": 23,
+          "column": 24,
+          "start": 21,
+          "end": 25,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertInvoiceLine",
+          "path": "store.js",
+          "function": "insertInvoiceLine",
+          "line": 29,
+          "column": 24,
+          "start": 27,
+          "end": 31,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:repriceInvoice",
+          "path": "store.js",
+          "function": "repriceInvoice",
+          "line": 35,
+          "column": 24,
+          "start": 33,
+          "end": 37,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:markInvoiceSent",
+          "path": "store.js",
+          "function": "markInvoiceSent",
+          "line": 41,
+          "column": 24,
+          "start": 39,
+          "end": 43,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addPayment",
+          "path": "store.js",
+          "function": "addPayment",
+          "line": 47,
+          "column": 24,
+          "start": 45,
+          "end": 49,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:completeInvoice",
+          "path": "store.js",
+          "function": "completeInvoice",
+          "line": 53,
+          "column": 24,
+          "start": 51,
+          "end": 55,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:overdueAccounts",
+          "path": "store.js",
+          "function": "overdueAccounts",
+          "line": 59,
+          "column": 24,
+          "start": 57,
+          "end": 61,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:customerStatement",
+          "path": "store.js",
+          "function": "customerStatement",
+          "line": 65,
+          "column": 24,
+          "start": 63,
+          "end": 67,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:findCustomer",
+          "path": "store.js",
+          "function": "findCustomer",
+          "line": 71,
+          "column": 24,
+          "start": 69,
+          "end": 73,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:searchCustomer",
+          "path": "store.js",
+          "function": "searchCustomer",
+          "line": 77,
+          "column": 24,
+          "start": 75,
+          "end": 79,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:createCustomer",
+          "path": "store.js",
+          "function": "createCustomer",
+          "line": 83,
+          "column": 24,
+          "start": 81,
+          "end": 85,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:changeCredit",
+          "path": "store.js",
+          "function": "changeCredit",
+          "line": 89,
+          "column": 24,
+          "start": 87,
+          "end": 91,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:activeRegions",
+          "path": "store.js",
+          "function": "activeRegions",
+          "line": 95,
+          "column": 24,
+          "start": 93,
+          "end": 97,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:dailyCash",
+          "path": "store.js",
+          "function": "dailyCash",
+          "line": 101,
+          "column": 24,
+          "start": 99,
+          "end": 103,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:productTotals",
+          "path": "store.js",
+          "function": "productTotals",
+          "line": 107,
+          "column": 24,
+          "start": 105,
+          "end": 109,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:invoiceCount",
+          "path": "store.js",
+          "function": "invoiceCount",
+          "line": 113,
+          "column": 24,
+          "start": 111,
+          "end": 115,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:recentNotes",
+          "path": "store.js",
+          "function": "recentNotes",
+          "line": 119,
+          "column": 24,
+          "start": 117,
+          "end": 121,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:paymentFeed",
+          "path": "store.js",
+          "function": "paymentFeed",
+          "line": 126,
+          "column": 22,
+          "start": 124,
+          "end": 128,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 7,
+              "end": 14
+            }
+          ]
+        },
+        {
+          "id": "store.js:revenueSummary",
+          "path": "store.js",
+          "function": "revenueSummary",
+          "line": 132,
+          "column": 22,
+          "start": 129,
+          "end": 134,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 15,
+              "end": 17
+            },
+            {
+              "path": "helpers.js",
+              "start": 18,
+              "end": 20
+            }
+          ]
+        },
+        {
+          "id": "helpers.js:send",
+          "path": "helpers.js",
+          "function": "send",
+          "line": 22,
+          "column": 10,
+          "start": 21,
+          "end": 23,
+          "dependency_spans": [
+            {
+              "path": "store.js",
+              "start": 135,
+              "end": 138
+            }
+          ]
+        }
+      ],
+      "functions": {
+        "api.js": {
+          "getInvoice": {
+            "path": "api.js",
+            "function": "getInvoice",
+            "start": 5,
+            "end": 8
+          },
+          "postInvoice": {
+            "path": "api.js",
+            "function": "postInvoice",
+            "start": 9,
+            "end": 14
+          },
+          "revenueReport": {
+            "path": "api.js",
+            "function": "revenueReport",
+            "start": 15,
+            "end": 17
+          },
+          "customerPage": {
+            "path": "api.js",
+            "function": "customerPage",
+            "start": 18,
+            "end": 21
+          }
+        },
+        "helpers.js": {
+          "page": {
+            "path": "helpers.js",
+            "function": "page",
+            "start": 3,
+            "end": 6
+          },
+          "chosenOrder": {
+            "path": "helpers.js",
+            "function": "chosenOrder",
+            "start": 7,
+            "end": 14
+          },
+          "normaliseRegion": {
+            "path": "helpers.js",
+            "function": "normaliseRegion",
+            "start": 15,
+            "end": 17
+          },
+          "regionScope": {
+            "path": "helpers.js",
+            "function": "regionScope",
+            "start": 18,
+            "end": 20
+          },
+          "send": {
+            "path": "helpers.js",
+            "function": "send",
+            "start": 21,
+            "end": 23
+          }
+        },
+        "store.js": {
+          "findInvoice": {
+            "path": "store.js",
+            "function": "findInvoice",
+            "start": 3,
+            "end": 7
+          },
+          "listOpen": {
+            "path": "store.js",
+            "function": "listOpen",
+            "start": 9,
+            "end": 13
+          },
+          "insertInvoice": {
+            "path": "store.js",
+            "function": "insertInvoice",
+            "start": 15,
+            "end": 19
+          },
+          "deleteInvoiceLines": {
+            "path": "store.js",
+            "function": "deleteInvoiceLines",
+            "start": 21,
+            "end": 25
+          },
+          "insertInvoiceLine": {
+            "path": "store.js",
+            "function": "insertInvoiceLine",
+            "start": 27,
+            "end": 31
+          },
+          "repriceInvoice": {
+            "path": "store.js",
+            "function": "repriceInvoice",
+            "start": 33,
+            "end": 37
+          },
+          "markInvoiceSent": {
+            "path": "store.js",
+            "function": "markInvoiceSent",
+            "start": 39,
+            "end": 43
+          },
+          "addPayment": {
+            "path": "store.js",
+            "function": "addPayment",
+            "start": 45,
+            "end": 49
+          },
+          "completeInvoice": {
+            "path": "store.js",
+            "function": "completeInvoice",
+            "start": 51,
+            "end": 55
+          },
+          "overdueAccounts": {
+            "path": "store.js",
+            "function": "overdueAccounts",
+            "start": 57,
+            "end": 61
+          },
+          "customerStatement": {
+            "path": "store.js",
+            "function": "customerStatement",
+            "start": 63,
+            "end": 67
+          },
+          "findCustomer": {
+            "path": "store.js",
+            "function": "findCustomer",
+            "start": 69,
+            "end": 73
+          },
+          "searchCustomer": {
+            "path": "store.js",
+            "function": "searchCustomer",
+            "start": 75,
+            "end": 79
+          },
+          "createCustomer": {
+            "path": "store.js",
+            "function": "createCustomer",
+            "start": 81,
+            "end": 85
+          },
+          "changeCredit": {
+            "path": "store.js",
+            "function": "changeCredit",
+            "start": 87,
+            "end": 91
+          },
+          "activeRegions": {
+            "path": "store.js",
+            "function": "activeRegions",
+            "start": 93,
+            "end": 97
+          },
+          "dailyCash": {
+            "path": "store.js",
+            "function": "dailyCash",
+            "start": 99,
+            "end": 103
+          },
+          "productTotals": {
+            "path": "store.js",
+            "function": "productTotals",
+            "start": 105,
+            "end": 109
+          },
+          "invoiceCount": {
+            "path": "store.js",
+            "function": "invoiceCount",
+            "start": 111,
+            "end": 115
+          },
+          "recentNotes": {
+            "path": "store.js",
+            "function": "recentNotes",
+            "start": 117,
+            "end": 121
+          },
+          "paymentFeed": {
+            "path": "store.js",
+            "function": "paymentFeed",
+            "start": 124,
+            "end": 128
+          },
+          "revenueSummary": {
+            "path": "store.js",
+            "function": "revenueSummary",
+            "start": 129,
+            "end": 134
+          },
+          "removeVoid": {
+            "path": "store.js",
+            "function": "removeVoid",
+            "start": 135,
+            "end": 138
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": {
+        "input_site_ids": [
+          "store.js:findInvoice",
+          "store.js:listOpen",
+          "store.js:insertInvoice",
+          "store.js:deleteInvoiceLines",
+          "store.js:insertInvoiceLine",
+          "store.js:repriceInvoice",
+          "store.js:markInvoiceSent",
+          "store.js:addPayment",
+          "store.js:completeInvoice",
+          "store.js:overdueAccounts",
+          "store.js:customerStatement",
+          "store.js:findCustomer",
+          "store.js:searchCustomer",
+          "store.js:createCustomer",
+          "store.js:changeCredit",
+          "store.js:activeRegions",
+          "store.js:dailyCash",
+          "store.js:productTotals",
+          "store.js:invoiceCount",
+          "store.js:recentNotes",
+          "store.js:paymentFeed",
+          "store.js:revenueSummary",
+          "helpers.js:send"
+        ],
+        "matched_counts": {
+          "ordinary": 20,
+          "review-required": 1,
+          "violation": 2
+        },
+        "unmatched": [],
+        "compact_audit": {
+          "files": [
+            "api.js",
+            "helpers.js",
+            "store.js"
+          ],
+          "skipped": [],
+          "executionSiteCounts": {
+            "ordinary": 20,
+            "review-required": 1,
+            "violation": 2
+          },
+          "findings": [
+            {
+              "file": "helpers.js",
+              "line": 22,
+              "column": 10,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            },
+            {
+              "file": "store.js",
+              "line": 126,
+              "column": 22,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            },
+            {
+              "file": "store.js",
+              "line": 132,
+              "column": 22,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ],
+          "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+        },
+        "contract": "All input sites except actionable or unmatched entries are matched ordinary. Skip their individual construction screening. Discovery coverage is evaluated separately."
+      }
+    },
+    "t04": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/efficiency-study/tasks/task2/raw",
+      "log": "/tmp/serene-covered-run/logs/t04.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "requests": 80,
+        "seconds": 600,
+        "deep_sites": 23
+      },
+      "sites": [
+        {
+          "id": "store.js:product",
+          "path": "store.js",
+          "function": "product",
+          "line": 2,
+          "column": 24,
+          "start": 1,
+          "end": 4,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:productPage",
+          "path": "store.js",
+          "function": "productPage",
+          "line": 7,
+          "column": 24,
+          "start": 6,
+          "end": 9,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addProduct",
+          "path": "store.js",
+          "function": "addProduct",
+          "line": 12,
+          "column": 24,
+          "start": 11,
+          "end": 14,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:updateProduct",
+          "path": "store.js",
+          "function": "updateProduct",
+          "line": 17,
+          "column": 24,
+          "start": 16,
+          "end": 19,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:binLevels",
+          "path": "store.js",
+          "function": "binLevels",
+          "line": 22,
+          "column": 24,
+          "start": 21,
+          "end": 24,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reserveUnits",
+          "path": "store.js",
+          "function": "reserveUnits",
+          "line": 27,
+          "column": 24,
+          "start": 26,
+          "end": 29,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservationRow",
+          "path": "store.js",
+          "function": "reservationRow",
+          "line": 32,
+          "column": 24,
+          "start": 31,
+          "end": 34,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservation",
+          "path": "store.js",
+          "function": "reservation",
+          "line": 37,
+          "column": 24,
+          "start": 36,
+          "end": 39,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:releaseUnits",
+          "path": "store.js",
+          "function": "releaseUnits",
+          "line": 42,
+          "column": 24,
+          "start": 41,
+          "end": 44,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:deleteReservation",
+          "path": "store.js",
+          "function": "deleteReservation",
+          "line": 47,
+          "column": 24,
+          "start": 46,
+          "end": 49,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertReceipt",
+          "path": "store.js",
+          "function": "insertReceipt",
+          "line": 52,
+          "column": 24,
+          "start": 51,
+          "end": 54,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:receiptLine",
+          "path": "store.js",
+          "function": "receiptLine",
+          "line": 57,
+          "column": 24,
+          "start": 56,
+          "end": 59,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addOnHand",
+          "path": "store.js",
+          "function": "addOnHand",
+          "line": 62,
+          "column": 24,
+          "start": 61,
+          "end": 64,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:postReceipt",
+          "path": "store.js",
+          "function": "postReceipt",
+          "line": 67,
+          "column": 24,
+          "start": 66,
+          "end": 69,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:supplierSpend",
+          "path": "store.js",
+          "function": "supplierSpend",
+          "line": 72,
+          "column": 24,
+          "start": 71,
+          "end": 74,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:openReceipts",
+          "path": "store.js",
+          "function": "openReceipts",
+          "line": 77,
+          "column": 24,
+          "start": 76,
+          "end": 79,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:receiptItems",
+          "path": "store.js",
+          "function": "receiptItems",
+          "line": 82,
+          "column": 24,
+          "start": 81,
+          "end": 84,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:removeReceipt",
+          "path": "store.js",
+          "function": "removeReceipt",
+          "line": 87,
+          "column": 24,
+          "start": 86,
+          "end": 89,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservationsBySku",
+          "path": "store.js",
+          "function": "reservationsBySku",
+          "line": 92,
+          "column": 24,
+          "start": 91,
+          "end": 94,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:inactiveProducts",
+          "path": "store.js",
+          "function": "inactiveProducts",
+          "line": 97,
+          "column": 24,
+          "start": 96,
+          "end": 99,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:inventoryList",
+          "path": "store.js",
+          "function": "inventoryList",
+          "line": 104,
+          "column": 10,
+          "start": 102,
+          "end": 105,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 5,
+              "end": 12
+            }
+          ]
+        },
+        {
+          "id": "store.js:categorySnapshot",
+          "path": "store.js",
+          "function": "categorySnapshot",
+          "line": 109,
+          "column": 22,
+          "start": 106,
+          "end": 111,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 13,
+              "end": 15
+            },
+            {
+              "path": "helpers.js",
+              "start": 16,
+              "end": 18
+            }
+          ]
+        },
+        {
+          "id": "helpers.js:send",
+          "path": "helpers.js",
+          "function": "send",
+          "line": 20,
+          "column": 10,
+          "start": 19,
+          "end": 21,
+          "dependency_spans": [
+            {
+              "path": "store.js",
+              "start": 112,
+              "end": 115
+            }
+          ]
+        }
+      ],
+      "functions": {
+        "helpers.js": {
+          "page": {
+            "path": "helpers.js",
+            "function": "page",
+            "start": 1,
+            "end": 4
+          },
+          "stockOrder": {
+            "path": "helpers.js",
+            "function": "stockOrder",
+            "start": 5,
+            "end": 12
+          },
+          "categoryName": {
+            "path": "helpers.js",
+            "function": "categoryName",
+            "start": 13,
+            "end": 15
+          },
+          "categoryScope": {
+            "path": "helpers.js",
+            "function": "categoryScope",
+            "start": 16,
+            "end": 18
+          },
+          "send": {
+            "path": "helpers.js",
+            "function": "send",
+            "start": 19,
+            "end": 21
+          }
+        },
+        "service.js": {
+          "browse": {
+            "path": "service.js",
+            "function": "browse",
+            "start": 3,
+            "end": 3
+          },
+          "card": {
+            "path": "service.js",
+            "function": "card",
+            "start": 4,
+            "end": 7
+          },
+          "receive": {
+            "path": "service.js",
+            "function": "receive",
+            "start": 8,
+            "end": 12
+          },
+          "inventoryReport": {
+            "path": "service.js",
+            "function": "inventoryReport",
+            "start": 13,
+            "end": 13
+          }
+        },
+        "store.js": {
+          "product": {
+            "path": "store.js",
+            "function": "product",
+            "start": 1,
+            "end": 4
+          },
+          "productPage": {
+            "path": "store.js",
+            "function": "productPage",
+            "start": 6,
+            "end": 9
+          },
+          "addProduct": {
+            "path": "store.js",
+            "function": "addProduct",
+            "start": 11,
+            "end": 14
+          },
+          "updateProduct": {
+            "path": "store.js",
+            "function": "updateProduct",
+            "start": 16,
+            "end": 19
+          },
+          "binLevels": {
+            "path": "store.js",
+            "function": "binLevels",
+            "start": 21,
+            "end": 24
+          },
+          "reserveUnits": {
+            "path": "store.js",
+            "function": "reserveUnits",
+            "start": 26,
+            "end": 29
+          },
+          "reservationRow": {
+            "path": "store.js",
+            "function": "reservationRow",
+            "start": 31,
+            "end": 34
+          },
+          "reservation": {
+            "path": "store.js",
+            "function": "reservation",
+            "start": 36,
+            "end": 39
+          },
+          "releaseUnits": {
+            "path": "store.js",
+            "function": "releaseUnits",
+            "start": 41,
+            "end": 44
+          },
+          "deleteReservation": {
+            "path": "store.js",
+            "function": "deleteReservation",
+            "start": 46,
+            "end": 49
+          },
+          "insertReceipt": {
+            "path": "store.js",
+            "function": "insertReceipt",
+            "start": 51,
+            "end": 54
+          },
+          "receiptLine": {
+            "path": "store.js",
+            "function": "receiptLine",
+            "start": 56,
+            "end": 59
+          },
+          "addOnHand": {
+            "path": "store.js",
+            "function": "addOnHand",
+            "start": 61,
+            "end": 64
+          },
+          "postReceipt": {
+            "path": "store.js",
+            "function": "postReceipt",
+            "start": 66,
+            "end": 69
+          },
+          "supplierSpend": {
+            "path": "store.js",
+            "function": "supplierSpend",
+            "start": 71,
+            "end": 74
+          },
+          "openReceipts": {
+            "path": "store.js",
+            "function": "openReceipts",
+            "start": 76,
+            "end": 79
+          },
+          "receiptItems": {
+            "path": "store.js",
+            "function": "receiptItems",
+            "start": 81,
+            "end": 84
+          },
+          "removeReceipt": {
+            "path": "store.js",
+            "function": "removeReceipt",
+            "start": 86,
+            "end": 89
+          },
+          "reservationsBySku": {
+            "path": "store.js",
+            "function": "reservationsBySku",
+            "start": 91,
+            "end": 94
+          },
+          "inactiveProducts": {
+            "path": "store.js",
+            "function": "inactiveProducts",
+            "start": 96,
+            "end": 99
+          },
+          "inventoryList": {
+            "path": "store.js",
+            "function": "inventoryList",
+            "start": 102,
+            "end": 105
+          },
+          "categorySnapshot": {
+            "path": "store.js",
+            "function": "categorySnapshot",
+            "start": 106,
+            "end": 111
+          },
+          "purgeReservation": {
+            "path": "store.js",
+            "function": "purgeReservation",
+            "start": 112,
+            "end": 115
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": null
+    },
+    "t03": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/efficiency-study/tasks/task2/serene",
+      "log": "/tmp/serene-covered-run/logs/t03.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "requests": 80,
+        "seconds": 600,
+        "deep_sites": 23
+      },
+      "sites": [
+        {
+          "id": "store.js:product",
+          "path": "store.js",
+          "function": "product",
+          "line": 5,
+          "column": 24,
+          "start": 3,
+          "end": 7,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:productPage",
+          "path": "store.js",
+          "function": "productPage",
+          "line": 11,
+          "column": 24,
+          "start": 9,
+          "end": 13,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addProduct",
+          "path": "store.js",
+          "function": "addProduct",
+          "line": 17,
+          "column": 24,
+          "start": 15,
+          "end": 19,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:updateProduct",
+          "path": "store.js",
+          "function": "updateProduct",
+          "line": 23,
+          "column": 24,
+          "start": 21,
+          "end": 25,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:binLevels",
+          "path": "store.js",
+          "function": "binLevels",
+          "line": 29,
+          "column": 24,
+          "start": 27,
+          "end": 31,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reserveUnits",
+          "path": "store.js",
+          "function": "reserveUnits",
+          "line": 35,
+          "column": 24,
+          "start": 33,
+          "end": 37,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservationRow",
+          "path": "store.js",
+          "function": "reservationRow",
+          "line": 41,
+          "column": 24,
+          "start": 39,
+          "end": 43,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservation",
+          "path": "store.js",
+          "function": "reservation",
+          "line": 47,
+          "column": 24,
+          "start": 45,
+          "end": 49,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:releaseUnits",
+          "path": "store.js",
+          "function": "releaseUnits",
+          "line": 53,
+          "column": 24,
+          "start": 51,
+          "end": 55,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:deleteReservation",
+          "path": "store.js",
+          "function": "deleteReservation",
+          "line": 59,
+          "column": 24,
+          "start": 57,
+          "end": 61,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:insertReceipt",
+          "path": "store.js",
+          "function": "insertReceipt",
+          "line": 65,
+          "column": 24,
+          "start": 63,
+          "end": 67,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:receiptLine",
+          "path": "store.js",
+          "function": "receiptLine",
+          "line": 71,
+          "column": 24,
+          "start": 69,
+          "end": 73,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:addOnHand",
+          "path": "store.js",
+          "function": "addOnHand",
+          "line": 77,
+          "column": 24,
+          "start": 75,
+          "end": 79,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:postReceipt",
+          "path": "store.js",
+          "function": "postReceipt",
+          "line": 83,
+          "column": 24,
+          "start": 81,
+          "end": 85,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:supplierSpend",
+          "path": "store.js",
+          "function": "supplierSpend",
+          "line": 89,
+          "column": 24,
+          "start": 87,
+          "end": 91,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:openReceipts",
+          "path": "store.js",
+          "function": "openReceipts",
+          "line": 95,
+          "column": 24,
+          "start": 93,
+          "end": 97,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:receiptItems",
+          "path": "store.js",
+          "function": "receiptItems",
+          "line": 101,
+          "column": 24,
+          "start": 99,
+          "end": 103,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:removeReceipt",
+          "path": "store.js",
+          "function": "removeReceipt",
+          "line": 107,
+          "column": 24,
+          "start": 105,
+          "end": 109,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:reservationsBySku",
+          "path": "store.js",
+          "function": "reservationsBySku",
+          "line": 113,
+          "column": 24,
+          "start": 111,
+          "end": 115,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:inactiveProducts",
+          "path": "store.js",
+          "function": "inactiveProducts",
+          "line": 119,
+          "column": 24,
+          "start": 117,
+          "end": 121,
+          "dependency_spans": []
+        },
+        {
+          "id": "store.js:inventoryList",
+          "path": "store.js",
+          "function": "inventoryList",
+          "line": 126,
+          "column": 10,
+          "start": 124,
+          "end": 127,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 7,
+              "end": 14
+            }
+          ]
+        },
+        {
+          "id": "store.js:categorySnapshot",
+          "path": "store.js",
+          "function": "categorySnapshot",
+          "line": 131,
+          "column": 22,
+          "start": 128,
+          "end": 133,
+          "dependency_spans": [
+            {
+              "path": "helpers.js",
+              "start": 15,
+              "end": 17
+            },
+            {
+              "path": "helpers.js",
+              "start": 18,
+              "end": 20
+            }
+          ]
+        },
+        {
+          "id": "helpers.js:send",
+          "path": "helpers.js",
+          "function": "send",
+          "line": 22,
+          "column": 10,
+          "start": 21,
+          "end": 23,
+          "dependency_spans": [
+            {
+              "path": "store.js",
+              "start": 134,
+              "end": 137
+            }
+          ]
+        }
+      ],
+      "functions": {
+        "helpers.js": {
+          "page": {
+            "path": "helpers.js",
+            "function": "page",
+            "start": 3,
+            "end": 6
+          },
+          "stockOrder": {
+            "path": "helpers.js",
+            "function": "stockOrder",
+            "start": 7,
+            "end": 14
+          },
+          "categoryName": {
+            "path": "helpers.js",
+            "function": "categoryName",
+            "start": 15,
+            "end": 17
+          },
+          "categoryScope": {
+            "path": "helpers.js",
+            "function": "categoryScope",
+            "start": 18,
+            "end": 20
+          },
+          "send": {
+            "path": "helpers.js",
+            "function": "send",
+            "start": 21,
+            "end": 23
+          }
+        },
+        "service.js": {
+          "browse": {
+            "path": "service.js",
+            "function": "browse",
+            "start": 5,
+            "end": 5
+          },
+          "card": {
+            "path": "service.js",
+            "function": "card",
+            "start": 6,
+            "end": 9
+          },
+          "receive": {
+            "path": "service.js",
+            "function": "receive",
+            "start": 10,
+            "end": 14
+          },
+          "inventoryReport": {
+            "path": "service.js",
+            "function": "inventoryReport",
+            "start": 15,
+            "end": 15
+          }
+        },
+        "store.js": {
+          "product": {
+            "path": "store.js",
+            "function": "product",
+            "start": 3,
+            "end": 7
+          },
+          "productPage": {
+            "path": "store.js",
+            "function": "productPage",
+            "start": 9,
+            "end": 13
+          },
+          "addProduct": {
+            "path": "store.js",
+            "function": "addProduct",
+            "start": 15,
+            "end": 19
+          },
+          "updateProduct": {
+            "path": "store.js",
+            "function": "updateProduct",
+            "start": 21,
+            "end": 25
+          },
+          "binLevels": {
+            "path": "store.js",
+            "function": "binLevels",
+            "start": 27,
+            "end": 31
+          },
+          "reserveUnits": {
+            "path": "store.js",
+            "function": "reserveUnits",
+            "start": 33,
+            "end": 37
+          },
+          "reservationRow": {
+            "path": "store.js",
+            "function": "reservationRow",
+            "start": 39,
+            "end": 43
+          },
+          "reservation": {
+            "path": "store.js",
+            "function": "reservation",
+            "start": 45,
+            "end": 49
+          },
+          "releaseUnits": {
+            "path": "store.js",
+            "function": "releaseUnits",
+            "start": 51,
+            "end": 55
+          },
+          "deleteReservation": {
+            "path": "store.js",
+            "function": "deleteReservation",
+            "start": 57,
+            "end": 61
+          },
+          "insertReceipt": {
+            "path": "store.js",
+            "function": "insertReceipt",
+            "start": 63,
+            "end": 67
+          },
+          "receiptLine": {
+            "path": "store.js",
+            "function": "receiptLine",
+            "start": 69,
+            "end": 73
+          },
+          "addOnHand": {
+            "path": "store.js",
+            "function": "addOnHand",
+            "start": 75,
+            "end": 79
+          },
+          "postReceipt": {
+            "path": "store.js",
+            "function": "postReceipt",
+            "start": 81,
+            "end": 85
+          },
+          "supplierSpend": {
+            "path": "store.js",
+            "function": "supplierSpend",
+            "start": 87,
+            "end": 91
+          },
+          "openReceipts": {
+            "path": "store.js",
+            "function": "openReceipts",
+            "start": 93,
+            "end": 97
+          },
+          "receiptItems": {
+            "path": "store.js",
+            "function": "receiptItems",
+            "start": 99,
+            "end": 103
+          },
+          "removeReceipt": {
+            "path": "store.js",
+            "function": "removeReceipt",
+            "start": 105,
+            "end": 109
+          },
+          "reservationsBySku": {
+            "path": "store.js",
+            "function": "reservationsBySku",
+            "start": 111,
+            "end": 115
+          },
+          "inactiveProducts": {
+            "path": "store.js",
+            "function": "inactiveProducts",
+            "start": 117,
+            "end": 121
+          },
+          "inventoryList": {
+            "path": "store.js",
+            "function": "inventoryList",
+            "start": 124,
+            "end": 127
+          },
+          "categorySnapshot": {
+            "path": "store.js",
+            "function": "categorySnapshot",
+            "start": 128,
+            "end": 133
+          },
+          "purgeReservation": {
+            "path": "store.js",
+            "function": "purgeReservation",
+            "start": 134,
+            "end": 137
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": {
+        "input_site_ids": [
+          "store.js:product",
+          "store.js:productPage",
+          "store.js:addProduct",
+          "store.js:updateProduct",
+          "store.js:binLevels",
+          "store.js:reserveUnits",
+          "store.js:reservationRow",
+          "store.js:reservation",
+          "store.js:releaseUnits",
+          "store.js:deleteReservation",
+          "store.js:insertReceipt",
+          "store.js:receiptLine",
+          "store.js:addOnHand",
+          "store.js:postReceipt",
+          "store.js:supplierSpend",
+          "store.js:openReceipts",
+          "store.js:receiptItems",
+          "store.js:removeReceipt",
+          "store.js:reservationsBySku",
+          "store.js:inactiveProducts",
+          "store.js:inventoryList",
+          "store.js:categorySnapshot",
+          "helpers.js:send"
+        ],
+        "matched_counts": {
+          "ordinary": 20,
+          "review-required": 1,
+          "violation": 2
+        },
+        "unmatched": [],
+        "compact_audit": {
+          "files": [
+            "helpers.js",
+            "service.js",
+            "store.js"
+          ],
+          "skipped": [],
+          "executionSiteCounts": {
+            "ordinary": 20,
+            "review-required": 1,
+            "violation": 2
+          },
+          "findings": [
+            {
+              "file": "helpers.js",
+              "line": 22,
+              "column": 10,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            },
+            {
+              "file": "store.js",
+              "line": 126,
+              "column": 10,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            },
+            {
+              "file": "store.js",
+              "line": 131,
+              "column": 22,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ],
+          "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+        },
+        "contract": "All input sites except actionable or unmatched entries are matched ordinary. Skip their individual construction screening. Discovery coverage is evaluated separately."
+      }
+    },
+    "cr": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/covered-study/calibration-inputs/raw",
+      "log": "/tmp/serene-covered-run/logs/cr.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "seconds": 600,
+        "requests": 80
+      },
+      "sites": [
+        {
+          "id": "ops.js:alpha",
+          "path": "ops.js",
+          "function": "alpha",
+          "line": 1,
+          "column": 40,
+          "start": 1,
+          "end": 1,
+          "dependency_spans": []
+        },
+        {
+          "id": "ops.js:beta",
+          "path": "ops.js",
+          "function": "beta",
+          "line": 2,
+          "column": 39,
+          "start": 2,
+          "end": 2,
+          "dependency_spans": []
+        },
+        {
+          "id": "ops.js:gamma",
+          "path": "ops.js",
+          "function": "gamma",
+          "line": 3,
+          "column": 43,
+          "start": 3,
+          "end": 3,
+          "dependency_spans": []
+        }
+      ],
+      "functions": {
+        "ops.js": {
+          "alpha": {
+            "path": "ops.js",
+            "function": "alpha",
+            "start": 1,
+            "end": 1
+          },
+          "beta": {
+            "path": "ops.js",
+            "function": "beta",
+            "start": 2,
+            "end": 2
+          },
+          "gamma": {
+            "path": "ops.js",
+            "function": "gamma",
+            "start": 3,
+            "end": 3
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": null
+    },
+    "cs": {
+      "root": "/workspace/scratch/6d978950e2be/serene/evaluation/triage/covered-study/calibration-inputs/serene",
+      "log": "/tmp/serene-covered-run/logs/cs.jsonl",
+      "budget": {
+        "bytes": 32768,
+        "seconds": 600,
+        "requests": 80
+      },
+      "sites": [
+        {
+          "id": "ops.js:alpha",
+          "path": "ops.js",
+          "function": "alpha",
+          "line": 2,
+          "column": 77,
+          "start": 2,
+          "end": 2,
+          "dependency_spans": []
+        },
+        {
+          "id": "ops.js:beta",
+          "path": "ops.js",
+          "function": "beta",
+          "line": 3,
+          "column": 80,
+          "start": 3,
+          "end": 3,
+          "dependency_spans": []
+        },
+        {
+          "id": "ops.js:gamma",
+          "path": "ops.js",
+          "function": "gamma",
+          "line": 4,
+          "column": 43,
+          "start": 4,
+          "end": 4,
+          "dependency_spans": []
+        }
+      ],
+      "functions": {
+        "ops.js": {
+          "alpha": {
+            "path": "ops.js",
+            "function": "alpha",
+            "start": 2,
+            "end": 2
+          },
+          "beta": {
+            "path": "ops.js",
+            "function": "beta",
+            "start": 3,
+            "end": 3
+          },
+          "gamma": {
+            "path": "ops.js",
+            "function": "gamma",
+            "start": 4,
+            "end": 4
+          }
+        },
+        "CONTRACT.md": {}
+      },
+      "audit_report": {
+        "input_site_ids": [
+          "ops.js:alpha",
+          "ops.js:beta",
+          "ops.js:gamma"
+        ],
+        "matched_counts": {
+          "ordinary": 2,
+          "review-required": 0,
+          "violation": 1
+        },
+        "unmatched": [],
+        "compact_audit": {
+          "files": [
+            "ops.js"
+          ],
+          "skipped": [],
+          "executionSiteCounts": {
+            "ordinary": 2,
+            "review-required": 0,
+            "violation": 1
+          },
+          "findings": [
+            {
+              "file": "ops.js",
+              "line": 4,
+              "column": 43,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ],
+          "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+        },
+        "contract": "All input sites except actionable/unmatched entries are matched ordinary. Skip their individual construction screening; discovery is separate."
+      }
+    }
+  }
+}

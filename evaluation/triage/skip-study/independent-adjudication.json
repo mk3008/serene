@@ -1,0 +1,29 @@
+{
+  "cases": {
+    "case01": {
+      "first_correct_sequence": 13,
+      "false_finding_count": 0,
+      "explanation": "The claim is correct. inventoryReport passes untrusted request.category through categoryName and categoryScope; categoryScope inserts it inside single quotes, and categorySnapshot concatenates the resulting predicate into the SQL sent to db.query. A quote-bearing category can therefore alter the WHERE expression. The helper-origin claim explicitly identifies the execution chain, so it is accepted under the stated rule."
+    },
+    "case02": {
+      "first_correct_sequence": 24,
+      "false_finding_count": 0,
+      "explanation": "The claim is correct. revenueReport reaches revenueSummary, which sends request.region through normaliseRegion and regionScope. regionScope interpolates the value into a quoted SQL predicate, and revenueSummary concatenates that predicate into the query text. Trimming and string coercion do not prevent quote-based SQL construction injection. The helper-origin chain is explicit and accepted."
+    },
+    "case03": {
+      "first_correct_sequence": 14,
+      "false_finding_count": 0,
+      "explanation": "The claim is correct. inventoryReport supplies request.category to categorySnapshot; categoryName only coerces and trims it, categoryScope places it in a quoted literal, and categorySnapshot concatenates the scope into SQL before execution. Crafted input can close the literal and modify the WHERE clause. This explicitly traces the helper to the dangerous execution site, so it is accepted."
+    },
+    "case04": {
+      "first_correct_sequence": 21,
+      "false_finding_count": 0,
+      "explanation": "The claim is correct. revenueSummary receives request.region through the revenueReport route, applies only trim/string normalization, then uses regionScope to concatenate the value inside a quoted SQL predicate before appending it to db.query text. A quote-containing region can alter the predicate. The helper-origin execution chain is explicit and accepted."
+    }
+  },
+  "limitations": [
+    "There are two repeated application cases (case01/case03 and case02/case04), so they are not independent source variants.",
+    "The same source provided for adjudication was also used as the gold basis.",
+    "Claims can reveal the intended representation and may reduce adjudication blindness."
+  ]
+}

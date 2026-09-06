@@ -1,0 +1,75 @@
+{
+  "status": "observed logs only; missing runs omitted",
+  "comparisons": [
+    {
+      "successor_serene_run": "ts",
+      "prompt_bytes": 3236,
+      "successor": {
+        "calls": 11,
+        "response_bytes": 7590,
+        "request_bytes": 3422,
+        "source_text_bytes": 2176,
+        "errors": 0
+      },
+      "references": {
+        "previous_serene": {
+          "path": "evaluation/pre-exposure/results/ts.jsonl",
+          "prompt_bytes": 3008,
+          "metrics": {
+            "calls": 10,
+            "response_bytes": 6456,
+            "request_bytes": 3197,
+            "source_text_bytes": 1743,
+            "errors": 0
+          }
+        },
+        "raw": {
+          "path": "evaluation/pre-exposure/results/tr.jsonl",
+          "prompt_bytes": 2489,
+          "metrics": {
+            "calls": 11,
+            "response_bytes": 11392,
+            "request_bytes": 3877,
+            "source_text_bytes": 4392,
+            "errors": 0
+          }
+        }
+      }
+    },
+    {
+      "successor_serene_run": "ss",
+      "prompt_bytes": 3236,
+      "successor": {
+        "calls": 20,
+        "response_bytes": 9697,
+        "request_bytes": 3544,
+        "source_text_bytes": 2028,
+        "errors": 0
+      },
+      "references": {
+        "previous_serene": {
+          "path": "evaluation/pre-exposure/results/ss.jsonl",
+          "prompt_bytes": 3008,
+          "metrics": {
+            "calls": 11,
+            "response_bytes": 7173,
+            "request_bytes": 3184,
+            "source_text_bytes": 2112,
+            "errors": 0
+          }
+        },
+        "raw": {
+          "path": "evaluation/pre-exposure/results/sr.jsonl",
+          "prompt_bytes": 2489,
+          "metrics": {
+            "calls": 11,
+            "response_bytes": 10526,
+            "request_bytes": 4857,
+            "source_text_bytes": 3900,
+            "errors": 2
+          }
+        }
+      }
+    }
+  ]
+}

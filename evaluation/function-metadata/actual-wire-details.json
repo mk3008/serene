@@ -1,0 +1,21 @@
+{
+  "method": "recorded formal read/search events; unfiltered is same-primitive replay, not Raw AI baseline",
+  "runs": [
+    {
+      "run": "ts",
+      "actual_filtered_wire_bytes": 7590,
+      "without_site_function_bytes": 7140,
+      "function_metadata_bytes": 450,
+      "same_primitive_unfiltered_bytes": 11681,
+      "filter_savings_vs_same_primitive_percent": 35.022686413834435
+    },
+    {
+      "run": "ss",
+      "actual_filtered_wire_bytes": 9697,
+      "without_site_function_bytes": 8754,
+      "function_metadata_bytes": 943,
+      "same_primitive_unfiltered_bytes": 9430,
+      "filter_savings_vs_same_primitive_percent": -2.831389183457052
+    }
+  ]
+}

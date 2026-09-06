@@ -1,0 +1,236 @@
+{
+  "purpose": "Exact raw/Serene driver SQL text and parameter equality check.",
+  "status": "passed",
+  "pairsChecked": 24,
+  "pairs": [
+    {
+      "task": "ticketing",
+      "module": "ticketing/operations",
+      "function": "assignTicket",
+      "method": "execute",
+      "text": "\n    UPDATE tickets\n    SET assignee_id = :agentId, assigned_at = CURRENT_TIMESTAMP\n    WHERE id = :ticketId\n    RETURNING id\n  ",
+      "params": {
+        "agentId": "sample",
+        "ticketId": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/operations",
+      "function": "closeResolvedTickets",
+      "method": "execute",
+      "text": "\n    UPDATE tickets\n    SET state = :closedState, closed_at = CURRENT_TIMESTAMP\n    WHERE state = :resolvedState\n    RETURNING id\n  ",
+      "params": {
+        "closedState": "sample",
+        "resolvedState": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/operations",
+      "function": "findTicketById",
+      "method": "query",
+      "text": "\n    SELECT id, subject, requester_id\n    FROM tickets\n    WHERE id = :ticketId\n    LIMIT 1\n  ",
+      "params": {
+        "ticketId": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/operations",
+      "function": "listOpenTickets",
+      "method": "query",
+      "text": "\n    SELECT id, subject, priority\n    FROM tickets\n    WHERE state = :state\n    ORDER BY created_at DESC\n  ",
+      "params": {
+        "state": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/reporting",
+      "function": "countQueueByPriority",
+      "method": "query",
+      "text": "\n    SELECT priority, COUNT(*) AS total\n    FROM tickets\n    WHERE state = :state\n    GROUP BY priority\n  ",
+      "params": {
+        "state": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/reporting",
+      "function": "loadRequesterHistory",
+      "method": "query",
+      "text": "\n    SELECT t.id, t.subject, t.state\n    FROM tickets t\n    WHERE t.requester_id = :requesterId\n    ORDER BY t.created_at DESC\n  ",
+      "params": {
+        "requesterId": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/reporting",
+      "function": "searchTicketing",
+      "method": "query",
+      "text": "\n    SELECT id, subject\n    FROM ticketing\n    WHERE subject ILIKE '%sample%'\n  ",
+      "params": null
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/maintenance",
+      "function": "purgeTicketingPreview",
+      "method": "execute",
+      "text": "\n    DELETE FROM tickets_preview\n    WHERE expires_at < CURRENT_TIMESTAMP\n    RETURNING id\n  ",
+      "params": null
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/maintenance",
+      "function": "reopenTicket",
+      "method": "execute",
+      "text": "\n    UPDATE tickets\n    SET state = :state, closed_at = NULL\n    WHERE id = :ticketId\n    RETURNING id\n  ",
+      "params": {
+        "state": "sample",
+        "ticketId": "sample"
+      }
+    },
+    {
+      "task": "ticketing",
+      "module": "ticketing/maintenance",
+      "function": "sendTicketingSnapshot",
+      "method": "sendSql",
+      "text": "\n    SELECT id, created_at\n    FROM tickets\n    WHERE archived = false\n  ",
+      "params": null
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/operations",
+      "function": "findBinBalance",
+      "method": "query",
+      "text": "\n    SELECT bin_code, sku, quantity\n    FROM bin_balances\n    WHERE bin_code = :binCode\n    ORDER BY sku\n  ",
+      "params": {
+        "binCode": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/operations",
+      "function": "listReorderItems",
+      "method": "query",
+      "text": "\n    SELECT sku, item_name, on_hand\n    FROM stock_items\n    WHERE on_hand <= reorder_point\n    ORDER BY sku\n  ",
+      "params": {}
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/operations",
+      "function": "releaseReservation",
+      "method": "execute",
+      "text": "\n    UPDATE stock_items\n    SET reserved = reserved - :quantity\n    WHERE sku = :sku\n    RETURNING sku\n  ",
+      "params": {
+        "quantity": "sample",
+        "sku": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/operations",
+      "function": "reserveStock",
+      "method": "execute",
+      "text": "\n    UPDATE stock_items\n    SET reserved = reserved + :quantity\n    WHERE sku = :sku\n    RETURNING sku\n  ",
+      "params": {
+        "quantity": "sample",
+        "sku": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/reporting",
+      "function": "countItemsByZone",
+      "method": "query",
+      "text": "\n    SELECT zone, COUNT(*) AS total\n    FROM bin_balances\n    WHERE quantity > :minimum\n    GROUP BY zone\n  ",
+      "params": {
+        "minimum": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/reporting",
+      "function": "loadSupplierItems",
+      "method": "query",
+      "text": "\n    SELECT sku, item_name, supplier_id\n    FROM stock_items\n    WHERE supplier_id = :supplierId\n    ORDER BY item_name\n  ",
+      "params": {
+        "supplierId": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/reporting",
+      "function": "searchStockroom",
+      "method": "query",
+      "text": "\n    SELECT id, item_name\n    FROM stockroom\n    WHERE item_name ILIKE '%sample%'\n  ",
+      "params": null
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/maintenance",
+      "function": "purgeStockroomPreview",
+      "method": "execute",
+      "text": "\n    DELETE FROM stock_items_preview\n    WHERE expires_at < CURRENT_TIMESTAMP\n    RETURNING id\n  ",
+      "params": null
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/maintenance",
+      "function": "receiveShipment",
+      "method": "execute",
+      "text": "\n    UPDATE stock_items\n    SET on_hand = on_hand + :quantity\n    WHERE sku = :sku\n    RETURNING on_hand\n  ",
+      "params": {
+        "quantity": "sample",
+        "sku": "sample"
+      }
+    },
+    {
+      "task": "stockroom",
+      "module": "stockroom/maintenance",
+      "function": "sendStockroomSnapshot",
+      "method": "sendSql",
+      "text": "\n    SELECT id, created_at\n    FROM stock_items\n    WHERE archived = false\n  ",
+      "params": null
+    },
+    {
+      "task": "calibration",
+      "module": "calibration/operations",
+      "function": "listActive",
+      "method": "query",
+      "text": "\n    SELECT id, label\n    FROM calibration_jobs\n    WHERE active = :active\n    ORDER BY id\n  ",
+      "params": {
+        "active": "sample"
+      }
+    },
+    {
+      "task": "calibration",
+      "module": "calibration/operations",
+      "function": "markComplete",
+      "method": "execute",
+      "text": "\n    UPDATE calibration_jobs\n    SET complete = :complete\n    WHERE id = :jobId\n    RETURNING id\n  ",
+      "params": {
+        "complete": "sample",
+        "jobId": "sample"
+      }
+    },
+    {
+      "task": "calibration",
+      "module": "calibration/operations",
+      "function": "searchCalibration",
+      "method": "query",
+      "text": "\n    SELECT id, label\n    FROM calibration\n    WHERE label ILIKE '%sample%'\n  ",
+      "params": null
+    },
+    {
+      "task": "calibration",
+      "module": "calibration/operations",
+      "function": "sendCalibrationSnapshot",
+      "method": "sendSql",
+      "text": "\n    SELECT id, created_at\n    FROM calibration_jobs\n    WHERE archived = false\n  ",
+      "params": null
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "task": "billing",
+    "full_findings": 63,
+    "compact_findings": 3,
+    "executionSiteCounts": {
+      "ordinary": 20,
+      "review-required": 1,
+      "violation": 2
+    },
+    "full_stdout_utf8_bytes": 16612,
+    "compact_stdout_utf8_bytes": 1132,
+    "exit_full": 1,
+    "exit_compact": 1
+  },
+  {
+    "task": "warehouse",
+    "full_findings": 63,
+    "compact_findings": 3,
+    "executionSiteCounts": {
+      "ordinary": 20,
+      "review-required": 1,
+      "violation": 2
+    },
+    "full_stdout_utf8_bytes": 16616,
+    "compact_stdout_utf8_bytes": 1136,
+    "exit_full": 1,
+    "exit_compact": 1
+  }
+]

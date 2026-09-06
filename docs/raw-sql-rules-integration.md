@@ -62,10 +62,12 @@ names, current schema and real DB/driver verification. It must not introduce cop
 generated or opaque authoritative SQL.
 
 This candidate is not compliance with the unmodified dedicated-file Default 1.
-It is an explicit experimental customization of that default. Keep the Contracts
-and Defaults 2-4 fixed to the selected revision. The v0.2 mapping above is not a
-claim to have verified the evolving v0.3 draft; pin and inspect the exact v0.3
-revision before the layout study is frozen.
+It is an explicit experimental customization of that default. Keep the Scope/Safety Contract
+and Defaults 2-4 fixed to the selected v0.3 revision. The v0.2 mapping above is not a
+claim about every v0.3 revision. The subsequently inspected draft is pinned in
+[Rules reference](../evaluation/adoption/RULES-REFERENCE.json): v0.3 uses Scope +
+Safety Contract and explicitly requires named definition and named caller binding
+in Default 2. Include that exact revision in the eventual execution freeze.
 
 The [layout study](../evaluation/adoption/LAYOUT-STUDY.md) compares discovery,
 binding/execution follow-through, functional/live DB checks, harmful rewrites and
@@ -80,3 +82,9 @@ win, retain that default and then consider Serene cross-file provenance or revie
 exceptions. Inconclusive evidence means no policy change. This PR changes neither
 Raw SQL Rules nor Serene's runtime/audit capabilities, and supplies no measured
 adoption or layout-effect results.
+
+
+The [SQLite preflight](../evaluation/adoption/preflight/REPORT.md) now reproduces
+matching behavior and the imported-provenance gate difference on four author-created
+scenario pairs. This is limited mechanism evidence, not an adoption or discoverability
+study. It does not yet justify changing Default 1.

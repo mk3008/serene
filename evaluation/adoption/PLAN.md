@@ -1,6 +1,7 @@
 # Phase 0: adoption experiment preparation
 
-Status: NOT RUN; protocol candidate, not a frozen execution packet.
+Status: AI STUDY NOT RUN; protocol candidate, not a frozen execution packet.
+Author-created SQLite layout preflight is available in [preflight/REPORT.md](preflight/REPORT.md); it is not a model-study result.
 
 Sequence: README PR #2 (merged) -> repository scan PR #3 (merged) -> adoption experiment ->
 AI review pilot. Do not infer adoption from deterministic CLI tests or begin the
@@ -132,6 +133,19 @@ additional to the 96 adoption invocations and are not yet scheduled or performed
 Planned co-location under that candidate profile is not gate appeasement; unrequested
 co-location in a dedicated-file treatment remains a policy deviation.
 
+## Preparation progress (2026-09-06)
+
+Inspected the current v0.3 draft reference recorded in
+[RULES-REFERENCE.json](RULES-REFERENCE.json). Its terminology is Scope + Safety
+Contract, with explicit named definition and named caller binding in Default 2.
+Do not treat the older v0.2 Contracts wording as the v0.3 frozen contract.
+
+Four paired SQLite specimens and a deterministic verifier are implemented under
+[preflight](preflight/README.md). Functional cases, raw CLI reports and trace evidence
+are available, but they are author-created development cases. They do not satisfy
+independent task authorship, model-output forwarding, blinded adjudication or the
+12 implementation packet requirement. Do not promote them into scored runs.
+
 ## Current execution blocker (2026-09-06)
 
 In this Work workspace, `codex` and `gh` are absent from PATH; no callable independent
@@ -142,5 +156,6 @@ performed. The active author session is not a substitute for an independent runn
 The next environment must provide an authorized independent coding-agent runner and
 its model/budget metadata. Then prepare/validate the 12 packets, freeze them and run
 the preflight before the 96 adoption invocations. This file supplies a protocol,
-not runnable tasks, an implemented runner, or adoption evidence. Phase 1 remains
+not isolated coding-task packets, an implemented model runner, or adoption evidence.
+The SQLite preflight supplies executable development fixtures only. Phase 1 remains
 pending the Phase 0 decision.

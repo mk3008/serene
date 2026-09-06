@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-09-06",
+  "repository": "mk3008/raw-sql-rules",
+  "branch": "codex/v0-3-release-prep",
+  "commit": "6edd3b7805304db7c356a1d285a47448062d32f2",
+  "path": "raw-sql-rules.md",
+  "blob": "ed45b86efaf088141f41ec7de9c150fa3f521ee9",
+  "url": "https://github.com/mk3008/raw-sql-rules/blob/6edd3b7805304db7c356a1d285a47448062d32f2/raw-sql-rules.md",
+  "status": "inspected draft reference; not an execution freeze or released-version claim",
+  "scopeAndSafety": "Scope preserves directly reviewable ordinary SQL and application ownership; Safety Contract prohibits arbitrary runtime SQL syntax.",
+  "default1": "One dedicated authoritative source file per executable application statement.",
+  "default2": "Meaningful named SQL definitions and caller-side named binding; positional representation only when mechanically derived.",
+  "default3": "Directly inspectable current schema.",
+  "default4": "Verification path through the selected real DB/driver; path existence does not mean every change was verified.",
+  "upstreamModified": false
+}

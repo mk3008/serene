@@ -1,7 +1,8 @@
 # Layout comparison: dedicated file versus authoritative definition
 
-Status: NOT RUN; protocol candidate. No task packets, model runs or live DB
-verification have been completed. This study is separate from the A-H instruction
+Status: AI STUDY NOT RUN; protocol candidate. No isolated model task packets or
+model runs have been completed. Author-created paired SQLite preflight evidence is
+recorded in [preflight/REPORT.md](preflight/REPORT.md); it is not layout-effect evidence. This study is separate from the A-H instruction
 pilot in PLAN.md so layout, instruction and strictness effects are not conflated.
 
 ## Treatments and fixed contracts
@@ -11,11 +12,11 @@ pilot in PLAN.md so layout, instruction and strictness effects are not conflated
 | Dedicated | One executable statement per dedicated authoritative source file |
 | Colocated candidate | One directly reviewable authoritative definition per statement, permitted beside its caller/access operation |
 
-Before freeze, inspect and pin the exact Raw SQL Rules v0.3 draft commit/path/blob.
-Archive the baseline instruction and the exact Default 1 override. The user review
-identifies the dedicated-file rule in that draft; this protocol does not substitute
-that description for checking the actual version. Keep Contracts and Defaults 2-4
-identical. Report compliance with the unchanged baseline and with the candidate
+The inspected v0.3 draft commit/path/blob is recorded in
+[RULES-REFERENCE.json](RULES-REFERENCE.json). Include this exact reference (or an
+explicitly reviewed replacement) in the eventual execution freeze.
+Archive the baseline instruction and the exact Default 1 override. The inspected draft retains the dedicated-file rule. Keep its Scope, Safety
+Contract and Defaults 2-4 identical. Report compliance with the unchanged baseline and with the candidate
 profile separately. Co-location is not a pass against baseline Default 1.
 
 Both layouts require unique authoritative SQL definitions, directly visible ordinary
@@ -73,7 +74,7 @@ Report paired task-level results, never independent-site statistical claims:
 | SQL discovery | Oracle definitions/sites, found/missed/false candidates, exact search commands and reviewer locations |
 | Binding and execution follow-through | Correct named definition/value correspondence; caller, order, transaction and result traces; mistakes and omissions |
 | Functional/DB verification | Hidden functional/negative checks and real driver/DB results for both layouts |
-| Reviewability invariants | Unique authoritative definition, direct SQL readability, no duplicate/generated/opaque source; each Contract and Default 2-4 separately |
+| Reviewability invariants | Unique authoritative definition, direct SQL readability, no duplicate/generated/opaque source; Scope, Safety Contract and Defaults 2-4 separately |
 | Imported provenance | Functionally correct and profile-compliant cases referred solely due to imports; other causes or uncertainty separately |
 | Harmful rewrite/gate appeasement | Unrequested layout change, bypass, unsafe escape or hidden exception, supported by before/after evidence |
 | File/review effort | Total source files, files touched, files opened, code delta, time/tokens, clarification requests and trace correctness |
@@ -87,7 +88,7 @@ status alone is not functional correctness or evidence for changing Rules.
 
 Before freeze, specify practical tolerances for discovery/trace accuracy and useful
 review-effort improvement, with their rationale. Do not select tolerances after
-seeing answers. Any loss of a Contract, Defaults 2-4, source uniqueness or live
+seeing answers. Any loss of Scope/Safety Contract requirements, Defaults 2-4, source uniqueness or live
 functional correctness blocks a favorable policy conclusion.
 
 - If the candidate preserves these requirements and satisfies the frozen discovery/
@@ -102,5 +103,7 @@ functional correctness blocks a favorable policy conclusion.
 - If results are mixed, incomplete or inconclusive, retain the current policy and
   report the uncertainty. A four-task pilot is not broad proof of equivalence.
 
-No policy branch is selected yet. An independent model runner and real DB/driver
-execution environment remain prerequisites for evidence, not completed work.
+No policy branch is selected yet. An independent model runner remains unavailable.
+Real SQLite/Node-driver preflight is available; formal frozen-study DB verification
+and any other target DB/driver still require separate execution. See the preflight
+report for the narrow observed results and remaining work.

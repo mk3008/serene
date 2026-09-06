@@ -1,8 +1,6 @@
 # What Serene can and cannot find
 
-Discovery, referral and correct defect diagnosis are separate. Only the first two
-were measured by the historical pre-redesign deterministic evaluation. AI review effectiveness is
-not measured.
+Discovery, referral, correct defect diagnosis, and review cost are separate. The historical pre-redesign deterministic evaluation measured discovery/referral mechanics only. Later AI studies evaluate bounded review workflows and their costs; they do not turn the audit into a blanket whole-program or universal-efficiency guarantee. See the [evaluation map](../evaluation/README.md).
 
 | Source pattern | Inventory behavior | Remaining review |
 | --- | --- | --- |
@@ -31,9 +29,7 @@ not a representative sample, blinded holdout, successful AI review or a statisti
 significance result. Simple grep comparators are included, but humans/AI can follow
 grep leads beyond matched lines; the experiment does not measure that behavior.
 
-Sources, oracle, initial/final raw JSON, exact hashes, case-by-case matrix and follow-
-up AI protocol are in the repository's [evaluation directory](../evaluation/triage/REPORT.md).
-No public AI effectiveness claim is justified yet.
+Later PR #4 studies add conditional AI-review evidence: covered-site triage reduced additional construction-review response cost on small supplied site sets; a later handoff added cost after source had already been read; and pre-exposure filtering could prevent ordinary-body delivery while retaining actionable paths and correct diagnosis in a mediated workflow. Those results have different connection points and must not be pooled into one product score. They do not establish universal token, billing, latency, or automatic-agent adoption benefits. See the [evaluation map](../evaluation/README.md) for the evidence boundaries.
 
 The API redesign keeps alias regressions in the current unit suite, but does not
 relabel or rerun the frozen corpus against a different API. Those aggregate numbers

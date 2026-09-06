@@ -1,0 +1,5 @@
+{
+  "task_id":"cedar",
+  "defects":[{"id":"wrong-business-state-value","mechanism":"setSubscriptionState maps the valid requested state active to database value enabled, while the contract requires active.","impact":"activation requests persist the wrong business state and reads/reporting treat the subscription incorrectly","sites":{"raw":[14],"serene":[16]},"match":{"must_identify":"active-to-enabled value mapping","must_mention":"contract-required active state","reject":"SQL injection or parameterization finding; SQL construction is fixed"}}],
+  "execution_sites":{"raw":[19,22,32,38],"serene":[22,26,37,44],"safe":["all four queries use fixed SQL and bound named values; tenant predicates are present"]}
+}

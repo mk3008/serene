@@ -1,0 +1,250 @@
+[
+  {
+    "path": "AUTHORING.md",
+    "sha256": "2cf0cd25061a8710d5e56fa7bc6962942c0c9d870d333f474d0d0c5c20ce6ec8"
+  },
+  {
+    "path": "PROTOCOL.md",
+    "sha256": "40c4d9139eff692ec22f6b476333d593dd959d7c5d71e43d433ae4ed219c3948"
+  },
+  {
+    "path": "SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "collect.py",
+    "sha256": "cfa6fca108e9990b0a9ab89e04904b53f0448e57a71c996c2e0c56355613750d"
+  },
+  {
+    "path": "freeze.json",
+    "sha256": "2081abfd334edca6d6dfcd0e0cd1435d1e0f96b6cfb3bff122c1cc88ae8ffa57"
+  },
+  {
+    "path": "independent-validation.json",
+    "sha256": "12d0ca672390a4aab58823646e766616549bab4ab22569ad59e131810d1712ca"
+  },
+  {
+    "path": "materialize.py",
+    "sha256": "dea6ac8738395050ed3692bd485d4a55efff042dbe3e1f9f6e07017d72fac159"
+  },
+  {
+    "path": "packets/v01/CONTRACT.md",
+    "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+  },
+  {
+    "path": "packets/v01/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v01/source.mjs",
+    "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+  },
+  {
+    "path": "packets/v02/CONTRACT.md",
+    "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+  },
+  {
+    "path": "packets/v02/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v02/inventory.json",
+    "sha256": "a085c1afc35889b331078a6f23282e3a37e4d402e4de81c4bb0ac7185b946997"
+  },
+  {
+    "path": "packets/v02/source.mjs",
+    "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+  },
+  {
+    "path": "packets/v03/CONTRACT.md",
+    "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+  },
+  {
+    "path": "packets/v03/source.mjs",
+    "sha256": "8c686bd14c445ef3d3c7d5358298d91529eb2713545a5b23d0fa890e28f3d782"
+  },
+  {
+    "path": "packets/v04/CONTRACT.md",
+    "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+  },
+  {
+    "path": "packets/v04/source.mjs",
+    "sha256": "c89b267db901991a7ae78a577855d4b31f9cd4762c820e382cf8a39caca1871e"
+  },
+  {
+    "path": "packets/v05/CONTRACT.md",
+    "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+  },
+  {
+    "path": "packets/v05/source.mjs",
+    "sha256": "f6efb6849867bf3901ea28d5201aa06b3b2094454f15d162e70a884ef6ff7633"
+  },
+  {
+    "path": "packets/v06/CONTRACT.md",
+    "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+  },
+  {
+    "path": "packets/v06/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v06/inventory.json",
+    "sha256": "e92468c0260138aa6c017e77eff615b273735951f6018985243cc2b8a484facb"
+  },
+  {
+    "path": "packets/v06/source.mjs",
+    "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+  },
+  {
+    "path": "packets/v07/CONTRACT.md",
+    "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+  },
+  {
+    "path": "packets/v07/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v07/source.mjs",
+    "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+  },
+  {
+    "path": "packets/v08/CONTRACT.md",
+    "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+  },
+  {
+    "path": "packets/v08/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v08/inventory.json",
+    "sha256": "2d5ce608088dfcf8ff493a9d9e355922081552e287be47ff047871d095970089"
+  },
+  {
+    "path": "packets/v08/source.mjs",
+    "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+  },
+  {
+    "path": "packets/v09/CONTRACT.md",
+    "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+  },
+  {
+    "path": "packets/v09/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v09/inventory.json",
+    "sha256": "00862d227a5084ffd83523fe39afaa25bd3a184599a83e37df23b9aa99327e50"
+  },
+  {
+    "path": "packets/v09/source.mjs",
+    "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+  },
+  {
+    "path": "packets/v10/CONTRACT.md",
+    "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+  },
+  {
+    "path": "packets/v10/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v10/source.mjs",
+    "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+  },
+  {
+    "path": "packets/v11/CONTRACT.md",
+    "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+  },
+  {
+    "path": "packets/v11/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v11/inventory.json",
+    "sha256": "e1c2ad42c5fc9adfa04fb1fd7795c60dd04ebeb3b970d35c409283c8157598a4"
+  },
+  {
+    "path": "packets/v11/source.mjs",
+    "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+  },
+  {
+    "path": "packets/v12/CONTRACT.md",
+    "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+  },
+  {
+    "path": "packets/v12/SUPPORT.md",
+    "sha256": "7f8eaa34c05aac8423345a962ceab16f5670a1cbde6ab550c14a5025a90d5620"
+  },
+  {
+    "path": "packets/v12/inventory.json",
+    "sha256": "711cd31ff8bcbcba659e6ce23e7dd1b5bcbaaf866cb99957d819a5549b49f64c"
+  },
+  {
+    "path": "packets/v12/source.mjs",
+    "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+  },
+  {
+    "path": "pairing-check.mjs",
+    "sha256": "adfc05a859240a22abc284b388e88068c55e9d581e9e7c3b6c545b2b198e7024"
+  },
+  {
+    "path": "pairing-verification.md",
+    "sha256": "db38280b41c04b238941b152f494e2238887f5396a33ce82b2e34db69747e390"
+  },
+  {
+    "path": "participant-prompt.txt",
+    "sha256": "21ebac0b34fbc0e5d131dc758920fa299a001543e814f853b4f5bdb357f7f53f"
+  },
+  {
+    "path": "tasks/birch/evaluator/gold.json",
+    "sha256": "e08e5e0d8e6130e23591d8423e1ff62cfacc32d002ae9a78506712b7f7fd6f22"
+  },
+  {
+    "path": "tasks/birch/public/CONTRACT.md",
+    "sha256": "f4da5e2c1d9da6a5ba5186d53bad73488bd4a419569ec29e4afe0fb629dcc1a6"
+  },
+  {
+    "path": "tasks/birch/raw/source.mjs",
+    "sha256": "8c686bd14c445ef3d3c7d5358298d91529eb2713545a5b23d0fa890e28f3d782"
+  },
+  {
+    "path": "tasks/birch/serene/source.mjs",
+    "sha256": "81980f01a3539508b48ac78c4b460dfdfc569ff7fd2b9b42ddf55d3d7cdd5597"
+  },
+  {
+    "path": "tasks/cedar/evaluator/gold.json",
+    "sha256": "b820fc52ca092d7cc8bd1ce6d34e178b8ea9b0ac8991c1d2dd0b3cae139c5cb2"
+  },
+  {
+    "path": "tasks/cedar/public/CONTRACT.md",
+    "sha256": "cb6fcf64d5ef9ffca041c67771f3b055175368ab1e53e16c4951364c2798e1af"
+  },
+  {
+    "path": "tasks/cedar/raw/source.mjs",
+    "sha256": "c89b267db901991a7ae78a577855d4b31f9cd4762c820e382cf8a39caca1871e"
+  },
+  {
+    "path": "tasks/cedar/serene/source.mjs",
+    "sha256": "db254054477a002c759ab89584fc92285af75d7aa6588c291d91ebb8a2d8ade3"
+  },
+  {
+    "path": "tasks/maple/evaluator/gold.json",
+    "sha256": "f911e6b7d8bd1dcffaeea5010e8951f40acdff8c1f8dbae59f6b03012c538342"
+  },
+  {
+    "path": "tasks/maple/public/CONTRACT.md",
+    "sha256": "306fcda8b1e3e83a8aac719b2bc43521f90d96601369eda87ba05ea59e79a0a4"
+  },
+  {
+    "path": "tasks/maple/raw/source.mjs",
+    "sha256": "f6efb6849867bf3901ea28d5201aa06b3b2094454f15d162e70a884ef6ff7633"
+  },
+  {
+    "path": "tasks/maple/serene/source.mjs",
+    "sha256": "f64b587e8ac8d6620ecb74d338a26da8aaf5592e3ab83089af4a4c503834f996"
+  },
+  {
+    "path": "validation.json",
+    "sha256": "ed9d288484c3dbda21f97e3743000ca831c0c91ad6e72d08ce1a7fd787055d83"
+  }
+]

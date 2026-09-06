@@ -1,0 +1,64 @@
+{
+  "task_id": "birch",
+  "defects": [
+    {
+      "id": "tenant-scope-missing",
+      "mechanism": "listInvoices authenticates a tenant administrator but its invoice SELECT omits the required tenant_id predicate and value, allowing rows from other tenants into the result.",
+      "impact": "cross-tenant invoice disclosure",
+      "sites": {
+        "raw": [
+          17,
+          19,
+          21
+        ],
+        "serene": [
+          19,
+          21,
+          23
+        ]
+      },
+      "match": {
+        "must_identify": "missing tenant ownership condition in listInvoices query",
+        "must_mention": "cross-tenant access or disclosure",
+        "reject": "generic authorization concern without naming the absent tenant predicate"
+      }
+    },
+    {
+      "id": "runtime-sql-concat",
+      "mechanism": "findInvoice concatenates untrusted invoiceId into SQL text, allowing malformed input to create SQLite syntax errors and potentially alter the predicate.",
+      "impact": "SQL injection and denial of service",
+      "sites": {
+        "raw": [
+          28,
+          32
+        ],
+        "serene": [
+          30,
+          34
+        ]
+      },
+      "match": {
+        "must_identify": "invoiceId concatenation into SQL",
+        "must_mention": "untrusted input and syntax/injection consequence",
+        "reject": "calling all dynamic SQL unsafe without locating this concatenation"
+      }
+    }
+  ],
+  "execution_sites": {
+    "raw": [
+      21,
+      33,
+      41
+    ],
+    "serene": [
+      23,
+      35,
+      44
+    ],
+    "safe": [
+      "listInvoices uses a finite own-key sort selection and binds status/deleted values; the intentional missing tenant scope remains",
+      "findInvoice includes tenant_id binding but retains the deliberate invoiceId concatenation",
+      "invoiceSummary uses fixed SQL with tenant and deleted bindings"
+    ]
+  }
+}

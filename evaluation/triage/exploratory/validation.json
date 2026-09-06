@@ -1,0 +1,36 @@
+{
+  "mock_pairing": {
+    "cases": 14,
+    "exit": 0,
+    "stdout": "pairing-check: all exercised branches matched\n",
+    "stderr": "",
+    "live_database": false
+  },
+  "author_requested_model": "gpt-5.6-luna",
+  "author_requested_effort": "medium",
+  "independent_validator_requested_model": "gpt-5.6-terra",
+  "independent_validator_requested_effort": "medium",
+  "node": "v24.19.0",
+  "package_files": [
+    {
+      "path": "package.json",
+      "sha256": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7"
+    },
+    {
+      "path": "dist/index.js",
+      "sha256": "8d1024a697547749053606dc6a13fc326297d82d060d8b377ed6567b251f36b4"
+    },
+    {
+      "path": "tooling/cli.mjs",
+      "sha256": "cb31f61a0a0a03a732371d85c534f31f68edc002c669288e384f6f7b68c48e6d"
+    },
+    {
+      "path": "tooling/audit.mjs",
+      "sha256": "3568b38997c80cceb1cce49e24d2d1d16072e4ac77602f90a5778abda75d6555"
+    },
+    {
+      "path": "tooling/files.mjs",
+      "sha256": "436c1d71f14b57a4799b37a9ec67da02cc5115a6b870e64c4d3142d62720c468"
+    }
+  ]
+}

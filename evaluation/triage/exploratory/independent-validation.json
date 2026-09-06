@@ -1,0 +1,33 @@
+{
+  "pass": true,
+  "blockers": [],
+  "validated": {
+    "birch": {
+      "pairing": "raw and serene produced identical captured SQL/params across the four exercised calls.",
+      "gold": [
+        "Correctly identifies listInvoices omitting tenant_id: raw SQL lines 17-21; serene lines 19-23. This violates the contract's authenticated-tenant-only result requirement and can disclose cross-tenant invoices.",
+        "Correctly identifies untrusted invoiceId concatenated into findInvoice SQL: raw lines 28/32; serene lines 30/34. tenantId remains bound, but invoiceId is not, so the stated SQLite syntax/injection risk is concrete."
+      ],
+      "controls": "Finite own-key sort map, status/deleted bindings, and tenant-scoped invoiceSummary are safe for the stated contract."
+    },
+    "cedar": {
+      "pairing": "raw and serene produced identical captured SQL/params across the five exercised calls (timestamp normalized).",
+      "gold": "Correctly identifies active -> enabled mapping: raw line 14; serene line 16. The contract requires the successful update to persist the requested active state, so the impact is a concrete business-state error.",
+      "controls": "All queries use fixed SQL with named values; update/read/history/count retain tenant predicates."
+    },
+    "maple": {
+      "pairing": "raw and serene produced identical captured SQL/params across the five exercised calls.",
+      "gold": "No intentional defect is supported. Every project read has tenant_id, ids and archived values are bound, and ordering is selected from a finite source-defined map.",
+      "controls": "Unknown order falls back to created_at DESC as required."
+    }
+  },
+  "evidence": {
+    "command": "node /tmp/serene-review-author/pairing-check.mjs",
+    "result": "pairing-check: all exercised branches matched",
+    "scope": "Reviewed each public contract, raw/serene source, evaluator gold, and pairing-check.mjs; did not modify sources or gold."
+  },
+  "limitations": [
+    "Pairing is a mock query-capture check of the 14 listed calls; it does not execute SQLite or establish production database evidence.",
+    "Validation is limited to stated contracts and supplied files; no additional requirements were inferred."
+  ]
+}

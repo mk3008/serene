@@ -1,0 +1,180 @@
+{
+  "files": [
+    "source.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "source.mjs",
+      "line": 4,
+      "column": 9,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 5,
+      "column": 11,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 12,
+      "column": 18,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 14,
+      "column": 21,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 15,
+      "column": 19,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 16,
+      "column": 12,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 18,
+      "column": 16,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 20,
+      "column": 19,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 21,
+      "column": 17,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 22,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "source.mjs",
+      "line": 29,
+      "column": 13,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 31,
+      "column": 17,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 32,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 37,
+      "column": 13,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 39,
+      "column": 17,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 40,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 45,
+      "column": 13,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 46,
+      "column": 17,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "source.mjs",
+      "line": 47,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

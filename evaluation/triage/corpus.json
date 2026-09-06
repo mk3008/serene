@@ -1,0 +1,408 @@
+[
+  {
+    "id": "S01",
+    "group": "screened",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres`SELECT :id`, {id});\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "S02",
+    "group": "screened",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(mysql`SELECT :id,:id`, {id});\n/* sink */ db.execute(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "S03",
+    "group": "screened",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(mssql`SELECT @id`, {id});\nq.names.forEach((n,i)=>request.input(n,q.values[i]));\n/* sink */ request.query(q.text);",
+    "sinkLine": 4,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "S04",
+    "group": "screened",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst s=orderBy(postgres`SELECT id FROM users`,{id:sort`id DESC`},key); const q=bind(s);\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "S05",
+    "group": "screened",
+    "source": "import {postgres as p,bind as b} from \"@mk3008/serene\"; const q=b(p`SELECT 1`); const alias=q;\n/* sink */ db.query(alias.text,alias.values);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "S06",
+    "group": "screened",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres`SELECT :id`,{id});\n/* sink */ db[\"query\"](q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "screened"
+  },
+  {
+    "id": "R01",
+    "group": "raw-safe",
+    "source": "/* sink */ db.query(\"SELECT id FROM users WHERE id=$1\", [input]);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "raw-safe"
+  },
+  {
+    "id": "R02",
+    "group": "raw-safe",
+    "source": "const text=\"SELECT id FROM users WHERE id=$1\";\n/* sink */ db.query(text,[input]);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "raw-safe"
+  },
+  {
+    "id": "R03",
+    "group": "raw-safe",
+    "source": "/* sink */ db.execute(\"SELECT id FROM users WHERE id=?\", [input]);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "raw-safe"
+  },
+  {
+    "id": "R04",
+    "group": "raw-safe",
+    "source": "const order = key === \"name\" ? \"name ASC\" : \"id ASC\";\n/* sink */ db.query(\"SELECT id FROM users ORDER BY \"+order);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "Finite raw concatenation: construction is constrained, but policy violation is not a vulnerability."
+  },
+  {
+    "id": "D01",
+    "group": "direct-risk",
+    "source": "/* sink */ db.query(\"SELECT id FROM users WHERE name='\"+input+\"'\");",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "direct-risk"
+  },
+  {
+    "id": "D02",
+    "group": "direct-risk",
+    "source": "/* sink */ db.query(`SELECT id FROM users ORDER BY ${input}`);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "direct-risk"
+  },
+  {
+    "id": "D03",
+    "group": "direct-risk",
+    "source": "const text=\"SELECT id FROM users ORDER BY \".concat(input);\n/* sink */ db.query(text);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "direct-risk"
+  },
+  {
+    "id": "D04",
+    "group": "direct-risk",
+    "source": "const text=[\"SELECT id FROM users ORDER BY\",input].join(\" \");\n/* sink */ db.execute(text);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "direct-risk"
+  },
+  {
+    "id": "D05",
+    "group": "direct-risk",
+    "source": "let text=\"SELECT id FROM users\"; text+=input;\n/* sink */ db.query(text);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Mutable construction remains review-required without whole-program tracing."
+  },
+  {
+    "id": "D06",
+    "group": "direct-risk",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres`SELECT id FROM users ORDER BY ${input}`);\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": false,
+    "oracle": "Serene runtime rejects this path: construction-policy misuse, not a successfully executing SQL injection."
+  },
+  {
+    "id": "D07",
+    "group": "direct-risk",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres(fabricated));\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Fabricated frozen template can admit runtime SQL; source must refer it."
+  },
+  {
+    "id": "A01",
+    "group": "alias",
+    "source": "const run=db.query;\n/* sink */ run(\"SELECT id FROM users ORDER BY \"+input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Assume the driver method is callable when detached; alias must not disappear."
+  },
+  {
+    "id": "A02",
+    "group": "alias",
+    "source": "const run=db.query.bind(db);\n/* sink */ run(\"SELECT id FROM users ORDER BY \"+input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "alias"
+  },
+  {
+    "id": "A03",
+    "group": "alias",
+    "source": "const {query:run}=db;\n/* sink */ run(\"SELECT id FROM users ORDER BY \"+input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "alias"
+  },
+  {
+    "id": "A04",
+    "group": "alias",
+    "source": "const run=db[\"execute\"]; const again=run;\n/* sink */ again(\"SELECT id FROM users ORDER BY \"+input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "alias"
+  },
+  {
+    "id": "A05",
+    "group": "alias",
+    "source": "const run=db.query.bind(db,\"SELECT id FROM users ORDER BY \"+input);\n/* sink */ run();",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Prebound SQL is not the invocation first argument. Never infer ordinary from later arguments."
+  },
+  {
+    "id": "A06",
+    "group": "alias",
+    "source": "import {runQuery as run} from \"./db.js\";\n/* sink */ run(input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "External wrapper unresolved without configuration or cross-file analysis."
+  },
+  {
+    "id": "A07",
+    "group": "alias",
+    "source": "let run=db.query;\n/* sink */ run(input);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Mutable callable aliases deliberately remain untraced."
+  },
+  {
+    "id": "C01",
+    "group": "computed",
+    "source": "/* sink */ db[method](input);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "computed"
+  },
+  {
+    "id": "C02",
+    "group": "wrapper",
+    "source": "/* sink */ runSql(input);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "wrapper"
+  },
+  {
+    "id": "C03",
+    "group": "configured-wrapper",
+    "source": "/* sink */ runSql(input);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "configured-wrapper",
+    "sinkNames": [
+      "query",
+      "execute",
+      "unsafe",
+      "runSql"
+    ]
+  },
+  {
+    "id": "C04",
+    "group": "cross-file",
+    "source": "import {text} from \"./query.js\";\n/* sink */ db.query(text);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "Unknown imported text must be reviewed; no proof of defect from this file alone."
+  },
+  {
+    "id": "C05",
+    "group": "multiline",
+    "source": "/* sink */ db.query\n(input);",
+    "sinkLine": 1,
+    "sqlSink": true,
+    "constructionConcern": true,
+    "defect": true,
+    "oracle": "multiline"
+  },
+  {
+    "id": "C06",
+    "group": "namespace",
+    "source": "import * as s from \"@mk3008/serene\"; const q=s.bind(s.postgres`SELECT :id`,{id});\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 2,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "Safe runtime, namespace provenance deliberately unresolved by audit."
+  },
+  {
+    "id": "L01",
+    "group": "outside-construction",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres`SELECT id FROM users WHERE id=:id`,{id});\n/* sink */ db.query(q.text,[differentId]);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": true,
+    "oracle": "Wrong values at execution: ordinary construction does not prove correct pairing."
+  },
+  {
+    "id": "L02",
+    "group": "outside-construction",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(postgres`SELECT id FROM users`);\n/* sink */ db.query(q.text,q.values);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": true,
+    "oracle": "Fixture assumes tenant filtering required. Business authorization defect is outside construction triage."
+  },
+  {
+    "id": "L03",
+    "group": "outside-construction",
+    "source": "import { postgres, mysql, mssql, bind, sort, orderBy } from \"@mk3008/serene\";\nconst q=bind(mssql`EXEC(@statement)`,{statement:input}); request.input(\"statement\",q.values[0]);\n/* sink */ request.query(q.text);",
+    "sinkLine": 3,
+    "sqlSink": true,
+    "constructionConcern": false,
+    "defect": true,
+    "oracle": "Database-side execution of a bound SQL string: second-order injection not screened."
+  },
+  {
+    "id": "N01",
+    "group": "non-sql",
+    "source": "/* sink */ search.query(input);",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N02",
+    "group": "non-sql",
+    "source": "/* sink */ command.execute(input);",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N03",
+    "group": "non-sql",
+    "source": "/* sink */ cache[method](input);",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N04",
+    "group": "non-sql",
+    "source": "/* sink */ const help=\"db.query(input) SELECT example\";",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N05",
+    "group": "non-sql",
+    "source": "/* sink */ // db.query(input) SELECT example",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N06",
+    "group": "non-sql",
+    "source": "const run=search.query.bind(search);\n/* sink */ run(input);",
+    "sinkLine": 2,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  },
+  {
+    "id": "N07",
+    "group": "non-sql",
+    "source": "/* sink */ format(input);",
+    "sinkLine": 1,
+    "sqlSink": false,
+    "constructionConcern": false,
+    "defect": false,
+    "oracle": "non-sql"
+  }
+]

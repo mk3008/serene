@@ -1,0 +1,133 @@
+import ts from 'typescript';
+import * as serene from '../dist/index.js';
+
+const tags = new Set(['postgres', 'mysql', 'mssql', 'sort']);
+const api = new Set([...tags, 'bind', 'orderBy', 'review']);
+const result = (level, code, detail) => ({ level, code, detail });
+const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL through Serene; review SQL meaning and binding use separately.');
+const unknown = () => result('review-required', 'UNRESOLVED', 'SQL provenance cannot be established in this file.');
+const violation = (code, detail) => result('violation', code, detail);
+
+/** Conservative, file-local source inventory. No type assertion establishes trust. */
+export function auditSource(source, filename = 'input.ts', options = {}) {
+  const sourceFile = ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true,
+    /\.[cm]?jsx?$/.test(filename) ? ts.ScriptKind.JS : filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
+  const host = {
+    getSourceFile: name => name === filename ? sourceFile : undefined,
+    getDefaultLibFileName: () => '', writeFile() {}, getCurrentDirectory: () => '',
+    getDirectories: () => [], fileExists: name => name === filename,
+    readFile: name => name === filename ? source : undefined,
+    getCanonicalFileName: name => name, useCaseSensitiveFileNames: () => true, getNewLine: () => '\n',
+  };
+  const program = ts.createProgram([filename], { noLib: true, noResolve: true, allowJs: true }, host);
+  const checker = program.getTypeChecker();
+  const rows = [];
+  const sinkNames = new Set(options.sinkNames ?? ['query', 'execute', 'unsafe']);
+  function unparen(node) {
+    while (node && ts.isParenthesizedExpression(node)) node = node.expression;
+    return node;
+  }
+  function declaration(node) {
+    return ts.isIdentifier(node) ? checker.getSymbolAtLocation(node)?.declarations?.[0] : undefined;
+  }
+  function initializer(node) {
+    const decl = declaration(node);
+    return decl && ts.isVariableDeclaration(decl) && ts.isIdentifier(decl.name) &&
+      (decl.parent.flags & ts.NodeFlags.Const) ? decl.initializer : undefined;
+  }
+  function apiName(node, seen = new Set()) {
+    node = unparen(node);
+    if (!node || seen.has(node)) return undefined;
+    seen.add(node);
+    const decl = declaration(node);
+    if (decl && ts.isImportSpecifier(decl) && !decl.isTypeOnly && !decl.parent.parent.isTypeOnly) {
+      const imported = (decl.propertyName ?? decl.name).text;
+      if (decl.parent.parent.parent.moduleSpecifier.text === '@mk3008/serene' && api.has(imported)) return imported;
+    }
+    const init = initializer(node);
+    return init ? apiName(init, seen) : undefined;
+  }
+  function resolve(node, seen = new Set()) {
+    node = unparen(node);
+    if (!node || seen.has(node)) return node;
+    seen.add(node);
+    const init = initializer(node);
+    return init ? resolve(init, seen) : node;
+  }
+  function classify(node, kind = 'sql', seen = new Set()) {
+    node = resolve(node);
+    if (!node || seen.has(node)) return unknown();
+    seen = new Set(seen).add(node);
+    if (ts.isTaggedTemplateExpression(node)) {
+      const name = apiName(node.tag);
+      if (!tags.has(name)) return unknown();
+      if (!ts.isNoSubstitutionTemplateLiteral(node.template)) {
+        return violation('INTERPOLATION', 'SQL interpolation is forbidden; use named parameters.');
+      }
+      if ((kind === 'sort') !== (name === 'sort') || !['sql', 'sort'].includes(kind)) return unknown();
+      try {
+        const raw = source.slice(node.template.getStart(sourceFile) + 1, node.template.end - 1);
+        const strings = Object.assign([node.template.text], { raw: Object.freeze([raw]) });
+        serene[name](Object.freeze(strings));
+      } catch (error) { return violation(error.code ?? 'SQL_BOUNDARY', error.message); }
+      return ordinary();
+    }
+    if (ts.isCallExpression(node)) {
+      const name = apiName(node.expression);
+      if (tags.has(name)) return violation('DIRECT_TAG_CALL', 'Serene tags must be literal template syntax; fabricated templates are not trusted.');
+      if (name === 'bind' && kind === 'bound') return classify(node.arguments[0], 'sql', seen);
+      if (name === 'orderBy' && kind === 'sql') {
+        const base = classify(node.arguments[0], 'sql', seen);
+        if (base.level !== 'ordinary') return base;
+        // Require the finite set at the call site: no mutable map aliases, getters or spreads.
+        const choices = node.arguments[1];
+        if (!choices || !ts.isObjectLiteralExpression(choices) || !choices.properties.length) return unknown();
+        for (const property of choices.properties) {
+          if (!ts.isPropertyAssignment(property) || ts.isComputedPropertyName(property.name)) return unknown();
+          const choice = classify(property.initializer, 'sort', seen);
+          if (choice.level !== 'ordinary') return choice;
+        }
+        return ordinary();
+      }
+      if (ts.isPropertyAccessExpression(node.expression) && ['concat', 'join', 'replace', 'replaceAll'].includes(node.expression.name.text)) {
+        return violation('STRING_CONSTRUCTION', 'String construction at a SQL boundary requires redesign or explicit review outside Serene.');
+      }
+    }
+    if (kind === 'text' && ts.isPropertyAccessExpression(node) && node.name.text === 'text') {
+      return classify(node.expression, 'bound', seen);
+    }
+    if (ts.isBinaryExpression(node) && node.operatorToken.kind === ts.SyntaxKind.PlusToken || ts.isTemplateExpression(node)) {
+      return violation('STRING_CONSTRUCTION', 'Concatenation/interpolation at a SQL boundary.');
+    }
+    return unknown();
+  }
+  function emit(node, finding, boundary) {
+    const { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
+    rows.push({ file: filename, line: line + 1, column: character + 1, boundary, ...finding });
+  }
+  for (const diagnostic of sourceFile.parseDiagnostics) {
+    const location = sourceFile.getLineAndCharacterOfPosition(diagnostic.start ?? 0);
+    rows.push({ file: filename, line: location.line + 1, column: location.character + 1,
+      boundary: 'source', ...violation('PARSE_ERROR', ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')) });
+  }
+  function visit(node) {
+    if (ts.isTaggedTemplateExpression(node) && tags.has(apiName(node.tag))) {
+      emit(node, classify(node, apiName(node.tag) === 'sort' ? 'sort' : 'sql'), 'serene');
+    }
+    if (ts.isCallExpression(node)) {
+      const name = apiName(node.expression);
+      if (name && name !== 'review') emit(node, classify(node, name === 'bind' ? 'bound' : 'sql'), 'serene');
+      else {
+        const expr = node.expression;
+        const sink = ts.isPropertyAccessExpression(expr) ? expr.name.text :
+          ts.isElementAccessExpression(expr) && ts.isStringLiteral(expr.argumentExpression) ? expr.argumentExpression.text :
+          ts.isIdentifier(expr) ? expr.text : undefined;
+        if (sinkNames.has(sink)) emit(node, classify(node.arguments[0], 'text'), 'driver-candidate');
+        else if (ts.isElementAccessExpression(expr)) emit(node, unknown(), 'computed-call');
+      }
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(sourceFile);
+  return rows;
+}

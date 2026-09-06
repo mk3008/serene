@@ -6,14 +6,14 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { auditSource } from '../tooling/audit.mjs';
 
-const imports = 'import { postgres, mysql, bind, sort, orderBy } from "@mk3008/serene";\n';
+const imports = 'import { sql as literalSql, bind, sort, orderBy } from "@mk3008/serene";\n';
 const sink = source => auditSource(imports + source).filter(f => f.boundary === 'driver-candidate');
 test('literal + binding + local const aliases is ordinary at native driver', () => {
-  const rows = sink('const sql = postgres`SELECT :id`; const q = bind(sql, {id}); db.query(q.text, q.values);');
+  const rows = sink('const sql = literalSql`SELECT :id`; const q = bind(sql, {id}); db.query(q.text, q.values);');
   assert.equal(rows.length, 1); assert.equal(rows[0].level, 'ordinary');
 });
 test('finite inline whitelist is ordinary', () => {
-  const rows = sink('const sql = orderBy(postgres`SELECT id FROM users`, { id: sort`id ASC`, name: sort`name DESC` }, input); const q = bind(sql); db.query(q.text, q.values);');
+  const rows = sink('const sql = orderBy(literalSql`SELECT id FROM users`, { id: sort`id ASC`, name: sort`name DESC` }, input); const q = bind(sql); db.query(q.text, q.values);');
   assert.equal(rows[0].level, 'ordinary');
 });
 for (const [label, source, expected] of [
@@ -23,36 +23,36 @@ for (const [label, source, expected] of [
   ['template', 'db.query(`SELECT ${input}`)', 'violation'],
   ['join', 'db.query(parts.join(" "))', 'violation'],
   ['replace', 'db.query(text.replace("SORT", input))', 'violation'],
-  ['Serene interpolation', 'const q = bind(postgres`SELECT ${input}`); db.query(q.text)', 'violation'],
-  ['forged tag', 'const q = bind(postgres(frozenFake)); db.query(q.text)', 'violation'],
+  ['Serene interpolation', 'const q = bind(literalSql`SELECT ${input}`); db.query(q.text)', 'violation'],
+  ['forged tag', 'const q = bind(literalSql(frozenFake)); db.query(q.text)', 'violation'],
   ['cast forgery', 'const q = bind(input as Sql); db.query(q.text)', 'review-required'],
   ['bound forgery', 'const q = input as BoundSql; db.query(q.text)', 'review-required'],
-  ['mutable alias', 'let sql = postgres`SELECT 1`; const q = bind(sql); db.query(q.text)', 'review-required'],
-  ['mutable choices', 'const choices = {id: sort`id`}; const q = bind(orderBy(postgres`SELECT 1`, choices, key)); db.query(q.text)', 'review-required'],
-  ['spread choices', 'const q = bind(orderBy(postgres`SELECT 1`, {...input}, key)); db.query(q.text)', 'review-required'],
+  ['mutable alias', 'let sql = literalSql`SELECT 1`; const q = bind(sql); db.query(q.text)', 'review-required'],
+  ['mutable choices', 'const choices = {id: sort`id`}; const q = bind(orderBy(literalSql`SELECT 1`, choices, key)); db.query(q.text)', 'review-required'],
+  ['spread choices', 'const q = bind(orderBy(literalSql`SELECT 1`, {...input}, key)); db.query(q.text)', 'review-required'],
   ['unknown function', 'const q = loadQuery(); db.query(q.text)', 'review-required'],
-  ['shadowed import', 'function f(postgres) { const q = bind(postgres`SELECT 1`); db.query(q.text); }', 'review-required'],
-  ['shadowed bind', 'function f(bind) { const q = bind(postgres`SELECT 1`); db.query(q.text); }', 'review-required'],
-  ['copied bound', 'const q = {...bind(postgres`SELECT 1`)}; db.query(q.text)', 'review-required'],
+  ['shadowed import', 'function f(literalSql) { const q = bind(literalSql`SELECT 1`); db.query(q.text); }', 'review-required'],
+  ['shadowed bind', 'function f(bind) { const q = bind(literalSql`SELECT 1`); db.query(q.text); }', 'review-required'],
+  ['copied bound', 'const q = {...bind(literalSql`SELECT 1`)}; db.query(q.text)', 'review-required'],
   ['cycle', 'const a = b, b = a; db.query(a)', 'review-required'],
 ]) {
   test(`audit ${label}`, () => assert.equal(sink(source)[0].level, expected));
 }
 test('import aliases work but same spelling from another library does not establish trust', () => {
-  let rows = auditSource('import {postgres as pg, bind as b} from "@mk3008/serene"; const q=b(pg`SELECT 1`); db.query(q.text)');
+  let rows = auditSource('import {sql as pg, bind as b} from "@mk3008/serene"; const q=b(pg`SELECT 1`); db.query(q.text)');
   assert.equal(rows.find(f => f.boundary === 'driver-candidate').level, 'ordinary');
-  rows = auditSource('import {postgres, bind} from "other"; const q=bind(postgres`SELECT 1`); db.query(q.text)');
+  rows = auditSource('import {sql as literalSql, bind} from "other"; const q=bind(literalSql`SELECT 1`); db.query(q.text)');
   assert.equal(rows.find(f => f.boundary === 'driver-candidate').level, 'review-required');
 });
 test('direct tag calls and lexical errors have stable code and location', () => {
-  assert.equal(auditSource(imports + 'postgres(fake)')[0].code, 'DIRECT_TAG_CALL');
-  const rows = auditSource(imports + 'postgres`SELECT $1`');
+  assert.equal(auditSource(imports + 'literalSql(fake)')[0].code, 'DIRECT_TAG_CALL');
+  const rows = auditSource(imports + 'literalSql`SELECT $1`');
   assert.equal(rows[0].code, 'MIXED_PARAMETERS');
   assert.equal(rows[0].line, 2); assert.equal(rows[0].column, 1);
 });
 test('cooked template escape semantics match runtime', () => {
-  const rows = auditSource(imports + 'mysql`SELECT \\`id\\`, :id`');
-  assert.equal(rows[0].level, 'ordinary');
+  const rows = auditSource(imports + 'literalSql`SELECT \\`id\\`, :id`');
+  assert.equal(rows[0].code, 'UNSUPPORTED_LEXICAL');
 });
 test('parse failures do not disappear as a clean inventory', () => {
   assert.ok(auditSource('const = ;').some(f => f.code === 'PARSE_ERROR'));
@@ -97,7 +97,7 @@ test('prebound SQL and otherwise screened aliases never gain ordinary provenance
     'const run = db.query;',
     'const {query: run} = db;',
   ]) {
-    const rows = sink(setup + '\nconst q = bind(postgres`SELECT 1`); run(q.text, q.values);');
+    const rows = sink(setup + '\nconst q = bind(literalSql`SELECT 1`); run(q.text, q.values);');
     assert.equal(rows.length, 1, setup);
     assert.equal(rows[0].level, 'review-required', setup);
     assert.equal(rows[0].code, 'SINK_ALIAS', setup);
@@ -125,9 +125,26 @@ test('aliases named like sinks do not hide prebound runtime SQL behind ordinary 
     'const query = opaqueWrapper;',
     'let query = db.query.bind(db, input);',
   ]) {
-    const rows = sink(setup + '\nconst q = bind(postgres`SELECT 1`); query(q.text);');
+    const rows = sink(setup + '\nconst q = bind(literalSql`SELECT 1`); query(q.text);');
     assert.equal(rows.length, 1);
     assert.equal(rows[0].level, 'review-required');
     assert.equal(rows[0].code, 'SINK_ALIAS');
   }
+});
+
+test('all output styles and ordered whitelist selection preserve source provenance', () => {
+  for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+    const rows = sink('const stmt = orderBy(literalSql`SELECT id FROM users WHERE id = :id`, { id: sort`id ASC`, name: sort`name DESC` }, input.keys); const q = bind(stmt, {id}, "' + style + '"); db.query(q.text, q.values);');
+    assert.equal(rows[0].level, 'ordinary');
+  }
+});
+test('legacy tags and arbitrary sourceText are not silently trusted as new API', () => {
+  const rows = auditSource('import {postgres, bind} from "@mk3008/serene"; const q = bind(postgres`SELECT 1`); db.query(q.text);');
+  assert.equal(rows.find(f => f.boundary === 'driver-candidate').level, 'review-required');
+  assert.equal(sink('db.query(literalSql`SELECT 1`.sourceText)')[0].level, 'review-required');
+  assert.equal(sink('const q = bind(literalSql`SELECT 1`); db.query(q.sourceText)')[0].level, 'review-required');
+});
+test('unsupported lexical forms remain violations rather than gaining ordinary through binding', () => {
+  const rows = sink('const q = bind(literalSql`SELECT ARRAY[:id]`, {id}, "indexed"); db.query(q.text)');
+  assert.equal(rows[0].code, 'UNSUPPORTED_LEXICAL');
 });

@@ -1,5 +1,18 @@
 # Serene review triage: evidence and limits
 
+Historical evaluation of the pre-redesign API. Its product checkpoint is
+`b93e3d4a92df353cfdbec6154c0144739f6eb2e6`. The later `sql` API redesign changes runtime
+behavior; the frozen corpus, raw results and guard against runtime changes are
+retained unchanged. These counts are not results for the redesigned API.
+For reproduction, first create a detached worktree at that checkpoint:
+
+```sh
+git worktree add --detach ../serene-triage-history b93e3d4a92df353cfdbec6154c0144739f6eb2e6
+cd ../serene-triage-history
+```
+
+Run the commands below inside that worktree, not the redesigned branch.
+
 **Result: a reproducible discovery improvement, not evidence of improved AI defect
 recall.** This PR closes five local execution-alias blind spots in the frozen
 challenge set and separately fixes a potential ordinary-provenance misclassification.

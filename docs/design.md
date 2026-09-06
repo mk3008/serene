@@ -15,7 +15,7 @@ binder. The audit reuses the TypeScript parser/binder rather than inventing a JS
 parser or depending on a full lint framework. TypeScript is the sole dev dependency
 and an optional peer for tooling, never loaded by the runtime entry.
 
-SQL tags have no interpolated values or fragments. Named values are explicit at
+The `sql` tag has no interpolated values or fragments. Named values are explicit at
 binding. ORDER BY is the sole composition operation and accepts a small sort grammar.
 No AST, generated artifacts, arbitrary renderer strings, dialect abstraction, unsafe
 constructor, plugin framework or driver execution adapter is introduced.
@@ -24,6 +24,20 @@ Static and runtime checks complement one another. JavaScript cannot authenticate
 template literal at runtime; TypeScript brands alone can be asserted away. Runtime
 object identity plus conservative source provenance avoids claiming either mechanism
 solves the complete problem. Unknown source flow is additional review, not ordinary.
+
+## Current authoring and execution boundary
+
+Author `sql` with meaningful `:name` markers and preserve `sourceText`. `bind` chooses
+one closed output contract (`named`, `indexed`, `anonymous`, `at-named`), never a
+DBMS. SQL remains application-owned and visible to external debugging tools. The
+small lexer still distinguishes quotes/comments to avoid corrupting parameters;
+removing all lexical knowledge would contradict safe lowering. Unsupported lexical
+forms fail rather than guessing a database. This trades old dialect-specific
+coverage for a smaller explicit contract, not universal database compatibility.
+
+Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
+structural choices application-owned without enumerating all complete ORDER BY
+permutations. Only the whitelist keys and their order are runtime-controlled.
 
 ## Ashiba inputs
 
@@ -40,10 +54,10 @@ Ashiba was read only. Its API/archive status is not a dependency of this design.
 
 Serene independently reimplements/adapts those algorithms and regression scenarios;
 no package import, fork, compatibility layer or copied generated metadata is used.
-The original MIT copyright is retained. Changes include explicit dialect lexing,
+The original MIT copyright is retained. The initial implementation added explicit dialect lexing,
 closed lexical-boundary errors, conservative quote restrictions, strict undefined/
-accessor rejection, runtime provenance, source audit and finite ordering. PostgreSQL
-E-string support from Ashiba is deliberately narrowed rather than copied wholesale.
+accessor rejection, runtime provenance, source audit and finite ordering. The current redesign replaces the dialect profiles with a deliberately narrower
+common lexical contract; see [API redesign](api-redesign.md).
 
 Primary lexical references checked:
 

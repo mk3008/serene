@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import * as serene from '../dist/index.js';
 
-const tags = new Set(['postgres', 'mysql', 'mssql', 'sort']);
+const tags = new Set(['sql', 'sort']);
 const api = new Set([...tags, 'bind', 'orderBy', 'review']);
 const result = (level, code, detail) => ({ level, code, detail });
 const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL through Serene; review SQL meaning and binding use separately.');

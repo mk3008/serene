@@ -1,7 +1,7 @@
 # What Serene can and cannot find
 
 Discovery, referral and correct defect diagnosis are separate. Only the first two
-are measured by the current deterministic evaluation. AI review effectiveness is
+were measured by the historical pre-redesign deterministic evaluation. AI review effectiveness is
 not measured.
 
 | Source pattern | Inventory behavior | Remaining review |
@@ -19,7 +19,7 @@ not measured.
 
 ## Evidence, not a blanket safety claim
 
-The frozen challenge set has 33 SQL execution sites and 7 non-SQL controls. Local
+At checkpoint `b93e3d4a92df353cfdbec6154c0144739f6eb2e6`, the frozen challenge set has 33 SQL execution sites and 7 non-SQL controls. Local
 alias discovery increased detected SQL sites from 25 to 30 and referrals among 19
 construction concerns from 11 to 16. Three SQL sites remain unseen. Non-SQL false
 candidates increased from 3 to 4. Nine sites remain ordinary construction, including
@@ -34,3 +34,7 @@ grep leads beyond matched lines; the experiment does not measure that behavior.
 Sources, oracle, initial/final raw JSON, exact hashes, case-by-case matrix and follow-
 up AI protocol are in the repository's [evaluation directory](../evaluation/triage/REPORT.md).
 No public AI effectiveness claim is justified yet.
+
+The API redesign keeps alias regressions in the current unit suite, but does not
+relabel or rerun the frozen corpus against a different API. Those aggregate numbers
+are historical and are not a measurement of the new `sql` API.

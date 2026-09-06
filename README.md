@@ -13,82 +13,110 @@ source audit tool uses TypeScript as a development-time peer dependency.
 ## Start with SQL
 
 ```ts
-import { postgres, bind } from '@mk3008/serene';
+import { sql, bind } from '@mk3008/serene';
 
-const findUsers = postgres`
+const findUsers = sql`
   SELECT id, name
   FROM users
   WHERE (:name::text IS NULL OR name = :name)
 `;
 
-const q = bind(findUsers, { name: input.name ?? null });
-const result = await pool.query(q.text, q.values); // native pg
+const q = bind(findUsers, { name: input.name ?? null }, 'indexed');
+const result = await pool.query(q.text, q.values); // application-owned native driver
 ```
 
-The tag accepts a template literal with **no interpolation**. Values enter only
-through `bind`. `:name` becomes `$1`; repeated names reuse that position. Binding
-rejects missing and extra names, undefined values, inherited properties and
+The tag accepts a template literal with **no interpolation**. Author meaningful
+`:name` parameters; select output markers at `bind`. The default is `named`, which
+keeps `:name`. The example explicitly selects `$1` output. Output style is a parameter
+contract, not a SQL dialect or a claim that the SQL is portable across databases.
+
+Binding rejects missing and extra names, undefined values, inherited properties and
 accessors. Names are case-sensitive ASCII identifiers. `null` is an explicit value.
-SQL templates use ordinary JavaScript escape rules.
+SQL templates use ordinary JavaScript escape rules, so `sourceText` is the cooked SQL
+body, not the TypeScript file's raw escape spelling.
 
-SQL remains the responsibility of the application. Fixed SQL can express optional
-predicates; assess its query plan yourself. Serene does not add a WHERE builder.
+## SQL for external investigation
 
-## Direct native drivers
+`findUsers.sourceText` preserves the SQL before parameter lowering. `q.sourceText`
+has the same review/debug representation; `q.params` holds a separate named-value
+snapshot. Neither SQL text contains substituted values. The application can carry
+these to DBeaver, a DB-connected MCP server, or a real-DB mapper test. Configure the
+external tool's parameter support or supply its binding interface separately; this
+is not a guarantee that every tool accepts `:name` without setup. Serene does not
+connect, launch Docker, implement MCP, map rows, or inline values into debug SQL.
 
-| Tag | Application SQL parameters | Output | Driver call |
-| --- | --- | --- | --- |
-| `postgres` | `:id` | `$1`, deduplicated values | `pool.query(q.text, q.values)` |
-| `mysql` | `:id` | `?`, one value per occurrence | `connection.execute(q.text, q.values)` |
-| `mssql` | `@id` or `:id` | `@id`, deduplicated names/values | `request.input(...)`, then `request.query(q.text)` |
+Keep the literal in a dedicated authoritative application source when following
+Raw SQL Rules' default source requirement. Do not maintain a generated SQL mirror.
+Fixed SQL can express optional predicates; assess its actual query plan yourself.
+
+## Parameter output contracts
+
+| `bind` third argument | Output markers | `names` / `values` ordering |
+| --- | --- | --- |
+| `named` (default) | `:id` | First occurrence of each name |
+| `indexed` | `$1` | First occurrence of each name; repeated names reuse slots |
+| `anonymous` | `?` | Every occurrence, including repeats |
+| `at-named` | `@id` | First occurrence of each name |
 
 ```ts
-import { mysql, mssql, bind } from '@mk3008/serene';
+const byName = sql`SELECT id, name FROM users WHERE name = :name`;
+const p = bind(byName, { name }, 'indexed');
+await pgPool.query(p.text, p.values);
 
-const my = bind(mysql`SELECT id FROM users WHERE id = :id`, { id });
-const [rows] = await connection.execute(my.text, my.values);
+const m = bind(byName, { name }, 'anonymous');
+await connection.execute(m.text, m.values);
 
-const ms = bind(mssql`SELECT id FROM users WHERE id = @id`, { id });
-const request = pool.request();
-ms.names.forEach((name, i) => request.input(name, ms.values[i]));
-const result = await request.query(ms.text);
+const s = bind(byName, { name }, 'at-named');
+s.names.forEach((key, i) => request.input(key, s.values[i]));
+await request.query(s.text);
 ```
 
-For mssql, supply native explicit parameter types when needed. Serene does not
-infer or unify database types. Use mysql2 **execute**, not client-side SQL formatting.
-The returned values array is mutable for driver compatibility; text and names are
-immutable. Pass matching text and values without rewriting them. Dialects are
-explicit lexical profiles, not portable SQL or interchangeable drivers.
+The application still owns schema, driver configuration and target SQL validity.
+See [test/examples.ts](https://github.com/mk3008/serene/blob/codex/review-triage-evaluation/test/examples.ts)
+for type-checked call shapes. Use native
+explicit parameter types where required and native prepared binding, not client-side
+SQL formatting. Text, names and the named `params` snapshot are immutable. Values
+are shallow and the `values` array remains mutable for driver compatibility; treat
+it as read-only to keep all representations aligned. Pair matching text and values.
 
-## Finite ORDER BY choices
+## Finite ORDER BY terms in any selected order
 
 ```ts
-import { postgres, sort, orderBy, bind } from '@mk3008/serene';
+import { sql, sort, orderBy, bind } from '@mk3008/serene';
 
-const base = postgres`
+const base = sql`
   SELECT id, name, created_at FROM users WHERE tenant_id = :tenantId
 `;
 const query = orderBy(base, {
-  name: sort`name ASC, id ASC`,
-  newest: sort`created_at DESC, id DESC`,
-}, input.sort);
+  nameAsc: sort`name ASC`,
+  nameDesc: sort`name DESC`,
+  createdDesc: sort`created_at DESC`,
+  idAsc: sort`id ASC`,
+}, ['createdDesc', 'nameAsc', 'idAsc']); // may instead be input.sortKeys
 
-const q = bind(query, { tenantId });
+const q = bind(query, { tenantId }, 'indexed');
 await pool.query(q.text, q.values);
 ```
 
-An unknown key throws; there is no implicit fallback. Each choice is a literal
-column path with optional ASC/DESC, separated by commas. Expressions, quoted
-identifiers, NULLS FIRST/LAST, comments and arbitrary fragments are intentionally
-unsupported in this initial sort API. Define the finite map inline for source
-auditing. The selected text is snapshotted at `orderBy`, so later map mutation
-cannot alter it.
+This appends `ORDER BY created_at DESC, name ASC, id ASC`. Reversing the keys reverses
+the priority. Runtime input selects keys and order, never SQL fragments. No enumeration
+of every complete ordering is necessary. A single string key still works. An empty
+array leaves the base unchanged; unknown keys, non-string keys and duplicate keys
+throw. Distinct keys can still name the same column or opposing directions; the
+application owns those semantics and any required stable tie-breaker.
+
+Each static choice is an unquoted column path with optional ASC/DESC; static comma-
+separated terms remain accepted. Expressions, quoted identifiers, NULLS FIRST/LAST,
+comments and arbitrary fragments are unsupported. Define the finite map inline for
+source auditing. Selection and text are snapshotted at `orderBy`; later map or key-
+array mutation cannot alter them. Every map entry must be a genuine static `Sort`.
 
 `orderBy` appends one final ORDER BY after a newline. The base must be suitable for
 that suffix: no existing final ORDER BY, LIMIT/OFFSET, or statement terminator.
-A terminator or repeated Serene `orderBy` is rejected; SQL clause suitability is
-still your responsibility. For more involved queries, write separate fixed SQL
-alternatives or use the additional-review route. No generic composition is provided.
+A terminator or repeated nonempty Serene `orderBy` is rejected; clause suitability
+is still your responsibility. The base `sourceText` is unchanged, while the returned
+SQL object's `sourceText` includes the selected ordering, before parameter lowering.
+No WHERE builder or general SQL composition is provided.
 
 ## Review levels
 
@@ -150,29 +178,35 @@ APIs; add custom sink names or retain manual review for other routes. Zero findi
 is not a whole-application SQL safety claim. See [security boundary](docs/security.md).
 
 The [coverage guide](docs/review-coverage.md) separates detected, referred and unseen
-paths. A 40-case synthetic study improved sink discovery from 25/33 to 30/33, while
+paths. A historical 40-case synthetic study of the pre-redesign API improved sink discovery from 25/33 to 30/33, while
 non-SQL false candidates increased from 3/7 to 4/7. This is a deterministic challenge
 set result, not measured AI review effectiveness or real-world recall.
 
 ## Public API
 
-- `postgres`, `mysql`, `mssql`: literal tags returning opaque `Sql`.
+- `sql`: literal tag returning opaque `Sql` with immutable `sourceText`.
 - `sort`: restricted literal ordering returning opaque `Sort`.
-- `orderBy(sql, choices, key)`: choose and append one static ordering.
-- `bind(sql, params?)`: return `{ text, values, names, dialect }`.
+- `orderBy(sql, choices, keyOrKeys)`: append whitelisted terms in selected order.
+- `bind(sql, params?, style?)`: return `{ sourceText, text, values, names, params }`.
+- `ParameterStyle`: `named | indexed | anonymous | at-named`.
 - `review(value)`: runtime provenance level and reason code.
 - `SereneError`: structured policy/binding failure.
 - Optional `@mk3008/serene/audit`: `auditSource(source, filename?, { sinkNames? })`.
 
 ## Deliberate limits
 
-The scanner skips quoted text, identifiers and comments with explicit dialect
-rules. It preserves PostgreSQL casts/dollar quotes/nested comments, MySQL backticks
-and line comments, and SQL Server brackets/system variables. It refuses unfinished
-quotes/comments, mixed positional parameters, mode-dependent quoted backslashes
-(PostgreSQL/MySQL), and MySQL executable/hint/nested comments. It does not attempt
-complete dialect coverage. SQL Server local `@variables` are treated as binding
-names; procedural batches should use the additional-review route.
+A small **common lexical contract** remains necessary to distinguish parameters
+from quoted text and comments. It accepts doubled single/double quotes, whitespace-
+followed `--` comments, nonnested ordinary block comments and `::` casts. It does not
+parse SQL grammar, infer a database, or change lexing based on output style.
+
+It rejects mode-dependent quoted backslashes, executable/hint/nested comments,
+non-whitespace `--`, alternative quote delimiters, and outside quotes/comments:
+backticks, brackets, `#`, dollar forms and backslashes. Existing positional/`@name`
+markers are rejected: author `:name`. These are deliberate restrictions, **not claims
+that those constructs are unsafe SQL**. Some SQL accepted by the old DBMS tags now
+requires the explicit additional-review route outside Serene. See the
+[migration and Raw SQL Rules v0.2 assessment](docs/api-redesign.md).
 
 No SQL syntax, schema, semantics, result typing, permissions, performance or
 comprehensive vulnerability verification. No ORM, query/WHERE builder, driver

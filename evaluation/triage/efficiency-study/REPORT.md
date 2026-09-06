@@ -1,5 +1,15 @@
 # First SQL-construction efficiency cohort
 
+**Interpretation correction following [the review](https://github.com/mk3008/serene/pull/4#issuecomment-5559806349):**
+The recorded numbers below remain valid observations of this interface. They do not
+establish that construction-triage compression was absent, even in these tasks:
+3 versus 3 expanded sites omits the difference between independent Raw screening
+and audit-supported omission of ordinary construction checks. Bytes charge actual
+rereads but do not explain whether the interface/prompt made them necessary. The
+whole-file investigate operation and full audit output also added avoidable context.
+The original interpretation below is retained for provenance and is superseded on
+that point. See the [skip-aware correction](../skip-study/PROTOCOL.md).
+
 Four fresh Luna/medium sessions completed after the pre-dispatch freeze at
 [4971d6a](https://github.com/mk3008/serene/commit/4971d6aa63a9b7d725f17fe3cdb4652b55f7796e).
 On these two compact application tasks, the recorded context-expansion count and

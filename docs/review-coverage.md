@@ -61,6 +61,14 @@ is not approval of every SQL path. Recursive selection does not add cross-file
 provenance or exhaustive sink discovery. For example, an imported SQL definition
 can remain review-required even when both files are selected.
 
+`--actionable-only` retains the selected `files` and `skipped` coverage records, but
+reports `executionSiteCounts` from `driver-candidate` findings only. This prevents a
+single execution path from being counted again for its `serene` construction or
+binding boundaries. Its `findings` list omits ordinary rows and retains every
+review-required or violation row, including source parse errors and computed calls.
+The counts are therefore an inventory of recognized candidate execution sites, not a
+count of all SQL execution in the application.
+
 Use `serene-audit --strict src` as a gate only where all review-required paths are
 intended to block. Legitimate native SQL exceptions and unresolved provenance still
 need application review; do not rewrite useful SQL just to make strict mode pass.

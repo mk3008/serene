@@ -7,7 +7,7 @@ primary effectiveness measure. Historical packets, answers and gold remain intac
 
 | Question | Outcome that answers it | Existing evidence and limit |
 | --- | --- | --- |
-| Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The [four-run efficiency cohort](triage/efficiency-study/REPORT.md) records cost on two compact application tasks: equal context expansion and budget discovery, higher Serene payload bytes. It is not production-wide evidence. |
+| Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The [four-run efficiency cohort](triage/efficiency-study/REPORT.md) records cost on two compact application tasks: its expansion-only primary metric does not resolve the screening/skip contrast. See the [skip-aware correction](triage/skip-study/PROTOCOL.md). |
 | Adoption instruction | Agents use the construction boundary correctly with minimal instructions | The [nine-run coding pilot](adoption/exploratory/REPORT.md) supports feasibility on three tasks. It did not compare instruction lengths or Rules-only adoption. |
 | Rules integration / layout | Dedicated versus colocated definitions preserve discovery, binding/execution follow-through and DB behavior; imported-provenance friction and file/review effort | [SQLite preflight](adoption/preflight/REPORT.md) and coding results reproduce import-only strict failures. There is no controlled AI layout-effect result. See [layout plan](adoption/LAYOUT-STUDY.md). |
 | General AI code review | Find authorization/business-meaning defects and avoid false accusations | The [12-run review pilot](triage/exploratory/REPORT.md) measured mixed general defect recall, with a ceiling, contract ambiguities and one JSON failure. It cannot answer the Serene triage question. |
@@ -32,9 +32,10 @@ recall score. No pooled product score combines these studies.
 
 The first [SQL-safety efficiency cohort](triage/efficiency-study/REPORT.md) is complete.
 It compares conventional Raw SQL with uniformly converted Serene code and available
-audit, using logged reads/searches/context expansion and a fixed budget. Neither pair
-showed the frozen compression signal; equal final recall is not the sole basis for
-that result. See the report for secondary costs, proxy limitations and deviations.
+audit, using logged reads/searches/context expansion and a fixed budget. The original compression interpretation is superseded: context-expansion counts
+do not distinguish Raw screening from audit-supported skipping. The [skip-aware
+correction](triage/skip-study/PROTOCOL.md) measures ordinary-body omission and actual
+response cost, with compact audit and targeted navigation. See the report for secondary costs, proxy limitations and deviations.
 The [overarching study](triage/SQL-SAFETY-STUDY.md) remains the research contract.
 Retire the mixed [AI-STUDY.md](triage/AI-STUDY.md) as the next Serene evaluation;
 it remains a historical general-review proposal. Layout work stays independent.

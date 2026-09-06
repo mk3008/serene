@@ -78,6 +78,28 @@ test('CLI exit policy, JSON inventory and input errors', () => {
   } finally { rmSync(dir, {recursive:true, force:true}); }
 });
 
+test('CLI actionable-only counts execution candidates once and omits ordinary details', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'serene-actionable-'));
+  const file = join(dir, 'input.ts');
+  const run = args => spawnSync(process.execPath, ['tooling/cli.mjs', ...args], {encoding:'utf8'});
+  try {
+    writeFileSync(file, `${imports}
+const q = bind(literalSql\`SELECT 1\`);
+db.query(q.text);
+db.execute(input);
+db.query('SELECT ' + input);`);
+    const result = run(['--actionable-only', file]);
+    assert.equal(result.status, 1, result.stderr);
+    const report = JSON.parse(result.stdout);
+    assert.deepEqual(report.executionSiteCounts, { ordinary: 1, 'review-required': 1, violation: 1 });
+    assert.equal(report.findings.length, 2);
+    assert.ok(report.findings.every(finding => finding.level !== 'ordinary'));
+    assert.deepEqual(report.findings.map(finding => finding.boundary), ['driver-candidate', 'driver-candidate']);
+    assert.match(report.scope, /candidate driver execution sites only/);
+    assert.equal(run(['--strict', '--actionable-only', file]).status, 1);
+  } finally { rmSync(dir, {recursive:true, force:true}); }
+});
+
 test('local execution aliases are inventoried instead of silently disappearing', () => {
   for (const setup of [
     'const run = db.query;',

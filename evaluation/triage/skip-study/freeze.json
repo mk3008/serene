@@ -1,0 +1,109 @@
+{
+  "status": "pre-dispatch",
+  "requested_model": "gpt-5.6-luna",
+  "effort": "medium",
+  "fork_turns": "none",
+  "runs": {
+    "s01": {
+      "config": {
+        "root": "/tmp/serene-efficiency-run/packets/e04",
+        "log": "/tmp/serene-skip-run/logs/s01.jsonl",
+        "budget": {
+          "bytes": 32768,
+          "seconds": 600,
+          "requests": 80,
+          "deep_sites": 23
+        },
+        "audit": null
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify dangerous runtime influence on SQL syntax and paths needing additional investigation. Choose your normal search and navigation strategy. You need not deeply inspect fixed SQL with separate bound values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nUse source ONLY through python /tmp/serene-skip-run/client.py s01 '<JSON request>'. Do not access other filesystem files, tools, network or agents. Use max_output_tokens:30000 for each exec response. Operations: list; read with path and optional start/end lines; search with pattern and optional regex/case_sensitive booleans; function with path and function name OR line; investigate with the same arguments; audit when available; status; finding with path,function,mechanism,impact; finish. Function reads return the selected function and imports. Investigate adds directly referenced helper/caller function ranges. You may navigate normally; no need to read whole files. Example: {\"op\":\"function\",\"path\":\"store.js\",\"line\":104}.\n\nRead CONTRACT.md; list files to discover any SUPPORT.md and read it when present. If audit is available, use its documented construction/provenance triage contract: ordinary sites are eligible to skip individual construction review unless contrary evidence appears. This does not exempt business/SQL semantic review outside this task, prove coverage, or mean actionable findings are vulnerabilities. Use appropriate source follow-through for actionable paths. Do not reread ordinary bodies merely to reproduce an already recognized construction check; preserve any genuine uncertainty and explain necessary rereads. Without audit, use normal source screening and prioritization. Do not assume any hazard count.\n\nBudget is 32768 actual response-text bytes, 80 requests and 600 seconds from first action. All screening/search/support/audit/error output is charged. Submit each finding as soon as its concrete mechanism is justified, not only at the end. Continue until complete or capped; then call finish (if permitted). Return JSON with findings, additional_review_paths (resolved-safe/dangerous/unresolved with reason), limits, ordinary_reread_reasons if any, and access_policy_followed. At most 1200 words. No edits/files or another session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "api.js": "cb7bf00c239d5036724c93aeac46e34af366c235018ce029b58f95ac60334a36",
+        "helpers.js": "3079f4f2b91b8c55881e2407fc509cca1e82229ad125aa7c5d486f8cf89255ed",
+        "schema.sql": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9",
+        "store.js": "90fac07a107412f71a21b072dddcfa8de95b609fc5c7e71288a91f2ed7e43e60"
+      }
+    },
+    "s02": {
+      "config": {
+        "root": "/tmp/serene-efficiency-run/packets/e03",
+        "log": "/tmp/serene-skip-run/logs/s02.jsonl",
+        "budget": {
+          "bytes": 32768,
+          "seconds": 600,
+          "requests": 80,
+          "deep_sites": 23
+        },
+        "audit": "/workspace/scratch/6d978950e2be/serene/tooling/cli.mjs"
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify dangerous runtime influence on SQL syntax and paths needing additional investigation. Choose your normal search and navigation strategy. You need not deeply inspect fixed SQL with separate bound values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nUse source ONLY through python /tmp/serene-skip-run/client.py s02 '<JSON request>'. Do not access other filesystem files, tools, network or agents. Use max_output_tokens:30000 for each exec response. Operations: list; read with path and optional start/end lines; search with pattern and optional regex/case_sensitive booleans; function with path and function name OR line; investigate with the same arguments; audit when available; status; finding with path,function,mechanism,impact; finish. Function reads return the selected function and imports. Investigate adds directly referenced helper/caller function ranges. You may navigate normally; no need to read whole files. Example: {\"op\":\"function\",\"path\":\"store.js\",\"line\":104}.\n\nRead CONTRACT.md; list files to discover any SUPPORT.md and read it when present. If audit is available, use its documented construction/provenance triage contract: ordinary sites are eligible to skip individual construction review unless contrary evidence appears. This does not exempt business/SQL semantic review outside this task, prove coverage, or mean actionable findings are vulnerabilities. Use appropriate source follow-through for actionable paths. Do not reread ordinary bodies merely to reproduce an already recognized construction check; preserve any genuine uncertainty and explain necessary rereads. Without audit, use normal source screening and prioritization. Do not assume any hazard count.\n\nBudget is 32768 actual response-text bytes, 80 requests and 600 seconds from first action. All screening/search/support/audit/error output is charged. Submit each finding as soon as its concrete mechanism is justified, not only at the end. Continue until complete or capped; then call finish (if permitted). Return JSON with findings, additional_review_paths (resolved-safe/dangerous/unresolved with reason), limits, ordinary_reread_reasons if any, and access_policy_followed. At most 1200 words. No edits/files or another session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "SUPPORT.md": "ba550425c7cec2ea6ac42d19d1b8b06d6dad6b811cae36f78970b0823e23d297",
+        "api.js": "afe7c3c741b75ea88ea88c189c1666e39d5b51787ebdbf636b4b4450c57eb038",
+        "helpers.js": "debdcf9301ee59786da3811921fa32d3ab567bdf4c9a14b5066c8cd453f7a833",
+        "schema.sql": "4482a6905d0d7af9dbaafdefb0421699d5c854287e4da67fd94f622bc205e0b9",
+        "store.js": "83e428bd63101887ca788fd53241a53efc9a5bccd9772eb4cbb2c8867bd0901d"
+      }
+    },
+    "s03": {
+      "config": {
+        "root": "/tmp/serene-efficiency-run/packets/e02",
+        "log": "/tmp/serene-skip-run/logs/s03.jsonl",
+        "budget": {
+          "bytes": 32768,
+          "seconds": 600,
+          "requests": 80,
+          "deep_sites": 23
+        },
+        "audit": "/workspace/scratch/6d978950e2be/serene/tooling/cli.mjs"
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify dangerous runtime influence on SQL syntax and paths needing additional investigation. Choose your normal search and navigation strategy. You need not deeply inspect fixed SQL with separate bound values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nUse source ONLY through python /tmp/serene-skip-run/client.py s03 '<JSON request>'. Do not access other filesystem files, tools, network or agents. Use max_output_tokens:30000 for each exec response. Operations: list; read with path and optional start/end lines; search with pattern and optional regex/case_sensitive booleans; function with path and function name OR line; investigate with the same arguments; audit when available; status; finding with path,function,mechanism,impact; finish. Function reads return the selected function and imports. Investigate adds directly referenced helper/caller function ranges. You may navigate normally; no need to read whole files. Example: {\"op\":\"function\",\"path\":\"store.js\",\"line\":104}.\n\nRead CONTRACT.md; list files to discover any SUPPORT.md and read it when present. If audit is available, use its documented construction/provenance triage contract: ordinary sites are eligible to skip individual construction review unless contrary evidence appears. This does not exempt business/SQL semantic review outside this task, prove coverage, or mean actionable findings are vulnerabilities. Use appropriate source follow-through for actionable paths. Do not reread ordinary bodies merely to reproduce an already recognized construction check; preserve any genuine uncertainty and explain necessary rereads. Without audit, use normal source screening and prioritization. Do not assume any hazard count.\n\nBudget is 32768 actual response-text bytes, 80 requests and 600 seconds from first action. All screening/search/support/audit/error output is charged. Submit each finding as soon as its concrete mechanism is justified, not only at the end. Continue until complete or capped; then call finish (if permitted). Return JSON with findings, additional_review_paths (resolved-safe/dangerous/unresolved with reason), limits, ordinary_reread_reasons if any, and access_policy_followed. At most 1200 words. No edits/files or another session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "SUPPORT.md": "ba550425c7cec2ea6ac42d19d1b8b06d6dad6b811cae36f78970b0823e23d297",
+        "helpers.js": "cbeabb93aaeb49c2b5fba438a0024129f9b972729cb583be28c34844e097630f",
+        "schema.sql": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4",
+        "service.js": "65d4c192e06719f7bca972a2e3d94a61e1ba5e312323037a4137929a1997b727",
+        "store.js": "19bb33b605e4f210fade88417543c348db8652806855a22cb4a355893927e665"
+      }
+    },
+    "s04": {
+      "config": {
+        "root": "/tmp/serene-efficiency-run/packets/e01",
+        "log": "/tmp/serene-skip-run/logs/s04.jsonl",
+        "budget": {
+          "bytes": 32768,
+          "seconds": 600,
+          "requests": 80,
+          "deep_sites": 23
+        },
+        "audit": null
+      },
+      "prompt": "Review SQL construction/provenance in the supplied application. Identify dangerous runtime influence on SQL syntax and paths needing additional investigation. Choose your normal search and navigation strategy. You need not deeply inspect fixed SQL with separate bound values. Do not review business semantics, authorization, performance or Rules/layout policy.\n\nUse source ONLY through python /tmp/serene-skip-run/client.py s04 '<JSON request>'. Do not access other filesystem files, tools, network or agents. Use max_output_tokens:30000 for each exec response. Operations: list; read with path and optional start/end lines; search with pattern and optional regex/case_sensitive booleans; function with path and function name OR line; investigate with the same arguments; audit when available; status; finding with path,function,mechanism,impact; finish. Function reads return the selected function and imports. Investigate adds directly referenced helper/caller function ranges. You may navigate normally; no need to read whole files. Example: {\"op\":\"function\",\"path\":\"store.js\",\"line\":104}.\n\nRead CONTRACT.md; list files to discover any SUPPORT.md and read it when present. If audit is available, use its documented construction/provenance triage contract: ordinary sites are eligible to skip individual construction review unless contrary evidence appears. This does not exempt business/SQL semantic review outside this task, prove coverage, or mean actionable findings are vulnerabilities. Use appropriate source follow-through for actionable paths. Do not reread ordinary bodies merely to reproduce an already recognized construction check; preserve any genuine uncertainty and explain necessary rereads. Without audit, use normal source screening and prioritization. Do not assume any hazard count.\n\nBudget is 32768 actual response-text bytes, 80 requests and 600 seconds from first action. All screening/search/support/audit/error output is charged. Submit each finding as soon as its concrete mechanism is justified, not only at the end. Continue until complete or capped; then call finish (if permitted). Return JSON with findings, additional_review_paths (resolved-safe/dangerous/unresolved with reason), limits, ordinary_reread_reasons if any, and access_policy_followed. At most 1200 words. No edits/files or another session retry.\n",
+      "source_hashes": {
+        "CONTRACT.md": "352c01045aed64ed88cfbbcc2965b2fa393a23fe4ecf164672443fe795f702f2",
+        "helpers.js": "54b9e6c69537ef1e28264b2122b03d7080831d6619eeabd483485fbb24a486c0",
+        "schema.sql": "a84fb477773e61270d0ae7b0f3546c55bf136038ebb2e28e5250c7f6f1eaa3e4",
+        "service.js": "d26d67f71ea5b284f22254c6c59ddd212262ec2ca7501f098c33be0fc17f61dc",
+        "store.js": "1ffa8d9352efb180858949d6504e1a9a2ae6182e362601f24989107ff2e656c3"
+      }
+    }
+  },
+  "hashes": {
+    "evaluation/triage/skip-study/.gitignore": "32dae3052f331ee34d628ef535709b301259a45df7c7522c4d35dcf49873f00b",
+    "evaluation/triage/skip-study/PROTOCOL.md": "541cd12a8e3069c9fe8f9889b3283f61a63d0382adc8c3337170b7e750d6f286",
+    "evaluation/triage/skip-study/aggregate.py": "105162d1d336be616f61d0132ca4e009f322594dd37ad3f8540a2eb697a016be",
+    "evaluation/triage/skip-study/calibration-result.json": "60fd0be682981bf8c237eeb606e60db003bcab644dab95494b425f548842d500",
+    "evaluation/triage/skip-study/calibration.jsonl": "79bf11ede9bfada1f01b5d68821399b848650cc2c2f4595753cf9b4c8b1b2d89",
+    "evaluation/triage/skip-study/client.py": "e1c149a77a306bbbf148679c50039e4712df8b1b54313f43b299bd6878ec8cd9",
+    "evaluation/triage/skip-study/controller.py": "5dd05bd9e3ace48e6672fd091cd13f3fdbee83b22545ffd0c34a217f7d9b331c",
+    "evaluation/triage/skip-study/participant-prompt.txt": "0e505aeefaa91948fa8a211675d009dd9d68905a53b3bcab449ddd049fa0cd3c",
+    "evaluation/triage/skip-study/test_controller.py": "b41cda468f79ce57d3720bab1f586b77b7f8957ad9b9a7f344347528e2fd51c7",
+    "tooling/cli.mjs": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c",
+    "tooling/audit.mjs": "3568b38997c80cceb1cce49e24d2d1d16072e4ac77602f90a5778abda75d6555",
+    "evaluation/triage/efficiency-study/tasks/task1/evaluator/gold.json": "a2b38259d048ae9d0f66b5570a2555442841da3ae2b2736c4185d73d1ce2d577",
+    "evaluation/triage/efficiency-study/tasks/task2/evaluator/gold.json": "75499bb83ca1d65bd3615b6658e4728cf2a168c1dcdfce2f630824fa75b74683"
+  }
+}

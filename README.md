@@ -89,7 +89,7 @@ Then run:
 npx --no-install serene-audit src
 ```
 
-Use `serene-audit .` for repository-wide inventory, or pass individual files.
+Use `serene-audit .` for repository-wide inventory, or pass individual files. For concise review triage, use `serene-audit --actionable-only src`: it reports counts only for candidate driver execution sites and lists only review-required or violation findings. The default JSON inventory remains complete.
 
 Findings are intentionally simple:
 

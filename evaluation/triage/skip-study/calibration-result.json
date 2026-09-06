@@ -1,0 +1,15 @@
+{
+  "requested_model": "gpt-5.6-luna",
+  "effort": "medium",
+  "fresh": true,
+  "audit_counts": {
+    "ordinary": 95,
+    "review-required": 0,
+    "violation": 5
+  },
+  "findings": 5,
+  "exit": 1,
+  "function_delivery": "selected function and import only",
+  "missing_read": "explicit unknown path",
+  "participant_reported_truncation": false
+}

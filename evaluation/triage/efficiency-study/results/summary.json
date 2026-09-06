@@ -1,0 +1,270 @@
+[
+  {
+    "run": "e01",
+    "task": "task2",
+    "variant": "raw",
+    "first_correct_finding": {
+      "sequence": 12,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:categorySnapshot",
+        "store.js:inventoryList"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 12,
+      "successful_operations": {
+        "list": 1,
+        "read": 4,
+        "search": 1,
+        "investigate": 2,
+        "finding": 1
+      },
+      "failed_requests": [
+        2,
+        8,
+        9
+      ],
+      "payload_bytes": 26074,
+      "elapsed_seconds": 39.40844416618347
+    },
+    "finish": {
+      "sequence": 16,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:categorySnapshot",
+        "store.js:inventoryList"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 16,
+      "successful_operations": {
+        "list": 1,
+        "read": 4,
+        "search": 1,
+        "investigate": 2,
+        "finding": 1,
+        "status": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        2,
+        8,
+        9,
+        13,
+        15
+      ],
+      "payload_bytes": 26171,
+      "elapsed_seconds": 52.26690912246704
+    },
+    "events_after_finish": 0,
+    "discovery_at_checkpoints": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+    }
+  },
+  {
+    "run": "e02",
+    "task": "task2",
+    "variant": "serene",
+    "first_correct_finding": {
+      "sequence": 12,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:categorySnapshot",
+        "store.js:inventoryList"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 12,
+      "successful_operations": {
+        "read": 5,
+        "audit": 1,
+        "search": 1,
+        "investigate": 2,
+        "finding": 1
+      },
+      "failed_requests": [
+        9,
+        11
+      ],
+      "payload_bytes": 49830,
+      "elapsed_seconds": 31.117119312286377
+    },
+    "finish": {
+      "sequence": 18,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:categorySnapshot",
+        "store.js:inventoryList"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 18,
+      "successful_operations": {
+        "read": 5,
+        "audit": 1,
+        "search": 3,
+        "investigate": 2,
+        "finding": 1,
+        "status": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        9,
+        11,
+        14,
+        15
+      ],
+      "payload_bytes": 54072,
+      "elapsed_seconds": 49.024959325790405
+    },
+    "events_after_finish": 1,
+    "discovery_at_checkpoints": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+    }
+  },
+  {
+    "run": "e03",
+    "task": "task1",
+    "variant": "serene",
+    "first_correct_finding": {
+      "sequence": 12,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:paymentFeed",
+        "store.js:revenueSummary"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 12,
+      "successful_operations": {
+        "list": 1,
+        "read": 5,
+        "audit": 1,
+        "investigate": 2,
+        "finding": 1
+      },
+      "failed_requests": [
+        8,
+        11
+      ],
+      "payload_bytes": 42726,
+      "elapsed_seconds": 34.5868399143219
+    },
+    "finish": {
+      "sequence": 17,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:paymentFeed",
+        "store.js:revenueSummary"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 17,
+      "successful_operations": {
+        "list": 1,
+        "read": 5,
+        "audit": 1,
+        "investigate": 2,
+        "finding": 1,
+        "status": 1,
+        "search": 3,
+        "finish": 1
+      },
+      "failed_requests": [
+        8,
+        11
+      ],
+      "payload_bytes": 56322,
+      "elapsed_seconds": 57.11136722564697
+    },
+    "events_after_finish": 0,
+    "discovery_at_checkpoints": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+    }
+  },
+  {
+    "run": "e04",
+    "task": "task1",
+    "variant": "raw",
+    "first_correct_finding": {
+      "sequence": 7,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:paymentFeed",
+        "store.js:revenueSummary"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 7,
+      "successful_operations": {
+        "read": 4,
+        "search": 1,
+        "finding": 1
+      },
+      "failed_requests": [
+        2
+      ],
+      "payload_bytes": 14048,
+      "elapsed_seconds": 37.001309633255005
+    },
+    "finish": {
+      "sequence": 14,
+      "context_expanded_sites": 3,
+      "expanded_functions": [
+        "helpers.js:send",
+        "store.js:paymentFeed",
+        "store.js:revenueSummary"
+      ],
+      "N_context_coverage": 3,
+      "N_total": 3,
+      "unnecessary_expanded_sites": 0,
+      "requests": 14,
+      "successful_operations": {
+        "read": 4,
+        "search": 2,
+        "finding": 1,
+        "investigate": 2,
+        "status": 1,
+        "finish": 1
+      },
+      "failed_requests": [
+        2,
+        9,
+        11
+      ],
+      "payload_bytes": 29438,
+      "elapsed_seconds": 64.17158389091492
+    },
+    "events_after_finish": 0,
+    "discovery_at_checkpoints": {
+      "1": false,
+      "3": true,
+      "5": true,
+      "10": true
+    }
+  }
+]

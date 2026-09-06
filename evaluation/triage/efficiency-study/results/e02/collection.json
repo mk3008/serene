@@ -1,0 +1,29 @@
+{
+  "run": "e02",
+  "protected_changes": [],
+  "requests": 19,
+  "bytes": 54072,
+  "expanded_sites": 3,
+  "elapsed_seconds": 53.31042981147766,
+  "failed_requests": [
+    9,
+    11,
+    14,
+    15,
+    19
+  ],
+  "finding_events": [
+    {
+      "sequence": 12,
+      "request": {
+        "op": "finding",
+        "path": "store.js",
+        "function": "categorySnapshot",
+        "mechanism": "categorySnapshot passes request.category through categoryName (String/trim only) and categoryScope concatenates it inside a quoted SQL predicate; the resulting scope is concatenated into the db.query SQL text. Unlike the fixed Serene-tagged queries, this value is not bound, so quote/comment/operators in the request can alter the WHERE clause.",
+        "impact": "The inventoryReport route supplies untrusted query input to this function, allowing SQL syntax injection in the category filter and potentially changing returned rows or query behavior."
+      }
+    }
+  ],
+  "finish": true,
+  "model_token_usage": null
+}

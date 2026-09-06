@@ -202,5 +202,7 @@ Keep filenames, function names, layout, surrounding code and dangerous behavior
 matched wherever possible. Record every unavoidable representation difference.
 A source author who knows gold must not add clues, comments or special wrappers
 only around dangerous sites. The reviewer must be able to inspect the transformation
-and equivalence evidence. Material preparation is authorized; scored execution
-remains gated on that review.
+and equivalence evidence. The subsequent [user instruction](https://github.com/mk3008/serene/pull/4#issuecomment-5559536423)
+ended the extra plan-review gate and authorized correction, calibration, freeze and
+execution. The [first cohort report](efficiency-study/REPORT.md) records that execution
+and its limits; the historical preflight materials are not scored evidence.

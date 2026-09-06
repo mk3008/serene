@@ -1,0 +1,27 @@
+{
+  "run": "e04",
+  "protected_changes": [],
+  "requests": 14,
+  "bytes": 29438,
+  "expanded_sites": 3,
+  "elapsed_seconds": 64.17158389091492,
+  "failed_requests": [
+    2,
+    9,
+    11
+  ],
+  "finding_events": [
+    {
+      "sequence": 7,
+      "request": {
+        "op": "finding",
+        "path": "helpers.js",
+        "function": "regionScope",
+        "mechanism": "The function concatenates the caller-provided region string directly into a SQL predicate: \"region = '\" + value + \"'\". revenueSummary passes request.region after only String() and trim(), and revenueReport forwards route query input directly.",
+        "impact": "An attacker controlling the revenue report region parameter can inject quotes and SQL syntax into the WHERE clause, altering query semantics or potentially appending expressions. The region value must be bound as a named parameter or selected through a finite mapping."
+      }
+    }
+  ],
+  "finish": true,
+  "model_token_usage": null
+}

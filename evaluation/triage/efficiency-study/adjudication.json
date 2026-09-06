@@ -1,0 +1,71 @@
+{
+  "scope": "Independent source-and-gold adjudication of SQL construction findings only. Finding events were read from results/e01..e04/collection.json. Costs, event logs, and efficiency outcomes were not inspected or used.",
+  "method": "For each run, compare each submitted finding with the mapped task evaluator/gold.json dangerous execution path and the raw/Serene source and contracts. A finding is correct when its location identifies the dangerous execution site or an explicitly traced helper-origin site and its mechanism establishes untrusted input reaching SQL syntax. Findings about safe finite ordering maps, fixed parameterized queries, or wrapper follow-through without a dangerous construction would be false alarms if present.",
+  "runs": {
+    "e01": {
+      "task": "task2",
+      "arm": "R",
+      "finding_events": 1,
+      "earliest_correct_finding_sequence": 12,
+      "false_finding_count": 0,
+      "correct_finding": {
+        "submitted_location": "store.js:categorySnapshot",
+        "gold_execution": "raw/store.js:categorySnapshot",
+        "reason": "The finding identifies categorySnapshot's concatenated predicate and correctly explains the service.js:inventoryReport -> categoryName -> categoryScope path into db.query SQL text. This is the task2 dangerous path in gold.json."
+      },
+      "explanation": "The submitted finding is a dangerous-site hit. categoryName only String/trim-normalises request.category; categoryScope places it inside a quoted predicate, and categorySnapshot concatenates that predicate into the executed query."
+    },
+    "e02": {
+      "task": "task2",
+      "arm": "S",
+      "finding_events": 1,
+      "earliest_correct_finding_sequence": 12,
+      "false_finding_count": 0,
+      "correct_finding": {
+        "submitted_location": "store.js:categorySnapshot",
+        "gold_execution": "raw/store.js:categorySnapshot",
+        "reason": "The finding identifies categorySnapshot's concatenated predicate and correctly explains the inventoryReport -> categoryName -> categoryScope path into db.query SQL text. The Serene conversion leaves this dynamic construction unchanged, so it remains the task2 gold dangerous path."
+      },
+      "explanation": "The submitted finding is a dangerous-site hit. The category value is not bound; quote/operator syntax can alter the WHERE text before SQLite prepares it."
+    },
+    "e03": {
+      "task": "task1",
+      "arm": "S",
+      "finding_events": 1,
+      "earliest_correct_finding_sequence": 12,
+      "false_finding_count": 0,
+      "correct_finding": {
+        "submitted_location": "store.js:revenueSummary",
+        "gold_execution": "raw/store.js:revenueSummary",
+        "reason": "The finding identifies revenueSummary's executed concatenation and correctly explains revenueReport -> revenueSummary -> normaliseRegion -> regionScope into db.query SQL text. This is the task1 dangerous path in gold.json."
+      },
+      "explanation": "The submitted finding is a dangerous-site hit. normaliseRegion only String/trim-normalises request.region; regionScope interpolates it inside a quoted predicate that revenueSummary concatenates into the query."
+    },
+    "e04": {
+      "task": "task1",
+      "arm": "R",
+      "finding_events": 1,
+      "earliest_correct_finding_sequence": 7,
+      "false_finding_count": 0,
+      "correct_finding": {
+        "submitted_location": "helpers.js:regionScope",
+        "gold_execution": "raw/store.js:revenueSummary",
+        "reason": "The helper-origin location is accepted because the finding explicitly traces request input from revenueReport through revenueSummary into regionScope and then into the executed db.query SQL text. The construction is the task1 gold dangerous path."
+      },
+      "explanation": "The submitted finding is a dangerous-site hit despite naming the helper. regionScope directly concatenates the caller-controlled region into a quoted SQL predicate, and the stated call chain identifies the gold execution sink."
+    }
+  },
+  "summary": {
+    "runs": 4,
+    "dangerous_gold_paths": 4,
+    "gold_hits": 4,
+    "false_finding_count": 0,
+    "runs_with_correct_finding": 4
+  },
+  "limitations": [
+    "This is not fully arm-blinded: the frozen run mapping and arm labels were available, and the source packet identities expose raw versus Serene variants.",
+    "The adjudication is source/gold classification only; it does not assess investigation cost, timing, event traces, or efficiency.",
+    "Only submitted finding_events were adjudicated. Additional-review dispositions and unsubmitted reasoning were not treated as findings.",
+    "Task golds define one dangerous construction path per task; this adjudication does not expand the gold set or make claims about defects outside the construction-only oracle."
+  ]
+}

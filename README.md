@@ -54,15 +54,16 @@ await request.query(query.text);
 
 No Serene-specific parameter dialect is required when the driver already has one.
 
-For drivers that use `?` placeholders, bind with `anonymous` instead:
+For drivers that use `?` placeholders, use the same named authoring style and bind with `anonymous`:
 
 ```ts
+const findUser = sql`SELECT id, name FROM users WHERE id = :id`;
 const query = bind(findUser, { id }, 'anonymous');
 ```
 
 ## What Serene adds
 
-- **A visible SQL boundary** — fixed SQL is created through `sql\`...\``.
+- **A visible SQL boundary** — fixed SQL is created from a literal `sql` template.
 - **Value separation** — bound values are never rendered into SQL text.
 - **Native driver usage** — Serene does not own connections, execution, transactions, or mapping.
 - **Review triage** — recognized construction can be treated as ordinary; unresolved or dynamic construction stays visible for additional review.

@@ -1,7 +1,7 @@
 import ts from 'typescript';
 import * as serene from '../dist/index.js';
 
-const tags = new Set(['postgres', 'mysql', 'mssql', 'sort']);
+const tags = new Set(['sql', 'sort']);
 const api = new Set([...tags, 'bind', 'orderBy', 'review']);
 const result = (level, code, detail) => ({ level, code, detail });
 const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL through Serene; review SQL meaning and binding use separately.');
@@ -53,6 +53,33 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     seen.add(node);
     const init = initializer(node);
     return init ? resolve(init, seen) : node;
+  }
+  function sinkInfo(node, seen = new Set(), alias = false) {
+    node = unparen(node);
+    if (!node || seen.has(node)) return undefined;
+    seen.add(node);
+    const name = ts.isPropertyAccessExpression(node) ? node.name.text :
+      ts.isElementAccessExpression(node) && ts.isStringLiteral(node.argumentExpression) ? node.argumentExpression.text :
+      ts.isIdentifier(node) ? node.text : undefined;
+    if (sinkNames.has(name) && !ts.isIdentifier(node)) return { name, alias };
+    // Follow only local const aliases. These establish candidacy, never ordinary provenance.
+    const init = initializer(node);
+    if (init) return sinkInfo(init, seen, true) ?? (sinkNames.has(name) ? { name, alias: true } : undefined);
+    const decl = declaration(node);
+    if (decl && ts.isBindingElement(decl) && !decl.dotDotDotToken && !decl.initializer &&
+        ts.isObjectBindingPattern(decl.parent) && ts.isVariableDeclaration(decl.parent.parent) &&
+        (decl.parent.parent.parent.flags & ts.NodeFlags.Const)) {
+      const property = decl.propertyName ?? decl.name;
+      const key = ts.isIdentifier(property) || ts.isStringLiteral(property) ? property.text : undefined;
+      if (sinkNames.has(key)) return { name: key, alias: true };
+    }
+    if (alias && ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression) &&
+        node.expression.name.text === 'bind') {
+      return sinkInfo(node.expression.expression, seen, true);
+    }
+    if (sinkNames.has(name)) return { name, alias: alias || !!decl &&
+      (ts.isVariableDeclaration(decl) || ts.isBindingElement(decl)) };
+    return undefined;
   }
   function classify(node, kind = 'sql', seen = new Set()) {
     node = resolve(node);
@@ -119,10 +146,13 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
       if (name && name !== 'review') emit(node, classify(node, name === 'bind' ? 'bound' : 'sql'), 'serene');
       else {
         const expr = node.expression;
-        const sink = ts.isPropertyAccessExpression(expr) ? expr.name.text :
-          ts.isElementAccessExpression(expr) && ts.isStringLiteral(expr.argumentExpression) ? expr.argumentExpression.text :
-          ts.isIdentifier(expr) ? expr.text : undefined;
-        if (sinkNames.has(sink)) emit(node, classify(node.arguments[0], 'text'), 'driver-candidate');
+        const sink = sinkInfo(expr);
+        if (sink) {
+          const finding = classify(node.arguments[0], 'text');
+          emit(node, sink.alias && finding.level !== 'violation' ?
+            result('review-required', 'SINK_ALIAS', 'Local execution alias; inspect its receiver and any prebound arguments.') :
+            finding, 'driver-candidate');
+        }
         else if (ts.isElementAccessExpression(expr)) emit(node, unknown(), 'computed-call');
       }
     }

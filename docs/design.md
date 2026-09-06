@@ -7,15 +7,31 @@ visible. Do not rebuild Ashiba, Dapper or a query builder. Initial acceptance co
 literal construction, binding conventions, finite sorts, mechanical triage and clear
 negative cases; it does not include exhaustive program analysis or live SQL validation.
 
+## Conservative authoring limits
+
+Accepting every valid SQL spelling is not a goal. A conservative restriction is
+acceptable when a clear, easily reviewed equivalent preserves meaning, performance
+and useful database functionality. Do not impose unnatural rewrites or functional
+loss on ordinary native features such as PostgreSQL arrays, subscripts and JSON
+operators. Preserve reviewable fixed SQL and value separation rather than growing a
+complete dialect parser. Where ambiguity warrants a narrow guard, fail closed or
+use the additional-review route; do not knowingly reinterpret unsupported syntax
+and silently rewrite its contents.
+
+For example, use `x - (-1)` rather than adjacent `x--1`, and use ASCII dollar-quote
+tags such as `$body$` rather than `$日本$`. The positional-lowering scanner keeps unconditional `--`
+line-comment handling and rejects detected non-ASCII dollar delimiters; it does not
+implement MySQL whitespace rules or a universal dollar-quote parser.
+
 ## Smallest useful design
 
 One package has an independent runtime entry and an optional source-audit entry.
-The runtime consists of a lexical scanner, identity-backed objects and a strict
+The runtime consists of a requested-name scanner, identity-backed objects and a
 binder. The audit reuses the TypeScript parser/binder rather than inventing a JS
 parser or depending on a full lint framework. TypeScript is the sole dev dependency
 and an optional peer for tooling, never loaded by the runtime entry.
 
-SQL tags have no interpolated values or fragments. Named values are explicit at
+The `sql` tag has no interpolated values or fragments. Named values are explicit at
 binding. ORDER BY is the sole composition operation and accepts a small sort grammar.
 No AST, generated artifacts, arbitrary renderer strings, dialect abstraction, unsafe
 constructor, plugin framework or driver execution adapter is introduced.
@@ -24,6 +40,30 @@ Static and runtime checks complement one another. JavaScript cannot authenticate
 template literal at runtime; TypeScript brands alone can be asserted away. Runtime
 object identity plus conservative source provenance avoids claiming either mechanism
 solves the complete problem. Unknown source flow is additional review, not ordinary.
+
+## Current authoring and execution boundary
+
+Author native named SQL directly when the driver supports it. `bind(stmt, params)`
+preserves SQL exactly and associates a named snapshot; it never scans SQL or checks
+parameter usage/collisions. SQL Server can use `@id`, bracket identifiers, money
+literals and system variables without Serene interpreting them. Parameter keys remain
+validated own ASCII names; values remain separate. Native binding correctness belongs
+to the driver, database and application.
+
+Use `:name` authoring notation only when explicit `indexed` or `anonymous` lowering
+is needed. These are the only `ParameterStyle` values; no compatibility aliases remain
+for the unpublished `named`/`at-named` API. The lowering scanner searches supplied
+names and shields common quoted/comment regions. Output-marker collisions and narrowly
+detected unsupported dollar delimiters fail closed. Missing-name completeness remains
+outside Serene; unused supplied names fail only on the lowering path. A passthrough
+snapshot follows supplied own-property order, not SQL occurrence order.
+
+`orderBy` is a separate construction operation: its existing terminator scan and
+finite-sort restrictions remain in force before any binding mode is selected.
+
+Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
+structural choices application-owned without enumerating all complete ORDER BY
+permutations. Only the whitelist keys and their order are runtime-controlled.
 
 ## Ashiba inputs
 
@@ -40,10 +80,9 @@ Ashiba was read only. Its API/archive status is not a dependency of this design.
 
 Serene independently reimplements/adapts those algorithms and regression scenarios;
 no package import, fork, compatibility layer or copied generated metadata is used.
-The original MIT copyright is retained. Changes include explicit dialect lexing,
+The original MIT copyright is retained. The initial implementation added explicit dialect lexing,
 closed lexical-boundary errors, conservative quote restrictions, strict undefined/
-accessor rejection, runtime provenance, source audit and finite ordering. PostgreSQL
-E-string support from Ashiba is deliberately narrowed rather than copied wholesale.
+accessor rejection, runtime provenance, source audit and finite ordering. The current redesign replaces dialect validation with requested-name replacement; see [API redesign](api-redesign.md).
 
 Primary lexical references checked:
 
@@ -53,9 +92,10 @@ Primary lexical references checked:
 
 ## Requirements added for review value
 
-Missing/unused/undefined binding rejection, explicit unknown-sort errors, structured
-diagnostic locations/codes, and an optional strict CLI gate are included. They expose
-common mistakes without adding execution or schema responsibilities.
+Undefined supplied binding rejection, lowering-only unused-parameter rejection,
+explicit unknown-sort errors, structured diagnostic locations/codes, and an optional
+strict CLI gate are included. They expose common mistakes without adding execution
+or schema responsibilities.
 
 Future proposals, not implemented: application-specific sink coverage manifests,
 selected real-driver integration probes, and measured review effort using a real

@@ -38,3 +38,31 @@ No public AI effectiveness claim is justified yet.
 The API redesign keeps alias regressions in the current unit suite, but does not
 relabel or rerun the frozen corpus against a different API. Those aggregate numbers
 are historical and are not a measurement of the new `sql` API.
+
+## Selecting source files
+
+`serene-audit src`, `serene-audit .`, and mixed file/directory inputs recursively
+inventory `.ts`, `.tsx`, `.mts`, `.cts`, `.js`, `.jsx`, `.mjs`, and `.cjs` files.
+Explicit regular files are accepted regardless of extension. Duplicate resolved
+paths are analyzed once; output files are sorted by absolute path. Declaration
+files are included. No glob expansion, extension option, or ignore-file parsing is
+provided by the CLI.
+
+Recursive discovery skips directories named `node_modules`, `dist`, `build`,
+`coverage`, or `.git`, and does not follow symbolic links. JSON `skipped` entries
+identify these omissions. An explicitly supplied directory is traversed even if
+its own name is normally excluded; explicitly supplied symbolic links fail.
+Select the real source path if it is needed. Unreadable/missing inputs and an empty
+selection exit 2 without a partial JSON success report. A selected source with no
+candidate findings can still exit 0; always inspect the `files` coverage list.
+
+Exit 1 means a violation, or any review-required finding with `--strict`. Exit 0
+is not approval of every SQL path. Recursive selection does not add cross-file
+provenance or exhaustive sink discovery. For example, an imported SQL definition
+can remain review-required even when both files are selected.
+
+Use `serene-audit --strict src` as a gate only where all review-required paths are
+intended to block. Legitimate native SQL exceptions and unresolved provenance still
+need application review; do not rewrite useful SQL just to make strict mode pass.
+Use the normal inventory plus the application's exception review process where
+such paths are intentional. There is no exception-approval manifest in this CLI.

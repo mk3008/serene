@@ -84,8 +84,10 @@ npm install --save-dev typescript@^5.9.3
 Then run:
 
 ```sh
-npx --no-install serene-audit src/users.ts src/orders.ts
+npx --no-install serene-audit src
 ```
+
+Use `serene-audit .` for repository-wide inventory, or pass individual files.
 
 Findings are intentionally simple:
 

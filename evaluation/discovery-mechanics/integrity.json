@@ -1,0 +1,15 @@
+{
+  "d1": {
+    "git_status": "",
+    "source_matches_frozen_task": true
+  },
+  "d2": {
+    "git_status": "",
+    "source_matches_frozen_task": true
+  },
+  "d3": {
+    "git_status": "",
+    "source_matches_frozen_task": true
+  },
+  "freeze_matches": true
+}

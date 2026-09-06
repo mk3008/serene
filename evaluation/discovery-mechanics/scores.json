@@ -1,0 +1,100 @@
+[
+  {
+    "run": "d1",
+    "task": "driver-operations",
+    "gold_sites": 6,
+    "final_sites": 6,
+    "true_positive": 6,
+    "false_positive": [],
+    "false_negative": [],
+    "recall": 1.0,
+    "precision": 1.0,
+    "function_mismatches": [],
+    "commands": 5,
+    "command_response_bytes": 8889,
+    "recording_response_bytes": 278,
+    "command_seconds": 0.02237248420715332,
+    "wall_seconds": 41.650166749954224,
+    "errors": [],
+    "truncated": [],
+    "snapshots": [
+      {
+        "event": 6,
+        "size": 6,
+        "added": 6,
+        "removed": 0,
+        "updated": 0
+      },
+      {
+        "event": 8,
+        "size": 6,
+        "added": 0,
+        "removed": 0,
+        "updated": 0
+      }
+    ]
+  },
+  {
+    "run": "d2",
+    "task": "wrapper-aliases",
+    "gold_sites": 5,
+    "final_sites": 5,
+    "true_positive": 5,
+    "false_positive": [],
+    "false_negative": [],
+    "recall": 1.0,
+    "precision": 1.0,
+    "function_mismatches": [],
+    "commands": 4,
+    "command_response_bytes": 10027,
+    "recording_response_bytes": 278,
+    "command_seconds": 0.03937172889709473,
+    "wall_seconds": 36.55954456329346,
+    "errors": [],
+    "truncated": [],
+    "snapshots": [
+      {
+        "event": 4,
+        "size": 5,
+        "added": 5,
+        "removed": 0,
+        "updated": 0
+      },
+      {
+        "event": 7,
+        "size": 5,
+        "added": 0,
+        "removed": 0,
+        "updated": 5
+      }
+    ]
+  },
+  {
+    "run": "d3",
+    "task": "mixed-ledger",
+    "gold_sites": 5,
+    "final_sites": 5,
+    "true_positive": 5,
+    "false_positive": [],
+    "false_negative": [],
+    "recall": 1.0,
+    "precision": 1.0,
+    "function_mismatches": [],
+    "commands": 5,
+    "command_response_bytes": 6817,
+    "recording_response_bytes": 193,
+    "command_seconds": 0.030256986618041992,
+    "wall_seconds": 33.18815588951111,
+    "errors": [],
+    "truncated": [],
+    "snapshots": [
+      {
+        "event": 7,
+        "size": 5,
+        "added": 5,
+        "removed": 0,
+        "updated": 0
+      }
+    ]
+  }
+]

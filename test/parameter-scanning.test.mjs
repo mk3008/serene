@@ -21,7 +21,7 @@ test('only requested whole ASCII names bind; casts and other colon uses survive'
   assert.equal(q.text, 'SELECT $1, :id2, :other, $1::int, foo:id, :id日本, arr[1:upper]');
   assert.deepEqual(q.values, [9]);
   code(() => bind(sql`SELECT :id`, { 'id); DROP TABLE t;--': 1 }), 'PARAMETER_NAME');
-  code(() => bind(sql`SELECT :id2`, { id: 1 }), 'UNUSED_PARAMETER');
+  code(() => bind(sql`SELECT :id2`, { id: 1 }, 'indexed'), 'UNUSED_PARAMETER');
 });
 
 test('quoted and commented occurrences never allocate slots, even for requested names', () => {
@@ -47,12 +47,11 @@ test('SQL authoring accepts uninterpreted forms and incomplete SQL', () => {
 
 test('native marker conflicts fail only for the selected output contract', () => {
   for (const [stmt, style] of [[sql`SELECT $1, :id`, 'indexed'],
-    [sql`SELECT ?, :id`, 'anonymous'], [sql`SELECT @id, :id`, 'at-named'],
+    [sql`SELECT ?, :id`, 'anonymous'],
     [sql`SELECT payload ? :id`, 'anonymous'], [sql`SELECT payload @? :id`, 'anonymous']]) {
     code(() => bind(stmt, { id: 7 }, style), 'MIXED_PARAMETERS');
   }
   assert.equal(bind(sql`SELECT payload ? :id`, { id: 'x' }, 'indexed').text, 'SELECT payload ? $1');
-  assert.equal(bind(sql`SELECT @@ROWCOUNT, :id`, { id: 7 }, 'at-named').text, 'SELECT @@ROWCOUNT, @id');
   assert.equal(bind(sql`SELECT foo$1, :id`, { id: 7 }, 'indexed').text, 'SELECT foo$1, $1');
   assert.equal(bind(sql`SELECT $1, :id`, { id: 7 }).text, 'SELECT $1, :id');
 });
@@ -76,7 +75,7 @@ test('hostile values cannot affect complex SQL text or requested slot ordering',
 });
 
 test('adjacent double dash uses line-comment semantics; use explicit subtraction', () => {
-  for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+  for (const style of ['indexed', 'anonymous']) {
     code(() => bind(sql`SELECT 5--1, :id`, { id: 7 }, style), 'UNUSED_PARAMETER');
     code(() => bind(sql`SELECT 5--1, :id
       , :other`, { id: 7, other: 8 }, style), 'UNUSED_PARAMETER');
@@ -90,13 +89,13 @@ test('non-ASCII dollar delimiters fail before requested names can be rewritten',
   for (const stmt of [sql`SELECT $日本$ :id $日本$, :id`,
     sql`SELECT $body日本$ :id $body日本$`, sql`SELECT $é_1$ :id $é_1$`,
     sql`SELECT :id, $日本$ literal $日本$`, sql`SELECT $日本$ :id`]) {
-    for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+    for (const style of ['indexed', 'anonymous']) {
       assert.throws(() => bind(stmt, { id: 7 }, style), error =>
         error.code === 'UNSUPPORTED_DOLLAR_QUOTE' && error.level === 'violation' &&
         error.offset === stmt.sourceText.indexOf('$'));
     }
   }
-  code(() => bind(sql`SELECT $日本$ literal $日本$`), 'UNSUPPORTED_DOLLAR_QUOTE');
+  code(() => bind(sql`SELECT $日本$ literal $日本$`, {}, 'indexed'), 'UNSUPPORTED_DOLLAR_QUOTE');
 });
 
 test('ASCII dollar quoting is canonical; lookalikes in shielded text remain unchanged', () => {

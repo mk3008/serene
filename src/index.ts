@@ -26,7 +26,7 @@ function create(data: Statement): Sql {
   statements.set(sql, data);
   return sql;
 }
-/** Ordinary SQL with :name parameters; no runtime interpolation. */
+/** Fixed native SQL; :name notation is needed only for positional lowering. */
 export function sql(strings: TemplateStringsArray, ...values: never[]): Sql {
   return create({ sourceText: literal(strings, values), sorted: false });
 }
@@ -77,15 +77,18 @@ export interface BoundSql {
   readonly text: string;
   /** Review/debug SQL before output-marker lowering; contains no bound values. */
   readonly sourceText: string;
-  /** Driver-facing ordered values; anonymous output repeats values per occurrence. */
+  /** Supplied-name order in passthrough; marker order when lowering (anonymous repeats). */
   readonly values: unknown[];
   readonly names: readonly string[];
   readonly params: Readonly<Record<string, unknown>>;
 }
-export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, style: ParameterStyle = 'named'): BoundSql {
+export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, style?: ParameterStyle): BoundSql {
   const data = statements.get(sql);
   if (!data) throw new SereneError('UNSCREENED', 'Expected a Serene SQL object.');
   if (!params || typeof params !== 'object') throw new SereneError('PARAMETERS', 'Expected named parameters.');
+  if (style !== undefined && style !== 'indexed' && style !== 'anonymous') {
+    throw new SereneError('PARAMETER_STYLE', 'Unknown parameter output style.');
+  }
   const descriptors = Object.getOwnPropertyDescriptors(params);
   const requested = new Set<string>();
   for (const name of Reflect.ownKeys(descriptors)) {
@@ -98,7 +101,9 @@ export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, s
     }
     requested.add(name);
   }
-  const rendered = compile(scan(data.sourceText, requested), style);
+  // Native named binding needs no SQL inspection, including no collision checks.
+  const rendered = style === undefined ? { text: data.sourceText, names: [...requested] } :
+    compile(scan(data.sourceText, requested), style);
   const required = new Set(rendered.names);
   for (const name of requested) {
     if (!required.has(name)) throw new SereneError('UNUSED_PARAMETER', `Unused parameter: ${name}`);

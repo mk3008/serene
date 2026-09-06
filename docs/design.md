@@ -19,7 +19,7 @@ use the additional-review route; do not knowingly reinterpret unsupported syntax
 and silently rewrite its contents.
 
 For example, use `x - (-1)` rather than adjacent `x--1`, and use ASCII dollar-quote
-tags such as `$body$` rather than `$日本$`. The scanner keeps unconditional `--`
+tags such as `$body$` rather than `$日本$`. The positional-lowering scanner keeps unconditional `--`
 line-comment handling and rejects detected non-ASCII dollar delimiters; it does not
 implement MySQL whitespace rules or a universal dollar-quote parser.
 
@@ -43,14 +43,23 @@ solves the complete problem. Unknown source flow is additional review, not ordin
 
 ## Current authoring and execution boundary
 
-Author `sql` with meaningful `:name` markers and preserve `sourceText`. `bind` chooses
-one closed output contract (`named`, `indexed`, `anonymous`, `at-named`), never a
-DBMS. SQL remains application-owned and visible to external debugging tools. The
-scanner runs at bind time, searches supplied names, and shields common quoted/comment
-regions to avoid incidental replacements. Other fixed SQL syntax passes through.
-Output-marker collisions and narrowly detected unsupported dollar delimiters fail closed. SQL completeness and
-correctness remain application/database responsibilities; see the security contract
-for deliberately limited shielding conventions.
+Author native named SQL directly when the driver supports it. `bind(stmt, params)`
+preserves SQL exactly and associates a named snapshot; it never scans SQL or checks
+parameter usage/collisions. SQL Server can use `@id`, bracket identifiers, money
+literals and system variables without Serene interpreting them. Parameter keys remain
+validated own ASCII names; values remain separate. Native binding correctness belongs
+to the driver, database and application.
+
+Use `:name` authoring notation only when explicit `indexed` or `anonymous` lowering
+is needed. These are the only `ParameterStyle` values; no compatibility aliases remain
+for the unpublished `named`/`at-named` API. The lowering scanner searches supplied
+names and shields common quoted/comment regions. Output-marker collisions and narrowly
+detected unsupported dollar delimiters fail closed. Missing-name completeness remains
+outside Serene; unused supplied names fail only on the lowering path. A passthrough
+snapshot follows supplied own-property order, not SQL occurrence order.
+
+`orderBy` is a separate construction operation: its existing terminator scan and
+finite-sort restrictions remain in force before any binding mode is selected.
 
 Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
 structural choices application-owned without enumerating all complete ORDER BY

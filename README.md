@@ -25,15 +25,18 @@ const q = bind(findUsers, { name: input.name ?? null }, 'indexed');
 const result = await pool.query(q.text, q.values); // application-owned native driver
 ```
 
-The tag accepts a template literal with **no interpolation**. Author meaningful
-`:name` parameters; select output markers at `bind`. The default is `named`, which
-keeps `:name`. The example explicitly selects `$1` output. Output style is a parameter
-contract, not a SQL dialect or a claim that the SQL is portable across databases.
+The tag accepts a template literal with **no interpolation**. Use native SQL and
+native named parameters when the driver supports them. `bind(stmt, params)` is
+passthrough: it preserves text exactly without scanning SQL, checking parameter use,
+or detecting marker collisions. The example above explicitly requests `indexed`
+output, using `:name` notation only because positional lowering is needed.
 
-Binding searches only the own names supplied in `params`. Unspecified markers stay
-unchanged; SQL completeness is the application/database's responsibility. Unused names,
-undefined values and accessors are rejected; inherited properties are not bindings.
-Names are case-sensitive ASCII identifiers. `null` is an explicit value.
+`ParameterStyle` is `indexed | anonymous`. There are no `named`, `at-named` or
+`passthrough` string styles; omission (or `undefined`) selects passthrough.
+Both paths snapshot supplied own data properties, reject undefined values/accessors
+and require case-sensitive ASCII parameter keys. Inherited properties are ignored;
+`null` is explicit. Only positional lowering rejects unused supplied names.
+Completeness and native binding correctness belong to the driver, DB and application.
 SQL templates use ordinary JavaScript escape rules, so `sourceText` is the cooked SQL
 body, not the TypeScript file's raw escape spelling.
 
@@ -55,10 +58,9 @@ Fixed SQL can express optional predicates; assess its actual query plan yourself
 
 | `bind` third argument | Output markers | `names` / `values` ordering |
 | --- | --- | --- |
-| `named` (default) | `:id` | First occurrence of each name |
+| omitted (passthrough) | Unchanged native SQL | Supplied own-property order; once per key |
 | `indexed` | `$1` | First occurrence of each name; repeated names reuse slots |
 | `anonymous` | `?` | Every occurrence, including repeats |
-| `at-named` | `@id` | First occurrence of each name |
 
 ```ts
 const byName = sql`SELECT id, name FROM users WHERE name = :name`;
@@ -68,7 +70,8 @@ await pgPool.query(p.text, p.values);
 const m = bind(byName, { name }, 'anonymous');
 await connection.execute(m.text, m.values);
 
-const s = bind(byName, { name }, 'at-named');
+const native = sql`SELECT [id], [name] FROM [users] WHERE name = @name`;
+const s = bind(native, { name }); // text === sourceText; no SQL scanning
 s.names.forEach((key, i) => request.input(key, s.values[i]));
 await request.query(s.text);
 ```
@@ -190,39 +193,38 @@ set result, not measured AI review effectiveness or real-world recall.
 - `sort`: restricted literal ordering returning opaque `Sort`.
 - `orderBy(sql, choices, keyOrKeys)`: append whitelisted terms in selected order.
 - `bind(sql, params?, style?)`: return `{ sourceText, text, values, names, params }`.
-- `ParameterStyle`: `named | indexed | anonymous | at-named`.
+- `ParameterStyle`: `indexed | anonymous`; omit for passthrough.
 - `review(value)`: runtime provenance level and reason code.
 - `SereneError`: structured policy/binding failure.
 - Optional `@mk3008/serene/audit`: `auditSource(source, filename?, { sinkNames? })`.
 
 ## Deliberate limits
 
-`sql` preserves fixed source without validating SQL syntax. At `bind`, a small
-scanner locates only requested `:name` tokens and shields doubled single/double/
-backtick quotes, PostgreSQL ASCII-tagged/untagged dollar quotes and `E` strings, `--` comments and nested
-block comments. Arrays, subscripts, JSON operators, system variables and other fixed
-syntax pass through. Output style does not select a SQL dialect.
+`sql` preserves fixed source without validating SQL syntax. Passthrough `bind`
+associates that text with a named snapshot without inspecting any SQL syntax.
+SQL Server bracket identifiers, money literals and system variables, including
+`[customer:id], $100.00, @@ROWCOUNT, @id`, remain byte-for-byte unchanged.
+Supplied names need not occur in the SQL. `names`/`values` reflect supplied keys,
+not inferred placeholders; register them through the native named binding interface.
 
-Conflicts with the selected output markers are rejected when generating bindings:
-existing `$number` for `indexed`, `?` for `anonymous`, and `@name` for `at-named`.
-Thus PostgreSQL `payload ? :key` works with `indexed`; it cannot be lowered to
-`anonymous` without colliding with that contract. `@@` system forms are preserved.
+Only explicit `indexed` / `anonymous` lowering runs the requested-name scanner.
+It shields common quotes/comments, ASCII dollar quotes and explicit `E` strings.
+Arrays, subscripts and JSON operators retain their existing support. It rejects
+existing `$number` in indexed output or `?` in anonymous output when emitting new
+markers. PostgreSQL `payload ? :key` therefore works with indexed output.
 
-Use canonical dollar quoting `$$...$$` or an ASCII tag such as `$body$...$body$`
-(`[A-Za-z_][A-Za-z0-9_]*`). Detected non-ASCII tags such as `$日本$` fail with
-`UNSUPPORTED_DOLLAR_QUOTE` during bind instead of rewriting their contents.
-Every `--` is a line comment: write `x - (-1)` rather than MySQL's adjacent `x--1`.
-Supplying `id` for `SELECT 5--1, :id` fails with `UNUSED_PARAMETER`.
-These easily rewritten spellings are deliberate limits; accepting every valid SQL
-spelling is not the goal. Arrays, subscripts and JSON operators remain supported.
+For lowering, use `$$...$$` or an ASCII dollar tag (`[A-Za-z_][A-Za-z0-9_]*`);
+non-ASCII identifier-shaped tags fail with `UNSUPPORTED_DOLLAR_QUOTE`.
+Every `--` is a line comment: use `x - (-1)` rather than adjacent `x--1`.
+Supplied `id` for `SELECT 5--1, :id` fails as unused when lowering.
+These limits do not apply to passthrough binding.
 
-This is not a universal lexer. Ordinary strings assume doubled-quote escaping, not
-backslash escaping; use PostgreSQL's standard-conforming strings setting. Brackets
-and `#` are plain text, not identifier/comment delimiters. Do not use a requested
-`:name` inside bracket identifiers, hash comments, executable comments or alternative
-quote forms and expect universal shielding. Check actual bindings against your native
-driver for such SQL. No syntax needs to be removed merely to pass the `sql` tag.
-See [the binding boundary and migration](docs/api-redesign.md).
+Lowering is not a universal lexer. Ordinary strings use doubled-quote escaping;
+brackets and `#` are plain text. Alternative quotes, executable comments and other
+ambiguous regions require target-driver verification. See [security](docs/security.md).
+`orderBy` separately scans for terminators before appending its finite suffix, so
+its existing scanner restrictions still apply regardless of later binding mode.
+See [migration](docs/api-redesign.md) for the unpublished API changes.
 
 No SQL syntax, schema, semantics, result typing, permissions, performance or
 comprehensive vulnerability verification. No ORM, query/WHERE builder, driver

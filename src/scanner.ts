@@ -1,6 +1,6 @@
 import { SereneError } from './error.js';
 
-export type ParameterStyle = 'named' | 'indexed' | 'anonymous' | 'at-named';
+export type ParameterStyle = 'indexed' | 'anonymous';
 export type Parameter = { start: number; end: number; name: string };
 export type Scanned = { sourceText: string; parameters: Parameter[]; terminated: boolean;
   native: { style: ParameterStyle; start: number }[] };
@@ -58,8 +58,6 @@ export function scan(sourceText: string, requested?: ReadonlySet<string>): Scann
     if (c === ':' && n === ':') { i += 2; continue; }
     if (c === '$' && /[0-9]/.test(n) && !identifier(sourceText[i - 1] ?? '')) native.push({ style: 'indexed', start: i });
     if (c === '?') native.push({ style: 'anonymous', start: i });
-    if (c === '@' && n === '@') { i += 2; continue; }
-    if (c === '@' && /[A-Za-z_]/.test(n)) native.push({ style: 'at-named', start: i });
     if (c === ':' && !identifier(sourceText[i - 1] ?? '')) {
       const name = /^[A-Za-z_][A-Za-z0-9_]*/.exec(sourceText.slice(i + 1))?.[0];
       if (name && !identifier(sourceText[i + 1 + name.length] ?? '') && (!requested || requested.has(name))) {
@@ -76,7 +74,7 @@ export function scan(sourceText: string, requested?: ReadonlySet<string>): Scann
 
 /** Lower only located spans. Neither parameter names nor values supply SQL syntax. */
 export function compile(data: Scanned, style: ParameterStyle): { text: string; names: string[] } {
-  if (!['named', 'indexed', 'anonymous', 'at-named'].includes(style)) {
+  if (!['indexed', 'anonymous'].includes(style)) {
     throw new SereneError('PARAMETER_STYLE', 'Unknown parameter output style.');
   }
   const collision = data.parameters.length && data.native.find(marker => marker.style === style);
@@ -92,8 +90,7 @@ export function compile(data: Scanned, style: ParameterStyle): { text: string; n
       position = names.length;
       positions.set(parameter.name, position);
     }
-    const marker = style === 'indexed' ? `$${position}` : style === 'anonymous' ? '?' :
-      `${style === 'at-named' ? '@' : ':'}${parameter.name}`;
+    const marker = style === 'indexed' ? `$${position}` : '?';
     text += data.sourceText.slice(cursor, parameter.start) + marker;
     cursor = parameter.end;
   }

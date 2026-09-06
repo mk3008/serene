@@ -9,10 +9,8 @@ test('canonical source survives every output contract and hostile values stay se
   const hostile = "x'); DROP TABLE users; --";
   const stmt = sql`SELECT :id::int, :id, :name`;
   for (const [style, text, names, values] of [
-    ['named', 'SELECT :id::int, :id, :name', ['id', 'name'], [7, hostile]],
     ['indexed', 'SELECT $1::int, $1, $2', ['id', 'name'], [7, hostile]],
     ['anonymous', 'SELECT ?::int, ?, ?', ['id', 'id', 'name'], [7, 7, hostile]],
-    ['at-named', 'SELECT @id::int, @id, @name', ['id', 'name'], [7, hostile]],
   ]) {
     const q = bind(stmt, { name: hostile, id: 7 }, style);
     assert.equal(q.text, text);
@@ -30,7 +28,7 @@ test('requested own names are validated; omitted and inherited names are not bin
   const q = sql`SELECT :id`;
   assert.equal(bind(q, {}, 'indexed').text, 'SELECT :id');
   assert.deepEqual(bind(q, Object.create({ id: 7 })).values, []);
-  throwsCode(() => bind(q, { id: 7, extra: 8 }), 'UNUSED_PARAMETER');
+  throwsCode(() => bind(q, { id: 7, extra: 8 }, 'indexed'), 'UNUSED_PARAMETER');
   throwsCode(() => bind(q, { id: undefined }), 'PARAMETER_VALUE');
   throwsCode(() => bind(q, { get id() { throw Error('must not execute'); } }), 'PARAMETER_VALUE');
   throwsCode(() => bind(q, { id: 7, [Symbol()]: 1 }), 'PARAMETER_NAME');
@@ -132,11 +130,10 @@ for (const [source, expected, names] of [
   const data = scan(source);
   assert.equal(data.sourceText, source);
   assert.deepEqual(compile(data, 'indexed'), { text: expected, names });
-  assert.equal(compile(data, 'named').text, source);
 });
 test('hostile corpus cannot change generated SQL in any output style', () => {
   const payloads = ["'", '\\', '\0', '--', '/*', ':id', '$1', '?', '@id', '日本', '😀', 'x; DELETE FROM users'];
-  for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+  for (const style of [undefined, 'indexed', 'anonymous']) {
     const stmt = sql`SELECT :value, :value`;
     const expected = bind(stmt, { value: null }, style).text;
     for (const value of payloads) assert.equal(bind(stmt, { value }, style).text, expected);

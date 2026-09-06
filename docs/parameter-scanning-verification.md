@@ -1,4 +1,8 @@
-# Requested-name replacement verification
+# Binding verification
+
+The earlier sections below record historical requested-name behavior at `57b7b62`
+and `61473c2`. Current passthrough behavior supersedes their four-style and
+always-scan binding descriptions; see the final section.
 
 ## Decision
 
@@ -68,3 +72,30 @@ syntax. Existing ARRAY/subscript/JSON positives are unchanged.
   TypeScript peer: four output styles, arrays/JSON, finite sorting, hostile-value
   separation, both review regressions and canonical ASCII dollar quoting passed.
 - `git diff --check`: passed. No live DB execution or AI significance claim added.
+
+
+## Native named passthrough review follow-up
+
+Addresses [comment 5557770447](https://github.com/mk3008/serene/pull/1#issuecomment-5557770447).
+Omitted/undefined style now returns unchanged SQL plus a named snapshot without
+scanning or usage/collision checks. Only `indexed` and `anonymous` remain in
+`ParameterStyle`. Removed strings fail in runtime and negative TypeScript tests.
+
+Four new runtime tests failed before implementation and pass afterward. They cover
+SQL Server bracket identifiers/native names/money/system variables, scanner bypass
+including non-ASCII dollar quotes and mixed marker-like text, supplied-key order,
+snapshot immutability, extra names, accessor/undefined rejection and hostile values.
+A native-named source-audit regression also passes. Existing positional ARRAY/JSON,
+collision, quote-guard and adjacent-comment tests remain on the lowering paths.
+Provenance, interpolation and finite-sort boundaries are unchanged.
+
+Current validation:
+- `npm run check`: 65 tests passed; TypeScript and tooling syntax checks passed.
+- Strict example audit: 3/3 native-driver candidates ordinary, including native
+  SQL Server passthrough.
+- Rebuilt/extracted `npm pack`; runtime imported without installing the optional
+  TypeScript peer. Passthrough, both lowering styles, removed-style failures,
+  arrays/JSON/sorting, quote/comment guards and hostile-value separation passed.
+- Compiled the negative/positive consumer type cases against extracted declaration
+  files, including rejection of `named`, `at-named` and `passthrough` style strings.
+- `git diff --check` passed. No live native-driver/database run is claimed.

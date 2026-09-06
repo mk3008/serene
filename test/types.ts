@@ -6,7 +6,7 @@ const text: string = q.text;
 const source: string = stmt.sourceText;
 const driverValues: unknown[] = q.values;
 const params: Readonly<Record<string, unknown>> = q.params;
-for (const style of ['named', 'indexed', 'anonymous', 'at-named'] satisfies ParameterStyle[]) bind(stmt, { id: 1 }, style);
+for (const style of ['indexed', 'anonymous'] satisfies ParameterStyle[]) bind(stmt, { id: 1 }, style);
 void text; void source; void driverValues; void params;
 // @ts-expect-error Runtime strings cannot be passed as SQL.
 bind('SELECT 1');
@@ -30,3 +30,13 @@ stmt.sourceText = 'SELECT 2';
 q.params.id = 2;
 // @ts-expect-error Database-specific tags were removed.
 import { postgres, mysql, mssql, type Dialect } from '../src/index.js';
+
+const native = bind(sql`SELECT [customer:id], @id, @@ROWCOUNT`, { id: 1 });
+bind(stmt, { id: 1 }, undefined);
+void native;
+// @ts-expect-error No legacy named style remains.
+bind(stmt, { id: 1 }, 'named');
+// @ts-expect-error No legacy at-named conversion remains.
+bind(stmt, { id: 1 }, 'at-named');
+// @ts-expect-error Passthrough is omission, not another ParameterStyle.
+bind(stmt, { id: 1 }, 'passthrough');

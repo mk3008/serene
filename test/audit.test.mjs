@@ -133,7 +133,7 @@ test('aliases named like sinks do not hide prebound runtime SQL behind ordinary 
 });
 
 test('all output styles and ordered whitelist selection preserve source provenance', () => {
-  for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+  for (const style of ['indexed', 'anonymous']) {
     const rows = sink('const stmt = orderBy(literalSql`SELECT id FROM users WHERE id = :id`, { id: sort`id ASC`, name: sort`name DESC` }, input.keys); const q = bind(stmt, {id}, "' + style + '"); db.query(q.text, q.values);');
     assert.equal(rows[0].level, 'ordinary');
   }
@@ -146,5 +146,10 @@ test('legacy tags and arbitrary sourceText are not silently trusted as new API',
 });
 test('fixed PostgreSQL array syntax has ordinary construction provenance', () => {
   const rows = sink('const q = bind(literalSql`SELECT ARRAY[:id]`, {id}, "indexed"); db.query(q.text)');
+  assert.equal(rows[0].level, 'ordinary');
+});
+
+test('native named passthrough preserves ordinary construction provenance', () => {
+  const rows = sink('const stmt = literalSql`SELECT [customer:id], $100.00, @@ROWCOUNT, @id`; const q = bind(stmt, {id}); db.query(q.text);');
   assert.equal(rows[0].level, 'ordinary');
 });

@@ -36,39 +36,43 @@ runtime checks: invalid supplied values, output-marker collisions and unknown so
 | Malicious dependency, eval, modified globals, hostile proxy traps | Outside threat model |
 | Valid fixed SQL deleting the wrong tenant's data | Outside Serene's guarantee |
 
-## Parameter replacement boundary
+## Passthrough and positional lowering
 
-`sql` establishes construction provenance and stores fixed source; it does not parse
-or validate SQL. `bind` snapshots own data properties, validates ASCII names, locates
-only requested `:name` spans and rewrites those spans into a closed output contract.
-Values never enter SQL text. Unspecified markers remain unchanged; omitted/inherited
-names do not create slots. Unused supplied names still report likely caller mistakes.
-Neither completeness nor success at the database is guaranteed.
+`sql` stores fixed source with construction provenance; it does not validate SQL.
+Both binding paths validate supplied own ASCII names and data properties, reject
+undefined/accessor values, ignore inherited properties and snapshot values separately.
+Values are never rendered into SQL text. SQL completeness and native-driver binding
+correctness remain application responsibilities.
 
-The scanner shields doubled single/double/backtick quotes, PostgreSQL ASCII-tagged/untagged dollar quotes
-and explicit `E` string escapes, line comments starting `--`, and nested block
-comments. This prevents common accidental literal changes and extra anonymous slots.
-PostgreSQL arrays and JSON operators still pass through. A narrow guard rejects
-non-ASCII identifier-shaped dollar delimiters before any replacement is returned.
-Existing markers are checked only against the selected output style when new markers
-are emitted: `$number` with indexed, `?` with anonymous, `@name` with at-named.
-This mechanical collision check prevents slot reuse/shifting; it is not SQL grammar
-validation or a complete detector for every driver's native marker syntax.
+With the third argument omitted or `undefined`, `bind` is passthrough. It returns
+`text === sourceText` without running the scanner, locating names, checking usage,
+or detecting collisions. `params` contains all supplied own keys; `names`/`values`
+follow their own-property order once per key, regardless of SQL occurrences.
+Native `@id`, `[customer:id]`, `$100.00`, `@@ROWCOUNT`, any parameter-like text and
+unsupported quote forms are preserved. This says nothing about SQL validity; the
+application registers named values with its native driver. Extra/missing names are
+not diagnosed on this path. Unsupported output-style strings fail rather than
+silently selecting passthrough.
 
-Canonical dollar quoting is `$$...$$` or `$tag$...$tag$`, where the tag matches
-`[A-Za-z_][A-Za-z0-9_]*`. A detected delimiter such as `$日本$` or `$body日本$`
-raises `UNSUPPORTED_DOLLAR_QUOTE` at bind, with the delimiter offset, even without
-requested names. Use an ASCII tag instead. The guard runs only outside shielded
-regions and at a delimiter boundary; it is not a full SQL validator. Suffix sorting
-uses the same scanner and guard. Source provenance alone does not prove bind success.
+Only explicit `indexed` or `anonymous` lowering scans for requested `:name` spans.
+Unspecified names remain unchanged and unused supplied names fail. The scanner
+shields common quotes/comments, ASCII dollar quotes and explicit `E` string escapes.
+Arrays/subscripts/JSON operators remain supported. Existing `$number` (indexed) or
+`?` (anonymous) conflict with generated markers and fail when bindings are emitted.
+No `@name` conversion or collision check remains.
 
-Every `--` begins a line comment, regardless of following whitespace. Serene does
-not follow MySQL's adjacent subtraction spelling: author `x - (-1)` instead of
-`x--1`. Supplying `id` to bind `SELECT 5--1, :id` throws `UNUSED_PARAMETER`
-because `id` has no occurrence outside that comment. This restriction does not
-validate arbitrary SQL expressions; comment occurrences never allocate value slots.
+The following scanner conventions concern lowering and the separate `orderBy`
+terminator check, not passthrough binding:
 
-Shielding is an authoring convention, not dialect inference. Plain quoted strings
+- Dollar quoting uses `$$` or ASCII tags matching `[A-Za-z_][A-Za-z0-9_]*`.
+  Non-ASCII identifier-shaped delimiters fail with `UNSUPPORTED_DOLLAR_QUOTE` and
+  an offset. Use `$body$` instead of `$日本$`; do not silently rewrite its body.
+- Every `--` starts a line comment. Use `x - (-1)` instead of adjacent `x--1`.
+  Lowering `SELECT 5--1, :id` with supplied `id` fails with `UNUSED_PARAMETER`.
+- `orderBy` retains its existing scanner/terminator checks before a finite suffix
+  is appended. Choosing passthrough later does not bypass that construction check.
+
+On the lowering path, shielding is an authoring convention, not dialect inference. Plain quoted strings
 use doubled delimiters, with backslashes ordinary; PostgreSQL
 `standard_conforming_strings=on` matches this convention. `E` strings recognize
 backslash escapes. Continuation of escape strings, alternative quoting, executable

@@ -14,7 +14,8 @@ await pg.query(p.text, p.values);
 const m = bind(base, { tenant: input.tenant }, 'anonymous');
 await my.execute(m.text, m.values);
 
-const s = bind(base, { tenant: input.tenant }, 'at-named');
+const native = sql`SELECT [id] FROM [users] WHERE tenant_id = @tenant`;
+const s = bind(native, { tenant: input.tenant });
 s.names.forEach((name, i) => request.input(name, s.values[i]));
 await request.query(s.text);
 

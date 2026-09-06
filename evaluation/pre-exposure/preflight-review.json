@@ -1,0 +1,61 @@
+{
+  "scope": "Independent adversarial review of evaluation/pre-exposure/filter.mjs; no production or controller changes.",
+  "reviewedRevision": "workspace state supplied for preflight",
+  "status": "resolved-with-remaining-coverage-limit",
+  "command": "node --test evaluation/pre-exposure/review-tests.mjs",
+  "findings": [
+    {
+      "id": "PREX-001",
+      "severity": "blocker",
+      "status": "reproduced",
+      "location": "filterRows recursive visit",
+      "mechanism": "Binary assignment expressions are not rejected. The traversal allows a dynamic SQL concatenation in a function parameter default, while the mask range begins at the function declaration and hides that parameter source.",
+      "reproduction": "review-tests.mjs: default-parameter assignment with dynamic SQL is masked",
+      "impact": "An actionable dynamic SQL construction in a default argument disappears from pre-exposure source output under a whole-function ordinary mask.",
+      "requiredDisposition": "Do not enable this masking gate until all effectful and SQL-construction expressions in parameters, decorators, and function body are rejected or the emitted mask excludes unverified signature and body fragments."
+    },
+    {
+      "id": "PREX-002",
+      "severity": "blocker",
+      "status": "reproduced",
+      "location": "filterRows statement and visit checks; auditSource driver candidate classification",
+      "mechanism": "A direct driver call is ordinary when its first argument has Serene provenance. The filter neither verifies additional driver arguments nor rejects assignment expressions nested in them.",
+      "reproduction": "review-tests.mjs: driver-argument assignment is masked despite unverified binding use",
+      "impact": "Unreviewed binding substitution and an unrelated dynamic SQL assignment disappear with an otherwise ordinary function.",
+      "requiredDisposition": "Require an exact recognized execution-call shape, including all relevant arguments, and reject assignments/update expressions before masking."
+    },
+    {
+      "id": "PREX-003",
+      "severity": "coverage-limit",
+      "status": "confirmed",
+      "location": "tooling/audit.mjs sinkInfo and filterRows",
+      "mechanism": "A property named query on any parameter receiver is a syntactic ordinary driver candidate. No native-driver identity is established.",
+      "reproduction": "review-tests.mjs: syntactic query receiver identity is not established before masking",
+      "impact": "The filter can hide a function whose receiver is an unknown wrapper. This matches the audit's documented candidate-identity limit, so it must not be represented as positive native-driver verification.",
+      "requiredDisposition": "Either retain such receivers or state and enforce that masking only attests Serene text construction, never execution identity or driver binding correctness."
+    }
+  ],
+  "nonfindings": [
+    "Existing suite covers parse failure, computed calls, unknown helper calls, unsupported sinks, same-function dynamic SQL, stale source, and same-line adjacent ranges.",
+    "Line fragments that do not byte-match the current source are retained by filterRows, which is conservative for source-coordinate mismatch."
+  ],
+  "resolution": {
+    "PREX-001": {
+      "status": "resolved",
+      "change": "filterRows rejects every parameter initializer and every non-identifier parameter binding before it considers a complete-function mask; assignment and update expressions also invalidate a candidate anywhere in the declaration traversal.",
+      "regression": "review-tests.mjs: REGRESSION: default-parameter assignment with dynamic SQL prevents masking"
+    },
+    "PREX-002": {
+      "status": "resolved",
+      "change": "filterRows accepts a driver call only when its first argument is a direct identifier .text property. Later arguments may be primitive literals or identifiers, or direct .values/.params properties on that same bound identifier. Assignment and arbitrary expression arguments invalidate masking.",
+      "regressions": [
+        "review-tests.mjs: REGRESSION: driver-argument assignment with dynamic SQL prevents masking",
+        "review-tests.mjs: REGRESSION: arbitrary values property in a driver argument prevents masking"
+      ]
+    },
+    "PREX-003": {
+      "status": "remaining-coverage-limit",
+      "change": "No receiver-identity claim was added. Ordinary masking remains an attestation of source construction plus syntactic candidate shape, not proof that the receiver is a native driver or that bindings are semantically correct."
+    }
+  }
+}

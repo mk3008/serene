@@ -1,0 +1,68 @@
+{
+  "format": "pre-exposure-adversarial-v1",
+  "coordinates": "1-based; end is exclusive. A span is maskable only when the parsed function body is wholly and positively established as ordinary Serene construction and a recognized execution path.",
+  "designRisks": [
+    "Never mask a whole function because it contains one ordinary sql tag or bind call. Retain the whole function when any statement, call target, receiver, sink, or provenance is unresolved.",
+    "Do not infer spans from source comments, SQL string contents, names, or marker-shaped text. Use parser-derived function ranges from the exact source revision.",
+    "A parse failure invalidates every proposed mask in that file; preserve the raw matches and source for review.",
+    "Only parser-derived ranges may be compacted. Same-line functions require exact columns so a neighboring actionable function cannot be erased."
+  ],
+  "cases": [
+    {
+      "id": "ordinary-fixed-function",
+      "file": "ordinary-fixed.ts",
+      "parse": "required-success",
+      "maskableSpans": [{ "function": "loadUser", "start": { "line": 3, "column": 1 }, "end": { "line": 7, "column": 2 }, "why": "The body constructs a fixed sql template, binds named values, and passes the bound text and values to a direct recognized query call." }],
+      "nonmaskableSpans": []
+    },
+    {
+      "id": "ordinary-and-dangerous-in-one-function",
+      "file": "same-function-ordinary-dangerous.ts",
+      "parse": "required-success",
+      "maskableSpans": [],
+      "nonmaskableSpans": [{ "function": "loadAndSearch", "start": { "line": 3, "column": 1 }, "end": { "line": 8, "column": 2 }, "why": "One ordinary query does not make the body ordinary: the second query concatenates runtime term into SQL. The complete function must remain visible." }]
+    },
+    {
+      "id": "unknown-helper-alongside-ordinary",
+      "file": "unknown-helper-alongside-ordinary.ts",
+      "parse": "required-success",
+      "maskableSpans": [],
+      "nonmaskableSpans": [{ "function": "loadWithAudit", "start": { "line": 5, "column": 1 }, "end": { "line": 11, "column": 2 }, "why": "The unrecognized buildAuditTag call is unknown code in the same body. Broad function masking must not hide it, even though its result is not SQL text here." }]
+    },
+    {
+      "id": "unsupported-sink-alongside-ordinary",
+      "file": "unsupported-sink-alongside-ordinary.ts",
+      "parse": "required-success",
+      "maskableSpans": [],
+      "nonmaskableSpans": [{ "function": "loadThroughGateway", "start": { "line": 5, "column": 1 }, "end": { "line": 9, "column": 2 }, "why": "The Serene value is sent through an unsupported opaqueGateway sink, so execution provenance cannot be positively established." }]
+    },
+    {
+      "id": "computed-call",
+      "file": "computed-call.ts",
+      "parse": "required-success",
+      "maskableSpans": [],
+      "nonmaskableSpans": [{ "function": "loadComputed", "start": { "line": 3, "column": 1 }, "end": { "line": 7, "column": 2 }, "why": "db[method](...) has a computed, runtime-selected call target. It cannot be upgraded to an ordinary recognized execution path." }]
+    },
+    {
+      "id": "parse-error",
+      "file": "parse-error.ts",
+      "parse": "required-failure",
+      "maskableSpans": [],
+      "nonmaskableSpans": [{ "file": "entire-file", "why": "The missing closing parenthesis makes the source unparsable. No lexical resemblance to ordinary Serene code may produce a mask." }]
+    },
+    {
+      "id": "neighboring-ordinary-and-actionable-functions",
+      "file": "neighboring-ordinary-and-actionable.ts",
+      "parse": "required-success",
+      "maskableSpans": [{ "function": "loadUser", "start": { "line": 3, "column": 1 }, "end": { "line": 7, "column": 2 }, "why": "This function is independently a complete fixed-template, bound-value, direct-query path." }],
+      "nonmaskableSpans": [{ "function": "findByName", "start": { "line": 9, "column": 1 }, "end": { "line": 11, "column": 2 }, "why": "The neighboring function concatenates name into SQL and must remain visible." }]
+    },
+    {
+      "id": "same-line-adjacent-functions-and-marker-text",
+      "file": "same-line-adjacent-and-marker-text.ts",
+      "parse": "required-success",
+      "maskableSpans": [{ "function": "fixedMarkerText", "start": { "line": 3, "column": 1 }, "end": { "line": 3, "column": 302 }, "why": "The function is ordinary despite the marker-shaped SQL string literal; classification and boundaries must come from parsed code, not text markers." }],
+      "nonmaskableSpans": [{ "function": "dynamicNeighbor", "start": { "line": 3, "column": 303 }, "end": { "line": 3, "column": 467 }, "why": "The adjacent same-line function concatenates runtime name into SQL. Exact parser-derived columns prevent its removal with the preceding function." }]
+    }
+  ]
+}

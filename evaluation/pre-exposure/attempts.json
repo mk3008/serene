@@ -1,0 +1,22 @@
+{
+  "authorized_maximum_materially_distinct_approaches": 5,
+  "attempts": [
+    {
+      "number": 1,
+      "hypothesis": "Filter both search and read responses at the controller boundary so ordinary construction text never reaches the reviewer, while the caller still chooses discovery primitives and scope.",
+      "prototype": "filter.mjs plus evaluation-only controller.py",
+      "revisions": [
+        "Initial parser handling corrected for standalone tagged const construction, method type signatures and line splitting.",
+        "Independent preflight found parameter-default and driver-argument assignments could be hidden. Reject those shapes and arbitrary driver-argument expressions; preserve original findings and negative regressions.",
+        "Scorer schema review found batch-local correspondence and parent-file marker assumptions. Corrected with two focused evaluator tests before freeze."
+      ],
+      "deterministic_gate": "controller-gate.json; 10 source matches represented, 7 ordinary locations, all 3 remaining bodies retained; full-read output 9387 to 5294 bytes",
+      "behavior_probe": "results/probe.jsonl; fresh gpt-5.6-luna/medium, no baseline probe",
+      "probe_result": "10/10 exact coordinates; 7/7 ordinary skipped without any body exposure; 3 nonordinary investigated; one correct SQL injection finding; two request errors included",
+      "decision": "keep for frozen descriptive benchmark, subject to independently recorded probe adjudication",
+      "scope": "Construction review only. Sink names remain syntactic candidates, not verified native drivers. Unsupported function shapes remain raw; no complete-program guarantee."
+    }
+  ],
+  "discarded_production_interfaces": [],
+  "note": "No production interfaces were added. Small safety and measurement fixes are revisions of approach 1, not extra approaches. One passing method does not require exhausting the five-method allowance."
+}

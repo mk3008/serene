@@ -1,0 +1,103 @@
+{
+  "run": "probe",
+  "task": "ticketing",
+  "arm": "serene",
+  "adjudication": "pass",
+  "decision": "The pre-exposure behavior gate passes for this one fresh probe. This validates the logged run only; it is not a benchmark result or a proof of native-driver identity, binding correctness, or general reviewer behavior.",
+  "sourcesChecked": [
+    "evaluation/pre-exposure/results/probe.jsonl",
+    "evaluation/pre-exposure/results/probe-final.txt",
+    "evaluation/pre-exposure/probe-scores.json",
+    "evaluation/end-to-end/gold/ticketing.json",
+    "evaluation/end-to-end/tasks/ticketing/serene/{operations,reporting,maintenance}.ts"
+  ],
+  "checks": {
+    "discoveryCoordinates": {
+      "status": "pass",
+      "submitted": 10,
+      "uniqueSubmitted": 10,
+      "gold": 10,
+      "exactSetMatch": true,
+      "missing": [],
+      "extra": [],
+      "invalidCoordinateRecords": 0,
+      "duplicateCoordinateRecords": 0
+    },
+    "ordinarySkip": {
+      "status": "pass",
+      "ordinaryGoldSites": 7,
+      "positiveMarkersDelivered": 7,
+      "actualSkipDispositions": 7,
+      "ordinaryBodySourceLinesDeliveredAnyPhase": 0,
+      "ordinaryFunctions": [
+        "listOpenTickets",
+        "findTicketById",
+        "assignTicket",
+        "closeResolvedTickets",
+        "loadRequesterHistory",
+        "countQueueByPriority",
+        "reopenTicket"
+      ]
+    },
+    "nonordinaryRetention": {
+      "status": "pass",
+      "actionableFullBodyReadAndDisposed": ["searchTicketing", "purgeTicketingPreview"],
+      "unmatchedFullBodyReadAndDisposed": ["sendTicketingSnapshot"],
+      "notFullyReadOrNotDisposed": []
+    },
+    "dangerFinding": {
+      "status": "pass",
+      "findingCount": 1,
+      "falseFindings": 0,
+      "coordinate": { "file": "reporting.ts", "line": 31, "column": 9, "function": "searchTicketing" },
+      "mechanismAdjudication": "correct: phrase has type UntrustedInput and is concatenated into the template expression that becomes statement before db.query(statement); this can alter SQL syntax.",
+      "firstFindingSequence": 12,
+      "responseBytesThroughFirstFinding": 7447
+    },
+    "correspondence": {
+      "status": "pass",
+      "filterBatches": 11,
+      "allPrimitiveRowsRepresented": true,
+      "allOutputIndexesValid": true,
+      "matchRowLoss": 0,
+      "ambiguousBatchFiles": []
+    },
+    "wireAccounting": {
+      "status": "pass",
+      "all13ResponseByteCountsRecomputed": true,
+      "responseByteMismatchSequences": [],
+      "all13SourceTextByteCountsRecomputed": true,
+      "sourceTextByteMismatchSequences": [],
+      "totalCalls": 13,
+      "totalResponseBytes": 7490,
+      "totalRequestBytes": 3208,
+      "totalDeliveredSourceTextBytes": 2259,
+      "discoveryResponseBytes": 7404,
+      "reviewResponseBytes": 86,
+      "filterInternalInputBytes": 21179,
+      "filterInternalOutputBytes": 12634,
+      "filterInternalTimeRecorded": false
+    }
+  },
+  "loggedOperationalErrors": [
+    { "sequence": 3, "operation": "search", "error": "invalid path", "effect": "No source rows or bytes delivered." },
+    { "sequence": 4, "operation": "search", "error": "invalid path", "effect": "No source rows or bytes delivered." }
+  ],
+  "functionNameAnnotationLimitation": {
+    "status": "recorded-not-corrected",
+    "rule": "Discovery scoring promises and scores only file/line/column execution coordinates. Candidate function names are optional annotations and are not used for coordinate or disposition matching.",
+    "mismatchedAnnotations": [
+      { "coordinate": ["reporting.ts", 12, 9], "submitted": "createTicket", "fixture": "loadRequesterHistory" },
+      { "coordinate": ["reporting.ts", 22, 9], "submitted": "updateTicket", "fixture": "countQueueByPriority" },
+      { "coordinate": ["operations.ts", 12, 9], "submitted": "openTicket", "fixture": "listOpenTickets" },
+      { "coordinate": ["operations.ts", 22, 9], "submitted": "closeTicket", "fixture": "findTicketById" },
+      { "coordinate": ["operations.ts", 42, 9], "submitted": "deleteTicket", "fixture": "closeResolvedTickets" },
+      { "coordinate": ["maintenance.ts", 12, 9], "submitted": "refreshTicketing", "fixture": "reopenTicket" }
+    ]
+  },
+  "remainingLimits": [
+    "The controller is an instruction-mediated response boundary, not an OS sandbox.",
+    "Ordinary markers attest construction provenance and syntactic candidate shape only; they do not prove receiver identity or correct driver binding.",
+    "The two invalid-path searches are retained as operational errors and are included in wire totals."
+  ]
+}

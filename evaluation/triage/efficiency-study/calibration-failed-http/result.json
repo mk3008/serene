@@ -1,0 +1,16 @@
+{
+  "status": "failed before scored execution",
+  "participants": {
+    "cal_r": {
+      "client_calls": 11,
+      "responses_received": 0
+    },
+    "cal_s": {
+      "client_calls": 5,
+      "responses_received": 0
+    }
+  },
+  "error": "Connection refused for localhost HTTP client; root also reproduced. Root PTY process still reported running, cause not established.",
+  "cap_and_delivery": "not observed",
+  "action": "replace transport with persistent file-backed controller and new calibration IDs; do not count as scored runs"
+}

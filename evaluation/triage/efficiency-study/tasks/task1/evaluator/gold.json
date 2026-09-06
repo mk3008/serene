@@ -1,0 +1,154 @@
+{
+  "direct_execution_sites": [
+    {
+      "file": "raw/store.js",
+      "function": "findInvoice",
+      "line": 2
+    },
+    {
+      "file": "raw/store.js",
+      "function": "listOpen",
+      "line": 7
+    },
+    {
+      "file": "raw/store.js",
+      "function": "insertInvoice",
+      "line": 12
+    },
+    {
+      "file": "raw/store.js",
+      "function": "deleteInvoiceLines",
+      "line": 17
+    },
+    {
+      "file": "raw/store.js",
+      "function": "insertInvoiceLine",
+      "line": 22
+    },
+    {
+      "file": "raw/store.js",
+      "function": "repriceInvoice",
+      "line": 27
+    },
+    {
+      "file": "raw/store.js",
+      "function": "markInvoiceSent",
+      "line": 32
+    },
+    {
+      "file": "raw/store.js",
+      "function": "addPayment",
+      "line": 37
+    },
+    {
+      "file": "raw/store.js",
+      "function": "completeInvoice",
+      "line": 42
+    },
+    {
+      "file": "raw/store.js",
+      "function": "overdueAccounts",
+      "line": 47
+    },
+    {
+      "file": "raw/store.js",
+      "function": "customerStatement",
+      "line": 52
+    },
+    {
+      "file": "raw/store.js",
+      "function": "findCustomer",
+      "line": 57
+    },
+    {
+      "file": "raw/store.js",
+      "function": "searchCustomer",
+      "line": 62
+    },
+    {
+      "file": "raw/store.js",
+      "function": "createCustomer",
+      "line": 67
+    },
+    {
+      "file": "raw/store.js",
+      "function": "changeCredit",
+      "line": 72
+    },
+    {
+      "file": "raw/store.js",
+      "function": "activeRegions",
+      "line": 77
+    },
+    {
+      "file": "raw/store.js",
+      "function": "dailyCash",
+      "line": 82
+    },
+    {
+      "file": "raw/store.js",
+      "function": "productTotals",
+      "line": 87
+    },
+    {
+      "file": "raw/store.js",
+      "function": "invoiceCount",
+      "line": 92
+    },
+    {
+      "file": "raw/store.js",
+      "function": "recentNotes",
+      "line": 97
+    },
+    {
+      "file": "raw/store.js",
+      "function": "paymentFeed",
+      "line": 104
+    },
+    {
+      "file": "raw/store.js",
+      "function": "revenueSummary",
+      "line": 110
+    },
+    {
+      "file": "raw/helpers.js",
+      "function": "send",
+      "line": 20
+    }
+  ],
+  "driver_wrapper_follow_through": [
+    {
+      "caller": "raw/store.js:removeVoid",
+      "wrapper": "raw/helpers.js:send",
+      "direct_execution": "raw/helpers.js:send"
+    }
+  ],
+  "dangerous": [
+    {
+      "execution": "raw/store.js:revenueSummary",
+      "input_path": "raw/api.js:revenueReport -> raw/store.js:revenueSummary -> raw/helpers.js:normaliseRegion -> raw/helpers.js:regionScope",
+      "mechanism": "Request data reaches a local helper that formats it between quotes, and the resulting predicate is concatenated into SQL text before SQLite prepares it.",
+      "witness": "evaluator/witness.mjs"
+    }
+  ],
+  "needs_investigation": [
+    {
+      "location": "raw/store.js:paymentFeed",
+      "reason": "Brief screening sees dynamic ORDER BY text; read the narrowly imported helper to prove it is an own-key finite map and rejects prototype names."
+    },
+    {
+      "location": "raw/store.js:revenueSummary",
+      "reason": "Its interpolated predicate has nonlocal provenance; read the two local helpers to determine that it derives from request input."
+    },
+    {
+      "location": "raw/store.js:removeVoid",
+      "reason": "This caller passes SQL through imported send; follow it to the distinct direct db.query site in helpers.js."
+    }
+  ],
+  "safe_controls": [
+    {
+      "location": "raw/store.js:paymentFeed",
+      "mechanism": "The imported chooser uses Object.hasOwn on a frozen, source-defined map; unknown and prototype property names select its fixed default."
+    }
+  ]
+}

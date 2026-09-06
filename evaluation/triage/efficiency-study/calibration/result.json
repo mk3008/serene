@@ -1,0 +1,54 @@
+{
+  "status": "transport-v2 agent-visible calibration completed, not scored",
+  "requested_model": "gpt-5.6-luna",
+  "effort": "medium",
+  "cal_r2_final": {
+    "received": true,
+    "search_match_count": 101,
+    "audit": "unavailable",
+    "cap_refusal": "dependency-expanded site cap; content withheld",
+    "status": {
+      "requests": 10,
+      "bytes": 17609,
+      "deep_sites": 2,
+      "seconds": 86.68615174293518
+    }
+  },
+  "cal_s2_final": {
+    "received": true,
+    "audit": {
+      "count": 300,
+      "first": {
+        "file": "op00.mjs",
+        "line": 7,
+        "level": "ordinary",
+        "code": "SCREENED_SOURCE"
+      },
+      "last": {
+        "file": "op19.mjs",
+        "line": 49,
+        "level": "ordinary",
+        "code": "SCREENED_SOURCE"
+      },
+      "exit": 1
+    },
+    "cap_refusal": "dependency-expanded site cap; content withheld",
+    "status": {
+      "requests": 8,
+      "bytes": 80107,
+      "deep_sites": 2,
+      "seconds": 37.39546275138855
+    }
+  },
+  "interpretation": "First/last finding and exit match logged responses. Participant manually reported count300 but actual count290; this discrepancy is retained. Controller now returns explicit finding_count; an additional calibration-only response check will verify it, without rescoring or overwriting these sessions.",
+  "post_calibration_change": "Narrowed source dependency spans to referenced functions and forwarding callsites; seven local regressions verify automatic exposure and caps. Calibration fixtures have no local imports so those response/cap results remain applicable.",
+  "synthetic_N_correction": "Earlier finite-choice calibration N labels are superseded: all immediately visible finite choices resolve at brief screening. Synthetic fixtures are never scored.",
+  "cal_s2_actual_audit_count": 290,
+  "metadata_followup": {
+    "run": "cal_s3",
+    "kind": "same calibration participant follow-up, no scored task",
+    "reported_count": 290,
+    "matches_logged_count": true,
+    "first_last_exit_match": true
+  }
+}

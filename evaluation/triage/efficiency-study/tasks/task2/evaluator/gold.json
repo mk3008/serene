@@ -1,0 +1,154 @@
+{
+  "direct_execution_sites": [
+    {
+      "file": "raw/store.js",
+      "function": "product",
+      "line": 2
+    },
+    {
+      "file": "raw/store.js",
+      "function": "productPage",
+      "line": 7
+    },
+    {
+      "file": "raw/store.js",
+      "function": "addProduct",
+      "line": 12
+    },
+    {
+      "file": "raw/store.js",
+      "function": "updateProduct",
+      "line": 17
+    },
+    {
+      "file": "raw/store.js",
+      "function": "binLevels",
+      "line": 22
+    },
+    {
+      "file": "raw/store.js",
+      "function": "reserveUnits",
+      "line": 27
+    },
+    {
+      "file": "raw/store.js",
+      "function": "reservationRow",
+      "line": 32
+    },
+    {
+      "file": "raw/store.js",
+      "function": "reservation",
+      "line": 37
+    },
+    {
+      "file": "raw/store.js",
+      "function": "releaseUnits",
+      "line": 42
+    },
+    {
+      "file": "raw/store.js",
+      "function": "deleteReservation",
+      "line": 47
+    },
+    {
+      "file": "raw/store.js",
+      "function": "insertReceipt",
+      "line": 52
+    },
+    {
+      "file": "raw/store.js",
+      "function": "receiptLine",
+      "line": 57
+    },
+    {
+      "file": "raw/store.js",
+      "function": "addOnHand",
+      "line": 62
+    },
+    {
+      "file": "raw/store.js",
+      "function": "postReceipt",
+      "line": 67
+    },
+    {
+      "file": "raw/store.js",
+      "function": "supplierSpend",
+      "line": 72
+    },
+    {
+      "file": "raw/store.js",
+      "function": "openReceipts",
+      "line": 77
+    },
+    {
+      "file": "raw/store.js",
+      "function": "receiptItems",
+      "line": 82
+    },
+    {
+      "file": "raw/store.js",
+      "function": "removeReceipt",
+      "line": 87
+    },
+    {
+      "file": "raw/store.js",
+      "function": "reservationsBySku",
+      "line": 92
+    },
+    {
+      "file": "raw/store.js",
+      "function": "inactiveProducts",
+      "line": 97
+    },
+    {
+      "file": "raw/store.js",
+      "function": "inventoryList",
+      "line": 104
+    },
+    {
+      "file": "raw/store.js",
+      "function": "categorySnapshot",
+      "line": 109
+    },
+    {
+      "file": "raw/helpers.js",
+      "function": "send",
+      "line": 20
+    }
+  ],
+  "driver_wrapper_follow_through": [
+    {
+      "caller": "raw/store.js:purgeReservation",
+      "wrapper": "raw/helpers.js:send",
+      "direct_execution": "raw/helpers.js:send"
+    }
+  ],
+  "dangerous": [
+    {
+      "execution": "raw/store.js:categorySnapshot",
+      "input_path": "raw/service.js:inventoryReport -> raw/store.js:categorySnapshot -> raw/helpers.js:categoryName -> raw/helpers.js:categoryScope",
+      "mechanism": "Request data reaches a local helper that formats it between quotes, and the resulting predicate is concatenated into SQL text before SQLite prepares it.",
+      "witness": "evaluator/witness.mjs"
+    }
+  ],
+  "needs_investigation": [
+    {
+      "location": "raw/store.js:inventoryList",
+      "reason": "Brief screening sees dynamic ORDER BY text; read the narrowly imported helper to prove it is an own-key finite map and rejects prototype names."
+    },
+    {
+      "location": "raw/store.js:categorySnapshot",
+      "reason": "Its interpolated predicate has nonlocal provenance; read the two local helpers to determine that it derives from request input."
+    },
+    {
+      "location": "raw/store.js:purgeReservation",
+      "reason": "This caller passes SQL through imported send; follow it to the distinct direct db.query site in helpers.js."
+    }
+  ],
+  "safe_controls": [
+    {
+      "location": "raw/store.js:inventoryList",
+      "mechanism": "The imported chooser uses Object.hasOwn on a frozen, source-defined map; unknown and prototype property names select its fixed default."
+    }
+  ]
+}

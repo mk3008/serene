@@ -3,6 +3,8 @@ export interface Finding {
   line: number;
   column: number;
   boundary: 'source' | 'serene' | 'driver-candidate' | 'computed-call';
+  /** Lexical function name when source syntax supplies one confidently; otherwise null. */
+  function: string | null;
   level: 'ordinary' | 'review-required' | 'violation';
   code: string;
   detail: string;

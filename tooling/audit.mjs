@@ -128,14 +128,38 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     }
     return unknown();
   }
+  // A function label is supplementary location metadata. It never participates in
+  // provenance classification, and an anonymous lexical callback deliberately
+  // blocks a fallback to any named outer function.
+  function lexicalFunctionName(node) {
+    for (let current = node.parent; current; current = current.parent) {
+      if (!ts.isFunctionLike(current)) continue;
+      if (ts.isFunctionDeclaration(current) || ts.isFunctionExpression(current)) {
+        return current.name?.text ?? null;
+      }
+      if (ts.isArrowFunction(current)) {
+        const parent = current.parent;
+        return ts.isVariableDeclaration(parent) && parent.initializer === current &&
+          ts.isIdentifier(parent.name) ? parent.name.text : null;
+      }
+      if (ts.isMethodDeclaration(current) || ts.isGetAccessorDeclaration(current) || ts.isSetAccessorDeclaration(current)) {
+        return ts.isIdentifier(current.name) ? current.name.text : null;
+      }
+      // Constructors, call signatures, and other function-like nodes do not
+      // expose a source name that this file-local audit can label confidently.
+      return null;
+    }
+    return null;
+  }
   function emit(node, finding, boundary) {
     const { line, character } = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
-    rows.push({ file: filename, line: line + 1, column: character + 1, boundary, ...finding });
+    rows.push({ file: filename, line: line + 1, column: character + 1, boundary,
+      function: lexicalFunctionName(node), ...finding });
   }
   for (const diagnostic of sourceFile.parseDiagnostics) {
     const location = sourceFile.getLineAndCharacterOfPosition(diagnostic.start ?? 0);
     rows.push({ file: filename, line: location.line + 1, column: location.character + 1,
-      boundary: 'source', ...violation('PARSE_ERROR', ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')) });
+      boundary: 'source', function: null, ...violation('PARSE_ERROR', ts.flattenDiagnosticMessageText(diagnostic.messageText, '\n')) });
   }
   function visit(node) {
     if (ts.isTaggedTemplateExpression(node) && tags.has(apiName(node.tag))) {

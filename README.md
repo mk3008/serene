@@ -91,6 +91,8 @@ npx --no-install serene-audit src
 
 Use `serene-audit .` for repository-wide inventory, or pass individual files. For concise review triage, use `serene-audit --actionable-only src`: it reports counts only for candidate driver execution sites and lists only review-required or violation findings. The default JSON inventory remains complete.
 
+Findings include source locations and function names for navigation; see [audit coverage](docs/review-coverage.md).
+
 Findings are intentionally simple:
 
 | Level | Meaning |

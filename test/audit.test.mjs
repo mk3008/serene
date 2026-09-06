@@ -55,7 +55,32 @@ test('cooked template escape semantics match runtime', () => {
   assert.equal(rows[0].level, 'ordinary');
 });
 test('parse failures do not disappear as a clean inventory', () => {
-  assert.ok(auditSource('const = ;').some(f => f.code === 'PARSE_ERROR'));
+  const parseError = auditSource('const = ;').find(f => f.code === 'PARSE_ERROR');
+  assert.ok(parseError);
+  assert.equal(parseError.function, null);
+});
+
+test('findings carry only authoritative nearest lexical function names', () => {
+  const cases = [
+    ['named declaration', 'function declared(db) { const q = bind(literalSql`SELECT 1`); db.query(q.text); }', 'declared', 'ordinary'],
+    ['identifier-bound arrow', 'const assigned = db => { const q = bind(literalSql`SELECT 1`); db.query(q.text); };', 'assigned', 'ordinary'],
+    ['named method', 'class Store { load(db) { const q = bind(literalSql`SELECT 1`); db.query(q.text); } }', 'load', 'ordinary'],
+    ['anonymous nested callback', 'function outer(db) { return input.map(() => db.query("SELECT 1")); }', null, 'review-required'],
+    ['top level', 'db.query("SELECT 1");', null, 'review-required'],
+  ];
+  for (const [label, source, name, level] of cases) {
+    const row = sink(source)[0];
+    assert.equal(row.function, name, label);
+    assert.equal(row.level, level, label);
+  }
+});
+
+test('function metadata adds one scalar output field', () => {
+  const row = sink('db.query("SELECT 1");')[0];
+  const withoutFunction = { ...row };
+  delete withoutFunction.function;
+  assert.equal(Buffer.byteLength(JSON.stringify(row)) - Buffer.byteLength(JSON.stringify(withoutFunction)),
+    Buffer.byteLength(',"function":null'));
 });
 test('computed calls are review-required and explicit additional sink names are supported', () => {
   assert.equal(auditSource('db[method](input)')[0].level, 'review-required');

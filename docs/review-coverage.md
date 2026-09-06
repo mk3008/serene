@@ -39,6 +39,11 @@ The API redesign keeps alias regressions in the current unit suite, but does not
 relabel or rerun the frozen corpus against a different API. Those aggregate numbers
 are historical and are not a measurement of the new `sql` API.
 
+Every finding carries `function` as supplemental lexical location metadata. It is a
+name only when the nearest enclosing function syntax supplies one confidently;
+anonymous callbacks and unsupported function-like syntax are `null` and never
+inherit a named outer function. This label does not affect classification.
+
 ## Selecting source files
 
 `serene-audit src`, `serene-audit .`, and mixed file/directory inputs recursively

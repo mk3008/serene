@@ -1,0 +1,1 @@
+Completed probe2. Discovered 10 execution sites, recorded one SQL injection finding in `reporting.ts:29` (`searchTicketing`) where `UntrustedInput` is concatenated into SQL, and submitted dispositions for all candidates. Static maintenance queries were marked safe; Serene-marked sites were skipped as instructed.

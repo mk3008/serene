@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "files": {
+    "dist/error.d.ts": "c2a61e36377a882cbbd0ea6168d9d4bcbb5fba767948f5da7ba02769953774de",
+    "dist/error.js": "41a3ebcb3cc1bf1d00d01b93c17b008a9a41fa2f0d8f0395078b355fdcb82e20",
+    "dist/index.d.ts": "b5b9b316564f81d8c885fc9abe350023758bc9eafc47d1bdd30016fcb3a2fd59",
+    "dist/index.js": "8d1024a697547749053606dc6a13fc326297d82d060d8b377ed6567b251f36b4",
+    "dist/scanner.d.ts": "bba91c91c790bfc0959ea5231b8929342ace9dc653de19163ffa2ea60193f868",
+    "dist/scanner.js": "40ecd861d91f9da047293fe5e0b1c2b1f5191f9b1adf19095a3169c6cfd07649",
+    "evaluation/end-to-end/gold/stockroom.json": "9c82726c1eca406122403dce54ad7d56143eab5dbfc8b9e0e649be6d35ce1eff",
+    "evaluation/end-to-end/gold/ticketing.json": "914a5bd04d72e334d7cefe38f8f6f18ac21e45993935b4a9f5d7c6c472f7e4f9",
+    "evaluation/end-to-end/tasks/stockroom/README.md": "9e9a91bf062cf9d13d552df3d4737fabc0338c51d207f942d51657a264c48e99",
+    "evaluation/end-to-end/tasks/stockroom/serene/contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+    "evaluation/end-to-end/tasks/stockroom/serene/maintenance.ts": "0c96f23f236c4b3422517bb6c597c26876f7395a9fa940b2afa528c2de3573ad",
+    "evaluation/end-to-end/tasks/stockroom/serene/operations.ts": "ff1e346412717e0b505ad6e1746a8389604078aca6b64b432de6a8613ee2c6ab",
+    "evaluation/end-to-end/tasks/stockroom/serene/reporting.ts": "5923df91b6b3533415ecb3bc973762e550dae9a9bc16b13273580f3a1b6cac46",
+    "evaluation/end-to-end/tasks/ticketing/README.md": "bccef3b2d4bab5ac67a5dde42c50fe4475c0307f1096e5bd7b1d5d22d4f7d032",
+    "evaluation/end-to-end/tasks/ticketing/serene/contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+    "evaluation/end-to-end/tasks/ticketing/serene/maintenance.ts": "6277720e11c223cb16c4e73b6145e8d11f6425b1c3976f7dd911b44244fee7d3",
+    "evaluation/end-to-end/tasks/ticketing/serene/operations.ts": "144c611f951c59dc82fec61a50cd1ba3fac690f9e20229bcef221c4eb83ab2f8",
+    "evaluation/end-to-end/tasks/ticketing/serene/reporting.ts": "8c61fd2f49cfb04ecbce0dce7a86f933ef7387833ef19700d14b7720bf4a7b3a",
+    "evaluation/function-metadata/PROTOCOL.md": "46f50870ed839fd3277ca523e44043d67de63134a5ceb65c236628e196fa7828",
+    "evaluation/function-metadata/README.md": "892ac99087da13ccdfda0fa3e6d3f267bb65b5a7c8315b16cf84328b1e6aba26",
+    "evaluation/function-metadata/adversarial/cases.json": "036c926bed0331196a735b39c861a20b83cca0450afeec9e95880c9ad8da74ac",
+    "evaluation/function-metadata/adversarial/computed-call.ts": "f3d269e424022bd707f4f946e8da1e912bfbd08de5e14c906ded405e02fe4eb3",
+    "evaluation/function-metadata/adversarial/neighboring-ordinary-and-actionable.ts": "9af1b49dce96f692d3ee9ec7e24e5fa382f2a270b12109443535bfec38c6db82",
+    "evaluation/function-metadata/adversarial/ordinary-fixed.ts": "39985b384ab225bda4a9cbf3b8082fbfb8c6a5902b102bbddd2e82abf3c441e2",
+    "evaluation/function-metadata/adversarial/parse-error.ts": "6c5774a3989dc4afb7a20b5ba5831789d8d31a3c49c67d472b6ad2c86caaae6f",
+    "evaluation/function-metadata/adversarial/same-function-ordinary-dangerous.ts": "040b0a228b4d36a9c2b0430b295d0b18ffedc443911f441f7fdc6cff7e0d4afd",
+    "evaluation/function-metadata/adversarial/same-line-adjacent-and-marker-text.ts": "00c3f533871a4819e66d0d3e4c1182341c14881ed7a3633e3194b135f3318420",
+    "evaluation/function-metadata/adversarial/unknown-helper-alongside-ordinary.ts": "22736484d02b044ffad78353b7381c52bc252fc5aa8c25fd386a821eadbf32ff",
+    "evaluation/function-metadata/adversarial/unsupported-sink-alongside-ordinary.ts": "a6c385ab1b8520b1ebd8ebfa6eb365805bbb2398ec42127c6ced05d843ebc9c2",
+    "evaluation/function-metadata/controller.py": "0e2758f62dbd06ab2144b90f8e82cec0b52ac8735e41e36d388e75811b1750ae",
+    "evaluation/function-metadata/filter.mjs": "bc924e3747e04f7b9c3def03562955ce60953589d38dd0f50611306896b254c2",
+    "evaluation/function-metadata/freeze.py": "d4638f7b86a750702c8b0423edfb7aa38e9197f89fce91b320c0f2855dc54e81",
+    "evaluation/function-metadata/metadata.py": "6c7a0773ff88159d63ed7cae3c930fcc00069529a0713e4ee171d6d113b329e4",
+    "evaluation/function-metadata/prepare.py": "2033065ff197b24212a1507699fec3cefa3e7e8ceea6e7d925f500e3f0354beb",
+    "evaluation/function-metadata/prompt.txt": "532216ed38bda538d894bc3251fbb9eaf9b0694a9c193c93bae106b2b93a0e59",
+    "evaluation/function-metadata/prompts/probe-failed-v1.txt": "878970b1a71fd5e8fe8ef95fa53470cd2f120883e3f97d777a0d182d270bb3ea",
+    "evaluation/function-metadata/prompts/probe.txt": "9d9355cec4a166d6315de12ac6781efed355e1b47264bf5e42be0344e4c2847b",
+    "evaluation/function-metadata/prompts/probe2.txt": "85b6be3a293baf11dce3a80d5dbb76a489741b39470ed26ae0ac1df9b36d0870",
+    "evaluation/function-metadata/prompts/ss.txt": "55247c8d0841657819382db66e4cd2459e8a03fb1fa959c7276df3f92c995425",
+    "evaluation/function-metadata/prompts/ts.txt": "d2d6bd841769ec39c037b6ba2fed068b789b5612311f6c5cdce77e43771221bf",
+    "evaluation/function-metadata/report-cost.py": "cfa16d3be6161a8d41a998ec39d79fb7c98eda659976af26f318f1e23e0633a6",
+    "evaluation/function-metadata/run-config.json": "48f8033b2eceb8a724f4649627cf5d710fe02bc4b20fce74636407fbdf309e1e",
+    "evaluation/function-metadata/score.py": "3703d9523ff9db1106ce5fa1f79b5df88104a1067e72b217d9435320c5551cc2",
+    "evaluation/function-metadata/summarize-costs.py": "c5b5bb96eefc57485ecb3de51b46c333a6c3a42af49675764f79f8ea19ffbfca",
+    "evaluation/function-metadata/test-controller.py": "1e098197a38c520210e3a8bcc9e5c3d627166d5f3a870bfccc107d985c1676f9",
+    "evaluation/function-metadata/test-filter.mjs": "e8faef39ecd740db521ad5924e27d5b0d161292a2a828722707716aedb30f741",
+    "evaluation/function-metadata/test-metadata.py": "24589f091aaf5881d24b826ab64c9c21634ef097f0202020a4af8bd34c01aab7",
+    "evaluation/function-metadata/verify-integrity.py": "bc60ff98b1c92ef9c63b1caf588c7526885540eefac9625ae4014170cc16071b",
+    "evaluation/pre-exposure/probe-scores.json": "2bf739ba6af994c6ee19023d0ea689cb2c4011957ca8724feb46a7b01f260d1a",
+    "evaluation/pre-exposure/prompts/sr.txt": "419fe40391a932074753c2be84bcecdc8b5eac65ba629071fa2f75b7117ed50a",
+    "evaluation/pre-exposure/prompts/ss.txt": "a86a72c3d7631df6b54167e837b4040d4e3f66c9084b6f14f3fb9bb84a0d94b1",
+    "evaluation/pre-exposure/prompts/tr.txt": "55390dbc186c8e9f0d8a846d56bd90e5cb03ba96a949f05f45c4658a8eb7f4e1",
+    "evaluation/pre-exposure/prompts/ts.txt": "338bdf43ddc605b0addd8af321f65197e82616ad39a9f146e1fea0c46e590860",
+    "evaluation/pre-exposure/results/sr.jsonl": "e417575f2e5e8898503bdd615afac1e632f6d271ad31135eeac62f14fe62a3c5",
+    "evaluation/pre-exposure/results/ss.jsonl": "d7bfad391d625e174e588907be917ab6cef972e6bb295071b59686cfe8685a10",
+    "evaluation/pre-exposure/results/tr.jsonl": "c9bd8a4dd8656a77bc6e546e61eb95fe34adca1ad04b0373eafbf3726e28276e",
+    "evaluation/pre-exposure/results/ts.jsonl": "b515cd6d31818318f8fe4ae0b9e8876d5764d2c82ec7dad93d846edaa17a7b97",
+    "evaluation/pre-exposure/score.py": "a3a610d5854607ba06c6355dab29abf4ca5189b9e1841eba3ccbae85cd1bb31e",
+    "evaluation/pre-exposure/scores.json": "41d761d7ac7ba47925460bb8ed5f19d4bc4b40016d1c7cd514d429e1ff9c5c4c",
+    "package-lock.json": "d40a7beefdb7027bf742cd992815626ab0ddc388078e7b10f2dc2c1dbcba1dc8",
+    "package.json": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7",
+    "tooling/audit.d.mts": "efc22d286b18e0b8ad000b373bd82757e5c77c8a754ae0f14e1c82f4bb4f24c9",
+    "tooling/audit.mjs": "c9eec574018b4b8523cefbc2c72cde09fa0de8f8befcb6b70811eea8fbe106b8"
+  },
+  "staged_runs": {
+    "probe": {
+      "revision": "df10114ec42103f0b07437f844afe04476bca8e5",
+      "fixture": "evaluation/end-to-end/tasks/ticketing/serene",
+      "files": {
+        "README.md": "bccef3b2d4bab5ac67a5dde42c50fe4475c0307f1096e5bd7b1d5d22d4f7d032",
+        "contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+        "maintenance.ts": "6277720e11c223cb16c4e73b6145e8d11f6425b1c3976f7dd911b44244fee7d3",
+        "operations.ts": "144c611f951c59dc82fec61a50cd1ba3fac690f9e20229bcef221c4eb83ab2f8",
+        "reporting.ts": "8c61fd2f49cfb04ecbce0dce7a86f933ef7387833ef19700d14b7720bf4a7b3a"
+      }
+    },
+    "probe2": {
+      "revision": "85299b6200f3664b05f3e2eb395755c1649fd439",
+      "fixture": "evaluation/end-to-end/tasks/ticketing/serene",
+      "files": {
+        "README.md": "bccef3b2d4bab5ac67a5dde42c50fe4475c0307f1096e5bd7b1d5d22d4f7d032",
+        "contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+        "maintenance.ts": "6277720e11c223cb16c4e73b6145e8d11f6425b1c3976f7dd911b44244fee7d3",
+        "operations.ts": "144c611f951c59dc82fec61a50cd1ba3fac690f9e20229bcef221c4eb83ab2f8",
+        "reporting.ts": "8c61fd2f49cfb04ecbce0dce7a86f933ef7387833ef19700d14b7720bf4a7b3a"
+      }
+    },
+    "ss": {
+      "revision": "7d2cfc8321486c12dd8d1efb604c43af0790d5c2",
+      "fixture": "evaluation/end-to-end/tasks/stockroom/serene",
+      "files": {
+        "README.md": "9e9a91bf062cf9d13d552df3d4737fabc0338c51d207f942d51657a264c48e99",
+        "contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+        "maintenance.ts": "0c96f23f236c4b3422517bb6c597c26876f7395a9fa940b2afa528c2de3573ad",
+        "operations.ts": "ff1e346412717e0b505ad6e1746a8389604078aca6b64b432de6a8613ee2c6ab",
+        "reporting.ts": "5923df91b6b3533415ecb3bc973762e550dae9a9bc16b13273580f3a1b6cac46"
+      }
+    },
+    "ts": {
+      "revision": "df10114ec42103f0b07437f844afe04476bca8e5",
+      "fixture": "evaluation/end-to-end/tasks/ticketing/serene",
+      "files": {
+        "README.md": "bccef3b2d4bab5ac67a5dde42c50fe4475c0307f1096e5bd7b1d5d22d4f7d032",
+        "contracts.ts": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a",
+        "maintenance.ts": "6277720e11c223cb16c4e73b6145e8d11f6425b1c3976f7dd911b44244fee7d3",
+        "operations.ts": "144c611f951c59dc82fec61a50cd1ba3fac690f9e20229bcef221c4eb83ab2f8",
+        "reporting.ts": "8c61fd2f49cfb04ecbce0dce7a86f933ef7387833ef19700d14b7720bf4a7b3a"
+      }
+    }
+  }
+}

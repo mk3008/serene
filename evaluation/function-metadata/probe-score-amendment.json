@@ -1,0 +1,17 @@
+{
+  "status": "failed probe preserved and rescored after rejecting declaration-text normalization",
+  "log": "evaluation/function-metadata/results/probe.jsonl",
+  "log_sha256": "5301368cc62c20bcb954382ef0ef019ee152b03662878977a3b57068d3a43b91",
+  "rule": "Only an exact scalar function name is exact; full declaration text is wrong.",
+  "candidate_annotations_exact": 7,
+  "finding_annotation_exact": false,
+  "nonordinary_disposition_annotations_exact": [
+    false,
+    false,
+    false
+  ],
+  "disposition_full_declarations_wrong": 3,
+  "fresh_run": "probe2 is staged separately; probe was not overwritten.",
+  "all_candidate_annotations_exact": 10,
+  "finding_annotation_expected": "searchTicketing"
+}

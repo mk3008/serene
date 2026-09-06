@@ -1,0 +1,13 @@
+{
+  "tools": {
+    "node": "v24.19.0",
+    "python": "Python 3.12.13",
+    "rg": "ripgrep 15.2.0 (rev e89fff89ac)\n\nfeatures:+pcre2\nsimd(compile):+SSE2,-SSSE3,-AVX2\nsimd(runtime):+SSE2,+SSSE3,+AVX2\n\nPCRE2 10.45 is available (JIT is available)",
+    "typescript": "5.9.3"
+  },
+  "native_semantic_or_lsp": false,
+  "participant_model": "gpt-5.6-luna",
+  "effort": "medium",
+  "concurrency": "at most two participants concurrently",
+  "raw_tool_transcript_export": false
+}

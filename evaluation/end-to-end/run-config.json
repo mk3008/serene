@@ -1,0 +1,46 @@
+{
+  "runs": {
+    "cr": {
+      "root": "/tmp/serene-e2e/repos/cr",
+      "revision": "0e5e926038b37fe8d99b2049a4b548eb4d866226",
+      "task": "calibration",
+      "arm": "raw",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "cs": {
+      "root": "/tmp/serene-e2e/repos/cs",
+      "revision": "51c15a09a954dafdbd513939cc0165f05825a157",
+      "task": "calibration",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "tr": {
+      "root": "/tmp/serene-e2e/repos/tr",
+      "revision": "71bb346113f2f68bdc2bfad5267e16e25d5afe7e",
+      "task": "ticketing",
+      "arm": "raw",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "ts": {
+      "root": "/tmp/serene-e2e/repos/ts",
+      "revision": "a9e6b4a5ef3627b4bd4b5f1a8ae42789a44eb55b",
+      "task": "ticketing",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "sr": {
+      "root": "/tmp/serene-e2e/repos/sr",
+      "revision": "7d582822ae9cdb9f2c5f5f9ad8f69c8854518c8a",
+      "task": "stockroom",
+      "arm": "raw",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "ss": {
+      "root": "/tmp/serene-e2e/repos/ss",
+      "revision": "10241d647759a95fc149da81fa6f664bd2d1fc51",
+      "task": "stockroom",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
+    }
+  }
+}

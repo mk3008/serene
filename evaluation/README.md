@@ -7,7 +7,7 @@ primary effectiveness measure. Historical packets, answers and gold remain intac
 
 | Question | Outcome that answers it | Existing evidence and limit |
 | --- | --- | --- |
-| Serene SQL-safety triage | Correctly prioritize execution paths needing construction/provenance investigation versus grep; misses, unnecessary deep reviews and investigation cost | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The intended practical reviewer-prioritization question is still unmeasured. |
+| Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The intended practical reviewer-prioritization question is still unmeasured. |
 | Adoption instruction | Agents use the construction boundary correctly with minimal instructions | The [nine-run coding pilot](adoption/exploratory/REPORT.md) supports feasibility on three tasks. It did not compare instruction lengths or Rules-only adoption. |
 | Rules integration / layout | Dedicated versus colocated definitions preserve discovery, binding/execution follow-through and DB behavior; imported-provenance friction and file/review effort | [SQLite preflight](adoption/preflight/REPORT.md) and coding results reproduce import-only strict failures. There is no controlled AI layout-effect result. See [layout plan](adoption/LAYOUT-STUDY.md). |
 | General AI code review | Find authorization/business-meaning defects and avoid false accusations | The [12-run review pilot](triage/exploratory/REPORT.md) measured mixed general defect recall, with a ceiling, contract ambiguities and one JSON failure. It cannot answer the Serene triage question. |
@@ -30,8 +30,13 @@ recall score. No pooled product score combines these studies.
 
 ## Current next step
 
-Prepare the [SQL-safety prioritization study](triage/SQL-SAFETY-STUDY.md), with
-construction-only oracle labels and a real investigation budget. It is a plan,
+Prepare the [SQL-safety efficiency study](triage/SQL-SAFETY-STUDY.md), with
+construction-only oracle labels and a calibrated, logged investigation budget.
+Its primary contrast is conventional Raw SQL review versus behavior-equivalent
+Serene code with available audit. Ordinary reviewers may use their normal methods;
+grep-only or same-Serene-source contrasts are optional assistance studies.
+Equal final recall can still mean a substantial cost reduction; without measured
+cost, equal recall leaves efficiency unknown. It is a plan,
 not an executed result. Retire the mixed [AI-STUDY.md](triage/AI-STUDY.md) as the
 next Serene evaluation; it remains a historical general-review proposal.
 Layout work stays an independent decision track. Keep Raw SQL Rules and Serene's

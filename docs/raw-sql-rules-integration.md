@@ -50,3 +50,33 @@ mode proves complete sink coverage, correct bindings or safe business semantics.
 
 Do not add a manifest or cross-file analysis merely to make an adoption experiment
 succeed. First measure whether these limitations are a practical adoption blocker.
+
+
+## Evaluating Default 1 rather than assuming it must stay fixed
+
+The dedicated-file requirement is a policy choice whose benefits and costs can be
+measured. A separate candidate is one directly reviewable authoritative definition
+per executable statement, permitting SQL beside its caller/access operation. It
+must retain ordinary visible SQL, unique discovery, meaningful definition/binding
+names, current schema and real DB/driver verification. It must not introduce copied,
+generated or opaque authoritative SQL.
+
+This candidate is not compliance with the unmodified dedicated-file Default 1.
+It is an explicit experimental customization of that default. Keep the Contracts
+and Defaults 2-4 fixed to the selected revision. The v0.2 mapping above is not a
+claim to have verified the evolving v0.3 draft; pin and inspect the exact v0.3
+revision before the layout study is frozen.
+
+The [layout study](../evaluation/adoption/LAYOUT-STUDY.md) compares discovery,
+binding/execution follow-through, functional/live DB checks, harmful rewrites and
+file/review effort, including a representative multi-statement operation. Dedicated
+files may improve discovery; co-location may improve transaction and execution
+locality. Neither advantage is assumed.
+
+If evidence supports preserved reviewability and discoverability without weakening
+Contracts or Defaults 2-4, a separate evidence-backed Raw SQL Rules v0.3 PR proposing
+an authoritative-definition default becomes an option. If dedicated files clearly
+win, retain that default and then consider Serene cross-file provenance or reviewed
+exceptions. Inconclusive evidence means no policy change. This PR changes neither
+Raw SQL Rules nor Serene's runtime/audit capabilities, and supplies no measured
+adoption or layout-effect results.

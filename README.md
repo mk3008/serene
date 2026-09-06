@@ -6,6 +6,8 @@ Keep your SQL. Keep your native driver. Add a small boundary that reviewers can 
 
 Serene is for TypeScript/JavaScript teams that prefer raw SQL but want humans and AI reviewers to distinguish fixed, parameterized SQL from code that deserves additional review.
 
+The goal is to focus deep SQL-construction review on the paths that need it, using recognized construction to avoid repeated investigation without replacing SQL review.
+
 It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install

@@ -1,0 +1,338 @@
+[
+  {
+    "path": "fixtures/harbor/raw/CONTRACT.md",
+    "sha256": "ca03b950cc68efd1dfe859f3a5f4fa94a258d5ad641d1e6c5dec899819c70e71"
+  },
+  {
+    "path": "fixtures/harbor/raw/op00.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op01.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op02.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op03.mjs",
+    "sha256": "7a2d11ffc0c83bc8119484d03ff0f3adece0e307100d8a1c39c1fe51c28ebf36"
+  },
+  {
+    "path": "fixtures/harbor/raw/op04.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op05.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op06.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op07.mjs",
+    "sha256": "748aed091a19a5d8fac724c7b1078066994f286683065d8eed54cf453d7f5bb7"
+  },
+  {
+    "path": "fixtures/harbor/raw/op08.mjs",
+    "sha256": "0202a829761d02f746f852f60b6fb2279fae2e10ee3e670385b819df7f162677"
+  },
+  {
+    "path": "fixtures/harbor/raw/op09.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op10.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op11.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op12.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op13.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op14.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op15.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op16.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op17.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/harbor/raw/op18.mjs",
+    "sha256": "b8f2b2695ec54f800b35d264687605f3f03e02c4d3d58e68a89cfc71b080fd55"
+  },
+  {
+    "path": "fixtures/harbor/raw/op19.mjs",
+    "sha256": "7a2d11ffc0c83bc8119484d03ff0f3adece0e307100d8a1c39c1fe51c28ebf36"
+  },
+  {
+    "path": "fixtures/harbor/serene/CONTRACT.md",
+    "sha256": "ca03b950cc68efd1dfe859f3a5f4fa94a258d5ad641d1e6c5dec899819c70e71"
+  },
+  {
+    "path": "fixtures/harbor/serene/op00.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op01.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op02.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op03.mjs",
+    "sha256": "38e4426126c092456bfcf4f8d3f6249dca51a5a2176148a91f6e2d3b027a8d2c"
+  },
+  {
+    "path": "fixtures/harbor/serene/op04.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op05.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op06.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op07.mjs",
+    "sha256": "2c566982fbca552ad97e1457bebfee80b9041cf2e4d8ffbc137b44e4c91f4ebc"
+  },
+  {
+    "path": "fixtures/harbor/serene/op08.mjs",
+    "sha256": "6720edf7de0ab3c4762152beb7bef93ce07b04b2835918460ca19975de1a04f9"
+  },
+  {
+    "path": "fixtures/harbor/serene/op09.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op10.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op11.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op12.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op13.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op14.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op15.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op16.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op17.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/harbor/serene/op18.mjs",
+    "sha256": "531139a3051d8c79bce61a660b981870d3b4f53cf81268798402e47ca1c31c3e"
+  },
+  {
+    "path": "fixtures/harbor/serene/op19.mjs",
+    "sha256": "38e4426126c092456bfcf4f8d3f6249dca51a5a2176148a91f6e2d3b027a8d2c"
+  },
+  {
+    "path": "fixtures/meadow/raw/CONTRACT.md",
+    "sha256": "ca03b950cc68efd1dfe859f3a5f4fa94a258d5ad641d1e6c5dec899819c70e71"
+  },
+  {
+    "path": "fixtures/meadow/raw/op00.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op01.mjs",
+    "sha256": "748aed091a19a5d8fac724c7b1078066994f286683065d8eed54cf453d7f5bb7"
+  },
+  {
+    "path": "fixtures/meadow/raw/op02.mjs",
+    "sha256": "7a2d11ffc0c83bc8119484d03ff0f3adece0e307100d8a1c39c1fe51c28ebf36"
+  },
+  {
+    "path": "fixtures/meadow/raw/op03.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op04.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op05.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op06.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op07.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op08.mjs",
+    "sha256": "8ba8c5e705b35e53847e31a8652c5e000539c3002b4c0b588e719fd802119f30"
+  },
+  {
+    "path": "fixtures/meadow/raw/op09.mjs",
+    "sha256": "0202a829761d02f746f852f60b6fb2279fae2e10ee3e670385b819df7f162677"
+  },
+  {
+    "path": "fixtures/meadow/raw/op10.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op11.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op12.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op13.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op14.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op15.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op16.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op17.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op18.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/raw/op19.mjs",
+    "sha256": "fa04ee54390f270bf2150c5a5b0226f8195404c6864ffaac943ffcd447ae6fbf"
+  },
+  {
+    "path": "fixtures/meadow/serene/CONTRACT.md",
+    "sha256": "ca03b950cc68efd1dfe859f3a5f4fa94a258d5ad641d1e6c5dec899819c70e71"
+  },
+  {
+    "path": "fixtures/meadow/serene/op00.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op01.mjs",
+    "sha256": "2c566982fbca552ad97e1457bebfee80b9041cf2e4d8ffbc137b44e4c91f4ebc"
+  },
+  {
+    "path": "fixtures/meadow/serene/op02.mjs",
+    "sha256": "38e4426126c092456bfcf4f8d3f6249dca51a5a2176148a91f6e2d3b027a8d2c"
+  },
+  {
+    "path": "fixtures/meadow/serene/op03.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op04.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op05.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op06.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op07.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op08.mjs",
+    "sha256": "bf7d6e3c524bb5f7dfc02a2ac987cb3c22ef0a700e499a35726debd1e8b67291"
+  },
+  {
+    "path": "fixtures/meadow/serene/op09.mjs",
+    "sha256": "6720edf7de0ab3c4762152beb7bef93ce07b04b2835918460ca19975de1a04f9"
+  },
+  {
+    "path": "fixtures/meadow/serene/op10.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op11.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op12.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op13.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op14.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op15.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op16.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op17.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op18.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  },
+  {
+    "path": "fixtures/meadow/serene/op19.mjs",
+    "sha256": "bc1ae2f97c5337492cee153f3d6370ba169481bae8b8a68aa0b69f30f5a99c25"
+  }
+]

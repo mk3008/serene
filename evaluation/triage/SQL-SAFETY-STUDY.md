@@ -1,6 +1,7 @@
 # SQL-safety review triage efficiency
 
-Status: candidate protocol, NOT RUN. No scored packets or numeric budgets are
+Status: candidate protocol, NOT RUN. Scored execution requires review of the
+[pre-freeze materials](efficiency-preflight/REVIEW.md) first. No scored packets or numeric budgets are
 frozen. This revision follows [the efficiency correction on PR #4](https://github.com/mk3008/serene/pull/4#issuecomment-5559333838).
 The [research map](../README.md) keeps adoption, Rules layout and semantic review
 separate. Earlier mixed-review results cannot answer this question.
@@ -191,3 +192,15 @@ Independent adjudication receives anonymous evidence without treatment labels wh
 possible; disclose that source style can reveal representation. Archive all failures.
 Keep historical evidence, runtime behavior, upstream Rules and PR #4 Draft unchanged
 while preparing this corrected efficiency experiment.
+
+## Pairing review before execution
+
+Review paired fixtures, D/N gold, numeric B/time/byte caps and the instrumented
+logger before scored runs, as requested in PR #4. Apply a documented syntax-based
+conversion consistently to every eligible construction, without consulting gold.
+Keep filenames, function names, layout, surrounding code and dangerous behavior
+matched wherever possible. Record every unavoidable representation difference.
+A source author who knows gold must not add clues, comments or special wrappers
+only around dangerous sites. The reviewer must be able to inspect the transformation
+and equivalence evidence. Material preparation is authorized; scored execution
+remains gated on that review.

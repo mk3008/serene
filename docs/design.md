@@ -92,9 +92,10 @@ Primary lexical references checked:
 
 ## Requirements added for review value
 
-Unused/undefined supplied binding rejection, explicit unknown-sort errors, structured
-diagnostic locations/codes, and an optional strict CLI gate are included. They expose
-common mistakes without adding execution or schema responsibilities.
+Undefined supplied binding rejection, lowering-only unused-parameter rejection,
+explicit unknown-sort errors, structured diagnostic locations/codes, and an optional
+strict CLI gate are included. They expose common mistakes without adding execution
+or schema responsibilities.
 
 Future proposals, not implemented: application-specific sink coverage manifests,
 selected real-driver integration probes, and measured review effort using a real

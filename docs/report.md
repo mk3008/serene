@@ -1,3 +1,9 @@
+# Historical implementation report
+
+This report describes the initial implementation. Current binding behavior and
+verification supersede its missing-name and lexical-rejection statements; see
+[requested-name replacement verification](parameter-scanning-verification.md).
+
 # Initial implementation report
 
 Historical snapshot at `6ebce0d064dbee21caf53ce1f1f3441259cfffa2`; not the current API.

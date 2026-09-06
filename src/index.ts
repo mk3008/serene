@@ -1,4 +1,4 @@
-import { scan, compile, type Scanned, type ParameterStyle } from './scanner.js';
+import { scan, compile, type ParameterStyle } from './scanner.js';
 import { SereneError } from './error.js';
 export { SereneError } from './error.js';
 export type { ParameterStyle } from './scanner.js';
@@ -7,7 +7,7 @@ declare const sqlBrand: unique symbol;
 declare const sortBrand: unique symbol;
 export type Sql = { readonly [sqlBrand]: true; readonly sourceText: string };
 export type Sort = { readonly [sortBrand]: true };
-type Statement = Scanned & { sorted: boolean };
+type Statement = { sourceText: string; sorted: boolean };
 const statements = new WeakMap<Sql, Statement>();
 const sorts = new WeakMap<Sort, string>();
 const bound = new WeakSet<BoundSql>();
@@ -28,7 +28,7 @@ function create(data: Statement): Sql {
 }
 /** Ordinary SQL with :name parameters; no runtime interpolation. */
 export function sql(strings: TemplateStringsArray, ...values: never[]): Sql {
-  return create({ ...scan(literal(strings, values)), sorted: false });
+  return create({ sourceText: literal(strings, values), sorted: false });
 }
 
 /** Static, deliberately limited ORDER BY terms; no arbitrary fragments. */
@@ -69,7 +69,7 @@ export function orderBy(sql: Sql, choices: Readonly<Record<string, Sort>>, selec
     selected.push(sorts.get(descriptors[key]!.value)!);
   }
   if (!selected.length) return sql;
-  if (data.sorted || data.terminated) throw new SereneError('SORT_POSITION', 'Append ORDER BY once, before any statement terminator.');
+  if (data.sorted || scan(data.sourceText, new Set()).terminated) throw new SereneError('SORT_POSITION', 'Append ORDER BY once, before any statement terminator.');
   return create({ ...data, sourceText: `${data.sourceText}\nORDER BY ${selected.join(', ')}`, sorted: true });
 }
 
@@ -87,17 +87,21 @@ export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, s
   if (!data) throw new SereneError('UNSCREENED', 'Expected a Serene SQL object.');
   if (!params || typeof params !== 'object') throw new SereneError('PARAMETERS', 'Expected named parameters.');
   const descriptors = Object.getOwnPropertyDescriptors(params);
-  const rendered = compile(data, style);
-  const required = new Set(rendered.names);
-  for (const name of required) {
-    const descriptor = descriptors[name];
-    if (!Object.hasOwn(descriptors, name)) throw new SereneError('MISSING_PARAMETER', `Missing parameter: ${name}`);
-    if (!descriptor || !('value' in descriptor) || descriptor.value === undefined) {
+  const requested = new Set<string>();
+  for (const name of Reflect.ownKeys(descriptors)) {
+    if (typeof name !== 'string' || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) {
+      throw new SereneError('PARAMETER_NAME', 'Parameter names must be ASCII identifiers.');
+    }
+    const descriptor = descriptors[name]!;
+    if (!('value' in descriptor) || descriptor.value === undefined) {
       throw new SereneError('PARAMETER_VALUE', `Parameter ${name} must be an own data property, not undefined.`);
     }
+    requested.add(name);
   }
-  for (const name of Reflect.ownKeys(params)) {
-    if (typeof name !== 'string' || !required.has(name)) throw new SereneError('UNUSED_PARAMETER', `Unused parameter: ${String(name)}`);
+  const rendered = compile(scan(data.sourceText, requested), style);
+  const required = new Set(rendered.names);
+  for (const name of requested) {
+    if (!required.has(name)) throw new SereneError('UNUSED_PARAMETER', `Unused parameter: ${name}`);
   }
   const result: BoundSql = Object.freeze({ text: rendered.text, sourceText: data.sourceText,
     names: Object.freeze([...rendered.names]), values: rendered.names.map(name => descriptors[name]!.value),

@@ -26,14 +26,14 @@ test('canonical source survives every output contract and hostile values stay se
   assert.equal(bind(stmt, { id: 7, name: hostile }).text, stmt.sourceText);
   throwsCode(() => bind(stmt, { id: 7, name: hostile }, 'postgres'), 'PARAMETER_STYLE');
 });
-test('missing, inherited, unused, undefined and accessor parameters fail', () => {
+test('requested own names are validated; omitted and inherited names are not bindings', () => {
   const q = sql`SELECT :id`;
-  throwsCode(() => bind(q), 'MISSING_PARAMETER');
-  throwsCode(() => bind(q, Object.create({ id: 7 })), 'MISSING_PARAMETER');
+  assert.equal(bind(q, {}, 'indexed').text, 'SELECT :id');
+  assert.deepEqual(bind(q, Object.create({ id: 7 })).values, []);
   throwsCode(() => bind(q, { id: 7, extra: 8 }), 'UNUSED_PARAMETER');
   throwsCode(() => bind(q, { id: undefined }), 'PARAMETER_VALUE');
   throwsCode(() => bind(q, { get id() { throw Error('must not execute'); } }), 'PARAMETER_VALUE');
-  throwsCode(() => bind(q, { id: 7, [Symbol()]: 1 }), 'UNUSED_PARAMETER');
+  throwsCode(() => bind(q, { id: 7, [Symbol()]: 1 }), 'PARAMETER_NAME');
   throwsCode(() => bind(q, null), 'PARAMETERS');
   assert.deepEqual(bind(q, { id: null }).values, [null]);
 });
@@ -134,28 +134,6 @@ for (const [source, expected, names] of [
   assert.deepEqual(compile(data, 'indexed'), { text: expected, names });
   assert.equal(compile(data, 'named').text, source);
 });
-for (const [source, code] of [
-  ["SELECT 'unclosed", 'UNCLOSED'], ['SELECT /* unclosed', 'UNCLOSED'],
-  ["SELECT E'\\x'", 'BACKSLASH_QUOTE'], ["SELECT 'a\\b'", 'BACKSLASH_QUOTE'],
-  ['SELECT /*! :id */', 'EXECUTABLE_COMMENT'], ['SELECT /*+ :id */', 'EXECUTABLE_COMMENT'],
-  ['SELECT /* outer /* inner */ outer */', 'NESTED_COMMENT'],
-  ['SELECT $1, :id', 'MIXED_PARAMETERS'], ['SELECT ?, :id', 'MIXED_PARAMETERS'],
-  ['SELECT @id', 'MIXED_PARAMETERS'], ['SELECT @@ROWCOUNT', 'MIXED_PARAMETERS'],
-  ['SELECT foo:id', 'PARAMETER_BOUNDARY'], ['SELECT :id日本', 'PARAMETER_NAME'],
-  ['SELECT :1', 'PARAMETER_NAME'], ['SELECT :日本', 'PARAMETER_NAME'],
-  ["SELECT '\0'", 'NUL'], ['SELECT 1--2, :id', 'AMBIGUOUS_COMMENT'],
-  // Previously dialect-specific positives now explicitly require additional review.
-  ['SELECT $$ :no $$, :id', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT $body$ :no $body$, :id', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT x$tag$, :id', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT `a``:no`, :id', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT [a]]:no], :id', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT ARRAY[:id]', 'UNSUPPORTED_LEXICAL'],
-  ['SELECT :id # :no', 'UNSUPPORTED_LEXICAL'],
-  ["SELECT q'~a'b :id c'd~'", 'UNSUPPORTED_LEXICAL'],
-  ["SELECT nq'~a'b :id c'd~'", 'UNSUPPORTED_LEXICAL'],
-]) test(`reject ${code}: ${source}`, () => throwsCode(() => scan(source), code));
-
 test('hostile corpus cannot change generated SQL in any output style', () => {
   const payloads = ["'", '\\', '\0', '--', '/*', ':id', '$1', '?', '@id', '日本', '😀', 'x; DELETE FROM users'];
   for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {

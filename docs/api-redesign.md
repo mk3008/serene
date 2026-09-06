@@ -31,24 +31,30 @@ can be taken separately to an external tool. Its actual parameter syntax and dat
 connection remain the application's concern. There is no DBeaver/MCP/mapper runtime
 integration or compatibility claim.
 
-## Necessary lexical boundary and compatibility cost
+## Fixed SQL and requested-name replacement
 
-Correctly finding `:name` requires distinguishing SQL text from quotes and comments.
-Removing a public `Dialect` does not make that requirement disappear. The redesign
-uses one bounded lexical contract and records parameter spans once; output marker
-selection does not alter lexing.
+The previous follow-up (`7c7b6e3`) rejected dialect-specific characters before bind.
+That was excessive for construction triage: trusted source can use PostgreSQL arrays,
+subscripts and JSON operators without Serene understanding their grammar.
 
-Supported: doubled single/double quotes, whitespace-followed `--` comments, ordinary
-nonnested block comments and `::` casts. Rejected: quoted backslashes, alternative
-quotes, executable/hint/nested comments, non-whitespace `--`, outside-quote backticks,
-brackets, `#`, dollar forms and backslashes, plus noncanonical parameter markers.
+`sql` now stores source without scanning. `bind` searches only own ASCII parameter
+names supplied by the caller. Unspecified `:name` text stays unchanged. Missing-name
+rejection is intentionally removed; inherited properties are ignored. Unused supplied
+names, accessors, undefined values and invalid names still fail. This is a breaking
+change to the unpublished binder contract, not merely additional lexer coverage.
 
-Consequently, old positives such as dollar-quoted bodies, backtick/bracket identifiers,
-nested comments and system variables are now explicit negative cases. This is a
-conservative scope reduction, not equivalent support under renamed APIs. Do not strip
-quoting or change SQL semantics merely to satisfy Serene. Keep such SQL on the raw
-native-driver path with additional construction review. No grammar, schema, database
-portability or universal lexical correctness is established by the ordinary label.
+The scanner shields common quotes/comments, including PostgreSQL dollar quotes,
+explicit `E` string escapes and nested comments. It does not reject other SQL syntax.
+Repeated names, casts, occurrence ordering and value separation retain their contracts.
+Existing markers are refused only when they conflict with generated markers for the
+selected output style. PostgreSQL `?` works with `indexed`, while preexisting `?`
+cannot be mixed with generated anonymous markers.
+
+This is not universal dialect-aware replacement. Ordinary quotes use doubled-quote
+escaping. Brackets and hash characters remain plain text. Requested names in bracket
+identifiers, hash comments, alternative quotes or executable comments require target
+DB/driver verification; these regions are not universally shielded. Unclosed regions
+are preserved without a SQL validity check. See [security](security.md).
 
 ## Ordered finite sorting
 
@@ -86,9 +92,9 @@ one-statement source ownership and actual DB tests still have to exist in the ap
 
 The current checks cover all four output styles, repeated names, hostile values,
 source preservation, binding validation, identity forgery, ordered/empty/invalid sort
-selections, scope-aware audit regressions and negative TypeScript cases. The previous
-DBMS-specific lexical positives are explicitly replaced by rejection regressions for
-the documented narrower contract; they are not silently ignored.
+selections, scope-aware audit regressions and negative TypeScript cases. The former blanket-rejection tests are superseded by positive replacement tests and
+output-style-specific collision negatives. Interpolation, provenance and finite-sort
+negative tests remain intact.
 
 Historical 40-case evidence remains pinned to
 `b93e3d4a92df353cfdbec6154c0144739f6eb2e6`; its raw files and reproduction guard are
@@ -96,7 +102,7 @@ unchanged. Use the detached worktree instructions in the evaluation report. Do n
 claim those frozen counts measure this redesigned API or improved AI defect recall.
 No live DBeaver, MCP, Docker/database, mapper or AI significance experiment is claimed.
 
-Verified for this follow-up:
+Historical verification at `7c7b6e3` (before the requested-name change):
 
 - `npm run check`: 76 tests passed; strict type checks and tooling syntax checks passed.
 - Strict source audit of `test/examples.ts`: three native-driver candidates ordinary.
@@ -104,3 +110,6 @@ Verified for this follow-up:
   TypeScript installed, with all four output contracts and ordered sorting.
 - With the optional TypeScript peer supplied: packed audit import, strict CLI smoke
   and packed consumer declarations (including negative type cases) passed.
+
+Current requested-name change validation is recorded in
+[parameter scanning verification](parameter-scanning-verification.md).

@@ -10,7 +10,7 @@ negative cases; it does not include exhaustive program analysis or live SQL vali
 ## Smallest useful design
 
 One package has an independent runtime entry and an optional source-audit entry.
-The runtime consists of a lexical scanner, identity-backed objects and a strict
+The runtime consists of a requested-name scanner, identity-backed objects and a
 binder. The audit reuses the TypeScript parser/binder rather than inventing a JS
 parser or depending on a full lint framework. TypeScript is the sole dev dependency
 and an optional peer for tooling, never loaded by the runtime entry.
@@ -30,10 +30,11 @@ solves the complete problem. Unknown source flow is additional review, not ordin
 Author `sql` with meaningful `:name` markers and preserve `sourceText`. `bind` chooses
 one closed output contract (`named`, `indexed`, `anonymous`, `at-named`), never a
 DBMS. SQL remains application-owned and visible to external debugging tools. The
-small lexer still distinguishes quotes/comments to avoid corrupting parameters;
-removing all lexical knowledge would contradict safe lowering. Unsupported lexical
-forms fail rather than guessing a database. This trades old dialect-specific
-coverage for a smaller explicit contract, not universal database compatibility.
+scanner runs at bind time, searches supplied names, and shields common quoted/comment
+regions to avoid incidental replacements. Other fixed SQL syntax passes through.
+Only collisions with generated output markers are rejected. SQL completeness and
+correctness remain application/database responsibilities; see the security contract
+for deliberately limited shielding conventions.
 
 Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
 structural choices application-owned without enumerating all complete ORDER BY
@@ -56,8 +57,7 @@ Serene independently reimplements/adapts those algorithms and regression scenari
 no package import, fork, compatibility layer or copied generated metadata is used.
 The original MIT copyright is retained. The initial implementation added explicit dialect lexing,
 closed lexical-boundary errors, conservative quote restrictions, strict undefined/
-accessor rejection, runtime provenance, source audit and finite ordering. The current redesign replaces the dialect profiles with a deliberately narrower
-common lexical contract; see [API redesign](api-redesign.md).
+accessor rejection, runtime provenance, source audit and finite ordering. The current redesign replaces dialect validation with requested-name replacement; see [API redesign](api-redesign.md).
 
 Primary lexical references checked:
 
@@ -67,7 +67,7 @@ Primary lexical references checked:
 
 ## Requirements added for review value
 
-Missing/unused/undefined binding rejection, explicit unknown-sort errors, structured
+Unused/undefined supplied binding rejection, explicit unknown-sort errors, structured
 diagnostic locations/codes, and an optional strict CLI gate are included. They expose
 common mistakes without adding execution or schema responsibilities.
 

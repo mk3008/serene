@@ -30,8 +30,10 @@ The tag accepts a template literal with **no interpolation**. Author meaningful
 keeps `:name`. The example explicitly selects `$1` output. Output style is a parameter
 contract, not a SQL dialect or a claim that the SQL is portable across databases.
 
-Binding rejects missing and extra names, undefined values, inherited properties and
-accessors. Names are case-sensitive ASCII identifiers. `null` is an explicit value.
+Binding searches only the own names supplied in `params`. Unspecified markers stay
+unchanged; SQL completeness is the application/database's responsibility. Unused names,
+undefined values and accessors are rejected; inherited properties are not bindings.
+Names are case-sensitive ASCII identifiers. `null` is an explicit value.
 SQL templates use ordinary JavaScript escape rules, so `sourceText` is the cooked SQL
 body, not the TypeScript file's raw escape spelling.
 
@@ -124,7 +126,7 @@ No WHERE builder or general SQL composition is provided.
 | --- | --- | --- |
 | `ordinary` | Recognized literal Serene construction and binding provenance | Review SQL meaning, authorization and driver use normally |
 | `review-required` | Raw strings, unrecognized provenance, or unsupported source flow | Inspect how SQL is constructed and executed |
-| `violation` | A detected Serene policy violation, such as interpolation or malformed lexical boundary | Fix it, or keep the exceptional implementation outside Serene and explicitly review it |
+| `violation` | A detected Serene policy violation, such as interpolation or an output-marker collision | Fix it, or keep the exceptional implementation outside Serene and explicitly review it |
 
 “Violation” means violation of this constrained path, **not proof of SQL injection**.
 Using native raw SQL directly is allowed; it remains an additional-review item.
@@ -195,18 +197,24 @@ set result, not measured AI review effectiveness or real-world recall.
 
 ## Deliberate limits
 
-A small **common lexical contract** remains necessary to distinguish parameters
-from quoted text and comments. It accepts doubled single/double quotes, whitespace-
-followed `--` comments, nonnested ordinary block comments and `::` casts. It does not
-parse SQL grammar, infer a database, or change lexing based on output style.
+`sql` preserves fixed source without validating SQL syntax. At `bind`, a small
+scanner locates only requested `:name` tokens and shields doubled single/double/
+backtick quotes, PostgreSQL dollar quotes and `E` strings, `--` comments and nested
+block comments. Arrays, subscripts, JSON operators, system variables and other fixed
+syntax pass through. Output style does not select a SQL dialect.
 
-It rejects mode-dependent quoted backslashes, executable/hint/nested comments,
-non-whitespace `--`, alternative quote delimiters, and outside quotes/comments:
-backticks, brackets, `#`, dollar forms and backslashes. Existing positional/`@name`
-markers are rejected: author `:name`. These are deliberate restrictions, **not claims
-that those constructs are unsafe SQL**. Some SQL accepted by the old DBMS tags now
-requires the explicit additional-review route outside Serene. See the
-[migration and Raw SQL Rules v0.2 assessment](docs/api-redesign.md).
+Only conflicts with the selected output markers are rejected when generating bindings:
+existing `$number` for `indexed`, `?` for `anonymous`, and `@name` for `at-named`.
+Thus PostgreSQL `payload ? :key` works with `indexed`; it cannot be lowered to
+`anonymous` without colliding with that contract. `@@` system forms are preserved.
+
+This is not a universal lexer. Ordinary strings assume doubled-quote escaping, not
+backslash escaping; use PostgreSQL's standard-conforming strings setting. Brackets
+and `#` are plain text, not identifier/comment delimiters. Do not use a requested
+`:name` inside bracket identifiers, hash comments, executable comments or alternative
+quote forms and expect universal shielding. Check actual bindings against your native
+driver for such SQL. No syntax needs to be removed merely to pass the `sql` tag.
+See [the binding boundary and migration](docs/api-redesign.md).
 
 No SQL syntax, schema, semantics, result typing, permissions, performance or
 comprehensive vulnerability verification. No ORM, query/WHERE builder, driver

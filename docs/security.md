@@ -17,7 +17,7 @@ coverage**. They are distinct conditions.
 The ordinary label only reduces scrutiny of recognized construction mechanics.
 It does not discharge review of the SQL, parameters' business meaning, authorization,
 or correct driver binding. An ordinary source finding is conditional on successful
-runtime checks: missing parameters and unknown sort keys still fail at runtime.
+runtime checks: invalid supplied values, output-marker collisions and unknown sort keys still fail at runtime.
 
 ## Threat examples
 
@@ -36,24 +36,40 @@ runtime checks: missing parameters and unknown sort keys still fail at runtime.
 | Malicious dependency, eval, modified globals, hostile proxy traps | Outside threat model |
 | Valid fixed SQL deleting the wrong tenant's data | Outside Serene's guarantee |
 
-## Lexical restrictions
+## Parameter replacement boundary
 
-The implementation identifies `:name` spans in the original SQL once, then rewrites
-only those spans. Output style never selects a lexical dialect. Values never enter
-SQL text; `sourceText` preserves the pre-lowering SQL and `params` keeps named values
-separate. Selected static sort terms are added before lowering without rescanning
-or losing the original base object.
+`sql` establishes construction provenance and stores fixed source; it does not parse
+or validate SQL. `bind` snapshots own data properties, validates ASCII names, locates
+only requested `:name` spans and rewrites those spans into a closed output contract.
+Values never enter SQL text. Unspecified markers remain unchanged; omitted/inherited
+names do not create slots. Unused supplied names still report likely caller mistakes.
+Neither completeness nor success at the database is guaranteed.
 
-A dialect-free parameter scanner cannot safely be a regular-expression replacement
-or blindly treat every database's quote/comment syntax as interchangeable. The
-common contract supports doubled single/double quotes, whitespace-followed `--`,
-ordinary nonnested block comments and `::`. Quoted backslashes, executable/hint/nested
-comments, ambiguous `--`, alternative quotes and outside-quote backticks, brackets,
-`#`, dollar forms and backslashes are rejected. Native positional or at-name input
-is rejected. This intentionally narrows the old lexical profiles; use the reviewed
-raw-driver route for unsupported SQL. It is not a universal SQL lexer or a statement
-that all engines interpret every accepted character identically. Validate the SQL
-and actual parameter behavior at the selected database/driver boundary.
+The scanner shields doubled single/double/backtick quotes, PostgreSQL dollar quotes
+and explicit `E` string escapes, line comments starting `--`, and nested block
+comments. This prevents common accidental literal changes and extra anonymous slots.
+All other characters pass through, including PostgreSQL arrays and JSON operators.
+Existing markers are checked only against the selected output style when new markers
+are emitted: `$number` with indexed, `?` with anonymous, `@name` with at-named.
+This mechanical collision check prevents slot reuse/shifting; it is not SQL grammar
+validation or a complete detector for every driver's native marker syntax.
+
+Shielding is an authoring convention, not dialect inference. Plain quoted strings
+use doubled delimiters, with backslashes ordinary; PostgreSQL
+`standard_conforming_strings=on` matches this convention. `E` strings recognize
+backslash escapes. Continuation of escape strings, alternative quoting, executable
+comment bodies, MySQL hash comments and SQL Server bracket identifiers are not fully
+interpreted. Brackets must stay ordinary characters to allow parameters inside array
+expressions. Requested names in such ambiguous regions can be replaced or missed;
+validate generated SQL and slot/value pairing with the target driver. An unrecognized
+region can still contain a native marker the scanner cannot detect. No universal
+mapping/semantic correctness is promised for those forms. A quote/comment extending
+to EOF is preserved; SQL validity belongs to the database.
+
+Relaxing fixed-source rejection does not permit value interpolation, dynamic marker
+syntax, arbitrary fragments or forged provenance. The remaining negative tests cover
+those boundaries. Correct value-to-placeholder mapping remains a separate review and
+integration-test duty, even though values never become SQL text.
 
 Do not pass output to a client-side formatter, unreviewed transpiler or another
 composer. Use native parameter binding matching the chosen marker contract. Review

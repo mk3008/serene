@@ -44,15 +44,15 @@ test('import aliases work but same spelling from another library does not establ
   rows = auditSource('import {sql as literalSql, bind} from "other"; const q=bind(literalSql`SELECT 1`); db.query(q.text)');
   assert.equal(rows.find(f => f.boundary === 'driver-candidate').level, 'review-required');
 });
-test('direct tag calls and lexical errors have stable code and location', () => {
+test('direct tag calls remain violations; SQL syntax is application-owned', () => {
   assert.equal(auditSource(imports + 'literalSql(fake)')[0].code, 'DIRECT_TAG_CALL');
   const rows = auditSource(imports + 'literalSql`SELECT $1`');
-  assert.equal(rows[0].code, 'MIXED_PARAMETERS');
+  assert.equal(rows[0].level, 'ordinary');
   assert.equal(rows[0].line, 2); assert.equal(rows[0].column, 1);
 });
 test('cooked template escape semantics match runtime', () => {
   const rows = auditSource(imports + 'literalSql`SELECT \\`id\\`, :id`');
-  assert.equal(rows[0].code, 'UNSUPPORTED_LEXICAL');
+  assert.equal(rows[0].level, 'ordinary');
 });
 test('parse failures do not disappear as a clean inventory', () => {
   assert.ok(auditSource('const = ;').some(f => f.code === 'PARSE_ERROR'));
@@ -144,7 +144,7 @@ test('legacy tags and arbitrary sourceText are not silently trusted as new API',
   assert.equal(sink('db.query(literalSql`SELECT 1`.sourceText)')[0].level, 'review-required');
   assert.equal(sink('const q = bind(literalSql`SELECT 1`); db.query(q.sourceText)')[0].level, 'review-required');
 });
-test('unsupported lexical forms remain violations rather than gaining ordinary through binding', () => {
+test('fixed PostgreSQL array syntax has ordinary construction provenance', () => {
   const rows = sink('const q = bind(literalSql`SELECT ARRAY[:id]`, {id}, "indexed"); db.query(q.text)');
-  assert.equal(rows[0].code, 'UNSUPPORTED_LEXICAL');
+  assert.equal(rows[0].level, 'ordinary');
 });

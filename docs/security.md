@@ -17,7 +17,8 @@ coverage**. They are distinct conditions.
 The ordinary label only reduces scrutiny of recognized construction mechanics.
 It does not discharge review of the SQL, parameters' business meaning, authorization,
 or correct driver binding. An ordinary source finding is conditional on successful
-runtime checks: invalid supplied values, output-marker collisions and unknown sort keys still fail at runtime.
+runtime checks: invalid supplied values and unknown sort keys still fail at runtime;
+output-marker collisions fail only on explicit positional-lowering paths.
 
 ## Threat examples
 

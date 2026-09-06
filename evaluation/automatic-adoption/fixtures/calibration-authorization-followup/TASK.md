@@ -1,0 +1,1 @@
+Investigate the authorization behavior of `caseById`. Write a concise `AUTHORIZATION.md` that explains whether a signed-in user can obtain another tenant’s record and identifies the relevant cause. Do not change application behavior.

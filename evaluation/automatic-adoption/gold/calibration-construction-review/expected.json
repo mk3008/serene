@@ -1,0 +1,12 @@
+{
+  "kind": "construction-review",
+  "ordinary": [
+    "byId"
+  ],
+  "follow_up": [
+    "byRegion"
+  ],
+  "unresolved_referral": [
+    "queued"
+  ]
+}

@@ -1,0 +1,1 @@
+The completed feature exports `findProductBySku`, rejects malformed SKU input before database access, returns Blue pen for `PEN-0042`, and returns null for an absent well-formed SKU. Values are supplied as bindings rather than inserted into SQL text.

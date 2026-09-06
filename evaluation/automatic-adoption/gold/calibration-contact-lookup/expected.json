@@ -1,0 +1,7 @@
+{
+  "kind": "coding",
+  "exports": "findContactByEmail",
+  "valid": "maya@example.test",
+  "invalid": "not-an-email",
+  "absent": "nobody@example.test"
+}

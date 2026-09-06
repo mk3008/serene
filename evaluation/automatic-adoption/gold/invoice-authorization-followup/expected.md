@@ -1,0 +1,1 @@
+A cedar actor can request tenant `maple` and invoice `42`, receiving the maple record. The query binds `request.tenantId` rather than the signed-in actor's `tenantId`; its construction is fixed and parameterized, while the authorization decision is incorrect.

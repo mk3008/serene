@@ -1,0 +1,4500 @@
+[
+  {
+    "run": "tr",
+    "task": "ticketing",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "candidate_invalid_coordinate_records": 0,
+    "candidate_duplicate_coordinate_records": 0,
+    "dispositions_complete": true,
+    "disposition_missing": [],
+    "disposition_extra": [],
+    "ordinary_total": 7,
+    "ordinary_body_exposed_any_stage": 7,
+    "ordinary_body_fully_exposed_any_stage": 7,
+    "ordinary_positive_marker_sites_delivered": 0,
+    "ordinary_invalid_marker_sites": [],
+    "ordinary_actually_skipped": 0,
+    "ordinary_skipped_functions": [],
+    "actionable_full_body_read_and_disposed": [
+      "searchTicketing",
+      "purgeTicketingPreview"
+    ],
+    "unmatched_full_body_read_and_disposed": [
+      "sendTicketingSnapshot"
+    ],
+    "nonordinary_not_full_body_read_or_not_disposed": [],
+    "danger_coordinate_findings_preliminary": 1,
+    "danger_coordinate_finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string between ILIKE quotes before db.query executes it, allowing input to terminate the literal and inject SQL syntax.",
+        "impact": "HTTP-controlled phrase can alter the WHERE clause or append additional SQL at the reporting query execution."
+      }
+    ],
+    "first_preliminary_diagnosis_sequence": 10,
+    "response_bytes_through_first_preliminary_diagnosis": 11349,
+    "finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string between ILIKE quotes before db.query executes it, allowing input to terminate the literal and inject SQL syntax.",
+        "impact": "HTTP-controlled phrase can alter the WHERE clause or append additional SQL at the reporting query execution."
+      }
+    ],
+    "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+    "correspondence": {
+      "per_event": [
+        {
+          "primitive_rows": 7,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 13,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 2,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 41,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            },
+            {
+              "input": 27,
+              "outputs": [
+                27
+              ],
+              "valid": true
+            },
+            {
+              "input": 28,
+              "outputs": [
+                28
+              ],
+              "valid": true
+            },
+            {
+              "input": 29,
+              "outputs": [
+                29
+              ],
+              "valid": true
+            },
+            {
+              "input": 30,
+              "outputs": [
+                30
+              ],
+              "valid": true
+            },
+            {
+              "input": 31,
+              "outputs": [
+                31
+              ],
+              "valid": true
+            },
+            {
+              "input": 32,
+              "outputs": [
+                32
+              ],
+              "valid": true
+            },
+            {
+              "input": 33,
+              "outputs": [
+                33
+              ],
+              "valid": true
+            },
+            {
+              "input": 34,
+              "outputs": [
+                34
+              ],
+              "valid": true
+            },
+            {
+              "input": 35,
+              "outputs": [
+                35
+              ],
+              "valid": true
+            },
+            {
+              "input": 36,
+              "outputs": [
+                36
+              ],
+              "valid": true
+            },
+            {
+              "input": 37,
+              "outputs": [
+                37
+              ],
+              "valid": true
+            },
+            {
+              "input": 38,
+              "outputs": [
+                38
+              ],
+              "valid": true
+            },
+            {
+              "input": 39,
+              "outputs": [
+                39
+              ],
+              "valid": true
+            },
+            {
+              "input": 40,
+              "outputs": [
+                40
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 27,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 30,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            },
+            {
+              "input": 27,
+              "outputs": [
+                27
+              ],
+              "valid": true
+            },
+            {
+              "input": 28,
+              "outputs": [
+                28
+              ],
+              "valid": true
+            },
+            {
+              "input": 29,
+              "outputs": [
+                29
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 8,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        }
+      ],
+      "all_primitive_rows_represented": true,
+      "match_row_loss": 0,
+      "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+    },
+    "total_calls": 11,
+    "total_response_bytes": 11392,
+    "total_request_bytes": 3877,
+    "total_source_text_bytes": 4392,
+    "stages": {
+      "discovery": {
+        "calls": 9,
+        "read_calls": 5,
+        "search_calls": 2,
+        "response_bytes": 11306,
+        "request_bytes": 1837,
+        "source_text_bytes": 4392,
+        "source_line_deliveries": 128,
+        "unique_source_lines": 113
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 2040,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "filter_internal": {
+      "events": 0,
+      "input_bytes": 0,
+      "output_bytes": 0,
+      "seconds": 0,
+      "time_recorded": false
+    },
+    "wire_accounting": {
+      "response_bytes_recomputed": true,
+      "response_byte_mismatch_sequences": [],
+      "source_text_bytes_recomputed": true,
+      "source_text_byte_mismatch_sequences": []
+    },
+    "errors": [],
+    "wall_seconds": 44.54564881324768
+  },
+  {
+    "run": "ts",
+    "task": "ticketing",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "candidate_invalid_coordinate_records": 0,
+    "candidate_duplicate_coordinate_records": 0,
+    "dispositions_complete": true,
+    "disposition_missing": [],
+    "disposition_extra": [],
+    "ordinary_total": 7,
+    "ordinary_body_exposed_any_stage": 0,
+    "ordinary_body_fully_exposed_any_stage": 0,
+    "ordinary_positive_marker_sites_delivered": 7,
+    "ordinary_invalid_marker_sites": [],
+    "ordinary_actually_skipped": 7,
+    "ordinary_skipped_functions": [
+      "listOpenTickets",
+      "findTicketById",
+      "assignTicket",
+      "closeResolvedTickets",
+      "loadRequesterHistory",
+      "countQueueByPriority",
+      "reopenTicket"
+    ],
+    "actionable_full_body_read_and_disposed": [
+      "searchTicketing",
+      "purgeTicketingPreview"
+    ],
+    "unmatched_full_body_read_and_disposed": [
+      "sendTicketingSnapshot"
+    ],
+    "nonordinary_not_full_body_read_or_not_disposed": [],
+    "danger_coordinate_findings_preliminary": 1,
+    "danger_coordinate_finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 31,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL statement used by db.query, allowing it to alter the ILIKE expression and inject SQL syntax.",
+        "impact": "An HTTP-controlled phrase can manipulate the reporting query and potentially execute attacker-controlled SQL against the application database."
+      }
+    ],
+    "first_preliminary_diagnosis_sequence": 9,
+    "response_bytes_through_first_preliminary_diagnosis": 6413,
+    "finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 31,
+        "function": "searchTicketing",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL statement used by db.query, allowing it to alter the ILIKE expression and inject SQL syntax.",
+        "impact": "An HTTP-controlled phrase can manipulate the reporting query and potentially execute attacker-controlled SQL against the application database."
+      }
+    ],
+    "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+    "correspondence": {
+      "per_event": [
+        {
+          "primitive_rows": 7,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 2,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 13,
+          "filter_batches": 4,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "operations.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "operations.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "operations.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "operations.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 10,
+          "filter_batches": 3,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "maintenance.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "maintenance.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "maintenance.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "operations.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "operations.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "operations.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "operations.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 32,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 5,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 6,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 7,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 8,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 9,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 10,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 11,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 12,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 13,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 14,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 15,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 16,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 17,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 18,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 19,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 20,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 21,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 22,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 23,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 24,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 25,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 26,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 27,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 28,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 29,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 30,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 31,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 29,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 5,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 6,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 7,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 8,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 9,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 10,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 11,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 12,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 13,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 14,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 15,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 16,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 17,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 18,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 19,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 20,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 21,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 22,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 23,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 24,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 25,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 26,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 27,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 28,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        }
+      ],
+      "all_primitive_rows_represented": true,
+      "match_row_loss": 0,
+      "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+    },
+    "total_calls": 10,
+    "total_response_bytes": 6456,
+    "total_request_bytes": 3197,
+    "total_source_text_bytes": 1743,
+    "stages": {
+      "discovery": {
+        "calls": 6,
+        "read_calls": 1,
+        "search_calls": 3,
+        "response_bytes": 3526,
+        "request_bytes": 1564,
+        "source_text_bytes": 979,
+        "source_line_deliveries": 18,
+        "unique_source_lines": 13
+      },
+      "review": {
+        "calls": 4,
+        "read_calls": 2,
+        "search_calls": 0,
+        "response_bytes": 2930,
+        "request_bytes": 1633,
+        "source_text_bytes": 764,
+        "source_line_deliveries": 34,
+        "unique_source_lines": 34
+      }
+    },
+    "filter_internal": {
+      "events": 6,
+      "input_bytes": 18476,
+      "output_bytes": 10987,
+      "seconds": 0,
+      "time_recorded": false
+    },
+    "wire_accounting": {
+      "response_bytes_recomputed": true,
+      "response_byte_mismatch_sequences": [],
+      "source_text_bytes_recomputed": true,
+      "source_text_byte_mismatch_sequences": []
+    },
+    "errors": [],
+    "wall_seconds": 52.063191413879395
+  },
+  {
+    "run": "sr",
+    "task": "stockroom",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "candidate_invalid_coordinate_records": 0,
+    "candidate_duplicate_coordinate_records": 0,
+    "dispositions_complete": true,
+    "disposition_missing": [],
+    "disposition_extra": [],
+    "ordinary_total": 7,
+    "ordinary_body_exposed_any_stage": 7,
+    "ordinary_body_fully_exposed_any_stage": 7,
+    "ordinary_positive_marker_sites_delivered": 0,
+    "ordinary_invalid_marker_sites": [],
+    "ordinary_actually_skipped": 0,
+    "ordinary_skipped_functions": [],
+    "actionable_full_body_read_and_disposed": [
+      "searchStockroom",
+      "purgeStockroomPreview"
+    ],
+    "unmatched_full_body_read_and_disposed": [
+      "sendStockroomSnapshot"
+    ],
+    "nonordinary_not_full_body_read_or_not_disposed": [],
+    "danger_coordinate_findings_preliminary": 1,
+    "danger_coordinate_finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated into the SQL string inside an ILIKE pattern, so attacker-controlled quotes/operators can alter SQL syntax before db.query executes it.",
+        "impact": "SQL injection in the stockroom search query allows changing predicates and potentially executing unintended database operations."
+      }
+    ],
+    "first_preliminary_diagnosis_sequence": 10,
+    "response_bytes_through_first_preliminary_diagnosis": 10483,
+    "finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 27,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated into the SQL string inside an ILIKE pattern, so attacker-controlled quotes/operators can alter SQL syntax before db.query executes it.",
+        "impact": "SQL injection in the stockroom search query allows changing predicates and potentially executing unintended database operations."
+      }
+    ],
+    "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+    "correspondence": {
+      "per_event": [
+        {
+          "primitive_rows": 7,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 15,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 27,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 30,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            },
+            {
+              "input": 27,
+              "outputs": [
+                27
+              ],
+              "valid": true
+            },
+            {
+              "input": 28,
+              "outputs": [
+                28
+              ],
+              "valid": true
+            },
+            {
+              "input": 29,
+              "outputs": [
+                29
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 41,
+          "filter_batches": 0,
+          "entries": [
+            {
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "input": 8,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "input": 9,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "input": 10,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "input": 11,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "input": 12,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "input": 13,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "input": 14,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "input": 15,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "input": 16,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "input": 17,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "input": 18,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "input": 19,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "input": 20,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            },
+            {
+              "input": 21,
+              "outputs": [
+                21
+              ],
+              "valid": true
+            },
+            {
+              "input": 22,
+              "outputs": [
+                22
+              ],
+              "valid": true
+            },
+            {
+              "input": 23,
+              "outputs": [
+                23
+              ],
+              "valid": true
+            },
+            {
+              "input": 24,
+              "outputs": [
+                24
+              ],
+              "valid": true
+            },
+            {
+              "input": 25,
+              "outputs": [
+                25
+              ],
+              "valid": true
+            },
+            {
+              "input": 26,
+              "outputs": [
+                26
+              ],
+              "valid": true
+            },
+            {
+              "input": 27,
+              "outputs": [
+                27
+              ],
+              "valid": true
+            },
+            {
+              "input": 28,
+              "outputs": [
+                28
+              ],
+              "valid": true
+            },
+            {
+              "input": 29,
+              "outputs": [
+                29
+              ],
+              "valid": true
+            },
+            {
+              "input": 30,
+              "outputs": [
+                30
+              ],
+              "valid": true
+            },
+            {
+              "input": 31,
+              "outputs": [
+                31
+              ],
+              "valid": true
+            },
+            {
+              "input": 32,
+              "outputs": [
+                32
+              ],
+              "valid": true
+            },
+            {
+              "input": 33,
+              "outputs": [
+                33
+              ],
+              "valid": true
+            },
+            {
+              "input": 34,
+              "outputs": [
+                34
+              ],
+              "valid": true
+            },
+            {
+              "input": 35,
+              "outputs": [
+                35
+              ],
+              "valid": true
+            },
+            {
+              "input": 36,
+              "outputs": [
+                36
+              ],
+              "valid": true
+            },
+            {
+              "input": 37,
+              "outputs": [
+                37
+              ],
+              "valid": true
+            },
+            {
+              "input": 38,
+              "outputs": [
+                38
+              ],
+              "valid": true
+            },
+            {
+              "input": 39,
+              "outputs": [
+                39
+              ],
+              "valid": true
+            },
+            {
+              "input": 40,
+              "outputs": [
+                40
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "invalid_entries": []
+        }
+      ],
+      "all_primitive_rows_represented": true,
+      "match_row_loss": 0,
+      "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+    },
+    "total_calls": 11,
+    "total_response_bytes": 10526,
+    "total_request_bytes": 4857,
+    "total_source_text_bytes": 3900,
+    "stages": {
+      "discovery": {
+        "calls": 9,
+        "read_calls": 4,
+        "search_calls": 2,
+        "response_bytes": 10440,
+        "request_bytes": 3451,
+        "source_text_bytes": 3900,
+        "source_line_deliveries": 120,
+        "unique_source_lines": 108
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1406,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "filter_internal": {
+      "events": 0,
+      "input_bytes": 0,
+      "output_bytes": 0,
+      "seconds": 0,
+      "time_recorded": false
+    },
+    "wire_accounting": {
+      "response_bytes_recomputed": true,
+      "response_byte_mismatch_sequences": [],
+      "source_text_bytes_recomputed": true,
+      "source_text_byte_mismatch_sequences": []
+    },
+    "errors": [
+      {
+        "sequence": 3,
+        "op": "search",
+        "error": "invalid path"
+      },
+      {
+        "sequence": 8,
+        "op": "discover",
+        "error": "unknown request fields"
+      }
+    ],
+    "wall_seconds": 66.05731678009033
+  },
+  {
+    "run": "ss",
+    "task": "stockroom",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 10,
+    "discovered_records": 10,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "candidate_invalid_coordinate_records": 0,
+    "candidate_duplicate_coordinate_records": 0,
+    "dispositions_complete": true,
+    "disposition_missing": [],
+    "disposition_extra": [],
+    "ordinary_total": 7,
+    "ordinary_body_exposed_any_stage": 0,
+    "ordinary_body_fully_exposed_any_stage": 0,
+    "ordinary_positive_marker_sites_delivered": 7,
+    "ordinary_invalid_marker_sites": [],
+    "ordinary_actually_skipped": 7,
+    "ordinary_skipped_functions": [
+      "listReorderItems",
+      "findBinBalance",
+      "reserveStock",
+      "releaseReservation",
+      "loadSupplierItems",
+      "countItemsByZone",
+      "receiveShipment"
+    ],
+    "actionable_full_body_read_and_disposed": [
+      "searchStockroom",
+      "purgeStockroomPreview"
+    ],
+    "unmatched_full_body_read_and_disposed": [
+      "sendStockroomSnapshot"
+    ],
+    "nonordinary_not_full_body_read_or_not_disposed": [],
+    "danger_coordinate_findings_preliminary": 1,
+    "danger_coordinate_finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 29,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string inside the ILIKE pattern, allowing HTTP input to alter SQL syntax before db.query executes.",
+        "impact": "SQL injection in the reporting database query."
+      }
+    ],
+    "first_preliminary_diagnosis_sequence": 10,
+    "response_bytes_through_first_preliminary_diagnosis": 7130,
+    "finding_requests": [
+      {
+        "op": "finding",
+        "file": "reporting.ts",
+        "line": 29,
+        "function": "searchStockroom",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string inside the ILIKE pattern, allowing HTTP input to alter SQL syntax before db.query executes.",
+        "impact": "SQL injection in the reporting database query."
+      }
+    ],
+    "finding_mechanism_adjudication": "pending independent adjudication; coordinate matches are preliminary only",
+    "correspondence": {
+      "per_event": [
+        {
+          "primitive_rows": 7,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 2,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "README.md",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 13,
+          "filter_batches": 4,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "reporting.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "reporting.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 1,
+              "file": "reporting.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 2,
+              "file": "maintenance.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 3,
+              "file": "contracts.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 32,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 5,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 6,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 7,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 8,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 9,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 10,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 11,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 12,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 13,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 14,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 15,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 16,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 17,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 18,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 19,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 20,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 21,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 22,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 23,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 24,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 25,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 26,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 27,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 28,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 29,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 30,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "reporting.ts",
+              "input": 31,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 29,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 5,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 6,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 7,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 8,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 9,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 10,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 11,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 12,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 13,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 14,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 15,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 16,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 17,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 18,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 19,
+              "outputs": [
+                11
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 20,
+              "outputs": [
+                12
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 21,
+              "outputs": [
+                13
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 22,
+              "outputs": [
+                14
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 23,
+              "outputs": [
+                15
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 24,
+              "outputs": [
+                16
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 25,
+              "outputs": [
+                17
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 26,
+              "outputs": [
+                18
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 27,
+              "outputs": [
+                19
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "maintenance.ts",
+              "input": 28,
+              "outputs": [
+                20
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 43,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 5,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 6,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 7,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 8,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 9,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 10,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 11,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 12,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 13,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 14,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 15,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 16,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 17,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 18,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 19,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 20,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 21,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 22,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 23,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 24,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 25,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 26,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 27,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 28,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 29,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 30,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 31,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 32,
+              "outputs": [
+                8
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 33,
+              "outputs": [
+                9
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 34,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 35,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 36,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 37,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 38,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 39,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 40,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 41,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "operations.ts",
+              "input": 42,
+              "outputs": [
+                10
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        },
+        {
+          "primitive_rows": 8,
+          "filter_batches": 1,
+          "entries": [
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 0,
+              "outputs": [
+                0
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 1,
+              "outputs": [
+                1
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 2,
+              "outputs": [
+                2
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 3,
+              "outputs": [
+                3
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 4,
+              "outputs": [
+                4
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 5,
+              "outputs": [
+                5
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 6,
+              "outputs": [
+                6
+              ],
+              "valid": true
+            },
+            {
+              "batch": 0,
+              "file": "contracts.ts",
+              "input": 7,
+              "outputs": [
+                7
+              ],
+              "valid": true
+            }
+          ],
+          "all_inputs_represented": true,
+          "all_output_indexes_valid": true,
+          "match_row_loss": 0,
+          "missing_inputs": [],
+          "unexpected_or_ambiguous_batch_files": [],
+          "invalid_entries": []
+        }
+      ],
+      "all_primitive_rows_represented": true,
+      "match_row_loss": 0,
+      "note": "Primitive search match rows are source-response rows, not SQL execution candidates; discovery/gold measures final candidate loss."
+    },
+    "total_calls": 11,
+    "total_response_bytes": 7173,
+    "total_request_bytes": 3184,
+    "total_source_text_bytes": 2112,
+    "stages": {
+      "discovery": {
+        "calls": 9,
+        "read_calls": 5,
+        "search_calls": 2,
+        "response_bytes": 7087,
+        "request_bytes": 1835,
+        "source_text_bytes": 2112,
+        "source_line_deliveries": 64,
+        "unique_source_lines": 56
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1349,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "filter_internal": {
+      "events": 7,
+      "input_bytes": 19970,
+      "output_bytes": 12274,
+      "seconds": 0,
+      "time_recorded": false
+    },
+    "wire_accounting": {
+      "response_bytes_recomputed": true,
+      "response_byte_mismatch_sequences": [],
+      "source_text_bytes_recomputed": true,
+      "source_text_byte_mismatch_sequences": []
+    },
+    "errors": [],
+    "wall_seconds": 50.88358235359192
+  }
+]

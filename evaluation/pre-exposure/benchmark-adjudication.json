@@ -1,0 +1,68 @@
+{
+  "scope": "Independent bounded adjudication of the four frozen scored runs. Evidence was read directly from each JSONL recorder log, end-to-end gold, and the clean configured source snapshots; score output was used only as a cross-check.",
+  "decision": "pass-with-recorded-limitations",
+  "frozenSnapshots": [
+    { "run": "tr", "task": "ticketing", "arm": "raw", "revision": "5ecc749a088aef0713edf4390c74a30c7f4c82dc", "headMatchesConfiguredRevision": true, "workingTreeClean": true },
+    { "run": "ts", "task": "ticketing", "arm": "serene", "revision": "b8ba42f819fa1c8fba7ee4dcecc096b73469bd96", "headMatchesConfiguredRevision": true, "workingTreeClean": true },
+    { "run": "sr", "task": "stockroom", "arm": "raw", "revision": "62a0af42eb25dfeb88f5e260de142548faeee85b", "headMatchesConfiguredRevision": true, "workingTreeClean": true },
+    { "run": "ss", "task": "stockroom", "arm": "serene", "revision": "c5a3884b7e1df37cd18def2a0db1d0272e2687a6", "headMatchesConfiguredRevision": true, "workingTreeClean": true }
+  ],
+  "runs": {
+    "tr": {
+      "coordinates": { "gold": 10, "submitted": 10, "unique": 10, "exact": true },
+      "dispositions": { "completeExactCoordinateSet": true },
+      "ordinary": { "bodyExposure": 7, "markers": 0, "sereneActualSkips": 0, "note": "Raw arm read ordinary bodies and classified them safe; it did not claim skip-ordinary." },
+      "nonordinary": { "allThreeBodiesReadAndDispositioned": true },
+      "finding": { "correctMechanism": true, "falseFindings": 0, "note": "ticketing reporting search concatenates UntrustedInput phrase into the SQL ILIKE expression before db.query." },
+      "wire": { "responseBytes": 11392, "requestBytes": 3877, "deliveredSourceTextBytes": 4392, "allWireAndSourceByteCountsRecomputed": true },
+      "correspondence": { "filterBatches": 0, "status": "not-applicable-raw" }
+    },
+    "ts": {
+      "coordinates": { "gold": 10, "submitted": 10, "unique": 10, "exact": true },
+      "dispositions": { "completeExactCoordinateSet": true },
+      "ordinary": { "bodyExposureAnyPhase": 0, "markers": 7, "markerCoordinatesAllGoldOrdinary": true, "sereneActualSkips": 7 },
+      "nonordinary": { "allThreeBodiesReadAndDispositioned": true, "functions": ["searchTicketing", "purgeTicketingPreview", "sendTicketingSnapshot"] },
+      "finding": { "correctMechanism": true, "falseFindings": 0, "note": "ticketing reporting search concatenates UntrustedInput phrase into SQL before db.query." },
+      "wire": { "responseBytes": 6456, "requestBytes": 3197, "deliveredSourceTextBytes": 1743, "allWireAndSourceByteCountsRecomputed": true },
+      "correspondence": { "filterBatches": 11, "primitiveRows": 93, "allInputsRepresented": true, "allOutputIndexesValid": true, "rowLoss": 0 },
+      "optionalFunctionAnnotationMismatches": []
+    },
+    "sr": {
+      "coordinates": { "gold": 10, "submitted": 10, "unique": 10, "exact": true },
+      "dispositions": { "completeExactCoordinateSet": true },
+      "ordinary": { "bodyExposure": 7, "markers": 0, "sereneActualSkips": 0, "labelMisuse": "All nine resolutions labelled skip-ordinary are Raw-arm labels after source bodies were delivered. They have no positive markers and are never counted as Serene skips." },
+      "nonordinary": { "allThreeBodiesReadAndDispositioned": true },
+      "finding": { "correctMechanism": true, "falseFindings": 0, "note": "stockroom reporting search concatenates UntrustedInput phrase into the SQL ILIKE expression before db.query." },
+      "wire": { "responseBytes": 10526, "requestBytes": 4857, "deliveredSourceTextBytes": 3900, "allWireAndSourceByteCountsRecomputed": true },
+      "correspondence": { "filterBatches": 0, "status": "not-applicable-raw" },
+      "loggedErrors": [
+        { "sequence": 3, "operation": "search", "effect": "no source response" },
+        { "sequence": 8, "operation": "discover", "effect": "failed duplicate discovery submission; successful sequence 9 supplies the scored candidate set" }
+      ]
+    },
+    "ss": {
+      "coordinates": { "gold": 10, "submitted": 10, "unique": 10, "exact": true },
+      "dispositions": { "completeExactCoordinateSet": true },
+      "ordinary": { "bodyExposureAnyPhase": 0, "markers": 7, "markerCoordinatesAllGoldOrdinary": true, "sereneActualSkips": 7 },
+      "nonordinary": { "allThreeBodiesReadAndDispositioned": true, "functions": ["searchStockroom", "purgeStockroomPreview", "sendStockroomSnapshot"] },
+      "finding": { "correctMechanism": true, "falseFindings": 0, "note": "stockroom reporting search concatenates UntrustedInput phrase into SQL before db.query." },
+      "wire": { "responseBytes": 7173, "requestBytes": 3184, "deliveredSourceTextBytes": 2112, "allWireAndSourceByteCountsRecomputed": true },
+      "correspondence": { "filterBatches": 10, "primitiveRows": 134, "allInputsRepresented": true, "allOutputIndexesValid": true, "rowLoss": 0 },
+      "optionalFunctionAnnotationMismatches": [
+        ["operations.ts", 12, 9, "createStockroomItem", "listReorderItems"],
+        ["operations.ts", 22, 9, "updateStockroomItem", "findBinBalance"],
+        ["operations.ts", 32, 9, "deleteStockroomItem", "reserveStock"],
+        ["operations.ts", 42, 9, "listStockroomItems", "releaseReservation"],
+        ["reporting.ts", 12, 9, "stockroomSummary", "loadSupplierItems"],
+        ["reporting.ts", 22, 9, "stockroomByOwner", "countItemsByZone"],
+        ["maintenance.ts", 12, 9, "archiveStockroom", "receiveShipment"]
+      ]
+    }
+  },
+  "annotationRule": "Candidate discovery and final dispositions are scored by frozen file/line/column only. Optional function annotations are recorded but not corrected or used to manufacture a coordinate match.",
+  "limits": [
+    "This is a four-run descriptive frozen cohort, not general performance evidence.",
+    "Serene ordinary markers attest construction provenance and syntactic candidate shape, not driver identity or semantic binding correctness.",
+    "All response-byte totals include logged unsuccessful operations; internal filter I/O is separate from participant wire output."
+  ]
+}

@@ -10,7 +10,9 @@ primary effectiveness measure. Historical packets, answers and gold remain intac
 | Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The [four-run efficiency cohort](triage/efficiency-study/REPORT.md) records cost on two compact application tasks: its expansion-only primary metric does not resolve the screening/skip contrast. The [covered-site cohort](triage/covered-study/REPORT.md) separates Discovery and records ordinary omission plus response cost; its small reused tasks limit generalization. |
 | Discovery mechanics | Observe how agents find execution sites before choosing a triage connection | [Three fresh Luna/medium observations](discovery-mechanics/REPORT.md): rg plus source reads; exact locations 16/16 on small authored tasks. No semantic/LSP tools available; candidate narrowing was mostly unrecorded until confirmation. Supports a thin candidate handoff prototype, not universal tool preference or Serene efficacy. |
 | Candidate handoff | Preserve supplied candidates and skip only positive same-revision execution-coordinate ordinary matches | [Evaluation-only JSONL PoC](candidate-handoff/README.md): 24 inputs / 24 outputs, zero loss; 3 ordinary records skip. Fixed boundary cases plus dirty-source and changed-HEAD checks pass. Requires exact column and upstream execution identity; no end-to-end result. |
-| End-to-end workflow cost | Full Discovery + handoff/triage + review output cost, with stage accounting and maintained diagnosis | [Four new-task Luna/medium runs](end-to-end/REPORT.md): completed response bytes increased 34.0% / 49.9%. All ordinary bodies were already read in Discovery; later skip saved no additional bodies. Discovery 10/10 each, handoff loss 0, danger recall 1/1 each, false findings 0. Small mediated tasks, not general utility or monetary cost. |\n| Adoption instruction | Agents use the construction boundary correctly with minimal instructions | The [nine-run coding pilot](adoption/exploratory/REPORT.md) supports feasibility on three tasks. It did not compare instruction lengths or Rules-only adoption. |
+| End-to-end workflow cost | Full Discovery + handoff/triage + review output cost, with stage accounting and maintained diagnosis | [Four new-task Luna/medium runs](end-to-end/REPORT.md): completed response bytes increased 34.0% / 49.9%. All ordinary bodies were already read in Discovery; later skip saved no additional bodies. Discovery 10/10 each, handoff loss 0, danger recall 1/1 each, false findings 0. Small mediated tasks, not general utility or monetary cost. |
+| Pre-exposure connection | Filter caller-owned search/read responses before ordinary construction bodies reach AI; measure full delivered cost and retained discovery | [Response-boundary experiment](pre-exposure/REPORT.md): operation response bytes −43.3% / −31.9%; with loaded prompt text −31.8% / −21.8%. Both Serene runs expose zero ordinary bodies, skip 7, retain 10/10 coordinates and correct diagnosis. Two reused small tasks, not total token cost; optional function-name annotations can be wrong. |
+| Adoption instruction | Agents use the construction boundary correctly with minimal instructions | The [nine-run coding pilot](adoption/exploratory/REPORT.md) supports feasibility on three tasks. It did not compare instruction lengths or Rules-only adoption. |
 | Rules integration / layout | Dedicated versus colocated definitions preserve discovery, binding/execution follow-through and DB behavior; imported-provenance friction and file/review effort | [SQLite preflight](adoption/preflight/REPORT.md) and coding results reproduce import-only strict failures. There is no controlled AI layout-effect result. See [layout plan](adoption/LAYOUT-STUDY.md). |
 | General AI code review | Find authorization/business-meaning defects and avoid false accusations | The [12-run review pilot](triage/exploratory/REPORT.md) measured mixed general defect recall, with a ceiling, contract ambiguities and one JSON failure. It cannot answer the Serene triage question. |
 
@@ -32,14 +34,15 @@ recall score. No pooled product score combines these studies.
 
 ## Current evidence and evaluation checkpoint
 
-The [end-to-end comparison](end-to-end/REPORT.md) completes the requested PR #4
-evaluation track. With independent Discovery in the same agent context, Serene
-increased total tool-response bytes by 34.0% and 49.9% on two new small applications.
-All candidates and diagnoses were retained, but ordinary source had already been
-read during Discovery in both arms, leaving no incremental body-read compression
-to offset handoff output. Keep this result separate from the supplied-set cohort
-below. Productization, larger tasks and additional research move to separate tasks.
-PR #4 remains Draft.
+The latest authorized question is the [pre-exposure connection](pre-exposure/REPORT.md):
+intercept search/read responses before ordinary construction source reaches the AI.
+The caller still chooses discovery primitives and scope. Keep primitive match-row
+preservation, independently scored execution Discovery, and ordinary skip separate.
+
+The earlier [end-to-end comparison](end-to-end/REPORT.md) remains the result for a
+later handoff: output increased 34.0% / 49.9% after ordinary bodies had already been
+read. The new connection is a different workflow, not a retrospective correction
+of those results. PR #4 remains Draft; no pooled product score.
 
 ## Earlier conditional evidence
 

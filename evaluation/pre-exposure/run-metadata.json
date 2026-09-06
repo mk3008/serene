@@ -1,0 +1,66 @@
+{
+  "freeze_commit": "04dd0737352a99571e7ab16e84179ac432a05c12",
+  "fresh_reviews": [
+    {
+      "run": "probe",
+      "agent_task": "/root/preexposure_probe",
+      "requested_model": "gpt-5.6-luna",
+      "requested_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "scored": false,
+      "reruns": 0,
+      "coaching": false
+    },
+    {
+      "run": "tr",
+      "agent_task": "/root/preexposure_tr",
+      "requested_model": "gpt-5.6-luna",
+      "requested_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "scored": true,
+      "reruns": 0,
+      "coaching": false
+    },
+    {
+      "run": "ts",
+      "agent_task": "/root/preexposure_ts",
+      "requested_model": "gpt-5.6-luna",
+      "requested_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "scored": true,
+      "reruns": 0,
+      "coaching": false
+    },
+    {
+      "run": "sr",
+      "agent_task": "/root/preexposure_sr",
+      "requested_model": "gpt-5.6-luna",
+      "requested_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "scored": true,
+      "reruns": 0,
+      "coaching": false
+    },
+    {
+      "run": "ss",
+      "agent_task": "/root/preexposure_ss",
+      "requested_model": "gpt-5.6-luna",
+      "requested_reasoning_effort": "medium",
+      "fork_turns": "none",
+      "scored": true,
+      "reruns": 0,
+      "coaching": false
+    }
+  ],
+  "bounded_independent_validation": {
+    "task": "/root/preexposure_adversarial",
+    "model": "gpt-5.6-terra",
+    "effort": "medium"
+  },
+  "scorer_implementation": {
+    "task": "/root/preexposure_metrics",
+    "model": "gpt-5.6-terra",
+    "effort": "medium"
+  },
+  "scope": "No histories or evaluator material supplied to participants. Each participant loaded only its task prompt before recorder operations. Full native-session transcript export is unavailable."
+}

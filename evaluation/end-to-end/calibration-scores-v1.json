@@ -1,0 +1,192 @@
+[
+  {
+    "run": "cr",
+    "task": "calibration",
+    "arm": "raw",
+    "finished": true,
+    "gold_sites": 4,
+    "discovered_records": 4,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 0,
+    "jsonl_input_records": null,
+    "jsonl_output_records": null,
+    "candidate_loss": null,
+    "payload_preserved": null,
+    "classifications": {},
+    "unmatched_reasons": {},
+    "ordinary_total": 2,
+    "ordinary_seen_discovery": 2,
+    "ordinary_full_body_seen_discovery": 2,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 0,
+    "ordinary_self_screened_any_stage": 2,
+    "actionable_unmatched_read_after_handoff": [],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "operations.ts",
+        "line": 27,
+        "function": "searchCalibration",
+        "mechanism": "UntrustedInput phrase is concatenated directly into the SQL string inside the ILIKE pattern, allowing attacker-controlled quotes/operators to alter SQL syntax before db.query executes at line 29.",
+        "impact": "HTTP-supplied input can inject arbitrary SQL predicates or statements into the calibration search query."
+      }
+    ],
+    "coordinate_matched_danger_diagnoses": 0,
+    "first_diagnosis_sequence": null,
+    "response_bytes_to_coordinate_matched_diagnosis": null,
+    "total_response_bytes": 5897,
+    "total_request_bytes": 2270,
+    "handoff_jsonl_input_bytes": 0,
+    "handoff_jsonl_output_bytes": 0,
+    "stages": {
+      "discovery": {
+        "calls": 8,
+        "read_calls": 5,
+        "search_calls": 1,
+        "response_bytes": 5811,
+        "request_bytes": 943,
+        "source_text_bytes": 2296,
+        "source_line_deliveries": 62,
+        "unique_source_lines": 53
+      },
+      "handoff": {
+        "calls": 0,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 0,
+        "request_bytes": 0,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 2,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 86,
+        "request_bytes": 1327,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      }
+    },
+    "errors": [
+      {
+        "sequence": 4,
+        "error": "invalid range"
+      },
+      {
+        "sequence": 5,
+        "error": "invalid range"
+      }
+    ],
+    "wall_seconds": 35.513728618621826
+  },
+  {
+    "run": "cs",
+    "task": "calibration",
+    "arm": "serene",
+    "finished": true,
+    "gold_sites": 4,
+    "discovered_records": 4,
+    "discovery_recall": 1.0,
+    "discovery_precision": 1.0,
+    "discovery_missing": [],
+    "discovery_extra": [],
+    "dispositions_complete": true,
+    "handoff_calls": 1,
+    "jsonl_input_records": 4,
+    "jsonl_output_records": 4,
+    "candidate_loss": 0,
+    "payload_preserved": true,
+    "classifications": {
+      "ordinary": 2,
+      "violation": 1,
+      "unmatched": 1
+    },
+    "unmatched_reasons": {
+      "no-execution-match": 1
+    },
+    "ordinary_total": 2,
+    "ordinary_seen_discovery": 2,
+    "ordinary_full_body_seen_discovery": 2,
+    "ordinary_seen_after_handoff": 0,
+    "ordinary_actually_skipped": 2,
+    "ordinary_self_screened_any_stage": 2,
+    "actionable_unmatched_read_after_handoff": [
+      "sendCalibrationSnapshot"
+    ],
+    "findings": [
+      {
+        "op": "finding",
+        "file": "operations.ts",
+        "line": 31,
+        "function": "searchCalibration",
+        "mechanism": "UntrustedInput phrase is concatenated into the SQL string inside a quoted ILIKE pattern before db.query executes it, allowing input to terminate the literal and inject SQL syntax.",
+        "impact": "HTTP-controlled phrase can alter the executed query beyond the intended label search."
+      }
+    ],
+    "coordinate_matched_danger_diagnoses": 1,
+    "first_diagnosis_sequence": 13,
+    "response_bytes_to_coordinate_matched_diagnosis": 7048,
+    "total_response_bytes": 7656,
+    "total_request_bytes": 2184,
+    "handoff_jsonl_input_bytes": 638,
+    "handoff_jsonl_output_bytes": 1307,
+    "stages": {
+      "discovery": {
+        "calls": 11,
+        "read_calls": 7,
+        "search_calls": 2,
+        "response_bytes": 5447,
+        "request_bytes": 1187,
+        "source_text_bytes": 1949,
+        "source_line_deliveries": 59,
+        "unique_source_lines": 55
+      },
+      "handoff": {
+        "calls": 1,
+        "read_calls": 0,
+        "search_calls": 0,
+        "response_bytes": 1558,
+        "request_bytes": 16,
+        "source_text_bytes": 0,
+        "source_line_deliveries": 0,
+        "unique_source_lines": 0
+      },
+      "review": {
+        "calls": 3,
+        "read_calls": 1,
+        "search_calls": 0,
+        "response_bytes": 651,
+        "request_bytes": 981,
+        "source_text_bytes": 172,
+        "source_line_deliveries": 7,
+        "unique_source_lines": 7
+      }
+    },
+    "errors": [
+      {
+        "sequence": 5,
+        "error": "invalid range"
+      },
+      {
+        "sequence": 6,
+        "error": "invalid range"
+      },
+      {
+        "sequence": 7,
+        "error": "invalid range"
+      },
+      {
+        "sequence": 8,
+        "error": "invalid range"
+      }
+    ],
+    "wall_seconds": 56.876737117767334
+  }
+]

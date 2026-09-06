@@ -41,6 +41,20 @@
       "task": "stockroom",
       "arm": "serene",
       "gold_path_mapping": "strip variant/ prefix"
+    },
+    "cr2": {
+      "root": "/tmp/serene-e2e/repos/cr",
+      "revision": "0e5e926038b37fe8d99b2049a4b548eb4d866226",
+      "task": "calibration",
+      "arm": "raw",
+      "gold_path_mapping": "strip variant/ prefix"
+    },
+    "cs2": {
+      "root": "/tmp/serene-e2e/repos/cs",
+      "revision": "51c15a09a954dafdbd513939cc0165f05825a157",
+      "task": "calibration",
+      "arm": "serene",
+      "gold_path_mapping": "strip variant/ prefix"
     }
   }
 }

@@ -15,7 +15,7 @@ not by themselves isolate a causal triage effect; stage costs expose the distinc
 A separate four-site calibration pair precedes scored freeze. Gate: Raw exposes
 ordinary source for self-screening; Serene submits discovery, calls real handoff,
 does not expose ordinary bodies again afterward, and reads actionable/unmatched
-bodies and resolves them in dispositions. Both preserve all submitted candidates and
+bodies at least once and resolves them in dispositions (prior evidence may be reused). Both preserve all submitted candidates and
 correctly diagnose the dangerous construction. Failure stops scoring, without
 increasing scored runs. Any calibration-led change is recorded before freezing.
 
@@ -48,8 +48,9 @@ Ordinary skip means no source line in its function range was delivered after the
 successful handoff, with explicit skip disposition. It does NOT mean the body was
 never seen during Discovery. Report both. Read and search exposures both count.
 Dangerous finding needs accurate untrusted input -> SQL syntax evidence and impact,
-not merely echoing an audit violation label. Adjudicate exact gold coordinates plus
-mechanism; no file/line repair. Fixed cases and observed unmatched are not silently
+not merely echoing an audit violation label. Discovery matching uses exact gold execution coordinates. Diagnose a danger by
+correct file/function, reported line within that function, and mechanism; no
+rewriting of answers. A finding may point to the construction or execution line. Fixed cases and observed unmatched are not silently
 removed from denominators. Duplicate candidates remain individual handoff records.
 
 Operational bounds: 100 requests, 900 seconds, 65536 cumulative response bytes,
@@ -59,3 +60,5 @@ Tasks/gold/controller/prompts/config freeze after calibration; verify integrity 
 Results remain separate from covered-study's ~35% result. Complete this comparison
 and close this evaluation track as a research checkpoint; keep PR Draft and leave
 production, scale and further research to separate tasks.
+
+Calibration v1 and subsequent measurement corrections are preserved in calibration-amendment.md. Read end bounds clamp at EOF; invalid start/range still errors. A fresh calibration pair verifies the corrected method before scored freeze.

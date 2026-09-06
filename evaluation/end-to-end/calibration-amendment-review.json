@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent review of calibration v1 evidence and the measurement amendment before any scored run. The prior preflight record was not modified.",
+  "verdict": "approved-for-fresh-calibration-pair",
+  "conclusion": "The changes repair three recorder/measurement mismatches exposed by v1. They do not suppress a treatment failure, relax exact Discovery coordinates, or permit post-handoff rereading of Serene ordinary bodies. A fresh cr2/cs2 pair is necessary before freeze; v1 remains a failed preparation sample and must not enter scored outcomes.",
+  "v1Evidence": {
+    "discovery": "Both cr and cs submitted all four exact execution coordinates with recall and precision 1.0.",
+    "rawDangerDiagnosis": "cr found the unsafe concatenation at operations.ts:27 inside searchCalibration (function range 23-30), explicitly connected it to db.query at line 29, named UntrustedInput-to-SQL-syntax injection, and supplied impact. The original score rejected it only because it demanded the execution line.",
+    "sereneWorkflow": "cs handed off four candidates with four outputs and no loss; two ordinary results had skip:true. It had read the whole operations.ts source in Discovery, submitted a correct danger finding, then read only sendCalibrationSnapshot after handoff. No ordinary function-range source line was delivered after handoff.",
+    "v1Failure": "The archived v1 gate failed because two Raw and four Serene reads used end values beyond EOF, because Raw construction-line diagnosis was not counted, and because the old gate required a redundant post-handoff dangerous-body reread. It also recorded six invalid-range tool errors. No scored run started."
+  },
+  "amendmentAssessment": [
+    {
+      "change": "Clamp a valid read end at EOF while rejecting starts beyond EOF, inverted ranges, and invalid paths.",
+      "status": "valid measurement repair",
+      "reason": "The controller still returns exactly the delivered lines and charges their bytes. The new regression test passed for end=100 on a two-line file and preserved failure for start=3. This removes a source-viewer interface artifact, rather than granting additional source access or hiding an error."
+    },
+    {
+      "change": "Count a danger finding at either the unsafe construction or execution line, within the correctly named function; retain exact execution coordinates for Discovery.",
+      "status": "valid with documented human mechanism adjudication",
+      "reason": "A SQL-injection diagnosis is evidence about construction and execution together. v1 Raw's line 27 construction finding and Serene's line 31 execution finding are both accurate in searchCalibration. Discovery scoring is unchanged and still uses exact file/line/column execution starts. The scorer does not auto-prove a mechanism from the free text, so the gate's required independent review of both mechanisms must be completed and recorded before calibration passes."
+    },
+    {
+      "change": "Accept evidence read during Discovery for actionable/unmatched bodies, rather than requiring a second post-handoff read.",
+      "status": "valid measurement repair",
+      "reason": "The protocol permits source reads during Discovery and explicitly says a full Discovery read can erase later skip savings. Requiring a duplicate read would add an artificial treatment-specific cost. The revised scorer still requires each actionable/unmatched candidate to have full source evidence at least once and a non-skip disposition, reports post-handoff reads separately, and requires Serene ordinary candidates to have skip:true, skip-ordinary dispositions, and no later function-range exposure."
+    }
+  ],
+  "antiMaskingChecks": {
+    "v1Preserved": "The original cr/cs logs, v1 scores, and failed v1 gate remain present; the amendment declares them preparation-only.",
+    "noDiscoveryRelaxation": "Discovery recall/precision remains keyed by exact (file,line,column) execution coordinates.",
+    "noOrdinaryReadBypass": "The controller still delivers all permitted ordinary reads; the scorer observes post-handoff delivery and only credits a skip when no function-range source line appears after successful handoff.",
+    "noAuditResultSubstitution": "The real handoff JSONL output, ordinal/payload preservation, and unmatched records remain measured separately from manual paired-review categories.",
+    "remainingGate": "Correct mechanism and impact are intentionally human-adjudicated, not inferred from the audit label. Do not mark cr2/cs2 calibration passed until that adjudication is recorded."
+  },
+  "verification": {
+    "controllerRegression": "python test_controller.py passed (including EOF end-clamp and beyond-EOF start rejection).",
+    "scorerReview": "score.py retains exact Discovery matching, updates finding localization to the named function range, requires evidence plus disposition for actionable/unmatched candidates, and retains post-handoff exposure/actual-skip metrics.",
+    "gateReview": "check-calibration.py now gates evidence-and-disposition follow-through rather than a redundant post-handoff read, while retaining discovery, skip, handoff loss, disposition, diagnosis, finish, and tool-error checks."
+  },
+  "nextStep": "Run one new fresh cr2/cs2 calibration pair under the amended prompt/controller, score it, complete independent mechanism adjudication, then freeze only if the revised gate passes."
+}

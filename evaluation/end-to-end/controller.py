@@ -25,7 +25,8 @@ with log.with_suffix('.lock').open('a') as lock:
    keys();payload={'revision':c['revision'],'files':files()}
   elif op=='read':
    keys('file','start','end');file=q['file'];lines=source_path(file).read_text().splitlines();start=q.get('start',1);end=q.get('end',len(lines))
-   if type(start)!=int or type(end)!=int or not 1<=start<=end<=len(lines):raise ValueError('invalid range')
+   if type(start)!=int or type(end)!=int or not 1<=start<=end or start>len(lines):raise ValueError('invalid range')
+   end=min(end,len(lines))
    exposure=[{'file':file,'line':i,'text':lines[i-1]} for i in range(start,end+1)];payload={'lines':exposure}
   elif op=='search':
    keys('pattern','file');paths=[q['file']] if 'file' in q else files()

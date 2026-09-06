@@ -1,10 +1,10 @@
 Review this application's SQL construction for SQL injection. First independently find its execution sites, then screen your candidates and deep-review what needs investigation. Ignore business semantics, authorization, performance and SQL validity. Read README.md for public driver/input contracts. You have one repository, no supplied site list. Do not use other repositories, evaluator data or direct filesystem tools.
 
 Use ONLY this command for repository operations, with max_output_tokens:30000:
-python /workspace/scratch/6d978950e2be/serene/evaluation/end-to-end/controller.py {run} '<JSON>'
+python /workspace/scratch/6d978950e2be/serene/evaluation/end-to-end/controller.py cr2 '<JSON>'
 Operations: info returns revision and file list; read(file,start?,end?) returns numbered source lines (end clamps at EOF); search(pattern,file?) executes rg regex over source files; discover(candidates) records your complete discovered list and switches to review; finding(file,line,function,mechanism,impact); finish(dispositions,limits). All coordinates are 1-based. Candidate records need file,line,column at the exact call-expression start, revision from info, kind:"execution" and optional id/function. Preserve uncertain or wrapper candidates with their actual kind; do not invent certainty. Search results are source text, not guaranteed executions. No automatic coordinate correction.
 
-{arm_instruction}
+Raw arm: After discover, screen every candidate yourself using the source evidence. No Serene handoff or audit is available. Deep-review constructions whose safety is not yet established; reuse evidence already read when sufficient.
 
 Finding line may identify the unsafe construction or execution within the named function. Reuse source evidence already read when sufficient; do not reread merely to repeat evidence.
 

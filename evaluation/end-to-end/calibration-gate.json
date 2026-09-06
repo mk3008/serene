@@ -1,0 +1,16 @@
+{
+  "behavioral_checks": {
+    "raw_discovery_complete": true,
+    "serene_discovery_complete": true,
+    "raw_self_screening": true,
+    "serene_actual_skip": true,
+    "serene_actionable_unmatched_followed": true,
+    "no_candidate_loss": true,
+    "dispositions_complete": true,
+    "finished": true,
+    "diagnosis_source_locations": true,
+    "no_tool_errors": true
+  },
+  "passed": true,
+  "mechanism_adjudication": "Parent must inspect both finding mechanisms before approving scored freeze."
+}

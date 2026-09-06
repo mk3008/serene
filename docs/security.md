@@ -29,7 +29,8 @@ runtime checks: missing parameters and unknown sort keys still fail at runtime.
 | Shape/cast presented to `bind` | Runtime rejection; source cannot establish provenance |
 | `db.query('SELECT ' + input)` | Source violation at candidate boundary |
 | `db.query(unknownSql)` | Additional review |
-| Unknown wrapper/renamed driver function never configured | May be absent from inventory; manual coverage review required |
+| Local const alias of a candidate driver method | Violation or additional review; receiver/prebound SQL is not trusted |
+| Unknown wrapper/mutable renamed function never configured | May be absent from inventory; manual coverage review required |
 | Same binding `.text` with wrong `.values` | Not proven correct by source audit |
 | `EXEC`/dynamic SQL inside the database using a bound value | Not protected from second-order SQL injection |
 | Malicious dependency, eval, modified globals, hostile proxy traps | Outside threat model |
@@ -63,3 +64,9 @@ Review violation findings and additional-review items; do not treat an empty rep
 as proof of coverage. For ordinary findings, inspect SQL meaning, business parameter
 mapping and actual native driver use. Record exceptions in the application's normal
 review workflow rather than adding an unsafe Serene constructor.
+
+See [coverage evidence](review-coverage.md) for measured challenge-set misses and
+false candidates. Local alias discovery improves inventory, but never proves driver
+identity or upgrades aliases to ordinary. General code review must retain ordinary
+construction sites: wrong values, authorization defects and database-side dynamic
+SQL remain possible there.

@@ -125,9 +125,12 @@ Run `npm run build` first when developing this repository, and use
 `node tooling/cli.mjs ...` before installing a packed artifact.
 
 The tool emits JSON with file, line, column, boundary, level, code and explanation.
-It inventories `.query`, `.execute`, `.unsafe` and same-named direct calls;
+It inventories `.query`, `.execute`, `.unsafe`, same-named direct calls, and simple
+local `const` aliases (including destructuring and `.bind`);
 `--sink=name` adds application-specific call names. These are **driver candidates**,
-not driver identity assertions: unrelated methods may also be reported. Unknown
+not driver identity assertions: unrelated methods may also be reported. Aliases
+are never ordinary: inspect receivers and prebound arguments even when the visible
+argument is screened text. Unknown
 computed calls are additional-review items. An exit code of 0 means no configured
 failure, **not** no review work: exit 1 indicates a violation, or any additional-review
 item with `--strict`; input/read/argument errors exit 2.
@@ -139,12 +142,17 @@ extraction. It detects direct tag calls, SQL interpolation, addition, and common
 not establish provenance. Parse errors are violations.
 
 The inventory is **file-local and deliberately incomplete**. It does not follow
-cross-file exports, namespace imports, arbitrary wrappers, destructured/renamed
-driver methods, dynamically loaded code, or generated code not supplied to the CLI.
+cross-file exports, namespace imports, arbitrary wrappers, mutable renamed execution
+functions, dynamically loaded code, or generated code not supplied to the CLI.
 Unresolved candidates are never ordinary; an undiscovered call has no finding at
 all. Supply every relevant source file and inventory your application's execution
 APIs; add custom sink names or retain manual review for other routes. Zero findings
 is not a whole-application SQL safety claim. See [security boundary](docs/security.md).
+
+The [coverage guide](docs/review-coverage.md) separates detected, referred and unseen
+paths. A 40-case synthetic study improved sink discovery from 25/33 to 30/33, while
+non-SQL false candidates increased from 3/7 to 4/7. This is a deterministic challenge
+set result, not measured AI review effectiveness or real-world recall.
 
 ## Public API
 

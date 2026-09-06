@@ -77,3 +77,57 @@ test('CLI exit policy, JSON inventory and input errors', () => {
     assert.equal(run([]).status, 2);
   } finally { rmSync(dir, {recursive:true, force:true}); }
 });
+
+test('local execution aliases are inventoried instead of silently disappearing', () => {
+  for (const setup of [
+    'const run = db.query;',
+    'const run = db.query.bind(db);',
+    'const {query: run} = db;',
+    'const run = db["execute"];',
+    'const first = db.query; const run = first;',
+  ]) {
+    const rows = sink(setup + '\nrun("SELECT " + input);');
+    assert.equal(rows.length, 1, setup);
+    assert.equal(rows[0].level, 'violation', setup);
+  }
+});
+test('prebound SQL and otherwise screened aliases never gain ordinary provenance', () => {
+  for (const setup of [
+    'const run = db.query.bind(db, input);',
+    'const run = db.query;',
+    'const {query: run} = db;',
+  ]) {
+    const rows = sink(setup + '\nconst q = bind(postgres`SELECT 1`); run(q.text, q.values);');
+    assert.equal(rows.length, 1, setup);
+    assert.equal(rows[0].level, 'review-required', setup);
+    assert.equal(rows[0].code, 'SINK_ALIAS', setup);
+  }
+});
+test('alias discovery is scope-aware and does not invent provenance for dynamic aliases', () => {
+  for (const source of [
+    'let run = db.query; run(input);',
+    'const a = b; const b = a; a(input);',
+    'const run = db.query; function f(run) {run(input);}',
+    'const {query: run = fallback} = db; run(input);',
+    'const {...run} = db; run(input);',
+  ]) assert.equal(sink(source).length, 0, source);
+});
+test('non-SQL aliases remain candidacy false positives, never claims of driver identity', () => {
+  const rows = sink('const run = search.query.bind(search); run(input);');
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].level, 'review-required');
+});
+
+test('aliases named like sinks do not hide prebound runtime SQL behind ordinary text', () => {
+  for (const setup of [
+    'const query = db.query.bind(db, input);',
+    'const {query} = db;',
+    'const query = opaqueWrapper;',
+    'let query = db.query.bind(db, input);',
+  ]) {
+    const rows = sink(setup + '\nconst q = bind(postgres`SELECT 1`); query(q.text);');
+    assert.equal(rows.length, 1);
+    assert.equal(rows[0].level, 'review-required');
+    assert.equal(rows[0].code, 'SINK_ALIAS');
+  }
+});

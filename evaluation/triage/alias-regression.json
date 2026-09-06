@@ -1,0 +1,27 @@
+{
+  "status": "post-corpus implementation regression; excluded from frozen 40-case counts",
+  "source": "import {postgres,bind} from \"@mk3008/serene\";\nconst query=db.query.bind(db, runtimeSql);\nconst q=bind(postgres`SELECT 1`);\nquery(q.text);",
+  "before": [
+    {
+      "file": "input.ts",
+      "line": 4,
+      "column": 1,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "after": [
+    {
+      "file": "input.ts",
+      "line": 4,
+      "column": 1,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "SINK_ALIAS",
+      "detail": "Local execution alias; inspect its receiver and any prebound arguments."
+    }
+  ],
+  "interpretation": "The audit must not assume invocation argument zero is SQL after Function.bind. This is a provenance classification counterexample, not a live-driver exploit demonstration."
+}

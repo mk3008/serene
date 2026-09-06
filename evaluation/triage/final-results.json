@@ -1,0 +1,3115 @@
+{
+  "study": "synthetic deterministic challenge corpus; not AI review results",
+  "baseline": "6ebce0d064dbee21caf53ce1f1f3441259cfffa2",
+  "corpusSha256": "9866056a7d468a482239e4c2f884e1e6164de61528003f18d1dc1ed3e64df755",
+  "baselineAuditSha256": "31605c0695fb9d042a9323816112bcfeb71db75681eecf504d45af1edce5c980",
+  "currentAuditSha256": "7c541eb1820e91899667ef4259988a73b6e036d9b470040fd0be5d6d3c859ac6",
+  "node": "v24.19.0",
+  "typescript": "5.9.3",
+  "grep": {
+    "call": "\\b(?:query|execute|unsafe)\\s*\\(|\\[\\s*[\"'](?:query|execute|unsafe)[\"']\\s*\\]\\s*\\(",
+    "sql": "\\b(?:SELECT|INSERT|UPDATE|DELETE|WITH|EXEC)\\b",
+    "unit": "line; matching the oracle sink line is separate from any file hit"
+  },
+  "results": {
+    "grep-call": {
+      "counts": {
+        "sqlSinks": 33,
+        "discovered": 22,
+        "unseen": 11,
+        "constructionConcerns": 19,
+        "referredConcerns": 8,
+        "ordinaryConcerns": 0,
+        "unseenConcerns": 11,
+        "ordinaryConstruction": 0,
+        "nonordinaryConstruction": 22,
+        "nonSqlControls": 7,
+        "nonSqlCandidates": 4,
+        "anyFileHits": 26,
+        "defectSitesOrdinary": 0
+      },
+      "rows": [
+        {
+          "id": "S01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 4,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 4,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S05",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "C05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 3,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N01",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N02",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N03",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N04",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N05",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N06",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N07",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        }
+      ]
+    },
+    "grep-sql": {
+      "counts": {
+        "sqlSinks": 33,
+        "discovered": 9,
+        "unseen": 24,
+        "constructionConcerns": 19,
+        "referredConcerns": 6,
+        "ordinaryConcerns": 0,
+        "unseenConcerns": 13,
+        "ordinaryConstruction": 0,
+        "nonordinaryConstruction": 9,
+        "nonSqlControls": 7,
+        "nonSqlCandidates": 2,
+        "anyFileHits": 27,
+        "defectSitesOrdinary": 0
+      },
+      "rows": [
+        {
+          "id": "S01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 4,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S05",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "S06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "R04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "D07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "A06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "L03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "unseen",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 2,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N01",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N02",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N03",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N04",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N05",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "line": 1,
+              "boundary": "grep",
+              "level": "review-required",
+              "code": "TEXT_MATCH"
+            }
+          ]
+        },
+        {
+          "id": "N06",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N07",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        }
+      ]
+    },
+    "audit-baseline": {
+      "counts": {
+        "sqlSinks": 33,
+        "discovered": 25,
+        "unseen": 8,
+        "constructionConcerns": 19,
+        "referredConcerns": 11,
+        "ordinaryConcerns": 0,
+        "unseenConcerns": 8,
+        "ordinaryConstruction": 9,
+        "nonordinaryConstruction": 16,
+        "nonSqlControls": 7,
+        "nonSqlCandidates": 3,
+        "anyFileHits": 28,
+        "defectSitesOrdinary": 3
+      },
+      "rows": [
+        {
+          "id": "S01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S01.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S01.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S01.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S02.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S02.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S02.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 4,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S03.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S03.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S03.ts",
+              "line": 4,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 17,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 52,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 81,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S05",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S05.ts",
+              "line": 1,
+              "column": 65,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S05.ts",
+              "line": 1,
+              "column": 67,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S05.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S06.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S06.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S06.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "R01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R02.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D02.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D03.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "String construction at a SQL boundary requires redesign or explicit review outside Serene."
+            }
+          ]
+        },
+        {
+          "id": "D04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "String construction at a SQL boundary requires redesign or explicit review outside Serene."
+            }
+          ]
+        },
+        {
+          "id": "D05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D05.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "D06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D06.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            },
+            {
+              "file": "D06.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            },
+            {
+              "file": "D06.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            }
+          ]
+        },
+        {
+          "id": "D07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D07.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            },
+            {
+              "file": "D07.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            },
+            {
+              "file": "D07.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            }
+          ]
+        },
+        {
+          "id": "A01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "computed-call",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C05.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C06.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "L01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L01.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L01.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L01.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "L02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L02.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L02.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L02.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "L03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L03.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L03.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L03.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "N01",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N02",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N02.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N03",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "computed-call",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N04",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N05",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N06",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N07",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        }
+      ]
+    },
+    "audit-current": {
+      "counts": {
+        "sqlSinks": 33,
+        "discovered": 30,
+        "unseen": 3,
+        "constructionConcerns": 19,
+        "referredConcerns": 16,
+        "ordinaryConcerns": 0,
+        "unseenConcerns": 3,
+        "ordinaryConstruction": 9,
+        "nonordinaryConstruction": 21,
+        "nonSqlControls": 7,
+        "nonSqlCandidates": 4,
+        "anyFileHits": 34,
+        "defectSitesOrdinary": 3
+      },
+      "rows": [
+        {
+          "id": "S01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S01.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S01.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S01.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S02.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S02.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S02.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 4,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S03.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S03.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S03.ts",
+              "line": 4,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 17,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 52,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 2,
+              "column": 81,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S04.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S05",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S05.ts",
+              "line": 1,
+              "column": 65,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S05.ts",
+              "line": 1,
+              "column": 67,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S05.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "S06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "S06.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S06.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "S06.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "R01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R02.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "R04",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "R04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D02.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "D03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D03.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "String construction at a SQL boundary requires redesign or explicit review outside Serene."
+            }
+          ]
+        },
+        {
+          "id": "D04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "String construction at a SQL boundary requires redesign or explicit review outside Serene."
+            }
+          ]
+        },
+        {
+          "id": "D05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D05.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "D06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": false,
+          "sinkLine": 3,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D06.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            },
+            {
+              "file": "D06.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            },
+            {
+              "file": "D06.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "INTERPOLATION",
+              "detail": "SQL interpolation is forbidden; use named parameters."
+            }
+          ]
+        },
+        {
+          "id": "D07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "D07.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            },
+            {
+              "file": "D07.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            },
+            {
+              "file": "D07.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "DIRECT_TAG_CALL",
+              "detail": "Serene tags must be literal template syntax; fabricated templates are not trusted."
+            }
+          ]
+        },
+        {
+          "id": "A01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "A01.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "A02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "A02.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "A03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "A03.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "A04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "violation",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "A04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "violation",
+              "code": "STRING_CONSTRUCTION",
+              "detail": "Concatenation/interpolation at a SQL boundary."
+            }
+          ]
+        },
+        {
+          "id": "A05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "A05.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "SINK_ALIAS",
+              "detail": "Local execution alias; inspect its receiver and any prebound arguments."
+            }
+          ]
+        },
+        {
+          "id": "A06",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "A07",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C01",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "computed-call",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C02",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "C03",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C04",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C04.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C05",
+          "sqlSink": true,
+          "constructionConcern": true,
+          "defect": true,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C05.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "C06",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "C06.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "L01",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L01.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L01.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L01.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "L02",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L02.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L02.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L02.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "L03",
+          "sqlSink": true,
+          "constructionConcern": false,
+          "defect": true,
+          "sinkLine": 3,
+          "level": "ordinary",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "L03.ts",
+              "line": 2,
+              "column": 9,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L03.ts",
+              "line": 2,
+              "column": 14,
+              "boundary": "serene",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            },
+            {
+              "file": "L03.ts",
+              "line": 3,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "ordinary",
+              "code": "SCREENED_SOURCE",
+              "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+            }
+          ]
+        },
+        {
+          "id": "N01",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N01.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N02",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N02.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N03",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N03.ts",
+              "line": 1,
+              "column": 12,
+              "boundary": "computed-call",
+              "level": "review-required",
+              "code": "UNRESOLVED",
+              "detail": "SQL provenance cannot be established in this file."
+            }
+          ]
+        },
+        {
+          "id": "N04",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N05",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        },
+        {
+          "id": "N06",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 2,
+          "level": "review-required",
+          "anyFileHit": true,
+          "findings": [
+            {
+              "file": "N06.ts",
+              "line": 2,
+              "column": 12,
+              "boundary": "driver-candidate",
+              "level": "review-required",
+              "code": "SINK_ALIAS",
+              "detail": "Local execution alias; inspect its receiver and any prebound arguments."
+            }
+          ]
+        },
+        {
+          "id": "N07",
+          "sqlSink": false,
+          "constructionConcern": false,
+          "defect": false,
+          "sinkLine": 1,
+          "level": "unseen",
+          "anyFileHit": false,
+          "findings": []
+        }
+      ]
+    }
+  }
+}

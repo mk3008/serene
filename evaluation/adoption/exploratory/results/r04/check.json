@@ -1,0 +1,11 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "check"
+  ],
+  "exit": 0,
+  "stdout": "\n> check\n> npm test && node node_modules/@mk3008/serene/tooling/cli.mjs --sink=prepare --strict src\n\n\n> test\n> node --test public.test.mjs\n\n\u2714 filters and orders specimens (1.981967ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 1\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 80.437593\n{\n  \"files\": [\n    \"src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 3,\n      \"column\": 24,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 16,\n      \"column\": 17,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 17,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+  "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n",
+  "timeout": false
+}

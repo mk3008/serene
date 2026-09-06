@@ -1,0 +1,16 @@
+{
+  "summary": "Implemented specimen search with exact tenant/category filtering, inclusive date filtering, archived exclusion, deterministic sorting, limit, named bindings, and plain result objects.",
+  "changedSourceFiles": ["src/operation.mjs"],
+  "checkExit": 0,
+  "unresolvedFindings": ["npm warned twice about unknown http-proxy environment configuration. Tests passed; audit findings were all ordinary."],
+  "exceptionsOrBypasses": [],
+  "additionalHumanClarificationRequired": false,
+  "commandsAndAccesses": [
+    "Read repository instructions and listed repository files.",
+    "Read operation, schema, package, public test, and installed Serene README.",
+    "Implemented operation; ran npm run check; saved and displayed complete stdout, stderr, and numeric exit status.",
+    "Wrote participant-log.json."
+  ],
+  "shellExecutionCalls": 4,
+  "checkArtifacts": ["participant-check.stdout", "participant-check.stderr", "participant-check.status"]
+}

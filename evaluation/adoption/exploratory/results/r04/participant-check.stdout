@@ -1,0 +1,53 @@
+
+> check
+> npm test && node node_modules/@mk3008/serene/tooling/cli.mjs --sink=prepare --strict src
+
+
+> test
+> node --test public.test.mjs
+
+✔ filters and orders specimens (1.979724ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.718165
+{
+  "files": [
+    "src/operation.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "src/operation.mjs",
+      "line": 3,
+      "column": 24,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 16,
+      "column": 17,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 17,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

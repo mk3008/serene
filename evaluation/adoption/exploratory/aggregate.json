@@ -1,0 +1,26 @@
+{
+  "runs": 9,
+  "passed_tests": {
+    "public": 9,
+    "hidden": 27
+  },
+  "protected_changes": 0,
+  "frozen_source_hashes_verified": true,
+  "arms": {
+    "D": {
+      "runs": 3,
+      "functional_pass": 3,
+      "assigned_check_pass": 3
+    },
+    "E": {
+      "runs": 3,
+      "functional_pass": 3,
+      "assigned_check_pass": 3
+    },
+    "F": {
+      "runs": 3,
+      "functional_pass": 3,
+      "assigned_check_pass": 1
+    }
+  }
+}

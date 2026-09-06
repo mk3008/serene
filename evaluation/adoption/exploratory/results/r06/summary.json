@@ -1,0 +1,48 @@
+{
+  "run_id": "r06",
+  "task": "specimen-search",
+  "arm": "E",
+  "public_exit": 0,
+  "hidden_exit": 0,
+  "check_exit": 0,
+  "audit_exit": 0,
+  "strict_exit": 0,
+  "protected_changes": [],
+  "source_files": [
+    {
+      "path": "src/operation.mjs",
+      "sha256": "38922945ca8dec9a12dd48a4caf295231d1be13308704bc830125bd8835dc2dc",
+      "changed": true
+    }
+  ],
+  "findings": [
+    {
+      "file": "src/operation.mjs",
+      "line": 3,
+      "column": 26,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 16,
+      "column": 17,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 17,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "model_token_usage": null
+}

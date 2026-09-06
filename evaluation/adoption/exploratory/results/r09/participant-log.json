@@ -1,0 +1,26 @@
+{
+  "commands_accesses": [
+    {
+      "call": 1,
+      "command": "pwd && cat AGENTS.md && cat TASK.md && rg --files -g !node_modules -g !package-lock.json",
+      "purpose": "Read repository instructions and file inventory"
+    },
+    {
+      "call": 2,
+      "command": "cat src/operation.mjs src/sql/release.mjs src/sql/record.mjs schema.sql package.json public.test.mjs node_modules/@mk3008/serene/README.md",
+      "purpose": "Read existing source, schema, test, scripts and installed API README"
+    },
+    {
+      "call": 3,
+      "command": "python3 heredoc; npm run check redirected to participant-check.stdout and participant-check.stderr; save status to participant-check.exit; cat all check artifacts",
+      "purpose": "Write three implementation source files and participant-log.json"
+    },
+    {
+      "call": 4,
+      "command": "node --input-type=module heredoc; python3 heredoc",
+      "purpose": "Run in-memory edge-case checks using schema.sql and src/operation.mjs; update participant-log.json"
+    }
+  ],
+  "check_exit": 1,
+  "exceptions_bypasses": []
+}

@@ -1,0 +1,20 @@
+{
+  "summary": "Implemented transactional sample release with tenant scoping, named bindings, exact operator preservation, ordered results, and rollback on failure. Public and additional behavioral checks passed.",
+  "changed_source_files": ["src/operation.mjs", "src/sql/release.mjs", "src/sql/record.mjs"],
+  "check_exit": 0,
+  "unresolved_findings": [
+    "Serene audit reported review-required UNRESOLVED provenance at operation.mjs lines 15, 16, 20, and 21. Statements use Serene in dedicated imported files; the audit is file-local.",
+    "npm warned about unknown http-proxy environment configuration."
+  ],
+  "exceptions_or_bypasses": [],
+  "additional_human_clarification_required": false,
+  "commands_accesses_performed": {
+    "shell_calls": 6,
+    "scope": "Only repository-local files and installed dependencies accessed.",
+    "log": "participant-log.json",
+    "check_stdout": "participant-check.stdout",
+    "check_stderr": "participant-check.stderr",
+    "check_status": "participant-check.exit",
+    "additional_checks": "Rollback for missing, held, duplicate and insert-conflict cases; empty input; tenant isolation; exact operator; already-released rejection."
+  }
+}

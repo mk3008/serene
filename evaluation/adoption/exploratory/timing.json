@@ -1,0 +1,104 @@
+{
+  "description": "Orchestrator timestamps bound dispatch and final observation, not pure model latency. First three share batch dispatch lower bound. Model token usage unavailable.",
+  "runs": [
+    {
+      "run_id": "r01",
+      "dispatchLowerBound": "2026-09-06T11:33:24.776Z",
+      "completionObservedAt": "2026-09-06T11:35:06.130Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r02",
+      "dispatchLowerBound": "2026-09-06T11:33:24.776Z",
+      "completionObservedAt": "2026-09-06T11:35:25.940Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r03",
+      "dispatchLowerBound": "2026-09-06T11:33:24.776Z",
+      "completionObservedAt": "2026-09-06T11:35:51.221Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r04",
+      "dispatchLowerBound": "2026-09-06T11:35:06.130Z",
+      "completionObservedAt": "2026-09-06T11:36:54.090Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r05",
+      "dispatchLowerBound": "2026-09-06T11:35:25.940Z",
+      "completionObservedAt": "2026-09-06T11:36:54.090Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r06",
+      "dispatchLowerBound": "2026-09-06T11:35:51.221Z",
+      "completionObservedAt": "2026-09-06T11:37:28.104Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r07",
+      "dispatchLowerBound": "2026-09-06T11:36:54.090Z",
+      "completionObservedAt": "2026-09-06T11:39:03.748Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r08",
+      "dispatchLowerBound": "2026-09-06T11:36:54.090Z",
+      "completionObservedAt": "2026-09-06T11:39:03.748Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    },
+    {
+      "run_id": "r09",
+      "dispatchLowerBound": "2026-09-06T11:37:28.104Z",
+      "completionObservedAt": "2026-09-06T11:39:21.242Z",
+      "configured_model": "inherited",
+      "configured_reasoning": "inherited",
+      "verified_model_id": null,
+      "verified_reasoning": null,
+      "input_tokens": null,
+      "output_tokens": null
+    }
+  ]
+}

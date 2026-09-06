@@ -1,0 +1,17 @@
+{
+  "summary": "Implemented atomic conditional confirmation with Serene SQL, meaningful named bindings, exact note preservation, version increment, and null for unmatched reservations. Public and additional edge checks passed.",
+  "changedSourceFiles": ["src/operation.mjs", "src/sql/confirm.mjs"],
+  "checkExit": 0,
+  "checkArtifacts": ["participant-check.stdout", "participant-check.stderr", "participant-check.exit"],
+  "unresolvedFindings": [
+    {"file": "src/operation.mjs", "line": 5, "code": "UNRESOLVED", "level": "review-required", "detail": "SQL provenance cannot be established in this file."},
+    {"file": "src/operation.mjs", "line": 7, "code": "UNRESOLVED", "level": "review-required", "detail": "SQL provenance cannot be established in this file."}
+  ],
+  "exceptionsOrBypasses": [],
+  "additionalHumanClarificationRequired": false,
+  "commandsAndAccesses": {
+    "shellCalls": 4,
+    "log": "participant-log.json",
+    "scope": "Repository files and in-memory SQLite only; no external resources, network, agents, commits, or pushes."
+  }
+}

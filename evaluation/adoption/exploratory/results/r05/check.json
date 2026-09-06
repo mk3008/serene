@@ -1,0 +1,11 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "check"
+  ],
+  "exit": 0,
+  "stdout": "\n> check\n> npm test\n\n\n> test\n> node --test public.test.mjs\n\n\u2714 confirms a pending reservation (2.27494ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 1\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 96.023304\n",
+  "stderr": "npm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\nnpm warn Unknown env config \"http-proxy\". This will stop working in the next major version of npm.\n",
+  "timeout": false
+}

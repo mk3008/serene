@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "node_modules/@mk3008/serene/tooling/cli.mjs",
+    "--sink=prepare",
+    "--strict",
+    "src"
+  ],
+  "exit": 1,
+  "stdout": "{\n  \"files\": [\n    \"src/operation.mjs\",\n    \"src/sql/record.mjs\",\n    \"src/sql/release.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 13,\n      \"column\": 28,\n      \"boundary\": \"serene\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 14,\n      \"column\": 23,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 20,\n      \"column\": 27,\n      \"boundary\": \"serene\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/operation.mjs\",\n      \"line\": 21,\n      \"column\": 7,\n      \"boundary\": \"driver-candidate\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"src/sql/record.mjs\",\n      \"line\": 3,\n      \"column\": 20,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"src/sql/release.mjs\",\n      \"line\": 3,\n      \"column\": 20,\n      \"boundary\": \"serene\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+  "stderr": "",
+  "timeout": false
+}

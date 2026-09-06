@@ -1,0 +1,85 @@
+{
+  "run_id": "r08",
+  "task": "sample-release",
+  "arm": "E",
+  "public_exit": 0,
+  "hidden_exit": 0,
+  "check_exit": 0,
+  "audit_exit": 0,
+  "strict_exit": 1,
+  "protected_changes": [],
+  "source_files": [
+    {
+      "path": "src/operation.mjs",
+      "sha256": "b67d8f108a8dd42ffdf411a0f6940a75f1e184d8846c70dd2676a2e5670623ed",
+      "changed": true
+    },
+    {
+      "path": "src/sql/record.mjs",
+      "sha256": "f922d82b95d4252bab8ac3fe958bc58f47d08e13c9b1ac61fecb1b616ddaaa34",
+      "changed": true
+    },
+    {
+      "path": "src/sql/release.mjs",
+      "sha256": "6e392fc0caa357a4b3148130cbd7eb1ed04fd28008ef3a053c5cb24b76042b92",
+      "changed": true
+    }
+  ],
+  "findings": [
+    {
+      "file": "src/operation.mjs",
+      "line": 15,
+      "column": 23,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 16,
+      "column": 23,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 20,
+      "column": 22,
+      "boundary": "serene",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/operation.mjs",
+      "line": 21,
+      "column": 7,
+      "boundary": "driver-candidate",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "src/sql/record.mjs",
+      "line": 3,
+      "column": 20,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "src/sql/release.mjs",
+      "line": 3,
+      "column": 20,
+      "boundary": "serene",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "model_token_usage": null
+}

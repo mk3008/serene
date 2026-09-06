@@ -1,6 +1,7 @@
 # Phase 0: adoption experiment preparation
 
-Status: AI STUDY NOT RUN; protocol candidate, not a frozen execution packet.
+Status: larger protocol remains a candidate; a separately scoped nine-run
+[exploratory adoption pilot](exploratory/REPORT.md) is complete.
 Author-created SQLite layout preflight is available in [preflight/REPORT.md](preflight/REPORT.md); it is not a model-study result.
 
 Sequence: README PR #2 (merged) -> repository scan PR #3 (merged) -> adoption experiment ->
@@ -148,20 +149,17 @@ are available, but they are author-created development cases. They do not satisf
 independent task authorship, model-output forwarding, blinded adjudication or the
 12 implementation packet requirement. Do not promote them into scored runs.
 
-## Current execution blocker (2026-09-06)
+## Execution status (2026-09-06)
 
-The user authorized Work fresh-agent preflight. Two participants were invoked with
-`fork_turns: none`. Normal/strict CLI findings reached the output participant, but a
-separate authorized canary test confirmed that outside-packet files remain readable.
-Exact inherited model/reasoning metadata and full tool-event export were not verified.
-The [fresh-agent report](fresh-agent-preflight/REPORT.md) archives results and limits.
+The user explicitly authorized an instruction-scoped exploratory Work pilot after
+the fresh-agent preflight demonstrated output delivery but no physical filesystem
+isolation. Nine independently authored task/arm coding runs are now complete;
+see [results and limitations](exploratory/REPORT.md). All passed functionality;
+strict audit blocked the two correct dedicated-source implementations in its arm.
 
-Zero scored study invocations have occurred. Physical packet isolation in the current
-contract is not satisfied. A user decision is now required: explicitly amend to an
-instruction-scoped exploratory Work pilot, or retain physical isolation and use a
-configured external runner. Do not infer that a fresh conversation is a filesystem
-sandbox. Draft stays open; no main merge or Rules modification is authorized here.
-
-The 12 isolated implementation tasks, independent authorship/validation, model and
-budget freeze, and formal adoption/layout adjudication remain pending. The existing
-SQLite development fixtures are not substitutes for those tasks or AI evidence.
+This does not fulfill the physical isolation/model metadata gates of the larger
+protocol above. Its 96 adoption runs and separate layout study remain unperformed.
+The smallest instruction and Rules-only comparison remain open. A separately
+frozen small review pilot is the next step, using the user's requested low-cost
+model selection (Luna/medium initially; Terra/medium as a later cohort option).
+Keep Draft status; no Rules change follows from these exploratory counts.

@@ -1,0 +1,8 @@
+{
+  "read_attempts": 1,
+  "read_result": "succeeded",
+  "exit_code": 0,
+  "physically_denied": false,
+  "workspace_is_enforced_filesystem_sandbox": false,
+  "tool_response_saved": "/tmp/serene-fresh-preflight/output/isolation-tool-response.json"
+}

@@ -1,0 +1,21 @@
+{
+  "prompt_normalization": "Only the terminal newline of the saved prompt text was omitted in spawn_agent.message.",
+  "invocations": [
+    {
+      "task_name": "/root/fresh_output_preflight",
+      "fork_turns": "none",
+      "model_override": null,
+      "reasoning_override": null,
+      "message": "You are a fresh-session runner preflight participant, not a scored study reviewer. Do not inspect other project files or use network tools. Working directory: /tmp/serene-fresh-preflight/packet. Run exactly these two commands, separately, using exec_command with encoding supplied by the tool and enough output budget to see complete JSON: `node tooling/cli.mjs input.ts` and `node tooling/cli.mjs --strict input.ts`. Immediately preserve each complete tool response (including output and exit_code) as JSON in /tmp/serene-fresh-preflight/output/audit-tool-responses.json. Do not change the packet. In your final response return JSON with both exit codes, the exact findings you actually received (file, line, column, level, code, detail, boundary), whether each output was complete or truncated, and which model identifier/reasoning setting/token counts you can actually verify (null if unavailable). Do not infer missing metadata. State whether prior author conversation was supplied to you; distinguish your observation from platform guarantees. Do not spawn further agents.",
+      "message_sha256": "95dfbed2c4b603c9191fef38b1e841cc7675b627156b5b1441b57b04262bd0f0"
+    },
+    {
+      "task_name": "/root/fresh_isolation_preflight",
+      "fork_turns": "none",
+      "model_override": null,
+      "reasoning_override": null,
+      "message": "You are a fresh-session isolation preflight participant, not a scored study reviewer. The intended participant workspace is /tmp/serene-fresh-preflight/packet. To test filesystem enforcement, make exactly one read attempt of the explicitly authorized harmless control file /tmp/serene-fresh-preflight/control/canary.txt outside that workspace. Do not read any other outside file, project, oracle, credential or network resource. Save the exact tool response including output and exit code in /tmp/serene-fresh-preflight/output/isolation-tool-response.json. Return JSON stating whether that read was physically denied or succeeded and whether the provided workspace is consequently an enforced filesystem sandbox. This is an authorized canary test; do not confuse following an instruction with filesystem access enforcement. Do not modify the canary or packet and do not spawn further agents.",
+      "message_sha256": "832f3902ada9ae92a3b641e8b3ac9d336a72feeb30127aa9556f39cf45f973ad"
+    }
+  ]
+}

@@ -79,7 +79,9 @@ report is truncated. Capturing stdout only in evaluator logs is insufficient.
 If success output is hidden, fix the runner before freeze; do not score E as an
 audit treatment. A forwarding failure during execution is a treatment-delivery
 failure, archived separately from adoption failure, with no silent rerun or relabel.
-This preflight has not yet run.
+A Work fresh-agent preflight now confirms this output delivery on one small fixture;
+its physical-isolation check failed. See [fresh-agent report](fresh-agent-preflight/REPORT.md).
+Do not generalize the forwarding result to larger/truncated reports or scored runs.
 
 Archive unedited outputs, code patches, test/audit results, model metadata, token
 usage (null when unavailable), wall time, tool calls and all failures before scoring.
@@ -148,14 +150,18 @@ independent task authorship, model-output forwarding, blinded adjudication or th
 
 ## Current execution blocker (2026-09-06)
 
-In this Work workspace, `codex` and `gh` are absent from PATH; no independent
-coding-agent study runner meeting the packet-isolation/metadata contract is configured. Node/npm and repository access work. No model API
-credentials were sought, no paid calls were started, and no fresh agent runs were
-performed. The active author session is not a substitute for an independent runner.
+The user authorized Work fresh-agent preflight. Two participants were invoked with
+`fork_turns: none`. Normal/strict CLI findings reached the output participant, but a
+separate authorized canary test confirmed that outside-packet files remain readable.
+Exact inherited model/reasoning metadata and full tool-event export were not verified.
+The [fresh-agent report](fresh-agent-preflight/REPORT.md) archives results and limits.
 
-The next environment must provide an authorized independent coding-agent runner and
-its model/budget metadata. Then prepare/validate the 12 packets, freeze them and run
-the preflight before the 96 adoption invocations. This file supplies a protocol,
-not isolated coding-task packets, an implemented model runner, or adoption evidence.
-The SQLite preflight supplies executable development fixtures only. Phase 1 remains
-pending the Phase 0 decision.
+Zero scored study invocations have occurred. Physical packet isolation in the current
+contract is not satisfied. A user decision is now required: explicitly amend to an
+instruction-scoped exploratory Work pilot, or retain physical isolation and use a
+configured external runner. Do not infer that a fresh conversation is a filesystem
+sandbox. Draft stays open; no main merge or Rules modification is authorized here.
+
+The 12 isolated implementation tasks, independent authorship/validation, model and
+budget freeze, and formal adoption/layout adjudication remain pending. The existing
+SQLite development fixtures are not substitutes for those tasks or AI evidence.

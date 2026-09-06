@@ -1,0 +1,1 @@
+Completed the TypeScript SQL injection review through the controller. Recorded 10 execution candidates and finished all dispositions. One unsafe finding was submitted: `reporting.ts:29` in `searchTicketing`, where `UntrustedInput phrase` is concatenated into an `ILIKE` SQL literal. Static maintenance queries were marked safe; Serene-marked sites were marked `skip-ordinary`.

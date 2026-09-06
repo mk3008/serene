@@ -1,0 +1,20 @@
+{
+  "reviewer_agent": "/root/metadata_review",
+  "freeze": {"verified": true, "approval_reference": "7ace6f8ac8a0745900510aa2520becb5a2ceffea"},
+  "raw_log_counts": {
+    "probe": {"events": 15, "controller_errors": 2, "status": "excluded"},
+    "probe2": {"events": 13, "controller_errors": 1, "status": "accepted gate"},
+    "ts": {"events": 11, "controller_errors": 0, "status": "completed"},
+    "ss": {"events": 20, "controller_errors": 0, "status": "completed"}
+  },
+  "invalidation_notes": [
+    "The initial probe remains preserved but excluded: one finding and three nonordinary dispositions used full declaration text rather than exact scalar names.",
+    "A scorer file-prefix defect initially made the finding appear invalid for a missing column. Findings intentionally use file, line, and function without a column; the corrected range matcher resolves the expected scalar name and still rejects the full declaration string.",
+    "Formal optional disposition-name omissions are counted separately from wrong nonempty scalar names."
+  ],
+  "formal": {
+    "ts": {"coordinates": 10, "ordinary_names_exact": 7, "finding_names_exact": 1, "wrong_scalar_names": 0, "disposition_names_omitted": 10},
+    "ss": {"coordinates": 10, "ordinary_names_exact": 7, "finding_names_exact": 1, "wrong_scalar_names": 0, "disposition_names_omitted": 10}
+  },
+  "interpretation": "Independent count and integrity notes only; no pooled product score or causal cost claim."
+}

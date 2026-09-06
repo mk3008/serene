@@ -1,0 +1,12 @@
+{
+  "participant_request": {"model": "gpt-5.6-luna", "reasoning_effort": "medium"},
+  "runs": {
+    "probe": {"status": "excluded", "reason": "one finding and three nonordinary dispositions supplied full declaration strings instead of scalar names; preserved as a failed-format record"},
+    "probe2": {"status": "accepted gate", "reason": "corrected scalar-name protocol"},
+    "ts": {"status": "completed", "task": "ticketing", "arm": "serene"},
+    "ss": {"status": "completed", "task": "stockroom", "arm": "serene"}
+  },
+  "implementation_review": {"model": "gpt-5.6-terra", "scope": "production audit and scorer repair"},
+  "judgment": {"model": "gpt-6-astra", "scope": "evaluation gate and interpretation"},
+  "independent_reviewer": {"agent": "/root/metadata_review", "scope": "raw-log counts, annotation policy, scorer range matching, and freeze readiness"}
+}

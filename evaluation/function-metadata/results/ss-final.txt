@@ -1,0 +1,8 @@
+Completed the `ss` review through the controller.
+
+- Discovered and recorded 10 SQL execution candidates.
+- Found 1 SQL injection:
+  - `reporting.ts:29`, `searchStockroom`: `UntrustedInput phrase` is concatenated into SQL before `db.query`.
+- Marked Serene ordinary candidates as `skip-ordinary`.
+- Marked static `purgeStockroomPreview` and `sendStockroomSnapshot` executions safe.
+- Submitted all dispositions and finished successfully.

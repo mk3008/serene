@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "scope": "Independent adjudication of the four frozen scored end-to-end runs from logged controller events and task source. Participant final-chat summaries are not evidence for counts.",
+  "freeze": {
+    "commitProvided": "905e9c8f9c21f94ad4b4de099e247b47be7ad89e",
+    "integrityCheck": "verify-integrity.py reported no changed frozen files, unchanged repository dependencies, and clean staged roots matching their configured revisions."
+  },
+  "verdict": "all-four-runs-valid-for-descriptive-reporting",
+  "findings": {
+    "ticketing": {
+      "raw": {
+        "run": "tr",
+        "danger": "pass: reporting.ts:27 concatenates UntrustedInput phrase into the ILIKE SQL literal; reporting.ts:29 executes the resulting statement with db.query.",
+        "impact": "pass: phrase can reshape SQL syntax/query predicates. Whether a driver accepts stacked statements is not established.",
+        "falseFindings": 0,
+        "dispositions": "10/10 coordinates covered; nine safe resolutions are supported by named binding or static text and searchTicketing is unsafe."
+      },
+      "serene": {
+        "run": "ts",
+        "danger": "pass: reporting.ts:29 performs the same UntrustedInput concatenation and reporting.ts:31 executes it.",
+        "impact": "pass: injected quote/syntax can alter the reporting query; stacked-statement behavior remains driver-dependent.",
+        "falseFindings": 0,
+        "handoffAndSkip": "10 inputs/10 outputs with preserved payload order: 7 ordinary, 1 review-required, 1 unmatched, 1 violation. All seven ordinary candidates have skip-ordinary dispositions and no post-handoff source delivery.",
+        "unmatched": "sendTicketingSnapshot remained unmatched/no-execution-match and received a non-skip safe disposition."
+      }
+    },
+    "stockroom": {
+      "raw": {
+        "run": "sr",
+        "danger": "pass: reporting.ts:27 concatenates UntrustedInput phrase into the ILIKE SQL literal and reporting.ts:29 executes it.",
+        "impact": "pass: phrase can alter SQL syntax/query predicates; any stacked-statement effect depends on the unspecified driver.",
+        "falseFindings": 0,
+        "dispositions": "10/10 coordinates covered; static/named-bound sites are resolved safe and searchStockroom unsafe."
+      },
+      "serene": {
+        "run": "ss",
+        "danger": "pass: reporting.ts:29 concatenates UntrustedInput phrase and reporting.ts:31 executes it.",
+        "impact": "pass: attacker-controlled input can alter WHERE-clause SQL syntax; no stronger driver-specific claim is inferred.",
+        "falseFindings": 0,
+        "handoffAndSkip": "10 inputs/10 outputs with preserved payload order: 7 ordinary, 1 review-required, 1 unmatched, 1 violation. All seven ordinary candidates have skip-ordinary dispositions and no post-handoff ordinary-body delivery.",
+        "unmatched": "sendStockroomSnapshot remained unmatched/no-execution-match, was targeted-read after handoff, and received a non-skip safe disposition."
+      }
+    }
+  },
+  "workflowChecks": {
+    "discovery": "Every run has exact discovery recall and precision 1.0 (10/10 sites).",
+    "dispositions": "Every run has complete 10/10 coordinate disposition coverage.",
+    "ordinaryExposure": "Each Serene run had all seven ordinary bodies fully delivered during Discovery, then seven actual post-handoff skips. Raw had zero review-stage source reads in both tasks. Thus the observed skips did not create incremental source-read compression after handoff in this cohort.",
+    "errors": {
+      "tr": ["sequence 3 invalid path", "sequence 10 unknown request fields"],
+      "ts": ["sequence 3 invalid path"],
+      "sr": [],
+      "ss": ["sequence 4 invalid regex", "sequence 6 invalid regex", "sequence 8 invalid path"]
+    },
+    "errorTreatment": "All listed failed operations remain in the raw event logs and their response/request bytes are included in the reported stage and total costs; no reruns occurred."
+  },
+  "independentArithmetic": {
+    "ticketing": {
+      "raw": {"discoveryResponseBytes": 11656, "handoffResponseBytes": 0, "reviewResponseBytes": 86, "totalResponseBytes": 11742, "responseBytesToDiagnosis": 11699, "totalRequestBytes": 4917},
+      "serene": {"discoveryResponseBytes": 11666, "handoffResponseBytes": 3979, "reviewResponseBytes": 86, "totalResponseBytes": 15731, "responseBytesToDiagnosis": 15688, "totalRequestBytes": 3263},
+      "check": "Direct summation of event response bytes equals each total. Serene total exceeds Raw by 3989 bytes; 3979 bytes are the handoff response, while Discovery differs by 10 and Review is equal."
+    },
+    "stockroom": {
+      "raw": {"discoveryResponseBytes": 11135, "handoffResponseBytes": 0, "reviewResponseBytes": 86, "totalResponseBytes": 11221, "responseBytesToDiagnosis": 11178, "totalRequestBytes": 3775},
+      "serene": {"discoveryResponseBytes": 12200, "handoffResponseBytes": 3974, "reviewResponseBytes": 651, "totalResponseBytes": 16825, "responseBytesToDiagnosis": 16782, "totalRequestBytes": 3604},
+      "check": "Direct summation of event response bytes equals each total. Serene total exceeds Raw by 5604 bytes: handoff contributes 3974, Discovery differs by 1065, and Review differs by 565 because Serene targeted-read the unmatched site."
+    }
+  },
+  "interpretation": "The four runs support complete exact discovery and dangerous-site diagnosis, with no logged false finding. They do not support an incremental source-read saving from Serene skips because every ordinary body was already read during Discovery. The handoff response adds substantial measured cost in both Serene runs; the further stockroom Discovery and Review differences are observed workflow differences and should be reported separately, not attributed to triage alone.",
+  "participantSummaryCorrection": "ts final chat's statement of five ordinary skips conflicts with its controller JSONL handoff and its ten dispositions. The logged records show seven ordinary/skip:true outputs and seven skip-ordinary dispositions; this adjudication uses the logs."
+}

@@ -1,0 +1,33 @@
+{
+  "participant_model": "gpt-5.6-luna",
+  "effort": "medium",
+  "fresh_context": true,
+  "participant_runs": [
+    "cr",
+    "cs",
+    "cr2",
+    "cs2",
+    "tr",
+    "ts",
+    "sr",
+    "ss"
+  ],
+  "calibration_runs": [
+    "cr",
+    "cs",
+    "cr2",
+    "cs2"
+  ],
+  "scored_runs": [
+    "tr",
+    "ts",
+    "sr",
+    "ss"
+  ],
+  "scored_retries": 0,
+  "participant_children": 0,
+  "author_and_independent_validator_model": "gpt-5.6-terra",
+  "author_and_independent_validator_effort": "medium",
+  "native_transcript_export": false,
+  "launch_instruction": "Execute the participant instructions at prompts/<run>.txt. Read only that instruction initially, then follow it. Do not inspect other task/evaluator/controller files. One fresh SQL-construction review run."
+}

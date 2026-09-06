@@ -1,0 +1,1 @@
+CREATE TABLE reservations(tenant_id TEXT NOT NULL,reservation_id TEXT NOT NULL,room TEXT NOT NULL,status TEXT NOT NULL,note TEXT NOT NULL,version INTEGER NOT NULL,PRIMARY KEY(tenant_id,reservation_id));

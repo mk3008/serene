@@ -1,0 +1,206 @@
+[
+  {
+    "path": "AGENTS-template.md",
+    "sha256": "040c92534794926f2f4a21997c0e05eb20fc7aec4120475b1f3eca5d9714fdf2"
+  },
+  {
+    "path": "PROTOCOL.md",
+    "sha256": "b31e9eebf330d728fa5c9ab7a8429712d6db5621187ab94907efb766fde85ffc"
+  },
+  {
+    "path": "author-validation.json",
+    "sha256": "7d544a7e1dece13d401f21cc66e764934a5e2cfb7e8c5fbc73b6345af80a071b"
+  },
+  {
+    "path": "evaluate.py",
+    "sha256": "85db45f389e154689549d5c218aa96a1fb9fe228dd7ed3b8ac87a2f30872ec78"
+  },
+  {
+    "path": "freeze.json",
+    "sha256": "db9379b35c347e73cf8d81937f2b44bdc2c217ff8c63ac9593fab6f417d6fd2b"
+  },
+  {
+    "path": "materialize.py",
+    "sha256": "057af24914f81d79cc5e1ca3a857eb4e089e27cb595e332b4b7e4988812224c3"
+  },
+  {
+    "path": "participant-prompt.txt",
+    "sha256": "2c3abbf4deb5e729c6eb2a3586de4d50b8ccfb0209dc797b7e8dec512bcee249"
+  },
+  {
+    "path": "pre-freeze-validation.json",
+    "sha256": "1f0fa3a536e855b521d379f50117f70a27105391a936eafd1a4a4dba32f5ebac"
+  },
+  {
+    "path": "task-catalog.json",
+    "sha256": "fdbd3356e636342ab243b69f134bfdd5f60d88fe613d208e0f6d4d116c81bb50"
+  },
+  {
+    "path": "tasks/reservation-confirmation/evaluator/hidden.test.mjs",
+    "sha256": "f70fc788195952e7530c55419cb6831b9a1027a8e9be7831e73cfa92afbab635"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/TASK.md",
+    "sha256": "2f4441e14e37b74dea8c52b3e09a8a3ef34bf27bf9f4a0c8a3446db2b4a8d722"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/public.test.mjs",
+    "sha256": "1b7fb22f6d8f212fb98196fc6bcd43d8f6e7e6da1374747d7f8d35e650667df6"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/schema.sql",
+    "sha256": "11995d9221ee96777874c5accf6f614e4528680d5c0a729c9dd5531625b7bdbc"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/seed.sql",
+    "sha256": "fac403a917f3bf8f3e265ea0eb388f6c6ffb68ca2e02d189f7adaef09ac48b3a"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/src/operation.mjs",
+    "sha256": "267acf19c4642330ca5f2dc2675a53e71ea4345c39a4e774772bd03175f3969c"
+  },
+  {
+    "path": "tasks/reservation-confirmation/public/src/sql/confirm.mjs",
+    "sha256": "32e09b6f65c6541ee6dbd6693d1616c1c95cb8b255af312a7c5b6de02e0e7a53"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/public.test.mjs",
+    "sha256": "1b7fb22f6d8f212fb98196fc6bcd43d8f6e7e6da1374747d7f8d35e650667df6"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/schema.sql",
+    "sha256": "11995d9221ee96777874c5accf6f614e4528680d5c0a729c9dd5531625b7bdbc"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/seed.sql",
+    "sha256": "fac403a917f3bf8f3e265ea0eb388f6c6ffb68ca2e02d189f7adaef09ac48b3a"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/src/operation.mjs",
+    "sha256": "ee842f2be04afc405749df222c87110b2cce8bda1bb42106bf5585dc2bb62789"
+  },
+  {
+    "path": "tasks/reservation-confirmation/reference/src/sql/confirm.mjs",
+    "sha256": "1386a2bbafc7589c8fb050cf6b5e7c8155c4bfa129a362f5b3ad1244e3cfc775"
+  },
+  {
+    "path": "tasks/sample-release/evaluator/hidden.test.mjs",
+    "sha256": "bbcf9e641e36f73114d5ae4f66c64a056d9b224075ccfe6fe906e5552fc3c371"
+  },
+  {
+    "path": "tasks/sample-release/public/TASK.md",
+    "sha256": "3387dd9024b00cd79e1929de070ca77119f7b9f74697429f9c6e6d40ba70d51a"
+  },
+  {
+    "path": "tasks/sample-release/public/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/sample-release/public/public.test.mjs",
+    "sha256": "4f4fc3b7f54da6215bea8260b9560eb3093075f9a3c95b859ea261703800d298"
+  },
+  {
+    "path": "tasks/sample-release/public/schema.sql",
+    "sha256": "423703c405ee99ed54a84b2e665287982a2b079e06415524d29ec05c2a46d417"
+  },
+  {
+    "path": "tasks/sample-release/public/seed.sql",
+    "sha256": "1ed87201735a1bd5034629ad811c2b766bf192706ccb1c32c74c12f101066426"
+  },
+  {
+    "path": "tasks/sample-release/public/src/operation.mjs",
+    "sha256": "0a530c9dfecc1302fd9faac26d56dc88572117e4fc63ebdbe348c877742724f8"
+  },
+  {
+    "path": "tasks/sample-release/public/src/sql/record.mjs",
+    "sha256": "32e09b6f65c6541ee6dbd6693d1616c1c95cb8b255af312a7c5b6de02e0e7a53"
+  },
+  {
+    "path": "tasks/sample-release/public/src/sql/release.mjs",
+    "sha256": "32e09b6f65c6541ee6dbd6693d1616c1c95cb8b255af312a7c5b6de02e0e7a53"
+  },
+  {
+    "path": "tasks/sample-release/reference/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/sample-release/reference/public.test.mjs",
+    "sha256": "4f4fc3b7f54da6215bea8260b9560eb3093075f9a3c95b859ea261703800d298"
+  },
+  {
+    "path": "tasks/sample-release/reference/schema.sql",
+    "sha256": "423703c405ee99ed54a84b2e665287982a2b079e06415524d29ec05c2a46d417"
+  },
+  {
+    "path": "tasks/sample-release/reference/seed.sql",
+    "sha256": "1ed87201735a1bd5034629ad811c2b766bf192706ccb1c32c74c12f101066426"
+  },
+  {
+    "path": "tasks/sample-release/reference/src/operation.mjs",
+    "sha256": "e684b26d8e0876b6e7226e917808b881605abc2ff5a06770f71c64e0da2d78b6"
+  },
+  {
+    "path": "tasks/sample-release/reference/src/sql/record.mjs",
+    "sha256": "d6121fb5d654c7752a9f139222ffca99f80ff2675d6e0a762e96b307943293e4"
+  },
+  {
+    "path": "tasks/sample-release/reference/src/sql/release.mjs",
+    "sha256": "8532c943c97eb7a644da2e5237fd44275a9bb8d1408c124ed6983e7e8efe2437"
+  },
+  {
+    "path": "tasks/specimen-search/evaluator/hidden.test.mjs",
+    "sha256": "8218fd1ddcf615485481d484a279a9fe463bbfeead33cbd4af7590d637c08173"
+  },
+  {
+    "path": "tasks/specimen-search/public/TASK.md",
+    "sha256": "f3adc15b053ba831345295b52c44dcec94f45bb20b05db105daf744f1853150b"
+  },
+  {
+    "path": "tasks/specimen-search/public/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/specimen-search/public/public.test.mjs",
+    "sha256": "291734f223dfd1f79372a1e8dc8e68f65371c57a2206714aa7fbacbe10a2c1dc"
+  },
+  {
+    "path": "tasks/specimen-search/public/schema.sql",
+    "sha256": "83cd92ae22ec51faf07f2b8e782ed16f1550b55c84d876195d0c415ae6e9d5f7"
+  },
+  {
+    "path": "tasks/specimen-search/public/seed.sql",
+    "sha256": "985040b43668672b3998b8b78bc20ccb907796f5154087838523ee8904950601"
+  },
+  {
+    "path": "tasks/specimen-search/public/src/operation.mjs",
+    "sha256": "3ca32726cfb44f397ab3d2a528295655907defb11898e117e1f9995a814c9b97"
+  },
+  {
+    "path": "tasks/specimen-search/reference/package.json",
+    "sha256": "f4c54e1573529107edc6c91a44ce819720666af6be381f80c386327af5db06c1"
+  },
+  {
+    "path": "tasks/specimen-search/reference/public.test.mjs",
+    "sha256": "291734f223dfd1f79372a1e8dc8e68f65371c57a2206714aa7fbacbe10a2c1dc"
+  },
+  {
+    "path": "tasks/specimen-search/reference/schema.sql",
+    "sha256": "83cd92ae22ec51faf07f2b8e782ed16f1550b55c84d876195d0c415ae6e9d5f7"
+  },
+  {
+    "path": "tasks/specimen-search/reference/seed.sql",
+    "sha256": "985040b43668672b3998b8b78bc20ccb907796f5154087838523ee8904950601"
+  },
+  {
+    "path": "tasks/specimen-search/reference/src/operation.mjs",
+    "sha256": "cf671bbe9509d4bf2fb75e0b8fc38ee59a4ba4be762d4c72b8972148bdb15704"
+  }
+]

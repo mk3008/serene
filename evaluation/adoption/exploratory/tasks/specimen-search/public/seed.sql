@@ -1,0 +1,1 @@
+INSERT INTO specimens VALUES ('museum-a','s1','Amber','mineral','2026-01-02',0),('museum-a','s2','Basalt','mineral','2026-01-02',0),('museum-a','s3','Old quartz','mineral','2026-01-04',1),('museum-a','s4','Fern','plant','2026-01-05',0),('museum-b','s1','Other amber','mineral','2026-01-06',0);

@@ -1,0 +1,1 @@
+CREATE TABLE specimens(tenant_id TEXT NOT NULL, specimen_id TEXT NOT NULL, label TEXT NOT NULL, category TEXT NOT NULL, collected_at TEXT NOT NULL, archived INTEGER NOT NULL, PRIMARY KEY(tenant_id,specimen_id));

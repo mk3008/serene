@@ -1,0 +1,80 @@
+[
+  {
+    "id": "specimen-search",
+    "requirements": "Return only non-archived specimens for the exact tenant and category with collected_at >= since (inclusive). Sort collected_at descending, then specimen_id ascending. Apply limit after filtering and sorting. Dates are ISO YYYY-MM-DD; limit is a positive integer. Return exactly specimenId, label, collectedAt fields. Inputs are valid. Bind every input using meaningful named parameters; do not interpolate values. Application SQL may be colocated in src/operation.mjs.",
+    "layout": {
+      "public": [
+        "TASK.md",
+        "schema.sql",
+        "seed.sql",
+        "src/operation.mjs",
+        "public.test.mjs",
+        "package.json"
+      ],
+      "private": [
+        "evaluator/hidden.test.mjs",
+        "reference/"
+      ]
+    },
+    "exportContract": "findSpecimens(db, { tenantId, category, since, limit }) -> Array<{specimenId,label,collectedAt}>",
+    "validationCommands": [
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/specimen-search/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/specimen-search/public/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/specimen-search/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/specimen-search/evaluator/hidden.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/specimen-search/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/specimen-search/reference/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/specimen-search/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/specimen-search/evaluator/hidden.test.mjs"
+    ]
+  },
+  {
+    "id": "reservation-confirmation",
+    "requirements": "Atomically confirm a pending reservation only when tenant_id, reservation_id and version match. Set status to confirmed, replace note with the exact supplied string, and increment version by one. Return exactly reservationId,status,note,version for the updated row, or null when absent, stale or already confirmed. Never modify another tenant. Inputs are valid. Each application SQL statement must have its own dedicated authoritative .mjs source file under src/sql, imported by operation.mjs. Keep SQL directly readable in that file without duplication; a named exported raw string or another fixed literal representation is allowed. Transaction control statements are exempt and may remain in operation.mjs. Bind all input values with meaningful named parameters. Schema/setup/assertion SQL in tests is exempt.",
+    "layout": {
+      "public": [
+        "TASK.md",
+        "schema.sql",
+        "seed.sql",
+        "src/operation.mjs",
+        "public.test.mjs",
+        "package.json",
+        "src/sql/confirm.mjs"
+      ],
+      "private": [
+        "evaluator/hidden.test.mjs",
+        "reference/"
+      ]
+    },
+    "exportContract": "confirmReservation(db, { tenantId, reservationId, expectedVersion, note }) -> {reservationId,status,note,version} | null",
+    "validationCommands": [
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/reservation-confirmation/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/reservation-confirmation/public/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/reservation-confirmation/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/reservation-confirmation/evaluator/hidden.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/reservation-confirmation/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/reservation-confirmation/reference/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/reservation-confirmation/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/reservation-confirmation/evaluator/hidden.test.mjs"
+    ]
+  },
+  {
+    "id": "sample-release",
+    "requirements": "Release every requested ready sample and insert its release record in one transaction. Return exactly sampleId,state,operator for each input sample in the original input order, with state released. Missing, held, already released, duplicate sample IDs, or an insert failure must throw and roll back all changes from the call, including earlier samples and release records. Empty sampleIds returns []. Scope every sample operation to tenantId; preserve the exact operator string. No transaction is active when called. Inputs otherwise have valid types. Each application SQL statement must have its own dedicated authoritative .mjs source file under src/sql, imported by operation.mjs. Keep SQL directly readable in that file without duplication; a named exported raw string or another fixed literal representation is allowed. Transaction control statements are exempt and may remain in operation.mjs. Bind input values using meaningful named parameters. Test setup/assertion SQL is exempt.",
+    "layout": {
+      "public": [
+        "TASK.md",
+        "schema.sql",
+        "seed.sql",
+        "src/operation.mjs",
+        "public.test.mjs",
+        "package.json",
+        "src/sql/release.mjs",
+        "src/sql/record.mjs"
+      ],
+      "private": [
+        "evaluator/hidden.test.mjs",
+        "reference/"
+      ]
+    },
+    "exportContract": "releaseSamples(db, { tenantId, sampleIds, operator }) -> Array<{sampleId,state,operator}> (throws on failure)",
+    "validationCommands": [
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/sample-release/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/sample-release/public/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/sample-release/public node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/sample-release/evaluator/hidden.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/sample-release/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/sample-release/reference/public.test.mjs",
+      "PILOT_TARGET=/tmp/serene-exploratory-author/tasks/sample-release/reference node --test --test-reporter=tap /tmp/serene-exploratory-author/tasks/sample-release/evaluator/hidden.test.mjs"
+    ]
+  }
+]

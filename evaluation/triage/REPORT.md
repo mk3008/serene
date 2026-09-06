@@ -61,7 +61,7 @@ on identical inputs, not a universal Serene-versus-grep claim.
 
 Five previously unseen local aliases (A01–A05) now become violation or additional-
 review findings. One extra non-SQL alias is also referred (N06), an explicit precision
-cost. No source/API/runtime dependency was added. Alias candidates never receive
+cost. No runtime code, public API or runtime dependency was added. Alias candidates never receive
 ordinary status because receivers and prebound arguments are not proven.
 
 Nine sites retain ordinary construction. Three of those (L01–L03) intentionally have

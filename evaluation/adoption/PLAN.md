@@ -148,8 +148,8 @@ independent task authorship, model-output forwarding, blinded adjudication or th
 
 ## Current execution blocker (2026-09-06)
 
-In this Work workspace, `codex` and `gh` are absent from PATH; no callable independent
-model-runner tool is exposed. Node/npm and repository access work. No model API
+In this Work workspace, `codex` and `gh` are absent from PATH; no independent
+coding-agent study runner meeting the packet-isolation/metadata contract is configured. Node/npm and repository access work. No model API
 credentials were sought, no paid calls were started, and no fresh agent runs were
 performed. The active author session is not a substitute for an independent runner.
 

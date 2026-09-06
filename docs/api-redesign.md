@@ -43,12 +43,20 @@ rejection is intentionally removed; inherited properties are ignored. Unused sup
 names, accessors, undefined values and invalid names still fail. This is a breaking
 change to the unpublished binder contract, not merely additional lexer coverage.
 
-The scanner shields common quotes/comments, including PostgreSQL dollar quotes,
+The scanner shields common quotes/comments, including PostgreSQL ASCII-tagged/untagged dollar quotes,
 explicit `E` string escapes and nested comments. It does not reject other SQL syntax.
 Repeated names, casts, occurrence ordering and value separation retain their contracts.
 Existing markers are refused only when they conflict with generated markers for the
 selected output style. PostgreSQL `?` works with `indexed`, while preexisting `?`
 cannot be mixed with generated anonymous markers.
+
+A review follow-up adds a narrow `UNSUPPORTED_DOLLAR_QUOTE` guard for non-ASCII
+identifier-shaped delimiters such as `$日本$`; author `$$` or an ASCII `$body$` tag
+instead. The guard prevents silent rewriting inside those unsupported quotes.
+Unconditional `--` line-comment handling is retained: write `x - (-1)` rather than
+adjacent `x--1`. Supplied `id` in `SELECT 5--1, :id` fails as unused. These easy
+rewrites justify conservative limits without sacrificing arrays/subscripts/JSON;
+the permanent decision rule is in [design](design.md#conservative-authoring-limits).
 
 This is not universal dialect-aware replacement. Ordinary quotes use doubled-quote
 escaping. Brackets and hash characters remain plain text. Requested names in bracket

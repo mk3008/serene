@@ -45,14 +45,28 @@ Values never enter SQL text. Unspecified markers remain unchanged; omitted/inher
 names do not create slots. Unused supplied names still report likely caller mistakes.
 Neither completeness nor success at the database is guaranteed.
 
-The scanner shields doubled single/double/backtick quotes, PostgreSQL dollar quotes
+The scanner shields doubled single/double/backtick quotes, PostgreSQL ASCII-tagged/untagged dollar quotes
 and explicit `E` string escapes, line comments starting `--`, and nested block
 comments. This prevents common accidental literal changes and extra anonymous slots.
-All other characters pass through, including PostgreSQL arrays and JSON operators.
+PostgreSQL arrays and JSON operators still pass through. A narrow guard rejects
+non-ASCII identifier-shaped dollar delimiters before any replacement is returned.
 Existing markers are checked only against the selected output style when new markers
 are emitted: `$number` with indexed, `?` with anonymous, `@name` with at-named.
 This mechanical collision check prevents slot reuse/shifting; it is not SQL grammar
 validation or a complete detector for every driver's native marker syntax.
+
+Canonical dollar quoting is `$$...$$` or `$tag$...$tag$`, where the tag matches
+`[A-Za-z_][A-Za-z0-9_]*`. A detected delimiter such as `$日本$` or `$body日本$`
+raises `UNSUPPORTED_DOLLAR_QUOTE` at bind, with the delimiter offset, even without
+requested names. Use an ASCII tag instead. The guard runs only outside shielded
+regions and at a delimiter boundary; it is not a full SQL validator. Suffix sorting
+uses the same scanner and guard. Source provenance alone does not prove bind success.
+
+Every `--` begins a line comment, regardless of following whitespace. Serene does
+not follow MySQL's adjacent subtraction spelling: author `x - (-1)` instead of
+`x--1`. Supplying `id` to bind `SELECT 5--1, :id` throws `UNUSED_PARAMETER`
+because `id` has no occurrence outside that comment. This restriction does not
+validate arbitrary SQL expressions; comment occurrences never allocate value slots.
 
 Shielding is an authoring convention, not dialect inference. Plain quoted strings
 use doubled delimiters, with backslashes ordinary; PostgreSQL

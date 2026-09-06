@@ -199,14 +199,22 @@ set result, not measured AI review effectiveness or real-world recall.
 
 `sql` preserves fixed source without validating SQL syntax. At `bind`, a small
 scanner locates only requested `:name` tokens and shields doubled single/double/
-backtick quotes, PostgreSQL dollar quotes and `E` strings, `--` comments and nested
+backtick quotes, PostgreSQL ASCII-tagged/untagged dollar quotes and `E` strings, `--` comments and nested
 block comments. Arrays, subscripts, JSON operators, system variables and other fixed
 syntax pass through. Output style does not select a SQL dialect.
 
-Only conflicts with the selected output markers are rejected when generating bindings:
+Conflicts with the selected output markers are rejected when generating bindings:
 existing `$number` for `indexed`, `?` for `anonymous`, and `@name` for `at-named`.
 Thus PostgreSQL `payload ? :key` works with `indexed`; it cannot be lowered to
 `anonymous` without colliding with that contract. `@@` system forms are preserved.
+
+Use canonical dollar quoting `$$...$$` or an ASCII tag such as `$body$...$body$`
+(`[A-Za-z_][A-Za-z0-9_]*`). Detected non-ASCII tags such as `$日本$` fail with
+`UNSUPPORTED_DOLLAR_QUOTE` during bind instead of rewriting their contents.
+Every `--` is a line comment: write `x - (-1)` rather than MySQL's adjacent `x--1`.
+Supplying `id` for `SELECT 5--1, :id` fails with `UNUSED_PARAMETER`.
+These easily rewritten spellings are deliberate limits; accepting every valid SQL
+spelling is not the goal. Arrays, subscripts and JSON operators remain supported.
 
 This is not a universal lexer. Ordinary strings assume doubled-quote escaping, not
 backslash escaping; use PostgreSQL's standard-conforming strings setting. Brackets

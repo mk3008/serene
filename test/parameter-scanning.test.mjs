@@ -74,3 +74,40 @@ test('hostile values cannot affect complex SQL text or requested slot ordering',
     assert.equal(q.values[1], 'x');
   }
 });
+
+test('adjacent double dash uses line-comment semantics; use explicit subtraction', () => {
+  for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+    code(() => bind(sql`SELECT 5--1, :id`, { id: 7 }, style), 'UNUSED_PARAMETER');
+    code(() => bind(sql`SELECT 5--1, :id
+      , :other`, { id: 7, other: 8 }, style), 'UNUSED_PARAMETER');
+  }
+  const q = bind(sql`SELECT 5 - (-1), :id`, { id: 7 }, 'indexed');
+  assert.equal(q.text, 'SELECT 5 - (-1), $1');
+  assert.deepEqual(q.values, [7]);
+});
+
+test('non-ASCII dollar delimiters fail before requested names can be rewritten', () => {
+  for (const stmt of [sql`SELECT $日本$ :id $日本$, :id`,
+    sql`SELECT $body日本$ :id $body日本$`, sql`SELECT $é_1$ :id $é_1$`,
+    sql`SELECT :id, $日本$ literal $日本$`, sql`SELECT $日本$ :id`]) {
+    for (const style of ['named', 'indexed', 'anonymous', 'at-named']) {
+      assert.throws(() => bind(stmt, { id: 7 }, style), error =>
+        error.code === 'UNSUPPORTED_DOLLAR_QUOTE' && error.level === 'violation' &&
+        error.offset === stmt.sourceText.indexOf('$'));
+    }
+  }
+  code(() => bind(sql`SELECT $日本$ literal $日本$`), 'UNSUPPORTED_DOLLAR_QUOTE');
+});
+
+test('ASCII dollar quoting is canonical; lookalikes in shielded text remain unchanged', () => {
+  const stmt = sql`SELECT $$ :id $$, $body_1$ :id $body_1$, :id,
+    '$日本$ :id $日本$', $body$ $日本$ :id $日本$ $body$,
+    x$日本$ /* $日本$ :id */ -- $日本$ :id
+    , :id`;
+  const q = bind(stmt, { id: 7 }, 'indexed');
+  assert.equal(q.text, `SELECT $$ :id $$, $body_1$ :id $body_1$, $1,
+    '$日本$ :id $日本$', $body$ $日本$ :id $日本$ $body$,
+    x$日本$ /* $日本$ :id */ -- $日本$ :id
+    , $1`);
+  assert.deepEqual(q.values, [7]);
+});

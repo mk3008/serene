@@ -7,6 +7,22 @@ visible. Do not rebuild Ashiba, Dapper or a query builder. Initial acceptance co
 literal construction, binding conventions, finite sorts, mechanical triage and clear
 negative cases; it does not include exhaustive program analysis or live SQL validation.
 
+## Conservative authoring limits
+
+Accepting every valid SQL spelling is not a goal. A conservative restriction is
+acceptable when a clear, easily reviewed equivalent preserves meaning, performance
+and useful database functionality. Do not impose unnatural rewrites or functional
+loss on ordinary native features such as PostgreSQL arrays, subscripts and JSON
+operators. Preserve reviewable fixed SQL and value separation rather than growing a
+complete dialect parser. Where ambiguity warrants a narrow guard, fail closed or
+use the additional-review route; do not knowingly reinterpret unsupported syntax
+and silently rewrite its contents.
+
+For example, use `x - (-1)` rather than adjacent `x--1`, and use ASCII dollar-quote
+tags such as `$body$` rather than `$日本$`. The scanner keeps unconditional `--`
+line-comment handling and rejects detected non-ASCII dollar delimiters; it does not
+implement MySQL whitespace rules or a universal dollar-quote parser.
+
 ## Smallest useful design
 
 One package has an independent runtime entry and an optional source-audit entry.
@@ -32,7 +48,7 @@ one closed output contract (`named`, `indexed`, `anonymous`, `at-named`), never 
 DBMS. SQL remains application-owned and visible to external debugging tools. The
 scanner runs at bind time, searches supplied names, and shields common quoted/comment
 regions to avoid incidental replacements. Other fixed SQL syntax passes through.
-Only collisions with generated output markers are rejected. SQL completeness and
+Output-marker collisions and narrowly detected unsupported dollar delimiters fail closed. SQL completeness and
 correctness remain application/database responsibilities; see the security contract
 for deliberately limited shielding conventions.
 

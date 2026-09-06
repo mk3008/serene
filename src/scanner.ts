@@ -36,6 +36,11 @@ export function scan(sourceText: string, requested?: ReadonlySet<string>): Scann
         i = end < 0 ? sourceText.length : end + delimiter.length;
         continue;
       }
+      // ASCII delimiters above are canonical. Do not scan inside an unsupported
+      // identifier-shaped delimiter as if its body were ordinary parameter text.
+      if (/^\$[A-Za-z_\u0080-\uffff][A-Za-z0-9_\u0080-\uffff]*\$/.test(sourceText.slice(i))) {
+        throw new SereneError('UNSUPPORTED_DOLLAR_QUOTE', 'Use $$ or an ASCII dollar-quote tag such as $body$.', i);
+      }
     }
     if (c === "'" || c === '"' || c === '`') {
       const escape = c === "'" && /(?:^|[^A-Za-z0-9_$\u0080-\uffff])E$/i.test(sourceText.slice(0, i));

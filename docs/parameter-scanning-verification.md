@@ -45,3 +45,26 @@ execution is claimed. These checks establish replacement behavior and value/text
 separation for the tested inputs, not universal driver mapping, application
 correctness, absence of all SQL injection paths, or measured AI-review effectiveness.
 The historical triage corpus and its evidence are unchanged.
+
+## Review follow-up: conservative limits with easy equivalent spellings
+
+Addresses [review comment 5557534143](https://github.com/mk3008/serene/pull/1#issuecomment-5557534143).
+The permanent design now permits conservative restrictions with clear equivalent
+spellings that preserve meaning, performance and native functionality. It does not
+aim to accept every valid SQL spelling or justify silent rewriting of unsupported
+syntax. Existing ARRAY/subscript/JSON positives are unchanged.
+
+- Retain unconditional `--` line-comment handling. In all four output styles,
+  supplied `id` for `SELECT 5--1, :id` fails with `UNUSED_PARAMETER`, including a
+  case with a different parameter on the next line. `5 - (-1)` binds normally.
+- Detect non-ASCII identifier-shaped dollar delimiters at the existing delimiter
+  boundary and fail with `UNSUPPORTED_DOLLAR_QUOTE` plus its offset. This includes
+  mixed ASCII/non-ASCII tags, unterminated bodies and an already-seen parameter.
+  Canonical `$$`/ASCII tags work; lookalikes inside quotes/comments and identifiers
+  are preserved. The new failure regression failed before the five-line guard was
+  added, then passed without changing its expectations.
+- Re-ran `npm run check`: 60 tests passed; type and tooling syntax checks passed.
+- Rebuilt/extracted `npm pack` and imported its runtime without the optional
+  TypeScript peer: four output styles, arrays/JSON, finite sorting, hostile-value
+  separation, both review regressions and canonical ASCII dollar quoting passed.
+- `git diff --check`: passed. No live DB execution or AI significance claim added.

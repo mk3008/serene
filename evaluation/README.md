@@ -7,7 +7,7 @@ primary effectiveness measure. Historical packets, answers and gold remain intac
 
 | Question | Outcome that answers it | Existing evidence and limit |
 | --- | --- | --- |
-| Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The [four-run efficiency cohort](triage/efficiency-study/REPORT.md) records cost on two compact application tasks: its expansion-only primary metric does not resolve the screening/skip contrast. See the [skip-aware correction](triage/skip-study/REPORT.md). |
+| Serene SQL-safety triage | Cost to dangerous-site discovery and discovery within a fixed budget, Serene versus conventional Raw SQL review; required-path recall and unnecessary deep reviews | The original deterministic [coverage study](triage/REPORT.md) measures synthetic tool behavior. The [four-run efficiency cohort](triage/efficiency-study/REPORT.md) records cost on two compact application tasks: its expansion-only primary metric does not resolve the screening/skip contrast. The [covered-site cohort](triage/covered-study/REPORT.md) separates Discovery and records ordinary omission plus response cost; its small reused tasks limit generalization. |
 | Adoption instruction | Agents use the construction boundary correctly with minimal instructions | The [nine-run coding pilot](adoption/exploratory/REPORT.md) supports feasibility on three tasks. It did not compare instruction lengths or Rules-only adoption. |
 | Rules integration / layout | Dedicated versus colocated definitions preserve discovery, binding/execution follow-through and DB behavior; imported-provenance friction and file/review effort | [SQLite preflight](adoption/preflight/REPORT.md) and coding results reproduce import-only strict failures. There is no controlled AI layout-effect result. See [layout plan](adoption/LAYOUT-STUDY.md). |
 | General AI code review | Find authorization/business-meaning defects and avoid false accusations | The [12-run review pilot](triage/exploratory/REPORT.md) measured mixed general defect recall, with a ceiling, contract ambiguities and one JSON failure. It cannot answer the Serene triage question. |
@@ -28,17 +28,19 @@ investigation or strict failure makes a particular layout impractical is a separ
 integration question. Its penalty must not be added to a general vulnerability
 recall score. No pooled product score combines these studies.
 
-## Current next step
+## Current evidence and next boundary
 
-The first [SQL-safety efficiency cohort](triage/efficiency-study/REPORT.md) is complete.
-It compares conventional Raw SQL with uniformly converted Serene code and available
-audit, using logged reads/searches/context expansion and a fixed budget. The original compression interpretation is superseded: context-expansion counts
-do not distinguish Raw screening from audit-supported skipping. The [skip-aware
-correction](triage/skip-study/REPORT.md) measures ordinary-body omission and actual
-response cost, with compact audit and targeted navigation. See the report for secondary costs, proxy limitations and deviations.
-The [overarching study](triage/SQL-SAFETY-STUDY.md) remains the research contract.
-Retire the mixed [AI-STUDY.md](triage/AI-STUDY.md) as the next Serene evaluation;
-it remains a historical general-review proposal. Layout work stays independent.
-Any larger cohort needs a new task/tool freeze; preserve all previous source/gold.
-The authorized compact audit CLI option is implemented. Keep Raw SQL Rules and
+The [covered-site cohort](triage/covered-study/REPORT.md) now separates execution-site
+discovery from triage of the common discovered set. Discovery exact-location recall
+was 21/23 and 23/23; deterministic source-only position reconciliation is recorded
+separately. Both Serene reviewers omitted 20 ordinary bodies, retained dangerous
+construction detection and used about 35% fewer response bytes to diagnosis than
+Raw reviewers. This is a small, explicitly instructed workflow result, not general
+utility, exhaustive discovery or minimum-instruction adoption evidence.
+
+The prior [skip-aware rerun](triage/skip-study/REPORT.md) remains the record of
+workflow/interface failures; the earlier context-expansion interpretation remains
+superseded. All source/gold/answers are preserved, with no pooled product score.
+Broader testing would need varied samples and unmatched/false-ordinary controls.
+The authorized compact audit CLI option remains implemented. Keep Raw SQL Rules and
 SQL-construction runtime unchanged. Keep PR #4 Draft.

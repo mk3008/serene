@@ -1,0 +1,16 @@
+{
+  "frozen_files_checked": 24,
+  "packet_files_checked": 20,
+  "frozen_changes": [],
+  "all_finished": true,
+  "all_correct_findings": true,
+  "serene_ordinary_bodies_exposed": [
+    0,
+    0
+  ],
+  "raw_ordinary_bodies_exposed": [
+    20,
+    20
+  ],
+  "controller_tests": 4
+}

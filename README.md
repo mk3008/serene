@@ -2,13 +2,19 @@
 
 **Raw SQL is a little too raw.**
 
-Keep your SQL. Keep your native driver. Add a small boundary that reviewers can recognize.
+Serene is a lightweight review tool for people who want to keep writing raw SQL and keep using their native database driver.
 
-Serene is for TypeScript/JavaScript teams that prefer raw SQL but want humans and AI reviewers to distinguish fixed, parameterized SQL from code that deserves additional review.
+Raw SQL is not inherently unsafe. Some SQL construction paths are simple, fixed, and safely parameterized. Others are dynamic, unresolved, or deserve closer inspection.
 
-The goal is to focus deep SQL-construction review on the paths that need it, using recognized construction to avoid repeated investigation without replacing SQL review.
+Serene adds a small, recognizable boundary that lets humans and AI reviewers tell those paths apart.
 
-It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
+Use Serene to identify ordinary, safely constructed SQL and spend your review effort on the paths that actually need additional scrutiny.
+
+For SQL construction and parameter separation, Serene aims to provide the same class of safety people often rely on an ORM for — without replacing SQL or your native driver.
+
+Serene is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
+
+It does not prove that SQL is semantically correct, authorized, performant, or free from every vulnerability. Its job is narrower: make raw SQL construction easy to recognize and triage during review.
 
 ## Install
 

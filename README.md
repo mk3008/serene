@@ -73,27 +73,31 @@ const query = bind(findUser, { id }, 'anonymous');
 
 Serene does not prove that a query is correct, authorized, fast, or free of every SQL vulnerability. Its job is narrower: make SQL construction easier to classify during review.
 
-## Review your SQL paths
+## Audit SQL paths
 
-The optional source audit identifies recognized Serene construction and SQL execution candidates.
-
-If your project does not already use a compatible TypeScript version:
-
-```sh
-npm install --save-dev typescript@^5.9.3
-```
-
-Then run:
+Run the audit on your source directory:
 
 ```sh
 npx --no-install serene-audit src
 ```
 
-Use `serene-audit .` for repository-wide inventory, or pass individual files. For concise review triage, use `serene-audit --actionable-only src`: it reports counts only for candidate driver execution sites and lists only review-required or violation findings. The default JSON inventory remains complete.
+Repository-wide:
 
-Findings include source locations and function names for navigation; see [audit coverage](docs/review-coverage.md).
+```sh
+npx --no-install serene-audit .
+```
 
-Findings are intentionally simple:
+Show only paths that need additional review:
+
+```sh
+npx --no-install serene-audit --actionable-only src
+```
+
+If the project does not already use a compatible TypeScript version:
+
+```sh
+npm install --save-dev typescript@^5.9.3
+```
 
 | Level | Meaning |
 | --- | --- |
@@ -101,12 +105,24 @@ Findings are intentionally simple:
 | `review-required` | Raw or unresolved SQL path; inspect it |
 | `violation` | A detected Serene boundary violation |
 
-The audit is deliberately conservative and file-local. See [review coverage](docs/review-coverage.md) for what it can and cannot discover.
+The audit is conservative and file-local. See [audit coverage](docs/review-coverage.md) for details.
 
-Building an AI review tool? Use the [pre-exposure filter](docs/pre-exposure-filter.md)
-to replace recognized construction with navigation metadata before source reaches the model.
+### Use the audit with AI agents
 
-The CLI provides the review signal; it does not force an AI agent to invoke or consume it. Evaluation shows that integration timing matters: filtering source-bearing responses before model delivery can avoid ordinary-body exposure, while adding Serene only after the agent has already read those bodies can add cost instead. The pre-exposure host/filter used in that study is not a shipped CLI feature. See the [evaluation map](evaluation/README.md).
+Copy this into the repository's root `AGENTS.md` (or equivalent instruction file):
+
+```text
+Use `@mk3008/serene` as the default construction path for executable raw SQL; if
+it cannot preserve needed SQL behavior, keep the exception explicit for additional
+review. For SQL-construction review, use the installed `serene-audit` and keep
+unresolved paths in review. Use ordinary results to skip redundant
+construction-provenance review, not SQL meaning/binding, authorization, or
+business-behavior checks.
+```
+
+Then keep individual prompts focused on the actual task; they do not need to mention Serene each time. See the [AI adoption guide](docs/ai-adoption.md) for details and evidence.
+
+Building an AI review tool or source middleware? `@mk3008/serene/filter` can replace recognized construction-only functions with navigation metadata before source reaches the model. See the [pre-exposure filter](docs/pre-exposure-filter.md) for the host integration boundary and limits.
 
 ## Dynamic ORDER BY without dynamic SQL
 
@@ -125,12 +141,37 @@ const bound = bind(query);
 
 Runtime input chooses a reviewed key, not a SQL fragment.
 
+## Optional search conditions without dynamic SQL
+
+Optional filters do not necessarily require building SQL strings. When the set of filters is known, normal fixed SQL can express any combination:
+
+```ts
+const searchUsers = sql`
+  SELECT id, name, status, created_at
+  FROM users
+  WHERE (:status IS NULL OR status = :status)
+    AND (:createdFrom IS NULL OR created_at >= :createdFrom)
+    AND (:createdTo IS NULL OR created_at < :createdTo)
+`;
+
+const query = bind(searchUsers, {
+  status,
+  createdFrom,
+  createdTo,
+}, 'indexed');
+```
+
+Bind `null` for filters that are not used. The SQL text stays fixed and the values stay bound; no Serene-specific optional-filter feature is required.
+
+If users can change the query structure itself—for example, adding arbitrary joins or grouping—that is a different problem and may still require dynamic SQL and additional review.
+
 ## Documentation
 
 - [Design](docs/design.md) — goals, boundaries, and why Serene stays small.
 - [Security contract](docs/security.md) — guarantees, non-guarantees, and review responsibilities.
 - [Review coverage](docs/review-coverage.md) — what source inspection detects, refers, or may miss.
 - [Binding verification](docs/parameter-scanning-verification.md) — detailed parameter behavior and regression evidence.
+- [Pre-exposure filter](docs/pre-exposure-filter.md) — host API for filtering construction-only source before AI delivery.
 - [Evaluation map](evaluation/README.md) — current research questions, AI-review evidence, and limits.
 - [AI adoption guide](docs/ai-adoption.md) — optional repository policy for installed Serene and AI review.
 

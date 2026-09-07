@@ -1,0 +1,4 @@
+{
+  "final_message": "Implemented `findCustomerByEmail` in `app.mjs` with:\n\n- TypeError validation before database access for empty or invalid emails\n- Parameterized Serene SQL lookup\n- `null` for missing customers\n- Exact `{ id, email, name }` result shape\n- Existing behavior preserved\n\n`npm test` passes.",
+  "run_id": "p02"
+}

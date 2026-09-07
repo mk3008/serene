@@ -1,0 +1,3 @@
+{"event":"cli_entry","recorded_at_ms":1788760949328,"pid":4,"argv":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","/tmp/repository-flow-probe/p06/node_modules/.bin/serene-audit","--help"],"cwd":"/tmp/repository-flow-probe/p06"}
+{"event":"cli_entry","recorded_at_ms":1788760958510,"pid":4,"argv":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","/tmp/repository-flow-probe/p06/node_modules/.bin/serene-audit","--actionable-only","."],"cwd":"/tmp/repository-flow-probe/p06"}
+{"event":"cli_entry","recorded_at_ms":1788760958520,"pid":4,"argv":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","/tmp/repository-flow-probe/p06/node_modules/.bin/serene-audit","."],"cwd":"/tmp/repository-flow-probe/p06"}

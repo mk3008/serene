@@ -1,0 +1,4 @@
+{
+  "final_message": "Investigated and documented the authorization issue in [`AUTHORIZATION.md`](sandbox:/tmp/repository-flow-probe/p08/AUTHORIZATION.md).\n\nDiagnosis: `documentById` ignores `actor` and uses caller-controlled `request.tenantId` for the SQL tenant predicate. A North actor can request `tenantId: 'south'` and receive the South document. Existing tests pass but do not cover cross-organization access. No application code or behavior was changed.",
+  "run_id": "p08"
+}

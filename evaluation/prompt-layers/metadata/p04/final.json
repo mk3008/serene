@@ -1,0 +1,4 @@
+{
+  "final_message": "Implemented `findCustomerByEmail(db, email)` in `/tmp/repository-flow-probe/p04/app.mjs`.\n\n- Uses Serene fixed SQL with named parameter binding.\n- Throws `TypeError` for empty or non-string email before database access.\n- Returns `null` when no match exists.\n- Returns exactly `{ id, email, name }` for matches.\n- Existing behavior remains intact.\n\nValidation passed with `npm test`, Serene audit, and manual lookup/error checks.",
+  "run_id": "p04"
+}

@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict'; import test from 'node:test'; import { openDatabase } from './database.mjs'; test('native records',()=>assert.deepEqual(openDatabase().query('SELECT COUNT(*) AS count FROM customers'),[{count:2}]));

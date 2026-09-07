@@ -1,0 +1,14 @@
+{
+  "actor_id": "/root/p01",
+  "harvest_archive": "evaluation/prompt-layers/runs/p01",
+  "initial_prompt_match": "parent-provided exact dispatch text matches frozen p01 input",
+  "observer_session_id": 28340,
+  "pre_dispatch_commit": "eee958794d1f20327b4972c5dd018fd761686db2",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "run_id": "p01"
+}

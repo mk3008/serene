@@ -1,0 +1,55 @@
+{
+  "cli_entry_observation": {
+    "entries": [],
+    "meaning": "Recorded entries establish successful instrumented CLI-module entry only; they do not establish output reading, use, causal effect, or a complete process trace.",
+    "successful_esm_entries": 0
+  },
+  "integrity": {
+    "cli_event_log": {
+      "entries": 0,
+      "exists": false,
+      "path": "/tmp/repository-flow-probe/evidence/p05/cli-events.jsonl"
+    },
+    "cli_module": {
+      "bytes": 3435,
+      "sha256": "932856d8f2236d5e855c0e5a49e4286b55dc096f07455e29e7b88b2f7daa0e97"
+    },
+    "status": "pass",
+    "watch_paths": 14
+  },
+  "limits": "Inotify rows establish filesystem activity on watched paths only; they carry no actor PID and do not establish model comprehension, receipt, use, complete shell activity, timing, tokens, or cost.",
+  "observer": {
+    "event_names": {
+      "ACCESS": 18,
+      "CLOSE_NOWRITE": 18,
+      "OPEN": 18
+    },
+    "event_rows": 54,
+    "final": {
+      "event_count": 54,
+      "invalidation_count": 0,
+      "overflow_count": 0,
+      "pid": 4,
+      "stopped_at_ns": 1788760972707607164,
+      "stopped_by_shared_sentinel": true,
+      "watch_count": 14
+    },
+    "paths_with_events": {
+      "/tmp/repository-flow-probe/p05/AGENTS.md": 6,
+      "/tmp/repository-flow-probe/p05/README.md": 6,
+      "/tmp/repository-flow-probe/p05/app.mjs": 6,
+      "/tmp/repository-flow-probe/p05/database.mjs": 12,
+      "/tmp/repository-flow-probe/p05/package.json": 24
+    },
+    "ready": {
+      "event": "observer_ready",
+      "pid": 4,
+      "recorded_at_ns": 1788760899686211516,
+      "stop_file": "/tmp/repository-flow-probe/evidence/p05/observer.stop",
+      "watch_count": 14,
+      "watch_list_sha256": "626626ecb41ac3e1985c885edb86c843e72199a4ce45e0d54e00ac9eb14bb65c"
+    }
+  },
+  "run_id": "p05",
+  "source": "harvested archive only"
+}

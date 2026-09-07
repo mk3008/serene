@@ -139,6 +139,30 @@ const bound = bind(query);
 
 Runtime input chooses a reviewed key, not a SQL fragment.
 
+## Optional search conditions without dynamic SQL
+
+Optional filters do not necessarily require building SQL strings. When the set of filters is known, normal fixed SQL can express any combination:
+
+```ts
+const searchUsers = sql`
+  SELECT id, name, status, created_at
+  FROM users
+  WHERE (:status IS NULL OR status = :status)
+    AND (:createdFrom IS NULL OR created_at >= :createdFrom)
+    AND (:createdTo IS NULL OR created_at < :createdTo)
+`;
+
+const query = bind(searchUsers, {
+  status,
+  createdFrom,
+  createdTo,
+}, 'indexed');
+```
+
+Bind `null` for filters that are not used. The SQL text stays fixed and the values stay bound; no Serene-specific optional-filter feature is required.
+
+If users can change the query structure itself—for example, adding arbitrary joins or grouping—that is a different problem and may still require dynamic SQL and additional review.
+
 ## Documentation
 
 - [Design](docs/design.md) — goals, boundaries, and why Serene stays small.

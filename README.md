@@ -12,11 +12,13 @@ It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
 
-Serene is currently pre-release and not yet published to npm. Install it directly from GitHub for now:
+Current release: **0.1** (`v0.1.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
 
 ```sh
-npm install github:mk3008/serene
+npm install github:mk3008/serene#v0.1.0
 ```
+
+Use `github:mk3008/serene` only when you intentionally want the latest `main` instead of a pinned release.
 
 Node.js 22+. The runtime has zero dependencies.
 

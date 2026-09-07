@@ -14,7 +14,7 @@
     "test": "npm run build && node --test test/*.test.mjs",
     "lint": "node --check tooling/audit.mjs && node --check tooling/cli.mjs && node --check tooling/filter.mjs",
     "check": "npm run lint && npm run typecheck && npm test",
-    "prepack": "npm run build"
+    "prepare": "npm run build"
   },
   "engines": { "node": ">=22" },
   "devDependencies": { "typescript": "5.9.3" },

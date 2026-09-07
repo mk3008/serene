@@ -1,13 +1,13 @@
 {
   "name": "@mk3008/serene",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A micro screener for raw SQL review triage.",
   "repository": { "type": "git", "url": "git+https://github.com/mk3008/serene.git" },
   "type": "module",
   "license": "MIT",
   "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }, "./audit": { "types": "./tooling/audit.d.mts", "default": "./tooling/audit.mjs" }, "./filter": { "types": "./tooling/filter.d.mts", "default": "./tooling/filter.mjs" } },
   "bin": { "serene-audit": "./tooling/cli.mjs" },
-  "files": ["dist", "tooling", "README.md", "docs", "LICENSE"],
+  "files": ["dist", "tooling"],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",

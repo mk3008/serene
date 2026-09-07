@@ -1,0 +1,22 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+---TASK---
+Review SQL construction in this application and write a concise note in `REVIEW.md` describing the construction paths that need follow-up. Do not change application behavior.
+---PKG---
+{
+  "name": "adoption-billing-construction-review",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check database.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}

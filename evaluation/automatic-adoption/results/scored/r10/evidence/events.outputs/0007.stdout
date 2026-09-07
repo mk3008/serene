@@ -1,0 +1,5 @@
+# SQL construction follow-up
+
+-  () builds the  clause by concatenating the caller supplied  into SQL. This is a Serene  violation and needs urgent injection and input handling review; route the value through a bound parameter while preserving the query behavior.
+-  () passes a raw SQL string to . Serene marks this execution site , so confirm the SQL provenance and whether this fixed statement is an intentional native SQL exception. Keep its result semantics in scope during any remediation.
+-  () executes a schema string supplied by the caller, and  () executes query text supplied by callers. These wrapper sinks are outside the file local findings above; trace every caller and ensure untrusted values cannot reach SQL text.  currently supplies a fixed schema, while  supplies a Serene bound query and should be checked as the ordinary path.

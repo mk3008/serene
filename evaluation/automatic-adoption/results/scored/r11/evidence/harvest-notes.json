@@ -1,0 +1,9 @@
+{
+  "run_id": "r11",
+  "primary_task_artifact": "AUTHORIZATION.md",
+  "primary_task_artifact_present": true,
+  "ancillary_actor_answer": "ANSWER.md absent",
+  "process_metrics": "available from recorder",
+  "gold_acceptance_scope": "Authored baseline functional verifier; not participant correctness",
+  "automatic_adoption_grade": null
+}

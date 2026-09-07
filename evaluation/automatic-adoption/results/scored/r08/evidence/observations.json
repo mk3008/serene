@@ -1,0 +1,36 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/scored/r08/evidence/events.outputs",
+      "integrity_verified": null,
+      "mismatches": [],
+      "streams": []
+    },
+    "command_started": 0,
+    "command_wall_seconds": null,
+    "commands": [],
+    "completed_commands": 0,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 0,
+    "final_snapshot": {
+      "artifact_count": 10,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 2,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r08",
+      "snapshot_root": "evaluation/automatic-adoption/results/scored/r08/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [],
+    "rejections": 0,
+    "run_wall_seconds": 14.746568323,
+    "stderr_bytes": 0,
+    "stdout_bytes": 0,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

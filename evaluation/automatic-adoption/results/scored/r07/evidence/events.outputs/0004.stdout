@@ -1,0 +1,9 @@
+
+> adoption-product-sku-lookup@1.0.0 test
+> node test.mjs
+
+stockroom checks passed
+
+> adoption-product-sku-lookup@1.0.0 check
+> node --check app.mjs && node --check test.mjs
+

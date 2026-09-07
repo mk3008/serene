@@ -128,7 +128,8 @@ def _output_observation(finishes: list[dict[str, Any]], artifact_root: Path | No
             else:
                 row["verified"] = True
             records.append(row)
-    return {"artifact_root": str(artifact_root) if artifact_root else None, "streams": records, "mismatches": mismatches, "integrity_verified": bool(records) and not mismatches and all(r["verified"] for r in records)}
+    verified: bool | None = None if not finishes else bool(records) and not mismatches and all(r["verified"] for r in records)
+    return {"artifact_root": str(artifact_root) if artifact_root else None, "streams": records, "mismatches": mismatches, "integrity_verified": verified}
 
 
 def summarize(events: list[dict[str, Any]], parse_errors: list[dict[str, Any]] | None = None, artifact_root: Path | None = None, snapshot_root: Path | None = None) -> dict[str, Any]:

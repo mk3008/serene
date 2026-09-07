@@ -1,0 +1,1 @@
+Add `findProductBySku(db, sku)` to `app.mjs` for the receiving screen. Validate that the SKU is three uppercase letters, a dash, and four digits before querying. Return `null` when it is absent and otherwise return id, sku, name, and on_hand. Keep query values bound rather than inserted into SQL text. Do not change the seed data.

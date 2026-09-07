@@ -1,0 +1,2 @@
+bash: -c: line 2: syntax error near unexpected token `('
+bash: -c: line 2: `- database.mjs:5 (native.exec(schema)) executes a schema string supplied by the caller, and database.mjs:9 (native.prepare(text)) executes query text supplied by callers. These wrapper sinks are outside the file local findings above; trace every caller and ensure untrusted values cannot reach SQL text. openBilling currently supplies a fixed schema, while invoice supplies a Serene bound query and should be checked as the ordinary path.'

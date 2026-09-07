@@ -1,0 +1,1 @@
+Added REVIEW.md documenting the SQL paths requiring follow-up: unsafe account concatenation, unresolved raw paid query, and database wrapper execution sinks. Application behavior is unchanged. `npm test` and `npm run check` pass.

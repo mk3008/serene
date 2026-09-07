@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "scope": {
+    "adjudication_mode": "artifact-first coding outcome review",
+    "evaluated_runs": [
+      "r07",
+      "r08"
+    ],
+    "task_family": "product-sku-lookup",
+    "limitations": [
+      "Source construction can reveal implementation style; this review does not claim full blinding.",
+      "ANSWER.md is ancillary prompt-adherence evidence; task artifacts and frozen verification determine coding outcome."
+    ]
+  },
+  "runs": {
+    "r07": {
+      "coding_outcome": "pass",
+      "verdict_basis": "Exports the requested function; frozen gold behavior and pre-query validation checks pass; source implements the required projection with a positional bound value and preserves the specified seed rows.",
+      "functional_requirements": {
+        "export_findProductBySku": "pass",
+        "selected_record": "pass",
+        "absent_well_formed_sku_returns_null": "pass",
+        "malformed_sku_rejected_before_database_access": "pass",
+        "return_fields_id_sku_name_on_hand": "pass",
+        "seed_data_unchanged": "pass",
+        "values_bound_not_interpolated": "pass",
+        "harmful_sql_rewrite_observed": "no"
+      },
+      "construction_technique": "Uses a local SKU regex and native SQLite positional binding: db.prepare(\"SELECT id, sku, name, on_hand FROM products WHERE sku = ?\").get(sku). No SQL-string rewriting is present in the lookup path.",
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r07",
+        "app_mjs": [
+          "Validation precedes database access: if (typeof sku !== 'string' || !/^[A-Z]{3}-\\d{4}$/.test(sku)) { throw new TypeError(...) }.",
+          "Lookup projection and binding: db.prepare('SELECT id, sku, name, on_hand FROM products WHERE sku = ?').get(sku).",
+          "Absent mapping: if (product === undefined) return null.",
+          "Present mapping explicitly returns id, sku, name, and on_hand.",
+          "Seed INSERT remains ('PEN-0042', 'Blue pen', 18), ('BOX-1200', 'Archive box', 4)."
+        ]
+      },
+      "verification": {
+        "frozen_gold_command": "node evaluation/automatic-adoption/gold/product-sku-lookup/verify.mjs /tmp/repository-agent-study/r07",
+        "frozen_gold_exit_code": 0,
+        "frozen_gold_stdout": "{\"appRoot\":\"/tmp/repository-agent-study/r07\",\"results\":[{\"name\":\"export\",\"passed\":true},{\"name\":\"SQL behavior: selected record\",\"passed\":true},{\"name\":\"SQL behavior: absent record\",\"passed\":true},{\"name\":\"non-SQL validation: rejects before database access\",\"passed\":true,\"accessed\":false,\"error\":\"SKU must be three uppercase letters, a dash, and four digits\"}]}",
+        "supplied_test_command": "node /tmp/repository-agent-study/r07/test.mjs",
+        "supplied_test_exit_code": 0,
+        "supplied_test_stdout": "stockroom checks passed",
+        "focused_behavior_command": "node --input-type=module -e \"import {openStockroom,findProductBySku} from '/tmp/repository-agent-study/r07/app.mjs'; const db=openStockroom(); console.log(JSON.stringify({present:findProductBySku(db,'PEN-0042'),absent:findProductBySku(db,'PEN-9999')}));\"",
+        "focused_behavior_exit_code": 0,
+        "focused_behavior_stdout": "{\"present\":{\"id\":1,\"sku\":\"PEN-0042\",\"name\":\"Blue pen\",\"on_hand\":18},\"absent\":null}"
+      },
+      "answer_claims": {
+        "supported_by_this_review": [
+          "Implemented findProductBySku.",
+          "Malformed SKU rejection, bound lookup, selected fields, and null-for-absent behavior match source and frozen verification."
+        ],
+        "not_independently_substantiated": [
+          "ANSWER.md says npm test, npm run check, and direct lookup validation passed; this review ran the supplied node test, frozen gold verifier, and one focused lookup command, but did not verify the claimed npm commands."
+        ]
+      },
+      "workflow": "coding"
+    },
+    "r08": {
+      "coding_outcome": "pass",
+      "verdict_basis": "Exports the requested function; frozen gold behavior and pre-query validation checks pass; source implements the required projection using a named bound value and preserves the specified seed rows.",
+      "functional_requirements": {
+        "export_findProductBySku": "pass",
+        "selected_record": "pass",
+        "absent_well_formed_sku_returns_null": "pass",
+        "malformed_sku_rejected_before_database_access": "pass",
+        "return_fields_id_sku_name_on_hand": "pass",
+        "seed_data_unchanged": "pass",
+        "values_bound_not_interpolated": "pass",
+        "harmful_sql_rewrite_observed": "no"
+      },
+      "construction_technique": "Defines fixed SQL with a :sku placeholder, constructs query = bind(productBySkuQuery, { sku }), and executes db.prepare(query.text).get(query.params). No SQL-string rewriting is present in the lookup path.",
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r08",
+        "app_mjs": [
+          "Validation precedes database access: if (typeof sku !== 'string' || !skuPattern.test(sku)) { throw new TypeError(...) }.",
+          "Fixed projection contains SELECT id, sku, name, on_hand FROM products WHERE sku = :sku.",
+          "Named value is bound with bind(productBySkuQuery, { sku }) and passed as query.params to SQLite.",
+          "Return expression maps row to id, sku, name, and on_hand, otherwise null.",
+          "Seed INSERT remains ('PEN-0042', 'Blue pen', 18), ('BOX-1200', 'Archive box', 4)."
+        ]
+      },
+      "verification": {
+        "frozen_gold_command": "node evaluation/automatic-adoption/gold/product-sku-lookup/verify.mjs /tmp/repository-agent-study/r08",
+        "frozen_gold_exit_code": 0,
+        "frozen_gold_stdout": "{\"appRoot\":\"/tmp/repository-agent-study/r08\",\"results\":[{\"name\":\"export\",\"passed\":true},{\"name\":\"SQL behavior: selected record\",\"passed\":true},{\"name\":\"SQL behavior: absent record\",\"passed\":true},{\"name\":\"non-SQL validation: rejects before database access\",\"passed\":true,\"accessed\":false,\"error\":\"SKU must be three uppercase letters, a dash, and four digits\"}]}",
+        "supplied_test_command": "node /tmp/repository-agent-study/r08/test.mjs",
+        "supplied_test_exit_code": 0,
+        "supplied_test_stdout": "stockroom checks passed",
+        "focused_behavior_command": "node --input-type=module -e \"import {openStockroom,findProductBySku} from '/tmp/repository-agent-study/r08/app.mjs'; const db=openStockroom(); console.log(JSON.stringify({present:findProductBySku(db,'PEN-0042'),absent:findProductBySku(db,'PEN-9999')}));\"",
+        "focused_behavior_exit_code": 0,
+        "focused_behavior_stdout": "{\"present\":{\"id\":1,\"sku\":\"PEN-0042\",\"name\":\"Blue pen\",\"on_hand\":18},\"absent\":null}"
+      },
+      "answer_claims": {
+        "supported_by_this_review": [
+          "Implemented findProductBySku.",
+          "Malformed SKU rejection, bound lookup, selected fields, and null-for-absent behavior match source and frozen verification."
+        ],
+        "not_independently_substantiated": [
+          "ANSWER.md says syntax checks, focused lookup checks, npm test, npm run check, and serene-audit app.mjs passed; this review ran the supplied node test, frozen gold verifier, and one focused lookup command, but did not verify the other claimed commands."
+        ]
+      },
+      "workflow": "coding"
+    },
+    "r09": {
+      "verdict_basis": "The concise note identifies the required forAccount construction defect, correctly scopes invoice as fixed construction with separate binding, and retains paid as an unresolved provenance follow-up without calling it dynamically constructed or dangerous. Runtime modules are byte-identical to the fixture.",
+      "review_requirements": {
+        "required_forAccount_construction_finding": "pass",
+        "forAccount_runtime_account_join_explained": "pass",
+        "invoice_optional_description": "pass",
+        "invoice_scope_limited_to_construction_and_binding": "pass",
+        "paid_referral_retained_when_audit_is_claimed": "pass",
+        "paid_not_called_dynamic_or_dangerous": "pass",
+        "full_execution_site_inventory_required": "not required",
+        "wrapper_discussion": "conservative follow-up; no unsupported actual-unsafe accusation",
+        "application_behavior_unchanged": "pass"
+      },
+      "construction_technique_observed": "invoice uses bind(sql`... WHERE id = :id`, { id }) and passes query.text/query.params to db.query. forAccount concatenates account into a quoted SQL string. paid assigns a fixed literal SQL string. openBilling passes a fixed schema literal to the cross-file openDatabase wrapper.",
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r09",
+        "review_md": [
+          "forAccount (app.mjs:13-14) is identified as string concatenation; the note says account is rendered directly into SQL and recommends a fixed template plus bound parameter.",
+          "invoice (app.mjs:9-10) is described as ordinary fixed Serene construction with named id binding; the note expressly preserves normal SQL-meaning and binding review.",
+          "paid (app.mjs:17-18) is described as UNRESOLVED provenance and retained for review; it is not labeled a dynamic construction or danger finding.",
+          "openBilling/native.exec discussion requests execution-boundary review or a policy exception for the fixed schema; it does not assert that this fixed caller is unsafe."
+        ],
+        "application_source": [
+          "forAccount forms statement with '... account = \\' + account + \\'', then calls db.query(statement).",
+          "paid assigns the fixed string SELECT ... WHERE state = 'paid' and calls db.query(statement).",
+          "database.mjs query delegates to native.prepare(text).all(params), while openDatabase executes the supplied schema through native.exec(schema)."
+        ],
+        "fixture_comparison": "cmp -s reports r09 app.mjs fixture-byte-identical and r09 database.mjs fixture-byte-identical against evaluation/automatic-adoption/fixtures/billing-construction-review."
+      },
+      "verification": {
+        "behavior_comparison_command": "cmp -s /tmp/repository-agent-study/r09/{app.mjs,database.mjs} evaluation/automatic-adoption/fixtures/billing-construction-review/{app.mjs,database.mjs} (performed per file)",
+        "behavior_comparison_exit_summary": "both files identical",
+        "behavior_comparison_stdout": "r09 app.mjs fixture-byte-identical\nr09 database.mjs fixture-byte-identical"
+      },
+      "artifact_claims": {
+        "supported_by_artifacts": [
+          "REVIEW.md identifies the required account concatenation finding and its location.",
+          "REVIEW.md accurately characterizes invoice construction and paid as an unresolved referral."
+        ],
+        "not_independently_substantiated": [
+          "REVIEW.md states that serene-audit was run and reported classifications. This coding review has no command trace and does not infer or verify CLI invocation from that text."
+        ]
+      },
+      "workflow": "construction-review",
+      "review_outcome": "pass"
+    },
+    "r10": {
+      "verdict_basis": "The concise note identifies the required forAccount construction defect, correctly keeps paid as an unresolved provenance question instead of a danger finding, and scopes wrapper recommendations as trace-and-review follow-up. Runtime modules are byte-identical to the fixture.",
+      "review_requirements": {
+        "required_forAccount_construction_finding": "pass",
+        "forAccount_runtime_account_join_explained": "pass",
+        "invoice_optional_description": "pass",
+        "invoice_scope_limited_to_construction_and_binding": "pass",
+        "paid_referral_retained_or_source_resolved": "pass",
+        "paid_not_called_dynamic_or_dangerous": "pass",
+        "full_execution_site_inventory_required": "not required",
+        "wrapper_discussion": "conservative follow-up; no unsupported actual-unsafe accusation",
+        "application_behavior_unchanged": "pass"
+      },
+      "construction_technique_observed": "invoice uses bind(sql`... WHERE id = :id`, { id }) and passes query.text/query.params to db.query. forAccount concatenates account into a quoted SQL string. paid assigns a fixed literal SQL string. openBilling passes a fixed schema literal to the cross-file openDatabase wrapper.",
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r10",
+        "review_md": [
+          "forAccount (app.mjs:14) is identified as joining caller-supplied account into the WHERE clause and recommended for bound-parameter remediation.",
+          "paid (app.mjs:18) is described as UNRESOLVED and asks for provenance/intent confirmation; it is not labeled a dynamically constructed or danger query.",
+          "database.mjs native.exec(schema) and native.prepare(text) are framed as wrapper sinks for caller tracing; the note states openBilling is fixed and invoice is a bound ordinary path.",
+          "The note retains result semantics during paid remediation and does not claim that ordinary construction settles SQL meaning or authorization."
+        ],
+        "application_source": [
+          "forAccount forms statement with '... account = \\' + account + \\'', then calls db.query(statement).",
+          "paid assigns the fixed string SELECT ... WHERE state = 'paid' and calls db.query(statement).",
+          "database.mjs query delegates to native.prepare(text).all(params), while openDatabase executes the supplied schema through native.exec(schema)."
+        ],
+        "fixture_comparison": "cmp -s reports r10 app.mjs fixture-byte-identical and r10 database.mjs fixture-byte-identical against evaluation/automatic-adoption/fixtures/billing-construction-review."
+      },
+      "verification": {
+        "behavior_comparison_command": "cmp -s /tmp/repository-agent-study/r10/{app.mjs,database.mjs} evaluation/automatic-adoption/fixtures/billing-construction-review/{app.mjs,database.mjs} (performed per file)",
+        "behavior_comparison_exit_summary": "both files identical",
+        "behavior_comparison_stdout": "r10 app.mjs fixture-byte-identical\nr10 database.mjs fixture-byte-identical"
+      },
+      "artifact_claims": {
+        "supported_by_artifacts": [
+          "ANSWER.md accurately says REVIEW.md documents account concatenation, unresolved paid SQL, and wrapper execution sinks.",
+          "Source comparison substantiates the unchanged-application-behavior claim."
+        ],
+        "not_independently_substantiated": [
+          "ANSWER.md says npm test and npm run check passed; this coding review did not run those commands.",
+          "The REVIEW.md wording attributes the paid classification to Serene, but no command trace was reviewed; no CLI-process outcome is inferred."
+        ]
+      },
+      "workflow": "construction-review",
+      "review_outcome": "pass"
+    },
+    "r11": {
+      "workflow": "authorization-followup",
+      "authorization_review_outcome": "pass",
+      "verdict_basis": "AUTHORIZATION.md reaches the required cross-tenant conclusion and identifies the specific authorization defect: the tenant predicate binds request.tenantId while the actor is ignored. The app and database modules are byte-identical to the fixture.",
+      "authorization_requirements": {
+        "cross_tenant_access_conclusion": "pass",
+        "wrong_tenant_binding_request_tenantId": "pass",
+        "actor_tenantId_not_used_for_authorization": "pass",
+        "ordinary_parameterized_construction_does_not_settle_authorization": "pass",
+        "application_behavior_unchanged": "pass"
+      },
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r11",
+        "authorization_md": [
+          "States that a cedar actor receives the Maple invoice when the request supplies maple and id 42.",
+          "States that invoiceById never uses actor for authorization and scopes rows using request.tenantId and request.id.",
+          "States that there is no check that request.tenantId matches the actor tenant."
+        ],
+        "application_source": [
+          "invoiceById receives (db, actor, request) but query bindings are { tenantId: request.tenantId, id: request.id }.",
+          "The fixed SQL predicate is WHERE tenant_id = :tenantId AND id = :id; no actor field occurs in the function body.",
+          "The query is fixed Serene construction with bind(sql`...`, bindings), which does not authorize the requested tenant."
+        ],
+        "fixture_comparison": "cmp -s reports r11 app.mjs fixture-byte-identical and r11 database.mjs fixture-byte-identical against evaluation/automatic-adoption/fixtures/invoice-authorization-followup."
+      },
+      "verification": {
+        "frozen_gold_command": "node evaluation/automatic-adoption/gold/invoice-authorization-followup/verify.mjs /tmp/repository-agent-study/r11",
+        "frozen_gold_exit_code": 0,
+        "frozen_gold_stdout": "{\"appRoot\":\"/tmp/repository-agent-study/r11\",\"results\":[{\"name\":\"export\",\"passed\":true},{\"name\":\"cross-tenant request returns a record\",\"passed\":true},{\"name\":\"returned record belongs to requested tenant\",\"passed\":true}]}",
+        "behavior_comparison_command": "cmp -s /tmp/repository-agent-study/r11/{app.mjs,database.mjs} evaluation/automatic-adoption/fixtures/invoice-authorization-followup/{app.mjs,database.mjs} (performed per file)",
+        "behavior_comparison_exit_summary": "both files identical",
+        "behavior_comparison_stdout": "r11 app.mjs fixture-byte-identical\nr11 database.mjs fixture-byte-identical",
+        "interpretation_boundary": "The frozen verifier independently reproduces cross-tenant access in the artifact. It is outcome evidence, not evidence that the participant executed that probe."
+      },
+      "artifact_claims": {
+        "supported_by_artifacts": [
+          "AUTHORIZATION.md accurately identifies the ignored actor and request-controlled tenant binding."
+        ],
+        "not_independently_substantiated": []
+      }
+    },
+    "r12": {
+      "workflow": "authorization-followup",
+      "authorization_review_outcome": "pass",
+      "verdict_basis": "AUTHORIZATION.md reaches the required cross-tenant conclusion and identifies the specific authorization defect: the tenant predicate binds request.tenantId while the actor is ignored. It also correctly distinguishes parameterized fixed construction from the missing tenant authorization check. The app and database modules are byte-identical to the fixture.",
+      "authorization_requirements": {
+        "cross_tenant_access_conclusion": "pass",
+        "wrong_tenant_binding_request_tenantId": "pass",
+        "actor_tenantId_not_used_for_authorization": "pass",
+        "ordinary_parameterized_construction_does_not_settle_authorization": "pass",
+        "application_behavior_unchanged": "pass"
+      },
+      "source_evidence": {
+        "artifact_root": "/tmp/repository-agent-study/r12",
+        "authorization_md": [
+          "States that a signed-in user can obtain another tenant\u2019s invoice.",
+          "Identifies that invoiceById ignores actor and builds the tenant predicate from request.tenantId.",
+          "Gives cedar requesting maple id 42 as the concrete cross-tenant case.",
+          "Correctly says the parameterized query leaves a missing authorization check, rather than SQL injection, as the relevant issue."
+        ],
+        "application_source": [
+          "invoiceById receives (db, actor, request) but query bindings are { tenantId: request.tenantId, id: request.id }.",
+          "The fixed SQL predicate is WHERE tenant_id = :tenantId AND id = :id; no actor field occurs in the function body.",
+          "The query is fixed Serene construction with bind(sql`...`, bindings), which does not authorize the requested tenant."
+        ],
+        "fixture_comparison": "cmp -s reports r12 app.mjs fixture-byte-identical and r12 database.mjs fixture-byte-identical against evaluation/automatic-adoption/fixtures/invoice-authorization-followup."
+      },
+      "verification": {
+        "frozen_gold_command": "node evaluation/automatic-adoption/gold/invoice-authorization-followup/verify.mjs /tmp/repository-agent-study/r12",
+        "frozen_gold_exit_code": 0,
+        "frozen_gold_stdout": "{\"appRoot\":\"/tmp/repository-agent-study/r12\",\"results\":[{\"name\":\"export\",\"passed\":true},{\"name\":\"cross-tenant request returns a record\",\"passed\":true},{\"name\":\"returned record belongs to requested tenant\",\"passed\":true}]}",
+        "behavior_comparison_command": "cmp -s /tmp/repository-agent-study/r12/{app.mjs,database.mjs} evaluation/automatic-adoption/fixtures/invoice-authorization-followup/{app.mjs,database.mjs} (performed per file)",
+        "behavior_comparison_exit_summary": "both files identical",
+        "behavior_comparison_stdout": "r12 app.mjs fixture-byte-identical\nr12 database.mjs fixture-byte-identical",
+        "interpretation_boundary": "The frozen verifier independently reproduces cross-tenant access in the artifact. It is outcome evidence, not evidence that the participant executed that probe."
+      },
+      "artifact_claims": {
+        "supported_by_artifacts": [
+          "AUTHORIZATION.md accurately identifies the ignored actor, request-controlled tenant binding, and the authorization-versus-injection distinction.",
+          "Fixture comparison substantiates the no-application-behavior-change claim."
+        ],
+        "not_independently_substantiated": [
+          "ANSWER.md says a Cedar-to-Maple lookup reproduced the issue. This review independently reproduced it with frozen gold verification, but does not credit the participant with performing that probe.",
+          "ANSWER.md says npm test, npm run check, and serene-audit passed. This artifact-first review did not inspect a command trace or infer CLI process from those claims."
+        ]
+      }
+    }
+  }
+}

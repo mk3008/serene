@@ -1,0 +1,49 @@
+node_modules/@mk3008/serene/docs/review-coverage.md
+node_modules/@mk3008/serene/docs/parameter-scanning-verification.md
+node_modules/@mk3008/serene/docs/report.md
+node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md
+node_modules/@mk3008/serene/docs/security.md
+node_modules/@mk3008/serene/docs/api-redesign.md
+node_modules/@mk3008/serene/docs/design.md
+node_modules/@mk3008/serene/tooling/files.mjs
+node_modules/@mk3008/serene/tooling/cli.mjs
+node_modules/@mk3008/serene/tooling/audit.mjs
+node_modules/@mk3008/serene/tooling/audit.d.mts
+node_modules/@mk3008/serene/LICENSE
+node_modules/@mk3008/serene/package.json
+node_modules/@mk3008/serene/README.md
+node_modules/@mk3008/serene/dist/scanner.d.ts
+node_modules/@mk3008/serene/dist/scanner.js
+node_modules/@mk3008/serene/dist/index.js
+node_modules/@mk3008/serene/dist/index.d.ts
+node_modules/@mk3008/serene/dist/error.js
+node_modules/@mk3008/serene/dist/error.d.ts
+---
+{
+  "name": "@mk3008/serene",
+  "version": "0.1.0",
+  "description": "A micro screener for raw SQL review triage.",
+  "repository": { "type": "git", "url": "git+https://github.com/mk3008/serene.git" },
+  "type": "module",
+  "license": "MIT",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }, "./audit": { "types": "./tooling/audit.d.mts", "default": "./tooling/audit.mjs" } },
+  "bin": { "serene-audit": "./tooling/cli.mjs" },
+  "files": ["dist", "tooling", "README.md", "docs", "LICENSE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "lint": "node --check tooling/audit.mjs && node --check tooling/cli.mjs",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prepack": "npm run build"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "typescript": "5.9.3" },
+  "peerDependencies": { "typescript": "^5.9.3" },
+  "peerDependenciesMeta": { "typescript": { "optional": true } }
+}
+---
+total 36
+drwxr-xr-x 2 root root  4096 Sep  7 07:59 .
+drwxr-xr-x 4 root root  4096 Sep  7 07:59 ..
+-rw-r--r-- 1 root root 27911 Sep  7 07:59 mk3008-serene-0.1.0.tgz

@@ -1,0 +1,64 @@
+{
+  "name": "@mk3008/serene",
+  "version": "0.1.0",
+  "description": "A micro screener for raw SQL review triage.",
+  "repository": { "type": "git", "url": "git+https://github.com/mk3008/serene.git" },
+  "type": "module",
+  "license": "MIT",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }, "./audit": { "types": "./tooling/audit.d.mts", "default": "./tooling/audit.mjs" } },
+  "bin": { "serene-audit": "./tooling/cli.mjs" },
+  "files": ["dist", "tooling", "README.md", "docs", "LICENSE"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p test/tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "lint": "node --check tooling/audit.mjs && node --check tooling/cli.mjs",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prepack": "npm run build"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "typescript": "5.9.3" },
+  "peerDependencies": { "typescript": "^5.9.3" },
+  "peerDependenciesMeta": { "typescript": { "optional": true } }
+}
+{
+  "files": [
+    "app.mjs",
+    "database.mjs",
+    "test.mjs"
+  ],
+  "skipped": [
+    {
+      "path": "node_modules",
+      "reason": "excluded-directory"
+    }
+  ],
+  "executionSiteCounts": {
+    "ordinary": 1,
+    "review-required": 1,
+    "violation": 1
+  },
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 14,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "forAccount",
+      "level": "violation",
+      "code": "STRING_CONSTRUCTION",
+      "detail": "Concatenation/interpolation at a SQL boundary."
+    },
+    {
+      "file": "app.mjs",
+      "line": 18,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "paid",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    }
+  ],
+  "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+}

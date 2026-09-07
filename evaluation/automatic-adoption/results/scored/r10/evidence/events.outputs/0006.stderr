@@ -1,0 +1,19 @@
+bash: line 1: app.mjs:14: command not found
+bash: line 1: forAccount: command not found
+bash: line 1: WHERE: command not found
+bash: line 1: account: command not found
+bash: line 1: STRING_CONSTRUCTION: command not found
+bash: line 1: app.mjs:18: command not found
+bash: line 1: paid: command not found
+bash: line 1: db.query: command not found
+bash: line 1: UNRESOLVED: command not found
+bash: line 1: database.mjs:5: command not found
+bash: command substitution: line 1: syntax error near unexpected token `schema'
+bash: command substitution: line 1: `native.exec(schema)'
+bash: line 1: database.mjs:9: command not found
+bash: command substitution: line 1: syntax error near unexpected token `text'
+bash: command substitution: line 1: `native.prepare(text)'
+bash: line 1: openBilling: command not found
+bash: line 1: invoice: command not found
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

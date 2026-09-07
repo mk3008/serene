@@ -129,6 +129,7 @@ Runtime input chooses a reviewed key, not a SQL fragment.
 - [Review coverage](docs/review-coverage.md) — what source inspection detects, refers, or may miss.
 - [Binding verification](docs/parameter-scanning-verification.md) — detailed parameter behavior and regression evidence.
 - [Evaluation map](evaluation/README.md) — current research questions, AI-review evidence, and limits.
+- [AI adoption guide](docs/ai-adoption.md) — optional repository policy for installed Serene and AI review.
 
 ## Development
 

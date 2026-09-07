@@ -1,0 +1,5 @@
+# SQL construction follow-up
+
+- app.mjs:14 (forAccount) builds the WHERE account clause by concatenating the caller supplied account into SQL. This is a Serene STRING_CONSTRUCTION violation and needs urgent injection and input handling review; route the value through a bound parameter while preserving the query behavior.
+- app.mjs:18 (paid) passes a raw SQL string to db.query. Serene marks this execution site UNRESOLVED, so confirm the SQL provenance and whether this fixed statement is an intentional native SQL exception. Keep its result semantics in scope during any remediation.
+- database.mjs:5 (native.exec(schema)) executes a schema string supplied by the caller, and database.mjs:9 (native.prepare(text)) executes query text supplied by callers. These wrapper sinks are outside the file local findings above; trace every caller and ensure untrusted values cannot reach SQL text. openBilling currently supplies a fixed schema, while invoice supplies a Serene bound query and should be checked as the ordinary path.

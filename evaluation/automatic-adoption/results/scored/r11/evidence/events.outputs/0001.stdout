@@ -1,0 +1,52 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+
+--- TASK ---
+Investigate the authorization behavior of `invoiceById`. Write a concise `AUTHORIZATION.md` that explains whether a signed-in user can obtain another tenant’s invoice and identifies the relevant cause. Do not change application behavior.
+
+--- package ---
+{
+  "name": "adoption-invoice-authorization-followup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check database.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}
+
+--- files ---
+import { bind, sql } from '@mk3008/serene';
+import { openDatabase } from './database.mjs';
+
+export function openInvoices() {
+ return openDatabase(`CREATE TABLE invoices (id INTEGER PRIMARY KEY, tenant_id TEXT, amount INTEGER);
+   INSERT INTO invoices VALUES (41, 'cedar', 300), (42, 'maple', 510);`);
+}
+export function invoiceById(db, actor, request) {
+ const query = bind(sql`SELECT id, tenant_id, amount FROM invoices WHERE tenant_id = :tenantId AND id = :id`, { tenantId: request.tenantId, id: request.id });
+ return db.query(query.text, query.params).at(0) ?? null;
+}
+import { DatabaseSync } from 'node:sqlite';
+
+export function openDatabase(schema) {
+  const native = new DatabaseSync(':memory:');
+  native.exec(schema);
+  return {
+    query(text, params = {}) {
+      return native.prepare(text).all(params);
+    },
+  };
+}
+import assert from 'node:assert/strict';
+import { invoiceById, openInvoices } from './app.mjs';
+assert.equal(invoiceById(openInvoices(), { tenantId: 'cedar' }, { tenantId: 'cedar', id: 41 }).amount, 300);
+console.log('invoice portal checks passed');

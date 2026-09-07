@@ -1,0 +1,10 @@
+
+> adoption-invoice-authorization-followup@1.0.0 test
+> node test.mjs
+
+invoice portal checks passed
+
+> adoption-invoice-authorization-followup@1.0.0 check
+> node --check app.mjs && node --check database.mjs && node --check test.mjs
+
+AUTHORIZATION.md 465 bytes

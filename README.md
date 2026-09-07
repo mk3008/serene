@@ -1,20 +1,16 @@
 # Serene
 
-**Raw SQL is a little too raw.**
+**Raw SQL wasn't the problem. It was just too raw.**
 
-Serene is a lightweight review tool for people who want to keep writing raw SQL and keep using their native database driver.
+Serene is a lightweight review tool for teams that want to keep raw SQL and native database drivers.
 
-Raw SQL is not inherently unsafe. Some SQL construction paths are simple, fixed, and safely parameterized. Others are dynamic, unresolved, or deserve closer inspection.
+SQL injection is not a reason to avoid raw SQL. SQLi prevention does not require an ORM: fixed SQL with parameterized runtime values provides the same fundamental protection as parameterized ORM queries.
 
-Serene adds a small, recognizable boundary that lets humans and AI reviewers tell those paths apart.
+The problem is that raw SQL code does not always make that distinction obvious. Some paths are fixed and safely parameterized; others are dynamic, unresolved, or deserve closer inspection.
 
-Use Serene to identify ordinary, safely constructed SQL and spend your review effort on the paths that actually need additional scrutiny.
-
-For SQL construction and parameter separation, Serene aims to provide the same class of safety people often rely on an ORM for — without replacing SQL or your native driver.
+Serene makes the boundary explicit. Recognized construction can skip repeated construction-specific investigation, while raw or unresolved paths remain visible for additional scrutiny.
 
 Serene is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
-
-It does not prove that SQL is semantically correct, authorized, performant, or free from every vulnerability. Its job is narrower: make raw SQL construction easy to recognize and triage during review.
 
 ## Install
 

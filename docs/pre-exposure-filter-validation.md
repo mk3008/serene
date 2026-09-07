@@ -46,8 +46,12 @@ These fixed-response shape measurements are not model tokens, latency, money or
 a general compression ratio. Revision/path lengths and range selection change
 overhead. Body omission and source preservation are the primary product gate.
 
-No fresh AI participants or subagents were needed: the acceptance criteria are
-deterministic interface properties. No npm publication or host adapter is included.
+The original acceptance gate needed no fresh AI participants: its criteria are
+deterministic interface properties. A requested follow-up used exactly two fresh
+Luna / medium participants for a bounded behavior smoke check; see the
+[protocol, traces and result](../evaluation/filter-smoke/REPORT.md). It found no
+clear workflow disruption requiring a product change, without establishing an
+effectiveness or cost benefit. No npm publication or product host adapter is included.
 PR #4 behavioral results and Issue #6 adoption results remain separate evidence.
 
 ## Package gate

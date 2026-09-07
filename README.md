@@ -12,15 +12,15 @@ It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
 
-Current release: **0.1** (`v0.1.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
+Current release: **0.1.1** (`v0.1.1`). Serene is not published to the npm registry; install the tagged GitHub release directly:
 
 ```sh
-npm install github:mk3008/serene#v0.1.0
+npm install github:mk3008/serene#v0.1.1
 ```
 
 Use `github:mk3008/serene` only when you intentionally want the latest `main` instead of a pinned release.
 
-Node.js 22+. The runtime has zero dependencies.
+Node.js 22+. The runtime has zero dependencies. Full documentation stays in the tagged GitHub repository rather than being copied into `node_modules`.
 
 ## Quick start
 

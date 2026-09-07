@@ -1,0 +1,30 @@
+{
+  "files": [
+    "app.mjs",
+    "database.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 8,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "listCustomers",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    },
+    {
+      "file": "app.mjs",
+      "line": 16,
+      "column": 16,
+      "boundary": "driver-candidate",
+      "function": "findCustomerByEmail",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

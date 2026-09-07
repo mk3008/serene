@@ -1,0 +1,283 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0009.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0009.stdout",
+          "sequence": 9,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r04/events.outputs/0009.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r04/evidence/events.outputs/0009.stderr",
+          "sequence": 9,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 8,
+    "command_wall_seconds": 1.475870556,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; printf \"\\n---TASK---\\n\"; cat TASK.md; printf \"\\n---PACKAGE---\\n\"; cat package.json; printf \"\\n---README---\\n\"; cat README.md"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"1,240p\" app.mjs; printf \"\\n---DATABASE---\\n\"; sed -n \"1,260p\" database.mjs; printf \"\\n---TEST---\\n\"; sed -n \"1,260p\" test.mjs; printf \"\\n---NODE MODULES---\\n\"; ls -la node_modules/@mk3008/serene 2>/dev/null || true; rg -n \"serene|audit|sql|query|prepare|exec|SELECT|INSERT|UPDATE|DELETE\" . --glob \"!package-lock.json\" --glob \"!vendor/*\""
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"1,220p\" node_modules/@mk3008/serene/README.md; printf \"\\n---CLI---\\n\"; sed -n \"1,240p\" node_modules/@mk3008/serene/tooling/cli.mjs; printf \"\\n---AUDIT---\\n\"; node node_modules/@mk3008/serene/tooling/cli.mjs --strict --actionable-only app.mjs database.mjs"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "node node_modules/@mk3008/serene/tooling/cli.mjs app.mjs database.mjs"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<\"EOF\"\n# SQL construction review\n\nFollow-up is needed on these construction paths:\n\n- `app.mjs:13-14` (`byRegion`) builds the SQL statement by concatenating `region` into a quoted string before passing it to `db.query`. Serene classifies this execution site as a `violation` (`STRING_CONSTRUCTION`). Replace it with a fixed `sql` template and a separately bound `region` parameter, then review the resulting SQL and binding.\n- `app.mjs:17` (`queued`) passes a raw SQL string directly to `db.query`. `serene-audit` classifies the site as `review-required` (`UNRESOLVED`) because it cannot establish SQL provenance. Mark this as a fixed Serene construction (with binding if parameters are added) or otherwise document the reviewed construction path.\n- `database.mjs:5` (`openDatabase`) executes its `schema` argument through `native.exec`. This is an executable SQL boundary outside the audits",
+          "default",
+          "//",
+          "candidate",
+          "names.",
+          "The",
+          "current",
+          "caller",
+          "supplies",
+          "a",
+          "fixed",
+          "schema",
+          "literal,",
+          "but",
+          "the",
+          "helper",
+          "accepts",
+          "arbitrary",
+          "text"
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<\"EOF\"\n# SQL construction review\n\nFollow-up is needed on these construction paths:\n\n- app.mjs:13-14 (byRegion) builds the SQL statement by concatenating region into a quoted string before passing it to db.query. Serene classifies this execution site as a violation (STRING_CONSTRUCTION). Replace it with a fixed sql template and a separately bound region parameter, then review the resulting SQL and binding.\n- app.mjs:17 (queued) passes a raw SQL string directly to db.query. serene-audit classifies the site as review-required (UNRESOLVED) because it cannot establish SQL provenance. Mark this as a fixed Serene construction (with binding if parameters are added) or otherwise document the reviewed construction path.\n- database.mjs:5 (openDatabase) executes its schema argument through native.exec. This is an executable SQL boundary outside the audit default query/execute/unsafe candidate names. The current caller supplies a fixed schema literal, but the helper accepts arbitrary text; review the helper callers and keep schema input fixed or explicitly constrain this path.\n\napp.mjs:9-10 (byId) is recognized as ordinary Serene construction, so it does not need construction-provenance follow-up. SQL meaning, parameter use, and authorization still require their normal review.\nEOF\ncat REVIEW.md"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check && node node_modules/@mk3008/serene/tooling/cli.mjs --strict --actionable-only app.mjs database.mjs >/tmp/serene-audit.json; audit_status=$?; cat /tmp/serene-audit.json; exit $audit_status"
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > ANSWER.md <<\"EOF\"\nAdded REVIEW.md with a concise SQL construction review. It records the byRegion concatenation violation, queued unresolved raw SQL path, native.exec schema boundary, and the ordinary byId Serene path.\n\nChecks: npm test passed; npm run check passed. serene-audit --strict --actionable-only reports the documented byRegion violation and queued review-required finding, so its expected strict status is nonzero.\nEOF\ncat ANSWER.md"
+        ],
+        "sequence": 9
+      }
+    ],
+    "completed_commands": 8,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 3,
+    "final_snapshot": {
+      "artifact_count": 12,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 2,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r04",
+      "snapshot_root": "evaluation/automatic-adoption/results/calibration/r04/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 1,
+    "possible_cli_invocations_for_human_review": [
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<\"EOF\"\n# SQL construction review\n\nFollow-up is needed on these construction paths:\n\n- `app.mjs:13-14` (`byRegion`) builds the SQL statement by concatenating `region` into a quoted string before passing it to `db.query`. Serene classifies this execution site as a `violation` (`STRING_CONSTRUCTION`). Replace it with a fixed `sql` template and a separately bound `region` parameter, then review the resulting SQL and binding.\n- `app.mjs:17` (`queued`) passes a raw SQL string directly to `db.query`. `serene-audit` classifies the site as `review-required` (`UNRESOLVED`) because it cannot establish SQL provenance. Mark this as a fixed Serene construction (with binding if parameters are added) or otherwise document the reviewed construction path.\n- `database.mjs:5` (`openDatabase`) executes its `schema` argument through `native.exec`. This is an executable SQL boundary outside the audits",
+          "default",
+          "//",
+          "candidate",
+          "names.",
+          "The",
+          "current",
+          "caller",
+          "supplies",
+          "a",
+          "fixed",
+          "schema",
+          "literal,",
+          "but",
+          "the",
+          "helper",
+          "accepts",
+          "arbitrary",
+          "text"
+        ],
+        "sequence": 5
+      },
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<\"EOF\"\n# SQL construction review\n\nFollow-up is needed on these construction paths:\n\n- app.mjs:13-14 (byRegion) builds the SQL statement by concatenating region into a quoted string before passing it to db.query. Serene classifies this execution site as a violation (STRING_CONSTRUCTION). Replace it with a fixed sql template and a separately bound region parameter, then review the resulting SQL and binding.\n- app.mjs:17 (queued) passes a raw SQL string directly to db.query. serene-audit classifies the site as review-required (UNRESOLVED) because it cannot establish SQL provenance. Mark this as a fixed Serene construction (with binding if parameters are added) or otherwise document the reviewed construction path.\n- database.mjs:5 (openDatabase) executes its schema argument through native.exec. This is an executable SQL boundary outside the audit default query/execute/unsafe candidate names. The current caller supplies a fixed schema literal, but the helper accepts arbitrary text; review the helper callers and keep schema input fixed or explicitly constrain this path.\n\napp.mjs:9-10 (byId) is recognized as ordinary Serene construction, so it does not need construction-provenance follow-up. SQL meaning, parameter use, and authorization still require their normal review.\nEOF\ncat REVIEW.md"
+        ],
+        "sequence": 6
+      },
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check && node node_modules/@mk3008/serene/tooling/cli.mjs --strict --actionable-only app.mjs database.mjs >/tmp/serene-audit.json; audit_status=$?; cat /tmp/serene-audit.json; exit $audit_status"
+        ],
+        "sequence": 7
+      },
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "cat > ANSWER.md <<\"EOF\"\nAdded REVIEW.md with a concise SQL construction review. It records the byRegion concatenation violation, queued unresolved raw SQL path, native.exec schema boundary, and the ordinary byId Serene path.\n\nChecks: npm test passed; npm run check passed. serene-audit --strict --actionable-only reports the documented byRegion violation and queued review-required finding, so its expected strict status is nonzero.\nEOF\ncat ANSWER.md"
+        ],
+        "sequence": 9
+      }
+    ],
+    "rejections": 0,
+    "run_wall_seconds": 79.088448593,
+    "stderr_bytes": 288,
+    "stdout_bytes": 107584,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

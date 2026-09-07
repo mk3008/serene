@@ -1,0 +1,54 @@
+import { bind, sql } from '@mk3008/serene';
+import { openDatabase } from './database.mjs';
+
+export function openBilling() {
+  return openDatabase(`CREATE TABLE invoices (id INTEGER PRIMARY KEY, account TEXT, state TEXT, amount INTEGER);
+    INSERT INTO invoices (account, state, amount) VALUES ('acme', 'open', 120), ('orbit', 'paid', 75);`);
+}
+export function invoice(db, id) {
+  const query = bind(sql`SELECT id, account, state, amount FROM invoices WHERE id = :id`, { id });
+  return db.query(query.text, query.params).at(0) ?? null;
+}
+export function forAccount(db, account) {
+  const statement = 'SELECT id, account, state, amount FROM invoices WHERE account = \'' + account + '\'';
+  return db.query(statement);
+}
+export function paid(db) {
+  const statement = "SELECT id, account, state, amount FROM invoices WHERE state = 'paid'";
+  return db.query(statement);
+}
+---DB---
+import { DatabaseSync } from 'node:sqlite';
+
+export function openDatabase(schema) {
+  const native = new DatabaseSync(':memory:');
+  native.exec(schema);
+  return {
+    query(text, params = {}) {
+      return native.prepare(text).all(params);
+    },
+  };
+}
+---TEST---
+import assert from 'node:assert/strict';
+import { forAccount, invoice, openBilling, paid } from './app.mjs';
+const db = openBilling();
+assert.equal(invoice(db, 1).account, 'acme');
+assert.equal(forAccount(db, 'orbit').length, 1);
+assert.equal(paid(db).length, 1);
+console.log('billing checks passed');
+---README---
+# Billing exports
+
+A compact operations utility.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.

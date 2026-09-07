@@ -1,0 +1,13 @@
+{
+  "cli_event_log": {
+    "entries": 1,
+    "exists": true,
+    "path": "/tmp/repository-flow-probe/evidence/p04/cli-events.jsonl"
+  },
+  "cli_module": {
+    "bytes": 3435,
+    "sha256": "932856d8f2236d5e855c0e5a49e4286b55dc096f07455e29e7b88b2f7daa0e97"
+  },
+  "status": "pass",
+  "watch_paths": 14
+}

@@ -1,0 +1,9 @@
+{
+  "run": "p05",
+  "workflow": "export_focused_deployment_review",
+  "required_review_outcome": "pass",
+  "application_source_changes": "none observed",
+  "conditional_unresolved_referral_required": false,
+  "downstream_consumer_recommendation": "scope-expanding recommendation; not demonstrated additional defect",
+  "process_or_policy_inference": "none"
+}

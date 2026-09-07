@@ -1,0 +1,1 @@
+The access check is incorrectly scoped with `request.tenantId`. It must use the authenticated caller's `actor.tenantId` in `documentById`; a caller from north can request the south tenant and receive document id 2. Record this semantic authorization diagnosis in `AUTHORIZATION.md` and make no source changes. No audit step is required.

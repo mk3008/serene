@@ -1,0 +1,4 @@
+{
+  "final_message": "`AUTHORIZATION.md` now documents the authorization failure and evidence. The diagnosis: `documentById` filters by caller-controlled `request.tenantId` and never reads `actor`, allowing cross-organization reads in both directions. Existing `npm test` passes but does not cover mismatched actor/request tenants. No application code or behavior was changed.",
+  "run_id": "p07"
+}

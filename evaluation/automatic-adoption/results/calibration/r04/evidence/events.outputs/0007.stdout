@@ -1,0 +1,44 @@
+
+> adoption-calibration-construction-review@1.0.0 test
+> node test.mjs
+
+shipping queue checks passed
+
+> adoption-calibration-construction-review@1.0.0 check
+> node --check app.mjs && node --check database.mjs && node --check test.mjs
+
+{
+  "files": [
+    "app.mjs",
+    "database.mjs"
+  ],
+  "skipped": [],
+  "executionSiteCounts": {
+    "ordinary": 1,
+    "review-required": 1,
+    "violation": 1
+  },
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 14,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "byRegion",
+      "level": "violation",
+      "code": "STRING_CONSTRUCTION",
+      "detail": "Concatenation/interpolation at a SQL boundary."
+    },
+    {
+      "file": "app.mjs",
+      "line": 17,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "queued",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    }
+  ],
+  "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+}

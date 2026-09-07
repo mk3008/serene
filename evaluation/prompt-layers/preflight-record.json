@@ -1,0 +1,84 @@
+{
+  "artifact": {
+    "bytes": 27911,
+    "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
+  },
+  "cli_module_instrumented": {
+    "bytes": 3435,
+    "sha256": "932856d8f2236d5e855c0e5a49e4286b55dc096f07455e29e7b88b2f7daa0e97"
+  },
+  "cli_module_original": {
+    "bytes": 2397,
+    "sha256": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c"
+  },
+  "instrumented_successful_entry_events": 8,
+  "observer_events": 7,
+  "observer_records_open_access_only": true,
+  "parity": [
+    {
+      "case": "help",
+      "entry": "bin",
+      "exit_code": 0,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 494
+    },
+    {
+      "case": "help",
+      "entry": "node-cli",
+      "exit_code": 0,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 494
+    },
+    {
+      "case": "ordinary",
+      "entry": "bin",
+      "exit_code": 0,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 1019
+    },
+    {
+      "case": "ordinary",
+      "entry": "node-cli",
+      "exit_code": 0,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 1019
+    },
+    {
+      "case": "violation",
+      "entry": "bin",
+      "exit_code": 1,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 428
+    },
+    {
+      "case": "violation",
+      "entry": "node-cli",
+      "exit_code": 1,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 0,
+      "stdout_bytes": 428
+    },
+    {
+      "case": "invalidarg",
+      "entry": "bin",
+      "exit_code": 2,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 31,
+      "stdout_bytes": 0
+    },
+    {
+      "case": "invalidarg",
+      "entry": "node-cli",
+      "exit_code": 2,
+      "same_exit_stdout_stderr_bytes": true,
+      "stderr_bytes": 31,
+      "stdout_bytes": 0
+    }
+  ],
+  "status": "pass"
+}

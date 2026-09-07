@@ -1,0 +1,48 @@
+
+> adoption-invoice-authorization-followup@1.0.0 test
+> node test.mjs
+
+invoice portal checks passed
+
+> adoption-invoice-authorization-followup@1.0.0 check
+> node --check app.mjs && node --check database.mjs && node --check test.mjs
+
+{
+  "files": [
+    "app.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 9,
+      "column": 16,
+      "boundary": "serene",
+      "function": "invoiceById",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 9,
+      "column": 21,
+      "boundary": "serene",
+      "function": "invoiceById",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 10,
+      "column": 9,
+      "boundary": "driver-candidate",
+      "function": "invoiceById",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

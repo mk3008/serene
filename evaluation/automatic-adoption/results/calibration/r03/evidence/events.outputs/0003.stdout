@@ -1,0 +1,41 @@
+{
+  "files": [
+    "app.mjs",
+    "database.mjs",
+    "test.mjs"
+  ],
+  "skipped": [
+    {
+      "path": "node_modules",
+      "reason": "excluded-directory"
+    }
+  ],
+  "executionSiteCounts": {
+    "ordinary": 1,
+    "review-required": 1,
+    "violation": 1
+  },
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 14,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "byRegion",
+      "level": "violation",
+      "code": "STRING_CONSTRUCTION",
+      "detail": "Concatenation/interpolation at a SQL boundary."
+    },
+    {
+      "file": "app.mjs",
+      "line": 17,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "queued",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    }
+  ],
+  "scope": "Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery."
+}

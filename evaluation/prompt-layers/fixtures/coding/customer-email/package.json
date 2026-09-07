@@ -1,0 +1,1 @@
+{"name":"prompt-layer-customer-email","private":true,"type":"module","scripts":{"test":"node --test test.mjs","check":"npm test"}}

@@ -1,0 +1,9 @@
+{
+  "run_id": "r08",
+  "command_capture_complete": false,
+  "reason": "The final snapshot contains changed participant code, but the recorder has no command_started or command_finished events; no command trace can establish how it was produced.",
+  "process_metrics": "missing/not available",
+  "observed_captured_bytes": {"stdout": 0, "stderr": 0},
+  "interpretation": "These are observed recorder bytes, not actual cost and not evidence of no CLI use. No actor reconstruction or rerun was performed.",
+  "final_code_functional_checks": "Authored functional verifier passed independently against the active final root."
+}

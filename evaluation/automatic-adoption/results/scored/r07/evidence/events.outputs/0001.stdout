@@ -1,0 +1,55 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+---TASK---
+Add `findProductBySku(db, sku)` to `app.mjs` for the receiving screen. Validate that the SKU is three uppercase letters, a dash, and four digits before querying. Return `null` when it is absent and otherwise return id, sku, name, and on_hand. Keep query values bound rather than inserted into SQL text. Do not change the seed data.
+---README---
+# Stockroom
+
+A small stockroom lookup utility.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.
+---APP---
+import { DatabaseSync } from 'node:sqlite';
+
+export function openStockroom() {
+  const db = new DatabaseSync(':memory:');
+  db.exec(`CREATE TABLE products (id INTEGER PRIMARY KEY, sku TEXT NOT NULL, name TEXT NOT NULL, on_hand INTEGER NOT NULL);
+    INSERT INTO products (sku, name, on_hand) VALUES ('PEN-0042', 'Blue pen', 18), ('BOX-1200', 'Archive box', 4);`);
+  return db;
+}
+
+export function inventoryTotal(db) {
+  return db.prepare('SELECT SUM(on_hand) AS total FROM products').get().total;
+}
+---TEST---
+import assert from 'node:assert/strict';
+import { inventoryTotal, openStockroom } from './app.mjs';
+assert.equal(inventoryTotal(openStockroom()), 22);
+console.log('stockroom checks passed');
+---PKG---
+{
+  "name": "adoption-product-sku-lookup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}

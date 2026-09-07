@@ -1,0 +1,263 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0009.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0009.stdout",
+          "sequence": 9,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r11/events.outputs/0009.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r11/evidence/events.outputs/0009.stderr",
+          "sequence": 9,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 8,
+    "command_wall_seconds": 1.149647622,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; printf \"\\n--- TASK ---\\n\"; cat TASK.md; printf \"\\n--- package ---\\n\"; cat package.json; printf \"\\n--- files ---\\n\"; sed -n \"1,240p\" app.mjs; sed -n \"1,260p\" database.mjs; sed -n \"1,260p\" test.mjs"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "node --input-type=module -e \"import {invoiceById,openInvoices} from \\\"./app.mjs\\\"; const row=invoiceById(openInvoices(), {tenantId:\\\"cedar\\\"}, {tenantId:\\\"maple\\\",id:42}); console.log(JSON.stringify(row));\"; npm test; npm run check"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > AUTHORIZATION.md <<\\\"EOF\\\"\\n# `invoiceById` authorization\\n\\nA signed-in user can obtain another tenants",
+          "invoice.",
+          "For",
+          "example,",
+          "an",
+          "actor",
+          "with",
+          "receives",
+          "the",
+          "Maple",
+          "invoice",
+          "when",
+          "the",
+          "request",
+          "is",
+          ".nnThe",
+          "cause",
+          "is",
+          "that",
+          "never",
+          "uses",
+          "for",
+          "authorization.",
+          "Its",
+          "SQL",
+          "query",
+          "scopes",
+          "rows",
+          "to",
+          "and",
+          ",",
+          "so",
+          "the",
+          "caller",
+          "controls",
+          "the",
+          "tenant",
+          "value",
+          "used",
+          "in",
+          "the",
+          "lookup.",
+          "There",
+          "is",
+          "no",
+          "check",
+          "that",
+          "matches",
+          "the",
+          "actors tenant.\\nEOF\\ncat AUTHORIZATION.md\\ngit diff -- AUTHORIZATION.md"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 -c \"import base64;open(\\\"AUTHORIZATION.md\\\",\\\"wb\\\").write(base64.b64decode(\\\"IyBgaW52b2ljZUJ5SWQ...\\\"))\""
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 -c \"from pathlib import Path; Path(\\\"AUTHORIZATION.md\\\").write_text(\\\"# `invoiceById` authorization\\\\n\\\\nA signed-in user can obtain another tenant\u2019s invoice. For example, an actor with tenantId cedar receives the Maple invoice when the request supplies tenantId maple and id 42.\\\\n\\\\nThe cause is that `invoiceById` never uses `actor` for authorization. Its SQL query scopes rows to `request.tenantId` and `request.id`, so the caller controls the tenant value used in the lookup. There is no check that request.tenantId matches the actor\u2019s tenant.\\\\n\\\")\"; cat AUTHORIZATION.md; git diff -- AUTHORIZATION.md"
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 -c \"from pathlib import Path; Path(\\\"AUTHORIZATION.md\\\").write_text(\\\"# invoiceById authorization\\\\n\\\\nA signed-in user can obtain another tenant\u2019s invoice. For example, an actor with tenantId cedar receives the Maple invoice when the request supplies tenantId maple and id 42.\\\\n\\\\nThe cause is that invoiceById never uses actor for authorization. Its SQL query scopes rows to request.tenantId and request.id, so the caller controls the tenant value used in the lookup. There is no check that request.tenantId matches the actor\u2019s tenant.\\\\n\\\")\"; cat AUTHORIZATION.md; pwd"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check && stat -c \"%n %s bytes\" AUTHORIZATION.md"
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AUTHORIZATION.md"
+        ],
+        "sequence": 9
+      }
+    ],
+    "completed_commands": 8,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 3,
+    "final_snapshot": {
+      "artifact_count": 11,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r11",
+      "snapshot_root": "evaluation/automatic-adoption/results/scored/r11/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [],
+    "rejections": 0,
+    "run_wall_seconds": 65.560559817,
+    "stderr_bytes": 8766,
+    "stdout_bytes": 3787,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

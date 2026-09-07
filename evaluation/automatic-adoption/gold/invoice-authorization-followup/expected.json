@@ -1,0 +1,10 @@
+{
+  "kind": "authorization-followup",
+  "wrong_binding": "request.tenantId",
+  "actor_field": "actor.tenantId",
+  "cross_tenant": {
+    "actor": "cedar",
+    "requested": "maple",
+    "id": 42
+  }
+}

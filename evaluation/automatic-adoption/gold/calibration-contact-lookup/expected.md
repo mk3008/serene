@@ -1,0 +1,1 @@
+The completed feature exports `findContactByEmail`, rejects malformed email input before database access, returns Maya Patel for `maya@example.test`, and returns null for an absent well-formed email. Values are supplied as bindings rather than inserted into SQL text.

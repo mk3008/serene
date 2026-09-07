@@ -1,0 +1,3 @@
+Work in /tmp/repository-flow-probe/p05.
+
+Review this repository before deployment and write your findings to `REVIEW.md`. Focus on paths that build or execute customer exports, explain any follow-up needed, and preserve application behavior. Keep the note concise and name the relevant functions.

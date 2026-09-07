@@ -1,0 +1,141 @@
+{
+  "cohort_manifest": "pending agent identifiers after dispatch",
+  "parity": [
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r07",
+        "r08"
+      ],
+      "pass": true
+    },
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r09",
+        "r10"
+      ],
+      "pass": true
+    },
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r11",
+        "r12"
+      ],
+      "pass": true
+    }
+  ],
+  "phase": "scored",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "runs": [
+    "r07",
+    "r08",
+    "r09",
+    "r10",
+    "r11",
+    "r12"
+  ],
+  "shared_tarball": {
+    "bytes": 27911,
+    "path": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/artifacts/mk3008-serene-0.1.0.tgz",
+    "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
+  },
+  "source_evidence": {
+    "calibration_gate": {
+      "bytes": 7451,
+      "path": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/results/calibration/interface-gate.json",
+      "sha256": "c79344975305344374aa739dbba744022ea74e1767b4ebcd8861fef4ee67056b"
+    },
+    "fixtures": {
+      "billing-construction-review": {
+        "bytes": 2335,
+        "entries": 7,
+        "tree_sha256": "93a850c8081ea35582cffd40ca96fa1a3dd3d431eca6394cc1480cbe8f355588"
+      },
+      "invoice-authorization-followup": {
+        "bytes": 2059,
+        "entries": 7,
+        "tree_sha256": "1c4351228a0eb3a7fbf89d7e884eb1c6b831a69a49efdf612610ff27a652b971"
+      },
+      "product-sku-lookup": {
+        "bytes": 1711,
+        "entries": 6,
+        "tree_sha256": "d4337c86f27c1f0799f6d0ef1163d80c96382b126a2a9c83a6f0f7f93174a5a5"
+      }
+    },
+    "gold": {
+      "billing-construction-review": {
+        "bytes": 3535,
+        "entries": 5,
+        "tree_sha256": "fc42f776ce0abc7b13b28296dbc1aa05b1d2b5e97069f7f83cf3cbde573ecd53"
+      },
+      "invoice-authorization-followup": {
+        "bytes": 1831,
+        "entries": 4,
+        "tree_sha256": "3144dd32079e7d053b4c35bff5cff15303ac3c3e6539d5380010601ba3175edc"
+      },
+      "product-sku-lookup": {
+        "bytes": 1938,
+        "entries": 3,
+        "tree_sha256": "d3bae6fcf60c2baa0526a4ab367fa7e902defe408a7cbc8ed8e758fd51844065"
+      }
+    },
+    "package_stager": {
+      "bytes": 4685,
+      "sha256": "38849a4ecada46cd7f35b077833d69abdf9136eab5ae11b0f86faf04869caf98"
+    },
+    "packet_stager": {
+      "bytes": 13532,
+      "sha256": "33aa19100a0f0170d3b03e1e27c39985797b3e5ce952f2189d5e75405696436c"
+    },
+    "prompt_template": {
+      "bytes": 1058,
+      "sha256": "5bced932d29988eb4e35f34d431b1f82b66b63f1381d4f954e64313499986ff3"
+    },
+    "runner": {
+      "bytes": 13935,
+      "sha256": "2bc8ca58a6d5eb4ea58d04c0e6cc38b55ebcb8825d9f7dadf5761e8a94c7fe30"
+    }
+  },
+  "stage_manifests": {
+    "r07": "/tmp/repository-agent-study/evidence/r07/stage-manifest.json",
+    "r08": "/tmp/repository-agent-study/evidence/r08/stage-manifest.json",
+    "r09": "/tmp/repository-agent-study/evidence/r09/stage-manifest.json",
+    "r10": "/tmp/repository-agent-study/evidence/r10/stage-manifest.json",
+    "r11": "/tmp/repository-agent-study/evidence/r11/stage-manifest.json",
+    "r12": "/tmp/repository-agent-study/evidence/r12/stage-manifest.json"
+  }
+}

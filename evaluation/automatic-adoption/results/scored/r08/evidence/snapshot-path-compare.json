@@ -1,0 +1,10 @@
+{
+  "run_id": "r08",
+  "comparison": "last final_snapshot entries versus archived packet recursive paths",
+  "snapshot_count": 2,
+  "missing_from_archive": [],
+  "extra_in_archive": [],
+  "post_finish_events_retained": true,
+  "code_and_task_files_are_in_packet": true,
+  "actor_answer_separate": "packet/ANSWER.md"
+}

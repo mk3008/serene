@@ -1,0 +1,1 @@
+{"appRoot":"/tmp/repository-agent-study/r05","results":[{"name":"export","passed":true},{"name":"cross-tenant request returns a record","passed":true},{"name":"returned record belongs to requested tenant","passed":true}]}

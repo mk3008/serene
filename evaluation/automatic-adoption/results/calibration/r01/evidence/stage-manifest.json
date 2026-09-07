@@ -1,0 +1,116 @@
+{
+  "actual_paths": {
+    "event_log": "/tmp/repository-agent-study/evidence/r01/events.jsonl",
+    "evidence": "/tmp/repository-agent-study/evidence/r01",
+    "packet_root": "/tmp/repository-agent-study/r01",
+    "runner": "/tmp/repository-agent-study/runner.py",
+    "runtime": "/tmp/repository-agent-study"
+  },
+  "app_tree": {
+    "bytes": 3698,
+    "entries": 7,
+    "tree_sha256": "302a355123ea6901e67a86252eb76651a50ded221b6fca54b6e4c37304e532be"
+  },
+  "caps": {
+    "commands": 30,
+    "output_threshold_bytes": 24000,
+    "timeout_seconds": 120
+  },
+  "documentation": {
+    "node_modules/@mk3008/serene/README.md": {
+      "bytes": 5062,
+      "sha256": "707a5594fe142dd39e5455dab4a7bf819062bfc1f0b314bf3c4f088f0d311533"
+    },
+    "node_modules/@mk3008/serene/docs": {
+      "bytes": 44895,
+      "entries": 7,
+      "tree_sha256": "0da463c88aaa783b38a8d478652acca628e80c892c4b27d1deaefedc4f903250"
+    }
+  },
+  "expected_sole_difference": "root AGENTS.md instruction bundle",
+  "fixture": "calibration-contact-lookup",
+  "initial_text": {
+    "bytes": 136,
+    "path": "/tmp/repository-agent-study/evidence/r01/initial-text.txt",
+    "sha256": "7c50f64f2e2b273c34800ddb200686c9620a606a71a2ff0f487992aa96ace0fa"
+  },
+  "install_trees": {
+    "node_modules": {
+      "bytes": 23706044,
+      "entries": 178,
+      "tree_sha256": "e9c9256c1ca793be3d2ccc7a02173193c8e50fa163ff19acdf64a79f01e7ec1e"
+    },
+    "vendor": {
+      "bytes": 27911,
+      "entries": 1,
+      "tree_sha256": "e2114dc7edff839514852b313cf24337f845d2ab3080d362f2d25ba505520701"
+    }
+  },
+  "loaded_prompt": {
+    "bytes": 1250,
+    "canonical_sha256": "ff49bcc2aa663fca1840711b291cd8d46e930b17f69fb827a775f6c834a901b4",
+    "path": "/tmp/repository-agent-study/evidence/r01/participant-instructions.md",
+    "sha256": "ed3f5566215d1e3820d3c8225254639528a884e9c924e92fa719a5bfabcceb57"
+  },
+  "package_install": {
+    "app": "/tmp/repository-agent-study/r01",
+    "installed_bin": "/tmp/repository-agent-study/r01/node_modules/.bin/serene-audit",
+    "installed_package_json_sha256": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7",
+    "installed_typescript_package_json_sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6",
+    "package_json_sha256": "6fa8eafa6a1de8db61ecc9c234c64597c7c4161ae121b05350962858aa821bb9",
+    "package_lock_sha256": "af0da221b98d0c0450b4cf03b0509161535cb5a04b0b31903049803af16f0478",
+    "staged_tarball": "/tmp/repository-agent-study/r01/vendor/mk3008-serene-0.1.0.tgz",
+    "tarball_sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b",
+    "typescript_version": "5.9.3"
+  },
+  "package_verify": {
+    "app": "/tmp/repository-agent-study/r01",
+    "cli_sha256": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c",
+    "cli_stderr": "",
+    "cli_stdout": "Usage: serene-audit [--strict] [--actionable-only] [--sink=name] file-or-directory ...\nJSON inventory; --actionable-only reports counts by candidate execution site and only non-ordinary findings. Exit 1 on violations (also review-required with --strict), 2 on input errors.\nRecursively selects .ts/.tsx/.mts/.cts/.js/.jsx/.mjs/.cjs. Skips node_modules, dist, build, coverage, .git and symbolic links. Explicit files remain supported. File-local candidate inventory, not whole-program coverage.\n",
+    "runtime_stdout": "{\"id\":7}\n"
+  },
+  "phase": "calibration",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "run_id": "r01",
+  "runner": {
+    "sha256": "2bc8ca58a6d5eb4ea58d04c0e6cc38b55ebcb8825d9f7dadf5761e8a94c7fe30"
+  },
+  "serene_source_revision": "4c5204b40b384ad7304a7f90e145e60d4b7ac2c4",
+  "task_files": {
+    "AGENTS.md": {
+      "bytes": 528,
+      "sha256": "04e802d150cf65ccad2deb4897a2f7cb5447b67bc1c211acd4514946dce15079"
+    },
+    "README.md": {
+      "bytes": 369,
+      "sha256": "0923315f2a95c0b3b366b7f37b761bfc54ba90f55505762b966a77b79a1caf04"
+    },
+    "TASK.md": {
+      "bytes": 318,
+      "sha256": "b8f5df94c68d191eccf87eb81cce870579c9af126bfe63d3889abb647b4ccb31"
+    },
+    "app.mjs": {
+      "bytes": 497,
+      "sha256": "bc49c0f044869a8324f1b37245a177cf57c640bbedfd3f6feb6f25721725929f"
+    },
+    "package-lock.json": {
+      "bytes": 1414,
+      "sha256": "af0da221b98d0c0450b4cf03b0509161535cb5a04b0b31903049803af16f0478"
+    },
+    "package.json": {
+      "bytes": 363,
+      "sha256": "6fa8eafa6a1de8db61ecc9c234c64597c7c4161ae121b05350962858aa821bb9"
+    },
+    "test.mjs": {
+      "bytes": 209,
+      "sha256": "a9308533b9973000ad9ef55d31de7ba847c951a944e513fca12f30024eb4fea4"
+    }
+  },
+  "treatment": "instruction"
+}

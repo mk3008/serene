@@ -1,0 +1,8 @@
+{
+  "event": "observer_ready",
+  "pid": 4,
+  "recorded_at_ns": 1788760760571701768,
+  "stop_file": "/tmp/repository-flow-probe/evidence/p03/observer.stop",
+  "watch_count": 14,
+  "watch_list_sha256": "76fe9a398aff6adc31373949674a3d4bb19b818ab97314070b76c37668668928"
+}

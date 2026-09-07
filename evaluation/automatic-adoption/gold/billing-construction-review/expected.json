@@ -1,0 +1,12 @@
+{
+  "kind": "construction-review",
+  "ordinary": [
+    "invoice"
+  ],
+  "follow_up": [
+    "forAccount"
+  ],
+  "unresolved_referral": [
+    "paid"
+  ]
+}

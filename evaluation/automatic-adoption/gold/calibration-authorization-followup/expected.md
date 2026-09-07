@@ -1,0 +1,1 @@
+A north actor can request tenant `south` and case `2`, receiving the south record. The query binds `request.tenantId` rather than the signed-in actor's `tenantId`; its construction is fixed and parameterized, while the authorization decision is incorrect.

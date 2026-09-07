@@ -1,0 +1,5 @@
+Work in /tmp/repository-flow-probe/p04.
+
+Add a lookup for one customer by email. Export `findCustomerByEmail(db, email)` from `app.mjs`. An empty email is invalid and should throw a TypeError before the database is accessed. Return `null` when no customer exists; otherwise return exactly the selected customer's `id`, `email`, and `name`. Keep the existing records and behavior for other callers.
+
+Read and follow AGENTS.md before working.

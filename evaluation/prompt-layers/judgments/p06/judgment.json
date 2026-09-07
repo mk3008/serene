@@ -1,0 +1,9 @@
+{
+  "run": "p06",
+  "workflow": "export_focused_deployment_review",
+  "required_review_outcome": "pass",
+  "application_source_changes": "none observed",
+  "fixed_sql_referral": "appropriate provenance follow-up, not vulnerability or separate deployment gate",
+  "explicit_deployment_block": "dynamic findCustomersForExport construction only",
+  "process_or_policy_inference": "none"
+}

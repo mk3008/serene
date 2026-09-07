@@ -1,0 +1,7 @@
+{
+  "kind": "coding",
+  "exports": "findProductBySku",
+  "valid": "PEN-0042",
+  "invalid": "pen-42",
+  "absent": "PEN-9999"
+}

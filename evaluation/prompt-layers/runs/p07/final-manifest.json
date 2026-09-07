@@ -1,0 +1,71 @@
+{
+  "evidence": {
+    "initial-prompt.txt": {
+      "bytes": 258,
+      "sha256": "9c1cb9a4b4d6e9f75b81412516df7b3750f9fcbe8a5f0ad192446c163240f8f4"
+    },
+    "observer.stop": {
+      "bytes": 5,
+      "sha256": "a11c3d917a2149a4b548217038bc8f2dd2130a1966e0c7af5c4225d81f25a8c3"
+    },
+    "observer/inotify-events.jsonl": {
+      "bytes": 8508,
+      "sha256": "a6eeedca2d8095049eb22fd68618cb30d3ad51937aa1aaea0ae2031938569ec0"
+    },
+    "observer/observer-final.json": {
+      "bytes": 185,
+      "sha256": "dfcfcb19d604ca5eacda2877e9c3c392debc403d63572b430b922087fd03b0b0"
+    },
+    "observer/observer-start.json": {
+      "bytes": 269,
+      "sha256": "efa787932165ab0a5c573fbe05dee2e08bcf5543acdebf05890ff3fd22ff3904"
+    },
+    "postrun-integrity.json": {
+      "bytes": 303,
+      "sha256": "af8a7ae618d70da4de934581306bfbd4ee6128f73818a3a72780c87bc78ea9c0"
+    },
+    "stage-manifest.json": {
+      "bytes": 5357,
+      "sha256": "2ad81cf6bdef0437a1d6827a59be933881e520d78375e90649d348f2ae17ab59"
+    },
+    "watch-list.json": {
+      "bytes": 1047,
+      "sha256": "7c2fbd6517633724769fb08fd826cb480ef5de0ec896992b5cb101e1efb2a95d"
+    }
+  },
+  "packet": {
+    "AGENTS.md": {
+      "bytes": 436,
+      "sha256": "5ae8e6ef71ff4d45695e73da74fce74dccf4cbdddc997def312ec2fcdeff49b1"
+    },
+    "AUTHORIZATION.md": {
+      "bytes": 1118,
+      "sha256": "a6ebafeca0ced9fc4182752c6178d6dd6bbbce538ede1ddf97ff1c68066e779d"
+    },
+    "README.md": {
+      "bytes": 157,
+      "sha256": "139cb03a1068942c140295ed031596f54613513e5a17d3aea795f705886b9037"
+    },
+    "TASK.md": {
+      "bytes": 217,
+      "sha256": "50a936f3b1e663e01883e5536235d3c7c9ef4cec2ff8f2cbcd32aa9a3be268aa"
+    },
+    "app.mjs": {
+      "bytes": 325,
+      "sha256": "eb8005c765c5f701b128d4986c718b3aaa50361350abbd4555f509c0970638ed"
+    },
+    "database.mjs": {
+      "bytes": 473,
+      "sha256": "2a72a6c4d6b957d13a4a07b3104b7cec189e5c6ce0b5d9183bfc59ffd640f97e"
+    },
+    "package.json": {
+      "bytes": 215,
+      "sha256": "f1c945d3e46522977e438805cc4e15a3e838f1cbe5641f0aad048981a10dfe7b"
+    },
+    "test.mjs": {
+      "bytes": 274,
+      "sha256": "cb483372eddb59ec3adbd788a90a921826d34351b54bd40c0b79afd2996238d9"
+    }
+  },
+  "source_root": "/tmp/repository-flow-probe/p07"
+}

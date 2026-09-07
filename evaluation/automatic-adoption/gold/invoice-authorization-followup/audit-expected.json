@@ -1,0 +1,5 @@
+[
+  {"line":9,"column":16,"function":"invoiceById","level":"ordinary","code":"SCREENED_SOURCE","boundary":"serene"},
+  {"line":9,"column":21,"function":"invoiceById","level":"ordinary","code":"SCREENED_SOURCE","boundary":"serene"},
+  {"line":10,"column":9,"function":"invoiceById","level":"ordinary","code":"SCREENED_SOURCE","boundary":"driver-candidate"}
+]

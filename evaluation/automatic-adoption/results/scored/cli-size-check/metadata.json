@@ -1,0 +1,19 @@
+{
+  "scope": "Read-only deterministic CLI output-size check; not a participant command log or an agent-process measurement.",
+  "cwd": "/tmp/repository-agent-study/r09",
+  "command": ["node", "node_modules/@mk3008/serene/tooling/cli.mjs", "app.mjs", "database.mjs"],
+  "default": {
+    "exit_code": 1,
+    "stdout_path": "default.json",
+    "stdout_bytes": 1583,
+    "stdout_sha256": "070e8feb0bd0eb0140e8bb486b30ae9c621c1cd5b43b1763279735a9b805a13a"
+  },
+  "actionable_only": {
+    "command_prefix": ["--actionable-only"],
+    "exit_code": 1,
+    "stdout_path": "actionable-only.json",
+    "stdout_bytes": 925,
+    "stdout_sha256": "3af932df992133097d466ee01709743bd2b17de7d7d03e20452acfd7954858ba"
+  },
+  "interpretation": "The matching nonzero exits reflect the fixture violation. The byte comparison is deterministic for this exact cwd and argv only; it is not causal cost or adoption evidence."
+}

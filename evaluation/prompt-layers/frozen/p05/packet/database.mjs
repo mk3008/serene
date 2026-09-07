@@ -1,0 +1,2 @@
+import { DatabaseSync } from 'node:sqlite';
+export function openDatabase() { const native=new DatabaseSync(':memory:'); native.exec(`CREATE TABLE customers (id INTEGER PRIMARY KEY,email TEXT NOT NULL,name TEXT NOT NULL,state TEXT NOT NULL); INSERT INTO customers (email,name,state) VALUES ('maya@example.test','Maya Patel','active'),('lee@example.test','Lee Tran','inactive');`); return {query(text,params={}){return native.prepare(text).all(params).map((row) => ({ ...row }));}}; }

@@ -1,0 +1,289 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0008.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0008.stdout",
+          "sequence": 8,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0008.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0008.stderr",
+          "sequence": 8,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0009.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0009.stdout",
+          "sequence": 9,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0009.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0009.stderr",
+          "sequence": 9,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0010.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0010.stdout",
+          "sequence": 10,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0010.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0010.stderr",
+          "sequence": 10,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0012.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0012.stdout",
+          "sequence": 12,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r10/events.outputs/0012.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r10/evidence/events.outputs/0012.stderr",
+          "sequence": 12,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 11,
+    "command_wall_seconds": 1.6817950910000001,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; echo ---TASK---; cat TASK.md; echo ---PKG---; cat package.json"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"1,240p\" app.mjs; echo ---DB---; sed -n \"1,260p\" database.mjs; echo ---TEST---; sed -n \"1,260p\" test.mjs; echo ---README---; cat README.md"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/README.md; echo ---PKGFILES---; find node_modules/@mk3008/serene -maxdepth 2 -type f -print"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "node node_modules/@mk3008/serene/tooling/cli.mjs serene-audit --actionable-only . || true; echo ---COVERAGE---; sed -n \"1,240p\" node_modules/@mk3008/serene/docs/review-coverage.md"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/package.json; node node_modules/@mk3008/serene/tooling/cli.mjs --actionable-only ."
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<EOF\n# SQL construction follow-up\n\n- `app.mjs:14` (`forAccount`) builds the `WHERE account` clause by concatenating the caller supplied `account` into SQL. This is a Serene `STRING_CONSTRUCTION` violation and needs urgent injection and input handling review; route the value through a bound parameter while preserving the query behavior.\n- `app.mjs:18` (`paid`) passes a raw SQL string to `db.query`. Serene marks this execution site `UNRESOLVED`, so confirm the SQL provenance and whether this fixed statement is an intentional native SQL exception. Keep its result semantics in scope during any remediation.\n- `database.mjs:5` (`native.exec(schema)`) executes a schema string supplied by the caller, and `database.mjs:9` (`native.prepare(text)`) executes query text supplied by callers. These wrapper sinks are outside the file local findings above; trace every caller and ensure untrusted values cannot reach SQL text. `openBilling` currently supplies a fixed schema, while `invoice` supplies a Serene bound query and should be checked as the ordinary path.\nEOF\nnpm test\nnpm run check\n"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat REVIEW.md"
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "echo IyBTUUwgY29uc3RydWN0aW9uIGZvbGxvdy11cAoKLSBhcHAubWpzOjE0IChmb3JBY2NvdW50KSBidWlsZHMgdGhlIFdoZXJlIGFjY291bnQgY2xhdXNlIGJ5IGNvbmNhdGVuYXRpbmcgdGhlIGNhbGxlciBzdXBwbGllZCBhY2NvdW50IGludG8gU1FMLiBUaGlzIGlzIGEgU2VyZW5lIFNUUklOR19DT05TVFJVQ1RJT04gdmlvbGF0aW9uIGFuZCBuZWVkcyB1cmdlbnQgaW5qZWN0aW9uIGFuZCBpbnB1dCBoYW5kbGluZyByZXZpZXc7IHJvdXRlIHRoZSB2YWx1ZSB0aHJvdWdoIGEgYm91bmQgcGFyYW1ldGVyIHdoaWxlIHByZXNlcnZpbmcgdGhlIHF1ZXJ5IGJlaGF2aW9yLgotIGFwcC5tanM6MTggKHBhaWQpIHBhc3NlcyBhIHJhdyBTUUwgc3RyaW5nIHRvIGRiLnF1ZXJ5LiBTZXJlbmUgbWFya3MgdGhpcyBleGVjdXRpb24gc2l0ZSBVTlJFU09MVkVELCBzbyBjb25maXJtIHRoZSBTUUwgcHJvdmVuYW5jZSBhbmQgd2hldGhlciB0aGlzIGZpeGVkIHN0YXRlbWVudCBpcyBhbiBpbnRlbnRpb25hbCBuYXRpdmUgU1FMI\u06d0 exceptions. Keep its result semantics in scope during any remediation.\n- database.mjs:5 (native.exec(schema)) executes a schema string supplied by the caller, and database.mjs:9 (native.prepare(text)) executes query text supplied by callers. These wrapper sinks are outside the file local findings above; trace every caller and ensure untrusted values cannot reach SQL text. openBilling currently supplies a fixed schema, while invoice supplies a Serene bound query and should be checked as the ordinary path.\n"
+        ],
+        "sequence": 8
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"l\" REVIEW.md"
+        ],
+        "sequence": 9
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat REVIEW.md; npm test; npm run check"
+        ],
+        "sequence": 10
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "git diff -- REVIEW.md 2>/dev/null || true; test -f ANSWER.md && cat ANSWER.md || true"
+        ],
+        "sequence": 12
+      }
+    ],
+    "completed_commands": 11,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 2,
+    "final_snapshot": {
+      "artifact_count": 12,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 2,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r10",
+      "snapshot_root": "evaluation/automatic-adoption/results/scored/r10/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "node node_modules/@mk3008/serene/tooling/cli.mjs serene-audit --actionable-only . || true; echo ---COVERAGE---; sed -n \"1,240p\" node_modules/@mk3008/serene/docs/review-coverage.md"
+        ],
+        "sequence": 4
+      }
+    ],
+    "rejections": 0,
+    "run_wall_seconds": 123.639001468,
+    "stderr_bytes": 1814,
+    "stdout_bytes": 20338,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

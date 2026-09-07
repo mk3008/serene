@@ -1,0 +1,18 @@
+{
+  "paths": [
+    "/tmp/repository-flow-probe/p03/AGENTS.md",
+    "/tmp/repository-flow-probe/p03/README.md",
+    "/tmp/repository-flow-probe/p03/package.json",
+    "/tmp/repository-flow-probe/p03/app.mjs",
+    "/tmp/repository-flow-probe/p03/database.mjs",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/README.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/package.json",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/api-redesign.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/design.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/parameter-scanning-verification.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/report.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/review-coverage.md",
+    "/tmp/repository-flow-probe/p03/node_modules/@mk3008/serene/docs/security.md"
+  ]
+}

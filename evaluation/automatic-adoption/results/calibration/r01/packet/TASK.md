@@ -1,0 +1,1 @@
+Add a lookup for one contact by email. Export `findContactByEmail(db, email)` from `app.mjs`. It must reject malformed email input before querying, return `null` when no contact exists, and return the selected contact otherwise. Keep query values bound rather than inserted into SQL text. Do not change the seed data.

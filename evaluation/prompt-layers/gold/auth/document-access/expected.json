@@ -1,0 +1,1 @@
+{"kind":"authorization","wrong_binding":"request.tenantId","actor_field":"actor.tenantId","cross_tenant":{"actor":"north","requested":"south","id":2},"artifact":"AUTHORIZATION.md","changes":false,"audit_required":false}

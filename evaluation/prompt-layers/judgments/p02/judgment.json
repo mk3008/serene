@@ -1,0 +1,10 @@
+{
+  "run": "p02",
+  "workflow": "coding",
+  "artifact_outcome": "pass",
+  "requested_site_serene_adoption": true,
+  "requested_site_construction": "fixed Serene sql template with named binding",
+  "functional_correctness": "pass",
+  "baseline_modification": "none observed",
+  "process_or_policy_inference": "none"
+}

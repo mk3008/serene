@@ -1,0 +1,151 @@
+{
+  "cli_module": {
+    "instrumented": {
+      "bytes": 3435,
+      "sha256": "932856d8f2236d5e855c0e5a49e4286b55dc096f07455e29e7b88b2f7daa0e97"
+    },
+    "original": {
+      "bytes": 2397,
+      "sha256": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c"
+    },
+    "path": "/tmp/repository-flow-probe/p05/node_modules/@mk3008/serene/tooling/cli.mjs"
+  },
+  "declared_packet_package_json": {
+    "bytes": 215,
+    "sha256": "3de8c744d8dff4aba908ca15caa0d3adafcbf05096a0f7f6af352dd3fd6e5ee2"
+  },
+  "initial_prompt": {
+    "bytes": 297,
+    "sha256": "b029a5061e006922b13d90e8aab6667a4253c5152145440c5935bb8c41722e7e"
+  },
+  "initial_snapshot_excluding_dependencies": {
+    "AGENTS.md": {
+      "bytes": 25,
+      "sha256": "b35accd12eb10d6a0749d4869e726a500c62a1ca8d5cd55f2e143c1d893b041c"
+    },
+    "README.md": {
+      "bytes": 150,
+      "sha256": "8afc7fc6aeb34a93a93b1266e06e3913f793ab5c35dcb026b10f7ce6171502ce"
+    },
+    "TASK.md": {
+      "bytes": 256,
+      "sha256": "0bc509667b342fd266c005a66a1ba8c115e0a00252708278520c9c7325440c14"
+    },
+    "app.mjs": {
+      "bytes": 668,
+      "sha256": "b388aaeae64163af6740b1e143bb4e848bc14448976e147049e88cee0d15dd22"
+    },
+    "database.mjs": {
+      "bytes": 483,
+      "sha256": "5bb54f0d0ddda20c22dff7a9eb64965155f715a4251d744ed12bc423177c7b8a"
+    },
+    "package.json": {
+      "bytes": 215,
+      "sha256": "3de8c744d8dff4aba908ca15caa0d3adafcbf05096a0f7f6af352dd3fd6e5ee2"
+    },
+    "test.mjs": {
+      "bytes": 240,
+      "sha256": "b22a307699e93490bf51e7a4aaf325b7ea1ca44cbbd77ae66f27153cb49e3414"
+    }
+  },
+  "installed_docs": {
+    "node_modules/@mk3008/serene/README.md": {
+      "bytes": 5062,
+      "sha256": "707a5594fe142dd39e5455dab4a7bf819062bfc1f0b314bf3c4f088f0d311533"
+    },
+    "node_modules/@mk3008/serene/docs/api-redesign.md": {
+      "bytes": 6648,
+      "sha256": "19b5e9496cd0624763b0d7fe5ad5b22923c3bf77fa6422d798c7003fd673895a"
+    },
+    "node_modules/@mk3008/serene/docs/design.md": {
+      "bytes": 6984,
+      "sha256": "d769cd2125751c2c61cc10fd2af9dd8b5e660227c0ed3fddbbe840540c645401"
+    },
+    "node_modules/@mk3008/serene/docs/parameter-scanning-verification.md": {
+      "bytes": 6664,
+      "sha256": "1c1514be58368ccf9f270d58bd135b87babeb11bee5c0e2ae749b590abc5cd27"
+    },
+    "node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md": {
+      "bytes": 5802,
+      "sha256": "861413be200bb9bb4b4e74e70bd2a464a9d2ebf775b632c11fe83fdc7bd8786b"
+    },
+    "node_modules/@mk3008/serene/docs/report.md": {
+      "bytes": 5151,
+      "sha256": "afa49f5d386a1dc6701f710508b82d65f769d0015fe8664badbb19fcc23c36a6"
+    },
+    "node_modules/@mk3008/serene/docs/review-coverage.md": {
+      "bytes": 6069,
+      "sha256": "a2b97ac449a4c8090cd0025548bf04e3e2ceef72d8df7162e1b892587dd79bf9"
+    },
+    "node_modules/@mk3008/serene/docs/security.md": {
+      "bytes": 7577,
+      "sha256": "932efd4a58267c090ebd46c62daa0cbb77ce4bf701563e6e3f19f342eb6a4132"
+    },
+    "node_modules/@mk3008/serene/package.json": {
+      "bytes": 1090,
+      "sha256": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7"
+    }
+  },
+  "load_cue": false,
+  "observer_contract": "Keep observer.py session alive in the same yielding tool session across actor commands; start before dispatch and create its shared stop-file before any parent harvest. Events prove file-system activity only, not PID, model comprehension, receipt, or use.",
+  "optional_task_cue": false,
+  "paths": {
+    "evidence": "/tmp/repository-flow-probe/evidence/p05",
+    "packet_root": "/tmp/repository-flow-probe/p05"
+  },
+  "policy": "neutral",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "run_id": "p05",
+  "runtime_materialization": {
+    "artifact": {
+      "bytes": 27911,
+      "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
+    },
+    "installed_bin": "/tmp/repository-flow-probe/p05/node_modules/.bin/serene-audit",
+    "installed_package_json": {
+      "bytes": 1090,
+      "sha256": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7"
+    },
+    "mode": "committed-tarball-plus-copied-workspace-typescript; no npm installation lifecycle",
+    "package_lock": null,
+    "typescript": {
+      "installed_tree": {
+        "files": 132,
+        "sha256": "d9f21ce5082611aef2af206a9eec690ac2b89a7c7ac943e422443071b6cfcf4c"
+      },
+      "source_tree": {
+        "files": 132,
+        "sha256": "d9f21ce5082611aef2af206a9eec690ac2b89a7c7ac943e422443071b6cfcf4c"
+      },
+      "version": "5.9.3"
+    }
+  },
+  "source_hashes": {
+    "artifact": {
+      "bytes": 27911,
+      "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
+    },
+    "cli-entry-hook.mjs": {
+      "bytes": 1038,
+      "sha256": "a2cc33b00c3612ef143b2f2b28713172b9e49a4f0ab730896498dabb38f33d7f"
+    },
+    "observer.py": {
+      "bytes": 4127,
+      "sha256": "adf4146889a19c9dea3d091908004e94a314c6489a71f2c20d2f9cd76398f709"
+    },
+    "stage.py": {
+      "bytes": 20930,
+      "sha256": "644ebb4a9bf95d0b7078580c6fba882c7177d3607c6f6c5f6076e1685f8369ae"
+    }
+  },
+  "watch_list": {
+    "bytes": 1047,
+    "sha256": "626626ecb41ac3e1985c885edb86c843e72199a4ce45e0d54e00ac9eb14bb65c"
+  },
+  "workflow": "review"
+}

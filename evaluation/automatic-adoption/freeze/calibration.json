@@ -1,0 +1,136 @@
+{
+  "cohort_manifest": "pending agent identifiers after dispatch",
+  "parity": [
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r01",
+        "r02"
+      ],
+      "pass": true
+    },
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r03",
+        "r04"
+      ],
+      "pass": true
+    },
+    {
+      "changed_app_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "canonical_prompt_sha256": true,
+        "documentation": true,
+        "install_trees": true,
+        "package_lock_sha256": true,
+        "tarball_sha256": true
+      },
+      "pair": [
+        "r05",
+        "r06"
+      ],
+      "pass": true
+    }
+  ],
+  "phase": "calibration",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "runs": [
+    "r01",
+    "r02",
+    "r03",
+    "r04",
+    "r05",
+    "r06"
+  ],
+  "shared_tarball": {
+    "bytes": 27911,
+    "path": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/artifacts/mk3008-serene-0.1.0.tgz",
+    "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
+  },
+  "source_evidence": {
+    "fixtures": {
+      "calibration-authorization-followup": {
+        "bytes": 2060,
+        "entries": 7,
+        "tree_sha256": "2239cc05b11bda20126fa68e7ee4b76516510c10f7c6ff7a42554316e5efaf32"
+      },
+      "calibration-construction-review": {
+        "bytes": 2244,
+        "entries": 7,
+        "tree_sha256": "9719d026dadb4489d229349e148c248a750c535aac42708b5a9e575e739e9948"
+      },
+      "calibration-contact-lookup": {
+        "bytes": 1732,
+        "entries": 6,
+        "tree_sha256": "588572531f7b1ae365f858e543c1faf64124a1af171649a411b5e47ab22289b5"
+      }
+    },
+    "gold": {
+      "calibration-authorization-followup": {
+        "bytes": 1811,
+        "entries": 4,
+        "tree_sha256": "7ebf45fb642606037b2676c78292928e4a8d33590b010f256472cd3b58d025f5"
+      },
+      "calibration-construction-review": {
+        "bytes": 3518,
+        "entries": 5,
+        "tree_sha256": "aee4e79eeb2c8dd80e25bf09a5877ee6b7acc324944b094179443d0118ec00ef"
+      },
+      "calibration-contact-lookup": {
+        "bytes": 2034,
+        "entries": 3,
+        "tree_sha256": "504dbd4837e4cce9ba3320e8486e8c922d40fd9d4c1fcce7d714d9aa5cf4383c"
+      }
+    },
+    "package_stager": {
+      "bytes": 4685,
+      "sha256": "38849a4ecada46cd7f35b077833d69abdf9136eab5ae11b0f86faf04869caf98"
+    },
+    "packet_stager": {
+      "bytes": 13532,
+      "sha256": "33aa19100a0f0170d3b03e1e27c39985797b3e5ce952f2189d5e75405696436c"
+    },
+    "prompt_template": {
+      "bytes": 1058,
+      "sha256": "5bced932d29988eb4e35f34d431b1f82b66b63f1381d4f954e64313499986ff3"
+    },
+    "runner": {
+      "bytes": 13935,
+      "sha256": "2bc8ca58a6d5eb4ea58d04c0e6cc38b55ebcb8825d9f7dadf5761e8a94c7fe30"
+    }
+  },
+  "stage_manifests": {
+    "r01": "/tmp/repository-agent-study/evidence/r01/stage-manifest.json",
+    "r02": "/tmp/repository-agent-study/evidence/r02/stage-manifest.json",
+    "r03": "/tmp/repository-agent-study/evidence/r03/stage-manifest.json",
+    "r04": "/tmp/repository-agent-study/evidence/r04/stage-manifest.json",
+    "r05": "/tmp/repository-agent-study/evidence/r05/stage-manifest.json",
+    "r06": "/tmp/repository-agent-study/evidence/r06/stage-manifest.json"
+  }
+}

@@ -1,0 +1,68 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+
+Use `@mk3008/serene` as the default construction path for executable raw SQL; if it cannot preserve needed SQL behavior, keep the exception explicit for additional review. For SQL-construction review, use the installed `serene-audit` and keep unresolved paths in review. Use ordinary results to skip redundant construction-provenance review, not SQL meaning/binding, authorization, or business-behavior checks.
+---
+Investigate the authorization behavior of `caseById`. Write a concise `AUTHORIZATION.md` that explains whether a signed-in user can obtain another tenant’s record and identifies the relevant cause. Do not change application behavior.
+---
+# Case records
+
+A small tenant-facing record service.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.
+---
+{
+  "name": "adoption-calibration-authorization-followup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check database.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}
+---
+import { bind, sql } from '@mk3008/serene';
+import { openDatabase } from './database.mjs';
+
+export function openCases() {
+ return openDatabase(`CREATE TABLE cases (id INTEGER PRIMARY KEY, tenant_id TEXT, subject TEXT);
+   INSERT INTO cases VALUES (1, 'north', 'North renewal'), (2, 'south', 'South renewal');`);
+}
+export function caseById(db, actor, request) {
+ const query = bind(sql`SELECT id, tenant_id, subject FROM cases WHERE tenant_id = :tenantId AND id = :id`, { tenantId: request.tenantId, id: request.id });
+ return db.query(query.text, query.params).at(0) ?? null;
+}
+---
+import { DatabaseSync } from 'node:sqlite';
+
+export function openDatabase(schema) {
+  const native = new DatabaseSync(':memory:');
+  native.exec(schema);
+  return {
+    query(text, params = {}) {
+      return native.prepare(text).all(params);
+    },
+  };
+}
+---
+import assert from 'node:assert/strict';
+import { caseById, openCases } from './app.mjs';
+assert.equal(caseById(openCases(), { tenantId: 'north' }, { tenantId: 'north', id: 1 }).subject, 'North renewal');
+console.log('case record checks passed');

@@ -1,0 +1,214 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0008.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0008.stdout",
+          "sequence": 8,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r07/events.outputs/0008.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/scored/r07/evidence/events.outputs/0008.stderr",
+          "sequence": 8,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 8,
+    "command_wall_seconds": 1.09834407,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; echo ---TASK---; cat TASK.md; echo ---README---; cat README.md; echo ---APP---; cat app.mjs; echo ---TEST---; cat test.mjs; echo ---PKG---; cat package.json"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/README.md; echo ---FILES---; find . -maxdepth 2 -type f -not -path \"./node_modules/*\" -print"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 - <<\"PY\"\nfrom pathlib import Path\np = Path(\"app.mjs\")\ns = p.read_text()\nneedle = \"export function inventoryTotal(db) {\\n  return db.prepare(\\x27SELECT SUM(on_hand) AS total FROM products\\x27).get().total;\\n}\\n\"\nreplacement = \"export function inventoryTotal(db) {\\n  return db.prepare(\\x27SELECT SUM(on_hand) AS total FROM products\\x27).get().total;\\n}\\n\\nexport function findProductBySku(db, sku) {\\n  if (typeof sku !== \\x27string\\x27 || !/^[A-Z]{3}-\\\\d{4}$/.test(sku)) {\\n    throw new TypeError(\\x27SKU must be three uppercase letters, a dash, and four digits\\x27);\\n  }\\n\\n  const product = db.prepare(\\x27SELECT id, sku, name, on_hand FROM products WHERE sku = ?\\x27).get(sku);\\n  return product ?? null;\\n}\\n\"\nif needle not in s:\n    raise SystemExit(\"expected app content not found\")\np.write_text(s.replace(needle, replacement))\nPY\ncat app.mjs"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "node --input-type=module -e \"import assert from \\\"node:assert/strict\\\"; import {findProductBySku,openStockroom} from \\\"./app.mjs\\\"; const db=openStockroom(); assert.deepEqual(findProductBySku(db,\\\"PEN-0042\\\"),{id:1,sku:\\\"PEN-0042\\\",name:\\\"Blue pen\\\",on_hand:18}); assert.equal(findProductBySku(db,\\\"ZZZ-9999\\\"),null); assert.throws(() => findProductBySku(db,\\\"pen-0042\\\"),TypeError); console.log(\\\"lookup checks passed\\\");\"; git diff -- app.mjs"
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 - <<\"PY\"\nfrom pathlib import Path\np = Path(\"app.mjs\")\ns = p.read_text()\ns = s.replace(\"  const product = db.prepare(\\x27SELECT id, sku, name, on_hand FROM products WHERE sku = ?\\x27).get(sku);\\n  return product ?? null;\", \"  const product = db.prepare(\\x27SELECT id, sku, name, on_hand FROM products WHERE sku = ?\\x27).get(sku);\\n  if (product === undefined) return null;\\n\\n  return {\\n    id: product.id,\\n    sku: product.sku,\\n    name: product.name,\\n    on_hand: product.on_hand,\\n  };\")\np.write_text(s)\nPY\nsed -n \"1,120p\" app.mjs"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check && node --input-type=module -e \"import assert from \\\"node:assert/strict\\\"; import {findProductBySku,openStockroom} from \\\"./app.mjs\\\"; const db=openStockroom(); assert.deepEqual(findProductBySku(db,\\\"PEN-0042\\\"),{id:1,sku:\\\"PEN-0042\\\",name:\\\"Blue pen\\\",on_hand:18}); assert.equal(findProductBySku(db,\\\"ZZZ-9999\\\"),null); assert.throws(() => findProductBySku(db,\\\"pen-0042\\\"),TypeError); console.log(\\\"lookup checks passed\\\");\""
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > ANSWER.md <<\"EOF\"\nImplemented `findProductBySku(db, sku)` in `app.mjs`.\n\n- Rejects SKUs that do not match `^[A-Z]{3}-[0-9]{4}$` before querying.\n- Uses a bound SQLite parameter for the SKU lookup.\n- Returns a plain object containing `id`, `sku`, `name`, and `on_hand`, or `null` when absent.\n\nChecks passed: `npm test`, `npm run check`, and direct lookup validation.\nEOF\ncat ANSWER.md"
+        ],
+        "sequence": 8
+      }
+    ],
+    "completed_commands": 8,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 1,
+    "final_snapshot": {
+      "artifact_count": 10,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r07",
+      "snapshot_root": "evaluation/automatic-adoption/results/scored/r07/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [],
+    "rejections": 0,
+    "run_wall_seconds": 68.287254385,
+    "stderr_bytes": 8706,
+    "stdout_bytes": 9614,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

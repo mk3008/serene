@@ -1,0 +1,1 @@
+{"appRoot":"/tmp/repository-agent-study/r02","results":[{"name":"export","passed":true},{"name":"SQL behavior: selected record","passed":true},{"name":"SQL behavior: absent record","passed":true},{"name":"non-SQL validation: rejects before database access","passed":true,"accessed":false,"error":"Email must be a valid address."}]}

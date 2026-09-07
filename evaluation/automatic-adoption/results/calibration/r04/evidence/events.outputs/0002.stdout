@@ -1,0 +1,656 @@
+import { bind, sql } from '@mk3008/serene';
+import { openDatabase } from './database.mjs';
+
+export function openQueue() {
+  return openDatabase(`CREATE TABLE shipments (id INTEGER PRIMARY KEY, region TEXT, status TEXT);
+    INSERT INTO shipments (region, status) VALUES ('east', 'queued'), ('west', 'sent');`);
+}
+export function byId(db, id) {
+  const query = bind(sql`SELECT id, region, status FROM shipments WHERE id = :id`, { id });
+  return db.query(query.text, query.params).at(0) ?? null;
+}
+export function byRegion(db, region) {
+  const statement = "SELECT id, region, status FROM shipments WHERE region = '" + region + "'";
+  return db.query(statement);
+}
+export function queued(db) {
+  return db.query("SELECT id, region, status FROM shipments WHERE status = 'queued'");
+}
+
+---DATABASE---
+import { DatabaseSync } from 'node:sqlite';
+
+export function openDatabase(schema) {
+  const native = new DatabaseSync(':memory:');
+  native.exec(schema);
+  return {
+    query(text, params = {}) {
+      return native.prepare(text).all(params);
+    },
+  };
+}
+
+---TEST---
+import assert from 'node:assert/strict';
+import { byId, byRegion, openQueue, queued } from './app.mjs';
+const db = openQueue();
+assert.equal(byId(db, 1).region, 'east');
+assert.equal(byRegion(db, 'west').length, 1);
+assert.equal(queued(db).length, 1);
+console.log('shipping queue checks passed');
+
+---NODE MODULES---
+total 36
+drwxr-xr-x 5 root root 4096 Sep  7 07:48 .
+drwxr-xr-x 3 root root 4096 Sep  7 07:48 ..
+-rw-r--r-- 1 root root 1065 Sep  7 07:48 LICENSE
+-rw-r--r-- 1 root root 5062 Sep  7 07:48 README.md
+drwxr-xr-x 2 root root 4096 Sep  7 07:48 dist
+drwxr-xr-x 2 root root 4096 Sep  7 07:48 docs
+-rw-r--r-- 1 root root 1090 Sep  7 07:48 package.json
+drwxr-xr-x 2 root root 4096 Sep  7 07:48 tooling
+./AGENTS.md:5:Use `@mk3008/serene` as the default construction path for executable raw SQL; if it cannot preserve needed SQL behavior, keep the exception explicit for additional review. For SQL-construction review, use the installed `serene-audit` and keep unresolved paths in review. Use ordinary results to skip redundant construction-provenance review, not SQL meaning/binding, authorization, or business-behavior checks.
+./database.mjs:1:import { DatabaseSync } from 'node:sqlite';
+./database.mjs:5:  native.exec(schema);
+./database.mjs:7:    query(text, params = {}) {
+./database.mjs:8:      return native.prepare(text).all(params);
+./README.md:14:This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.
+./app.mjs:1:import { bind, sql } from '@mk3008/serene';
+./app.mjs:6:    INSERT INTO shipments (region, status) VALUES ('east', 'queued'), ('west', 'sent');`);
+./app.mjs:9:  const query = bind(sql`SELECT id, region, status FROM shipments WHERE id = :id`, { id });
+./app.mjs:10:  return db.query(query.text, query.params).at(0) ?? null;
+./app.mjs:13:  const statement = "SELECT id, region, status FROM shipments WHERE region = '" + region + "'";
+./app.mjs:14:  return db.query(statement);
+./app.mjs:17:  return db.query("SELECT id, region, status FROM shipments WHERE status = 'queued'");
+./package.json:14:    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+./node_modules/@mk3008/serene/dist/index.d.ts:4:declare const sqlBrand: unique symbol;
+./node_modules/@mk3008/serene/dist/index.d.ts:7:    readonly [sqlBrand]: true;
+./node_modules/@mk3008/serene/dist/index.d.ts:14:export declare function sql(strings: TemplateStringsArray, ...values: never[]): Sql;
+./node_modules/@mk3008/serene/dist/index.d.ts:18:export declare function orderBy(sql: Sql, choices: Readonly<Record<string, Sort>>, selection: string | readonly string[]): Sql;
+./node_modules/@mk3008/serene/dist/index.d.ts:28:export declare function bind(sql: Sql, params?: Readonly<Record<string, unknown>>, style?: ParameterStyle): BoundSql;
+./node_modules/@mk3008/serene/dist/index.d.ts:29:/** Runtime provenance only; ordinary source review also requires serene-audit. */
+./node_modules/@mk3008/serene/dist/index.js:13:    // Standard JavaScript template escaping; source auditing excludes fabricated tag calls.
+./node_modules/@mk3008/serene/dist/index.js:17:    const sql = Object.freeze({ sourceText: data.sourceText });
+./node_modules/@mk3008/serene/dist/index.js:18:    statements.set(sql, data);
+./node_modules/@mk3008/serene/dist/index.js:19:    return sql;
+./node_modules/@mk3008/serene/dist/index.js:22:export function sql(strings, ...values) {
+./node_modules/@mk3008/serene/dist/index.js:38:export function orderBy(sql, choices, selection) {
+./node_modules/@mk3008/serene/dist/index.js:39:    const data = statements.get(sql);
+./node_modules/@mk3008/serene/dist/index.js:66:        return sql;
+./node_modules/@mk3008/serene/dist/index.js:71:export function bind(sql, params = {}, style) {
+./node_modules/@mk3008/serene/dist/index.js:72:    const data = statements.get(sql);
+./node_modules/@mk3008/serene/dist/index.js:106:/** Runtime provenance only; ordinary source review also requires serene-audit. */
+./node_modules/@mk3008/serene/dist/scanner.js:35:            const delimiter = /^(?:\$\$|\$[A-Za-z_][A-Za-z0-9_]*\$)/.exec(sourceText.slice(i))?.[0];
+./node_modules/@mk3008/serene/dist/scanner.js:76:            const name = /^[A-Za-z_][A-Za-z0-9_]*/.exec(sourceText.slice(i + 1))?.[0];
+./node_modules/typescript/LICENSE.txt:31:2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
+./node_modules/typescript/LICENSE.txt:45:5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions. Notwithstanding the above, nothing herein shall supersede or modify the terms of any separate license agreement you may have executed with Licensor regarding such Contributions.
+./node_modules/@mk3008/serene/tooling/cli.mjs:4:import { auditSource } from './audit.mjs';
+./node_modules/@mk3008/serene/tooling/cli.mjs:8:  console.log('Usage: serene-audit [--strict] [--actionable-only] [--sink=name] file-or-directory ...\nJSON inventory; --actionable-only reports counts by candidate execution site and only non-ordinary findings. Exit 1 on violations (also review-required with --strict), 2 on input errors.\nRecursively selects .ts/.tsx/.mts/.cts/.js/.jsx/.mjs/.cjs. Skips node_modules, dist, build, coverage, .git and symbolic links. Explicit files remain supported. File-local candidate inventory, not whole-program coverage.');
+./node_modules/@mk3008/serene/tooling/cli.mjs:13:const sinkNames = ['query', 'execute', 'unsafe', ...args.filter(a => a.startsWith('--sink=')).map(a => a.slice(7))];
+./node_modules/@mk3008/serene/tooling/cli.mjs:20:  const findings = selection.files.flatMap(file => auditSource(readFileSync(file, 'utf8'), file, { sinkNames }));
+./node_modules/@mk3008/serene/tooling/cli.mjs:24:    executionSiteCounts: Object.fromEntries(['ordinary', 'review-required', 'violation'].map(level =>
+./node_modules/@mk3008/serene/tooling/cli.mjs:27:    scope: 'Counts cover recognized candidate driver execution sites only; findings retain all review-required and violation rows. File-local inventory is not exhaustive driver discovery.',
+./node_modules/@mk3008/serene/tooling/audit.d.mts:5:  boundary: 'source' | 'serene' | 'driver-candidate' | 'computed-call';
+./node_modules/@mk3008/serene/tooling/audit.d.mts:12:export function auditSource(source: string, filename?: string, options?: { sinkNames?: readonly string[] }): Finding[];
+./node_modules/@mk3008/serene/tooling/audit.mjs:2:import * as serene from '../dist/index.js';
+./node_modules/@mk3008/serene/tooling/audit.mjs:4:const tags = new Set(['sql', 'sort']);
+./node_modules/@mk3008/serene/tooling/audit.mjs:12:export function auditSource(source, filename = 'input.ts', options = {}) {
+./node_modules/@mk3008/serene/tooling/audit.mjs:25:  const sinkNames = new Set(options.sinkNames ?? ['query', 'execute', 'unsafe']);
+./node_modules/@mk3008/serene/tooling/audit.mjs:45:      if (decl.parent.parent.parent.moduleSpecifier.text === '@mk3008/serene' && api.has(imported)) return imported;
+./node_modules/@mk3008/serene/tooling/audit.mjs:84:  function classify(node, kind = 'sql', seen = new Set()) {
+./node_modules/@mk3008/serene/tooling/audit.mjs:94:      if ((kind === 'sort') !== (name === 'sort') || !['sql', 'sort'].includes(kind)) return unknown();
+./node_modules/@mk3008/serene/tooling/audit.mjs:98:        serene[name](Object.freeze(strings));
+./node_modules/@mk3008/serene/tooling/audit.mjs:105:      if (name === 'bind' && kind === 'bound') return classify(node.arguments[0], 'sql', seen);
+./node_modules/@mk3008/serene/tooling/audit.mjs:106:      if (name === 'orderBy' && kind === 'sql') {
+./node_modules/@mk3008/serene/tooling/audit.mjs:107:        const base = classify(node.arguments[0], 'sql', seen);
+./node_modules/@mk3008/serene/tooling/audit.mjs:149:      // expose a source name that this file-local audit can label confidently.
+./node_modules/@mk3008/serene/tooling/audit.mjs:166:      emit(node, classify(node, apiName(node.tag) === 'sort' ? 'sort' : 'sql'), 'serene');
+./node_modules/@mk3008/serene/tooling/audit.mjs:170:      if (name && name !== 'review') emit(node, classify(node, name === 'bind' ? 'bound' : 'sql'), 'serene');
+./node_modules/@mk3008/serene/tooling/audit.mjs:177:            result('review-required', 'SINK_ALIAS', 'Local execution alias; inspect its receiver and any prebound arguments.') :
+./node_modules/typescript/ThirdPartyNoticeText.txt:125:2.1. Copyright Grant. I grant to you a perpetual (for the duration of the applicable copyright), worldwide, non-exclusive, no-charge, royalty-free, copyright license, without any obligation for accounting to me, to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, distribute, and implement the Specification to the full extent of my copyright interest in the Specification. 
+./node_modules/typescript/ThirdPartyNoticeText.txt:152:10.5 Project. “Project” means the W3C Community Group or Business Group for which I executed this Agreement.
+./node_modules/@mk3008/serene/docs/design.md:6:visible. Do not rebuild Ashiba, Dapper or a query builder. Initial acceptance covers
+./node_modules/@mk3008/serene/docs/design.md:28:One package has an independent runtime entry and an optional source-audit entry.
+./node_modules/@mk3008/serene/docs/design.md:30:binder. The audit reuses the TypeScript parser/binder rather than inventing a JS
+./node_modules/@mk3008/serene/docs/design.md:34:The `sql` tag has no interpolated values or fragments. Named values are explicit at
+./node_modules/@mk3008/serene/docs/design.md:37:constructor, plugin framework or driver execution adapter is introduced.
+./node_modules/@mk3008/serene/docs/design.md:44:## Current authoring and execution boundary
+./node_modules/@mk3008/serene/docs/design.md:85:accessor rejection, runtime provenance, source audit and finite ordering. The current redesign replaces dialect validation with requested-name replacement; see [API redesign](api-redesign.md).
+./node_modules/@mk3008/serene/docs/design.md:89:- [PostgreSQL lexical structure](https://www.postgresql.org/docs/current/sql-syntax-lexical.html)
+./node_modules/@mk3008/serene/docs/design.md:90:- [MySQL string literals](https://dev.mysql.com/doc/refman/8.4/en/string-literals.html)
+./node_modules/@mk3008/serene/docs/design.md:91:- [SQL Server nested block comments](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/slash-star-comment-transact-sql?view=sql-server-ver17)
+./node_modules/@mk3008/serene/docs/design.md:97:strict CLI gate are included. They expose common mistakes without adding execution
+./node_modules/@mk3008/serene/docs/report.md:12:Date: 2026-09-06. Package: `@mk3008/serene@0.1.0`.
+./node_modules/@mk3008/serene/docs/report.md:15:The user created the GitHub repository at https://github.com/mk3008/serene during
+./node_modules/@mk3008/serene/docs/report.md:23:audit. Applications call native drivers themselves. The runtime entry has no
+./node_modules/@mk3008/serene/docs/report.md:30:parser and lexical binding for tooling; Node supplies tests. Source audit is needed
+./node_modules/@mk3008/serene/docs/report.md:44:`postgres`, `mysql`, `mssql`, `sort`, `orderBy`, `bind`, `review`, `SereneError`;
+./node_modules/@mk3008/serene/docs/report.md:45:optional `auditSource` and `serene-audit`. Binding renders `$n`, `?`, or `@name` with
+./node_modules/@mk3008/serene/docs/report.md:57:| Strict source audit of three native-driver usage examples | Passed; all three driver candidates ordinary |
+./node_modules/@mk3008/serene/docs/report.md:61:| Consumer type checks against packed main and audit exports | Passed |
+./node_modules/@mk3008/serene/docs/report.md:62:| Live PostgreSQL/MySQL/SQL Server execution | Not run |
+./node_modules/@mk3008/serene/docs/report.md:63:| Bun / Node 22 execution matrix | Not run |
+./node_modules/@mk3008/serene/docs/report.md:98:source coverage. An arbitrary process can fabricate template arrays; source audit
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:21:| Interpolation, forged objects and arbitrary sort fragments | Still rejected | Existing runtime, type and source-audit regressions retained |
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:25:[lexical structure](https://www.postgresql.org/docs/18/sql-syntax-lexical.html),
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:26:[JSON operators](https://www.postgresql.org/docs/18/functions-json.html).
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:48:execution is claimed. These checks establish replacement behavior and value/text
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:55:Addresses [review comment 5557534143](https://github.com/mk3008/serene/pull/1#issuecomment-5557534143).
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:62:  supplied `id` for `SELECT 5--1, :id` fails with `UNUSED_PARAMETER`, including a
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:74:- `git diff --check`: passed. No live DB execution or AI significance claim added.
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:79:Addresses [comment 5557770447](https://github.com/mk3008/serene/pull/1#issuecomment-5557770447).
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:88:A native-named source-audit regression also passes. Existing positional ARRAY/JSON,
+./node_modules/@mk3008/serene/docs/parameter-scanning-verification.md:94:- Strict example audit: 3/3 native-driver candidates ordinary, including native
+./node_modules/@mk3008/serene/docs/security.md:8:   chosen and ordered by keys from a finite map; the source audit requires that map at the call site.
+./node_modules/@mk3008/serene/docs/security.md:15:   Coverage of source files and execution entry points remains an application concern.
+./node_modules/@mk3008/serene/docs/security.md:29:| `sql(fabricatedTemplate)` | Source violation; some fabricated templates pass runtime checks |
+./node_modules/@mk3008/serene/docs/security.md:31:| `db.query('SELECT ' + input)` | Source violation at candidate boundary |
+./node_modules/@mk3008/serene/docs/security.md:32:| `db.query(unknownSql)` | Additional review |
+./node_modules/@mk3008/serene/docs/security.md:35:| Same binding `.text` with wrong `.values` | Not proven correct by source audit |
+./node_modules/@mk3008/serene/docs/security.md:42:`sql` stores fixed source with construction provenance; it does not validate SQL.
+./node_modules/@mk3008/serene/docs/security.md:72:  Lowering `SELECT 5--1, :id` with supplied `id` fails with `UNUSED_PARAMETER`.
+./node_modules/@mk3008/serene/docs/security.md:79:backslash escapes. Continuation of escape strings, alternative quoting, executable
+./node_modules/@mk3008/serene/docs/security.md:107:affect. Verify that candidate names cover the native execution APIs in the application.
+./node_modules/@mk3008/serene/docs/api-redesign.md:19:| DBMS tags / `Dialect` | Still removed; use literal-only `sql` |
+./node_modules/@mk3008/serene/docs/api-redesign.md:51:composition, value-inlined debug output, execution or external-tool integration.
+./node_modules/@mk3008/serene/docs/api-redesign.md:65:Reference: [released v0.2.0](https://github.com/mk3008/raw-sql-rules/blob/422721f6d4e29e1c81a92371dc5150611600897d/raw-sql-rules.md).
+./node_modules/@mk3008/serene/docs/api-redesign.md:71:| Contract 1: directly reviewable SQL, native execution | Literal SQL remains visible; application invokes its driver |
+./node_modules/@mk3008/serene/docs/api-redesign.md:72:| Contract 2: application-owned concerns | No execution, connections, mapping, transactions or test infrastructure |
+./node_modules/@mk3008/serene/docs/api-redesign.md:89:selections, scope-aware audit regressions and negative TypeScript cases. The former blanket-rejection tests are superseded by positive replacement tests and
+./node_modules/@mk3008/serene/docs/api-redesign.md:102:- Strict source audit of `test/examples.ts`: three native-driver candidates ordinary.
+./node_modules/@mk3008/serene/docs/api-redesign.md:105:- With the optional TypeScript peer supplied: packed audit import, strict CLI smoke
+./node_modules/@mk3008/serene/docs/review-coverage.md:3:Discovery, referral, correct defect diagnosis, and review cost are separate. The historical pre-redesign deterministic evaluation measured discovery/referral mechanics only. Later AI studies evaluate bounded review workflows and their costs; they do not turn the audit into a blanket whole-program or universal-efficiency guarantee. See the [evaluation map](../evaluation/README.md).
+./node_modules/@mk3008/serene/docs/review-coverage.md:11:| Computed invocation | Review required | Whether it executes SQL and which function is called |
+./node_modules/@mk3008/serene/docs/review-coverage.md:13:| Imported or mutable renamed execution function without matching name | Can remain unseen | Manual execution-API inventory/configuration |
+./node_modules/@mk3008/serene/docs/review-coverage.md:15:| Non-SQL query/execute methods | Possible false candidates | Dismiss after verifying target |
+./node_modules/@mk3008/serene/docs/review-coverage.md:16:| Wrong values, missing tenant filter, SQL execution within DB | Can remain ordinary construction | Full application/security review |
+./node_modules/@mk3008/serene/docs/review-coverage.md:20:At checkpoint `b93e3d4a92df353cfdbec6154c0144739f6eb2e6`, the frozen challenge set has 33 SQL execution sites and 7 non-SQL controls. Local
+./node_modules/@mk3008/serene/docs/review-coverage.md:36:are historical and are not a measurement of the new `sql` API.
+./node_modules/@mk3008/serene/docs/review-coverage.md:45:`serene-audit src`, `serene-audit .`, and mixed file/directory inputs recursively
+./node_modules/@mk3008/serene/docs/review-coverage.md:66:reports `executionSiteCounts` from `driver-candidate` findings only. This prevents a
+./node_modules/@mk3008/serene/docs/review-coverage.md:67:single execution path from being counted again for its `serene` construction or
+./node_modules/@mk3008/serene/docs/review-coverage.md:70:The counts are therefore an inventory of recognized candidate execution sites, not a
+./node_modules/@mk3008/serene/docs/review-coverage.md:71:count of all SQL execution in the application.
+./node_modules/@mk3008/serene/docs/review-coverage.md:73:Use `serene-audit --strict src` as a gate only where all review-required paths are
+./node_modules/@mk3008/serene/package.json:2:  "name": "@mk3008/serene",
+./node_modules/@mk3008/serene/package.json:5:  "repository": { "type": "git", "url": "git+https://github.com/mk3008/serene.git" },
+./node_modules/@mk3008/serene/package.json:8:  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }, "./audit": { "types": "./tooling/audit.d.mts", "default": "./tooling/audit.mjs" } },
+./node_modules/@mk3008/serene/package.json:9:  "bin": { "serene-audit": "./tooling/cli.mjs" },
+./node_modules/@mk3008/serene/package.json:15:    "lint": "node --check tooling/audit.mjs && node --check tooling/cli.mjs",
+./node_modules/@mk3008/serene/README.md:11:It is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
+./node_modules/@mk3008/serene/README.md:18:npm install github:mk3008/serene
+./node_modules/@mk3008/serene/README.md:28:import { sql, bind } from '@mk3008/serene';
+./node_modules/@mk3008/serene/README.md:30:const findUser = sql`
+./node_modules/@mk3008/serene/README.md:31:  SELECT id, name
+./node_modules/@mk3008/serene/README.md:36:const query = bind(findUser, { id }, 'indexed');
+./node_modules/@mk3008/serene/README.md:37:await pool.query(query.text, query.values);
+./node_modules/@mk3008/serene/README.md:40:`sql` accepts fixed template literals only. Runtime values stay outside the SQL text.
+./node_modules/@mk3008/serene/README.md:45:const findUser = sql`
+./node_modules/@mk3008/serene/README.md:46:  SELECT [id], [name]
+./node_modules/@mk3008/serene/README.md:51:const query = bind(findUser, { id });
+./node_modules/@mk3008/serene/README.md:53:query.names.forEach((name, i) => request.input(name, query.values[i]));
+./node_modules/@mk3008/serene/README.md:54:await request.query(query.text);
+./node_modules/@mk3008/serene/README.md:62:const findUser = sql`SELECT id, name FROM users WHERE id = :id`;
+./node_modules/@mk3008/serene/README.md:63:const query = bind(findUser, { id }, 'anonymous');
+./node_modules/@mk3008/serene/README.md:68:- **A visible SQL boundary** — fixed SQL is created from a literal `sql` template.
+./node_modules/@mk3008/serene/README.md:70:- **Native driver usage** — Serene does not own connections, execution, transactions, or mapping.
+./node_modules/@mk3008/serene/README.md:74:Serene does not prove that a query is correct, authorized, fast, or free of every SQL vulnerability. Its job is narrower: make SQL construction easier to classify during review.
+./node_modules/@mk3008/serene/README.md:78:The optional source audit identifies recognized Serene construction and SQL execution candidates.
+./node_modules/@mk3008/serene/README.md:89:npx --no-install serene-audit src
+./node_modules/@mk3008/serene/README.md:92:Use `serene-audit .` for repository-wide inventory, or pass individual files. For concise review triage, use `serene-audit --actionable-only src`: it reports counts only for candidate driver execution sites and lists only review-required or violation findings. The default JSON inventory remains complete.
+./node_modules/@mk3008/serene/README.md:94:Findings include source locations and function names for navigation; see [audit coverage](docs/review-coverage.md).
+./node_modules/@mk3008/serene/README.md:104:The audit is deliberately conservative and file-local. See [review coverage](docs/review-coverage.md) for what it can and cannot discover.
+./node_modules/@mk3008/serene/README.md:111:import { sql, sort, orderBy, bind } from '@mk3008/serene';
+./node_modules/@mk3008/serene/README.md:113:const base = sql`SELECT id, name, created_at FROM users`;
+./node_modules/@mk3008/serene/README.md:115:const query = orderBy(base, {
+./node_modules/@mk3008/serene/README.md:120:const bound = bind(query);
+./node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts:110:     * agent is put to sleep causing execution to suspend until the timeout expires (returning
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:7:[authoritative Rules](https://github.com/mk3008/raw-sql-rules/blob/main/raw-sql-rules.md).
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:27:For executable application Raw SQL in TS/JS, use @mk3008/serene as the default
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:36:current file-local audit cannot establish imported provenance. Scanning both files
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:42:Add `serene-audit src` to an application check script, adapting source roots and
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:43:`--sink=name` to the actual execution APIs. It fails on violations and reports
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:59:per executable statement, permitting SQL beside its caller/access operation. It
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:70:in Default 2. Include that exact revision in the eventual execution freeze.
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:73:binding/execution follow-through, functional/live DB checks, harmful rewrites and
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:75:files may improve discovery; co-location may improve transaction and execution
+./node_modules/@mk3008/serene/docs/raw-sql-rules-integration.md:83:Raw SQL Rules nor Serene's runtime/audit capabilities, and supplies no controlled
+./node_modules/typescript/lib/typesMap.json:3:        "jquery": {
+./node_modules/typescript/lib/typesMap.json:4:            "match": "jquery(-(\\.?\\d+)+)?(\\.intellisense)?(\\.min)?\\.js$",
+./node_modules/typescript/lib/typesMap.json:5:            "types": ["jquery"]
+./node_modules/typescript/lib/typesMap.json:27:            "match": "^.*\\/(jquery\\.)?dataTables(\\.all)?(\\.min)?\\.js$",
+./node_modules/typescript/lib/typesMap.json:99:        "chosen.jquery": "chosen",
+./node_modules/typescript/lib/typesMap.json:203:        "jquery": "jquery",
+./node_modules/typescript/lib/typesMap.json:204:        "jquery.address": "jquery.address",
+./node_modules/typescript/lib/typesMap.json:205:        "jquery.are-you-sure": "jquery.are-you-sure",
+./node_modules/typescript/lib/typesMap.json:206:        "jquery.blockUI": "jquery.blockUI",
+./node_modules/typescript/lib/typesMap.json:207:        "jquery.bootstrap.wizard": "jquery.bootstrap.wizard",
+./node_modules/typescript/lib/typesMap.json:208:        "jquery.bootstrap-touchspin": "bootstrap-touchspin",
+./node_modules/typescript/lib/typesMap.json:209:        "jquery.color": "jquery.color",
+./node_modules/typescript/lib/typesMap.json:210:        "jquery.colorbox": "jquery.colorbox",
+./node_modules/typescript/lib/typesMap.json:211:        "jquery.contextMenu": "jquery.contextMenu",
+./node_modules/typescript/lib/typesMap.json:212:        "jquery.cookie": "jquery.cookie",
+./node_modules/typescript/lib/typesMap.json:213:        "jquery.customSelect": "jquery.customSelect",
+./node_modules/typescript/lib/typesMap.json:214:        "jquery.cycle.all": "jquery.cycle",
+./node_modules/typescript/lib/typesMap.json:215:        "jquery.cycle2": "jquery.cycle2",
+./node_modules/typescript/lib/typesMap.json:216:        "jquery.dataTables": "jquery.dataTables",
+./node_modules/typescript/lib/typesMap.json:217:        "jquery.dropotron": "jquery.dropotron",
+./node_modules/typescript/lib/typesMap.json:218:        "jquery.fancybox.pack.js": "fancybox",
+./node_modules/typescript/lib/typesMap.json:219:        "jquery.fancytree-all": "jquery.fancytree",
+./node_modules/typescript/lib/typesMap.json:220:        "jquery.fileupload": "jquery.fileupload",
+./node_modules/typescript/lib/typesMap.json:221:        "jquery.flot": "flot",
+./node_modules/typescript/lib/typesMap.json:222:        "jquery.form": "jquery.form",
+./node_modules/typescript/lib/typesMap.json:223:        "jquery.gridster": "jquery.gridster",
+./node_modules/typescript/lib/typesMap.json:224:        "jquery.handsontable.full": "jquery-handsontable",
+./node_modules/typescript/lib/typesMap.json:225:        "jquery.joyride": "jquery.joyride",
+./node_modules/typescript/lib/typesMap.json:226:        "jquery.jqGrid": "jqgrid",
+./node_modules/typescript/lib/typesMap.json:227:        "jquery.mmenu": "jquery.mmenu",
+./node_modules/typescript/lib/typesMap.json:228:        "jquery.mockjax": "jquery-mockjax",
+./node_modules/typescript/lib/typesMap.json:229:        "jquery.noty": "jquery.noty",
+./node_modules/typescript/lib/typesMap.json:230:        "jquery.payment": "jquery.payment",
+./node_modules/typescript/lib/typesMap.json:231:        "jquery.pjax": "jquery.pjax",
+./node_modules/typescript/lib/typesMap.json:232:        "jquery.placeholder": "jquery.placeholder",
+./node_modules/typescript/lib/typesMap.json:233:        "jquery.qrcode": "jquery.qrcode",
+./node_modules/typescript/lib/typesMap.json:234:        "jquery.qtip": "qtip2",
+./node_modules/typescript/lib/typesMap.json:235:        "jquery.raty": "raty",
+./node_modules/typescript/lib/typesMap.json:236:        "jquery.scrollTo": "jquery.scrollTo",
+./node_modules/typescript/lib/typesMap.json:237:        "jquery.signalR": "signalr",
+./node_modules/typescript/lib/typesMap.json:238:        "jquery.simplemodal": "jquery.simplemodal",
+./node_modules/typescript/lib/typesMap.json:239:        "jquery.timeago": "jquery.timeago",
+./node_modules/typescript/lib/typesMap.json:240:        "jquery.tinyscrollbar": "jquery.tinyscrollbar",
+./node_modules/typescript/lib/typesMap.json:241:        "jquery.tipsy": "jquery.tipsy",
+./node_modules/typescript/lib/typesMap.json:242:        "jquery.tooltipster": "tooltipster",
+./node_modules/typescript/lib/typesMap.json:243:        "jquery.transit": "jquery.transit",
+./node_modules/typescript/lib/typesMap.json:244:        "jquery.uniform": "jquery.uniform",
+./node_modules/typescript/lib/typesMap.json:245:        "jquery.watch": "watch",
+./node_modules/typescript/lib/typesMap.json:246:        "jquery-sortable": "jquery-sortable",
+./node_modules/typescript/lib/typesMap.json:247:        "jquery-ui": "jqueryui",
+./node_modules/typescript/lib/typesMap.json:332:        "node-mysql": "mysql",
+./node_modules/typescript/lib/lib.es2015.promise.d.ts:27:     * @param executor A callback used to initialize the promise. This callback is passed two arguments:
+./node_modules/typescript/lib/lib.es2015.promise.d.ts:31:    new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void): Promise<T>;
+./node_modules/typescript/lib/_typingsInstaller.js:126:      this.execSyncAndLog(`${this.npmPath} install --ignore-scripts ${typesRegistryPackageName}@${this.latestDistTag}`, { cwd: globalTypingsCacheLocation2 });
+./node_modules/typescript/lib/_typingsInstaller.js:163:    const hasError = typescript_exports.server.typingsInstaller.installNpmPackages(this.npmPath, typescript_exports.version, packageNames, (command) => this.execSyncAndLog(command, { cwd }));
+./node_modules/typescript/lib/_typingsInstaller.js:170:  execSyncAndLog(command, options) {
+./node_modules/typescript/lib/_typingsInstaller.js:175:      const stdout = (0, import_child_process.execSync)(command, { ...options, encoding: "utf-8" });
+./node_modules/typescript/lib/pl/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Nie można odnaleźć nazwy „{0}”. Czy chcesz zainstalować definicje typów dla biblioteki jQuery? Spróbuj użyć polecenia „npm i --save-dev @types/jquery”.",
+./node_modules/typescript/lib/pl/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Nie można odnaleźć nazwy \"{0}\". Czy chcesz zainstalować definicje typów dla biblioteki jQuery? Spróbuj użyć polecenia \"npm i --save-dev @types/jquery\", a następnie dodaj element \"jquery\" do pola types w pliku tsconfig.",
+./node_modules/typescript/lib/zh-cn/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "找不到名称 \"{0}\"。是否需要安装 jQuery 的类型定义? 请尝试使用 `npm i --save-dev @types/jquery`。",
+./node_modules/typescript/lib/zh-cn/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "找不到名称“{0}”。是否需要安装 jQuery 的类型定义? 请尝试使用 `npm i --save-dev @types/jquery`，然后将 “jquery” 添加到 teconfig 中的类型字段。",
+./node_modules/typescript/lib/lib.es2020.sharedmemory.d.ts:78:     * agent is put to sleep causing execution to suspend until the timeout expires (returning
+./node_modules/typescript/lib/lib.es5.d.ts:30: * Evaluates JavaScript code and executes it.
+./node_modules/typescript/lib/lib.es5.d.ts:998:    exec(string: string): RegExpExecArray | null;
+./node_modules/typescript/lib/lib.es5.d.ts:1535:declare type PromiseConstructorLike = new <T>(executor: (resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void) => void) => PromiseLike<T>;
+./node_modules/typescript/lib/lib.es5.d.ts:1540:     * @param onfulfilled The callback to execute when the Promise is resolved.
+./node_modules/typescript/lib/lib.es5.d.ts:1541:     * @param onrejected The callback to execute when the Promise is rejected.
+./node_modules/typescript/lib/lib.es5.d.ts:1542:     * @returns A Promise for the completion of which ever callback is executed.
+./node_modules/typescript/lib/lib.es5.d.ts:1553:     * @param onfulfilled The callback to execute when the Promise is resolved.
+./node_modules/typescript/lib/lib.es5.d.ts:1554:     * @param onrejected The callback to execute when the Promise is rejected.
+./node_modules/typescript/lib/lib.es5.d.ts:1555:     * @returns A Promise for the completion of which ever callback is executed.
+./node_modules/typescript/lib/lib.es5.d.ts:1561:     * @param onrejected The callback to execute when the Promise is rejected.
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:377:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_a_test_runner_Try_npm_i_save_dev_type_2582": "Não é possível localizar o nome '{0}'. Você precisa instalar definições de tipo para um executor de teste? Tente `npm i --save-dev @types/jest` ou `npm i --save-dev @types/mocha`.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:378:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_a_test_runner_Try_npm_i_save_dev_type_2593": "Não é possível encontrar o nome '{0}'. Você precisa instalar as definições de tipo para um executor de teste? Tente `npm i --save-dev @types/jest` ou `npm i --save-dev @types/mocha` e depois adicione 'jest' ou 'mocha' ao campo tipos em seu tsconfig.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Não é possível localizar o nome '{0}'. Você precisa instalar definições de tipo para o jQuery? Tente `npm i --save-dev @types/jquery`.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Não é possível localizar o nome '{0}'. Você precisa instalar as definições de tipo para jQuery? Tente `npm i --save-dev @types/jquery` e, em seguida, adicione 'jquery' para o campo tipos em seu tsconfig.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:624:  "Do_not_allow_runtime_constructs_that_are_not_part_of_ECMAScript_6721": "Não permitir construções de tempo de execução que não fazem parte de ECMAScript.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:670:  "Emit_a_v8_CPU_profile_of_the_compiler_run_for_debugging_6638": "Emitir um perfil de CPU V8 da execução do compilador para depuração.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:743:  "Exponentiation_cannot_be_performed_on_bigint_values_unless_the_target_option_is_set_to_es2016_or_lat_2791": "A exponenciação não pode ser executada nos valores 'bigint', a menos que a opção 'target' esteja definida como 'es2016' ou posterior.",
+./node_modules/typescript/lib/pt-br/diagnosticMessages.generated.json:1012:  "List_of_root_folders_whose_combined_content_represents_the_structure_of_the_project_at_runtime_6168": "Listas das pastas raiz cujo conteúdo combinado representa a estrutura do projeto no tempo de execução.",
+./node_modules/typescript/lib/tr/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "'{0}' adı bulunamıyor. jQuery için tür tanımlarını yüklemeniz mi gerekiyor? Şunu deneyin: `npm i --save-dev @types/jquery`.",
+./node_modules/typescript/lib/tr/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "'{0}' adı bulunamıyor. jQuery için tür tanımlarını yüklemeniz gerekiyor mu? Şunu deneyin: `npm i --save-dev @types/jquery`. Ardından tsconfig dosyanızdaki türler alanına 'jquery' öğesini ekleyin.",
+./node_modules/typescript/lib/es/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "No se encuentra el nombre \"{0}\". ¿Necesita instalar definiciones de tipo para jQuery? Pruebe \"npm i --save-dev @types/jquery\".",
+./node_modules/typescript/lib/es/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "No se encuentra el nombre \"{0}\". ¿Necesita instalar definiciones de tipo para jQuery? Pruebe \"npm i --save-dev @types/jquery\" y, a continuación, agregue \"jquery\" al campo de tipos del archivo tsconfig.",
+./node_modules/typescript/lib/ko/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "'{0}' 이름을 찾을 수 없습니다. jQuery의 형식 정의를 설치하려는 경우 'npm i --save-dev @types/jquery'를 시도합니다.",
+./node_modules/typescript/lib/ko/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "'{0}' 이름을 찾을 수 없습니다. jQuery의 형식 정의를 설치하려는 경우 'npm i --save-dev @types/jquery'를 시도한 다음, tsconfig의 형식 필드에 'jquery'를 추가하세요.",
+./node_modules/typescript/lib/fr/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Le nom '{0}' est introuvable. Devez-vous installer des définitions de type pour jQuery ? Essayez 'npm i --save-dev @types/jquery'.",
+./node_modules/typescript/lib/fr/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Le nom '{0}' est introuvable. Devez-vous installer des définitions de type pour jQuery ? Essayez 'npm i --save-dev @types/jquery', puis ajoutez 'jquery' au champ types de votre fichier tsconfig.",
+./node_modules/typescript/lib/ja/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "名前 '{0}' が見つかりません。jQuery の型定義をインストールする必要がありますか? `npm i --save-dev @types/jquery` をお試しください。",
+./node_modules/typescript/lib/ja/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "名前 '{0}' が見つかりません。jQuery の型定義をインストールする必要がありますか? `npm i --save-dev @types/jquery` を試してから、tsconfig の型フィールドに 'jquery' を追加してみてください。",
+./node_modules/typescript/lib/lib.es2018.promise.d.ts:26:     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+./node_modules/typescript/lib/lib.scripthost.d.ts:151:     * Fully qualified path of the host executable.
+./node_modules/typescript/lib/lib.scripthost.d.ts:161:     * The name of the host executable (WScript.exe or CScript.exe).
+./node_modules/typescript/lib/lib.scripthost.d.ts:166:     * Path of the directory containing the host executable.
+./node_modules/typescript/lib/lib.scripthost.d.ts:213:     * Suspends script execution for a specified length of time, then continues execution.
+./node_modules/typescript/lib/lib.scripthost.d.ts:214:     * @param intTime Interval (in milliseconds) to suspend script execution.
+./node_modules/typescript/lib/zh-tw/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "找不到名稱 '{0}'。需要安裝 jQuery 的型別定義嗎? 請嘗試 `npm i --save-dev @types/jquery`。",
+./node_modules/typescript/lib/zh-tw/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "找不到名稱「{0}」。需要為 jQuery 安裝類型定義嗎? 請嘗試 `npm i --save-dev @types/jquery`，然後將 `jquery` 新增至 tsconfig 中的類型欄位。",
+./node_modules/typescript/lib/lib.esnext.array.d.ts:32:     * @param thisArg Value of 'this' used when executing mapfn.
+./node_modules/typescript/lib/it/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Non è possibile trovare il nome '{0}'. È necessario installare le definizioni di tipo per jQuery? Provare con `npm i --save-dev @types/jquery`.",
+./node_modules/typescript/lib/it/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Non è possibile trovare il nome '{0}'. È necessario installare le definizioni di tipo per jQuery? Provare con `npm i --save-dev @types/jquery` e quindi aggiungere 'jquery' al campo types in tsconfig.",
+./node_modules/typescript/lib/it/diagnosticMessages.generated.json:2034:  "const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_im_2475": "Le enumerazioni 'const' possono essere usate solo in espressioni di accesso a proprietà o indice oppure nella parte destra di un'assegnazione di esportazione, di una dichiarazione di importazione o di una query su tipo.",
+./node_modules/typescript/lib/_tsserver.js:247:            logger.info(`Starting ${process.execPath} with args:${typescript_exports.server.stringifyIndented(args)}`);
+./node_modules/typescript/lib/_tsserver.js:249:          import_child_process.default.execFileSync(process.execPath, args, { stdio: "ignore", env: { ELECTRON_RUN_AS_NODE: "1" } });
+./node_modules/typescript/lib/_tsserver.js:407:      const execArgv = [];
+./node_modules/typescript/lib/_tsserver.js:408:      for (const arg of process.execArgv) {
+./node_modules/typescript/lib/_tsserver.js:409:        const match = /^--((?:debug|inspect)(?:-brk)?)(?:=(\d+))?$/.exec(arg);
+./node_modules/typescript/lib/_tsserver.js:412:          execArgv.push(`--${match[1]}=${currentPort + 1}`);
+./node_modules/typescript/lib/_tsserver.js:417:      this.installer = import_child_process.default.fork(typingsInstaller, args, { execArgv });
+./node_modules/typescript/lib/lib.esnext.sharedmemory.d.ts:22:     * CPU that the current executing code is in a spin-wait loop.
+./node_modules/typescript/lib/lib.webworker.d.ts:2503: * The `Client` interface represents an executable context such as a Worker, or a SharedWorker.
+./node_modules/typescript/lib/lib.webworker.d.ts:4641: * The **`FontFaceSet`** interface of the CSS Font Loading API manages the loading of font-faces and querying of their download status.
+./node_modules/typescript/lib/lib.webworker.d.ts:5080:    count(query?: IDBValidKey | IDBKeyRange): IDBRequest<number>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5086:    get(query: IDBValidKey | IDBKeyRange): IDBRequest<any>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5092:    getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5098:    getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5104:    getKey(query: IDBValidKey | IDBKeyRange): IDBRequest<IDBValidKey | undefined>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5110:    openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5116:    openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5244:    count(query?: IDBValidKey | IDBKeyRange): IDBRequest<number>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5256:    delete(query: IDBValidKey | IDBKeyRange): IDBRequest<undefined>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5268:    get(query: IDBValidKey | IDBKeyRange): IDBRequest<any>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5274:    getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5280:    getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5282:     * The **`getKey()`** method of the and, in a separate thread, returns the key selected by the specified query.
+./node_modules/typescript/lib/lib.webworker.d.ts:5286:    getKey(query: IDBValidKey | IDBKeyRange): IDBRequest<IDBValidKey | undefined>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5298:    openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5304:    openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+./node_modules/typescript/lib/lib.webworker.d.ts:5768: * The **`LockManager`** interface of the Web Locks API provides methods for requesting a new Lock object and querying for an existing `Lock` object.
+./node_modules/typescript/lib/lib.webworker.d.ts:5775:     * The **`query()`** method of the LockManager interface returns a Promise that resolves with an object containing information about held and pending locks.
+./node_modules/typescript/lib/lib.webworker.d.ts:5777:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/LockManager/query)
+./node_modules/typescript/lib/lib.webworker.d.ts:5779:    query(): Promise<LockManagerSnapshot>;
+./node_modules/typescript/lib/lib.webworker.d.ts:6382: * When using the canvas element or the Canvas API, rendering, animation, and user interaction usually happen on the main execution thread of a web application.
+./node_modules/typescript/lib/lib.webworker.d.ts:6920: * The **`Permissions`** interface of the Permissions API provides the core Permission API functionality, such as methods for querying and revoking permissions - Permissions.query - : Returns the user permission status for a given API.
+./node_modules/typescript/lib/lib.webworker.d.ts:6926:     * The **`query()`** method of the Permissions interface returns the state of a user permission on the global scope.
+./node_modules/typescript/lib/lib.webworker.d.ts:6928:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Permissions/query)
+./node_modules/typescript/lib/lib.webworker.d.ts:6930:    query(permissionDesc: PermissionDescriptor): Promise<PermissionStatus>;
+./node_modules/typescript/lib/lib.webworker.d.ts:8058:     * The **`ready`** read-only property of the ServiceWorkerContainer interface provides a way of delaying code execution until a service worker is active.
+./node_modules/typescript/lib/lib.webworker.d.ts:8112: * The **`ServiceWorkerGlobalScope`** interface of the Service Worker API represents the global execution context of a service worker.
+./node_modules/typescript/lib/lib.webworker.d.ts:8785:     * The **`search`** property of the URL interface is a search string, also called a _query string_, that is a string containing a `'?'` followed by the parameters of the URL.
+./node_modules/typescript/lib/lib.webworker.d.ts:8791:     * The **`searchParams`** read-only property of the access to the [MISSING: httpmethod('GET')] decoded query arguments contained in the URL.
+./node_modules/typescript/lib/lib.webworker.d.ts:8840: * The **`URLSearchParams`** interface defines utility methods to work with the query string of a URL.
+./node_modules/typescript/lib/lib.webworker.d.ts:9049:     * The **`configure()`** method of the VideoEncoder interface changes the VideoEncoder.state of the encoder to 'configured' and asynchronously prepares the encoder to accept VideoEncoders for encoding with the specified parameters.
+./node_modules/typescript/lib/lib.webworker.d.ts:9851:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.webworker.d.ts:10010:    beginQuery(target: GLenum, query: WebGLQuery): void;
+./node_modules/typescript/lib/lib.webworker.d.ts:10054:    deleteQuery(query: WebGLQuery | null): void;
+./node_modules/typescript/lib/lib.webworker.d.ts:10096:    getQueryParameter(query: WebGLQuery, pname: GLenum): any;
+./node_modules/typescript/lib/lib.webworker.d.ts:10112:    isQuery(query: WebGLQuery | null): GLboolean;
+./node_modules/typescript/lib/lib.webworker.d.ts:10600: * The **`WebGLQuery`** interface is part of the WebGL 2 API and provides ways to asynchronously query for information.
+./node_modules/typescript/lib/lib.webworker.d.ts:10778:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.webworker.d.ts:11356:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.webworker.d.ts:12112: * The **`WorkerLocation`** interface defines the absolute location of the script executed by the Worker.
+./node_modules/typescript/lib/lib.webworker.d.ts:12192:     * The **`permissions`** read-only property of the WorkerNavigator interface returns a Permissions object that can be used to query and update permission status of APIs covered by the Permissions API.
+./node_modules/typescript/lib/typescript.d.ts:110:                PreparePasteEdits = "preparePasteEdits",
+./node_modules/typescript/lib/typescript.d.ts:120:                PrepareCallHierarchy = "prepareCallHierarchy",
+./node_modules/typescript/lib/typescript.d.ts:146:                 * The command to execute
+./node_modules/typescript/lib/typescript.d.ts:1425:             * NOTE: this us query-only operation and does not generate any output on disk.
+./node_modules/typescript/lib/typescript.d.ts:2603:                private executeWithThrottling;
+./node_modules/typescript/lib/typescript.d.ts:3588:            private preparePasteEdits;
+./node_modules/typescript/lib/typescript.d.ts:3615:            private prepareCallHierarchy;
+./node_modules/typescript/lib/typescript.d.ts:3626:            executeWithRequestId<T>(requestId: number, f: () => T): T;
+./node_modules/typescript/lib/typescript.d.ts:3627:            executeCommand(request: protocol.Request): HandlerResponse;
+./node_modules/typescript/lib/typescript.d.ts:9398:     * @param test A callback to execute to verify the Node is valid.
+./node_modules/typescript/lib/typescript.d.ts:9399:     * @param lift An optional callback to execute to lift a NodeArray into a valid Node.
+./node_modules/typescript/lib/typescript.d.ts:9413:     * @param test A callback to execute to verify the Node is valid.
+./node_modules/typescript/lib/typescript.d.ts:9414:     * @param lift An optional callback to execute to lift a NodeArray into a valid Node.
+./node_modules/typescript/lib/typescript.d.ts:9428:     * @param test A node test to execute for each node.
+./node_modules/typescript/lib/typescript.d.ts:9444:     * @param test A node test to execute for each node.
+./node_modules/typescript/lib/typescript.d.ts:10231:        prepareCallHierarchy(fileName: string, position: number): CallHierarchyItem | CallHierarchyItem[] | undefined;
+./node_modules/typescript/lib/typescript.d.ts:10285:        preparePasteEditsForFile(fileName: string, copiedTextRanges: TextRange[]): boolean;
+./node_modules/typescript/lib/ru/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Не удается найти имя \"{0}\". Вы хотите установить определения типов для jQuery? Попробуйте использовать команду \"npm i --save-dev @types/jquery\".",
+./node_modules/typescript/lib/ru/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Не удается найти имя \"{0}\". Вы хотите установить определения типов для jQuery? Попробуйте использовать `npm i --save-dev @types/jquery`, а затем добавить \"jquery\" в поле типов в файле tsconfig.",
+./node_modules/typescript/lib/de/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Der Name \"{0}\" wurde nicht gefunden. Müssen Sie Typdefinitionen für jQuery installieren? Versuchen Sie es mit \"npm i --save-dev @types/jquery\".",
+./node_modules/typescript/lib/de/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Der Name \"{0}\" wurde nicht gefunden. Müssen Sie Typdefinitionen für jQuery installieren? Versuchen Sie es mit \"npm i --save-dev @types/jquery\", und fügen Sie dann dem Typenfeld in Ihrer tsconfig-Datei \"jquery\" hinzu.",
+./node_modules/typescript/lib/cs/diagnosticMessages.generated.json:379:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581": "Nepovedlo se najít název {0}. Potřebujete nainstalovat definice typů pro jQuery? Zkuste npm i --save-dev @types/jquery.",
+./node_modules/typescript/lib/cs/diagnosticMessages.generated.json:380:  "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592": "Nepovedlo se najít název ‚{0}‘. Potřebujete nainstalovat definice typů pro jQuery? Zkuste ‚npm i --save-dev @types/jquery` a pak pro pole typů v tsconfig přidejte ‚jquery‘.",
+./node_modules/typescript/lib/lib.dom.d.ts:3978: * The **`AudioWorklet`** interface of the Web Audio API is used to supply custom audio processing scripts that execute in a separate thread to provide very low latency audio processing.
+./node_modules/typescript/lib/lib.dom.d.ts:8496: * The **`CustomElementRegistry`** interface provides methods for registering custom elements and querying registered elements.
+./node_modules/typescript/lib/lib.dom.d.ts:10252:     * The **`execCommand`** method implements multiple different commands.
+./node_modules/typescript/lib/lib.dom.d.ts:10255:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/execCommand)
+./node_modules/typescript/lib/lib.dom.d.ts:10257:    execCommand(commandId: string, showUI?: boolean, value?: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:10341:     * The **`Document.queryCommandEnabled()`** method reports whether or not the specified editor command is enabled by the browser.
+./node_modules/typescript/lib/lib.dom.d.ts:10344:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/queryCommandEnabled)
+./node_modules/typescript/lib/lib.dom.d.ts:10346:    queryCommandEnabled(commandId: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:10348:    queryCommandIndeterm(commandId: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:10350:     * The **`queryCommandState()`** method will tell you if the current selection has a certain Document.execCommand() command applied.
+./node_modules/typescript/lib/lib.dom.d.ts:10353:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/queryCommandState)
+./node_modules/typescript/lib/lib.dom.d.ts:10355:    queryCommandState(commandId: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:10357:     * The **`Document.queryCommandSupported()`** method reports whether or not the specified editor command is supported by the browser.
+./node_modules/typescript/lib/lib.dom.d.ts:10360:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/queryCommandSupported)
+./node_modules/typescript/lib/lib.dom.d.ts:10362:    queryCommandSupported(commandId: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:10364:    queryCommandValue(commandId: string): string;
+./node_modules/typescript/lib/lib.dom.d.ts:12143: * The **`FontFaceSet`** interface of the CSS Font Loading API manages the loading of font-faces and querying of their download status.
+./node_modules/typescript/lib/lib.dom.d.ts:13276:     * The **`formAction`** property of the HTMLButtonElement interface is the URL of the program that is executed on the server when the form that owns this control is submitted.
+./node_modules/typescript/lib/lib.dom.d.ts:14391:     * Returns the hyperlink's URL's query (includes leading "?" if non-empty).
+./node_modules/typescript/lib/lib.dom.d.ts:14393:     * Can be set, to change the URL's query (ignores leading "?").
+./node_modules/typescript/lib/lib.dom.d.ts:14772:     * The **`formAction`** property of the HTMLInputElement interface is the URL of the program that is executed on the server when the form that owns this control is submitted.
+./node_modules/typescript/lib/lib.dom.d.ts:16321: * HTML script elements expose the **`HTMLScriptElement`** interface, which provides special properties and methods for manipulating the behavior and execution of `<script>` elements (beyond the inherited HTMLElement interface).
+./node_modules/typescript/lib/lib.dom.d.ts:16327:     * The **`async`** property of the HTMLScriptElement interface is a boolean value that controls how the script should be executed.
+./node_modules/typescript/lib/lib.dom.d.ts:16348:     * The **`defer`** property of the HTMLScriptElement interface is a boolean value that controls how the script should be executed.
+./node_modules/typescript/lib/lib.dom.d.ts:16370:     * The **`noModule`** property of the HTMLScriptElement interface is a boolean value that indicates whether the script should be executed in browsers that support ES modules.
+./node_modules/typescript/lib/lib.dom.d.ts:18149:    count(query?: IDBValidKey | IDBKeyRange): IDBRequest<number>;
+./node_modules/typescript/lib/lib.dom.d.ts:18155:    get(query: IDBValidKey | IDBKeyRange): IDBRequest<any>;
+./node_modules/typescript/lib/lib.dom.d.ts:18161:    getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+./node_modules/typescript/lib/lib.dom.d.ts:18167:    getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+./node_modules/typescript/lib/lib.dom.d.ts:18173:    getKey(query: IDBValidKey | IDBKeyRange): IDBRequest<IDBValidKey | undefined>;
+./node_modules/typescript/lib/lib.dom.d.ts:18179:    openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+./node_modules/typescript/lib/lib.dom.d.ts:18185:    openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+./node_modules/typescript/lib/lib.dom.d.ts:18313:    count(query?: IDBValidKey | IDBKeyRange): IDBRequest<number>;
+./node_modules/typescript/lib/lib.dom.d.ts:18325:    delete(query: IDBValidKey | IDBKeyRange): IDBRequest<undefined>;
+./node_modules/typescript/lib/lib.dom.d.ts:18337:    get(query: IDBValidKey | IDBKeyRange): IDBRequest<any>;
+./node_modules/typescript/lib/lib.dom.d.ts:18343:    getAll(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<any[]>;
+./node_modules/typescript/lib/lib.dom.d.ts:18349:    getAllKeys(query?: IDBValidKey | IDBKeyRange | null, count?: number): IDBRequest<IDBValidKey[]>;
+./node_modules/typescript/lib/lib.dom.d.ts:18351:     * The **`getKey()`** method of the and, in a separate thread, returns the key selected by the specified query.
+./node_modules/typescript/lib/lib.dom.d.ts:18355:    getKey(query: IDBValidKey | IDBKeyRange): IDBRequest<IDBValidKey | undefined>;
+./node_modules/typescript/lib/lib.dom.d.ts:18367:    openCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursorWithValue | null>;
+./node_modules/typescript/lib/lib.dom.d.ts:18373:    openKeyCursor(query?: IDBValidKey | IDBKeyRange | null, direction?: IDBCursorDirection): IDBRequest<IDBCursor | null>;
+./node_modules/typescript/lib/lib.dom.d.ts:19341:     * The **`search`** property of the Location interface is a search string, also called a _query string_, that is a string containing a `'?'` followed by the parameters of the location's URL.
+./node_modules/typescript/lib/lib.dom.d.ts:19398: * The **`LockManager`** interface of the Web Locks API provides methods for requesting a new Lock object and querying for an existing `Lock` object.
+./node_modules/typescript/lib/lib.dom.d.ts:19405:     * The **`query()`** method of the LockManager interface returns a Promise that resolves with an object containing information about held and pending locks.
+./node_modules/typescript/lib/lib.dom.d.ts:19407:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/LockManager/query)
+./node_modules/typescript/lib/lib.dom.d.ts:19409:    query(): Promise<LockManagerSnapshot>;
+./node_modules/typescript/lib/lib.dom.d.ts:20100:     * The `appendMedium()` method of the MediaList interface adds a media query to the list.
+./node_modules/typescript/lib/lib.dom.d.ts:20106:     * The `deleteMedium()` method of the MediaList interface removes from this `MediaList` the given media query.
+./node_modules/typescript/lib/lib.dom.d.ts:20112:     * The **`item()`** method of the MediaList interface returns the media query at the specified `index`, or `null` if the specified `index` doesn't exist.
+./node_modules/typescript/lib/lib.dom.d.ts:20167: * A **`MediaQueryList`** object stores information on a media query applied to a document, with support for both immediate and event-driven matching against the state of the document.
+./node_modules/typescript/lib/lib.dom.d.ts:20173:     * The **`matches`** read-only property of the `true` if the document currently matches the media query list, or `false` if not.
+./node_modules/typescript/lib/lib.dom.d.ts:20179:     * The **`media`** read-only property of the serialized media query.
+./node_modules/typescript/lib/lib.dom.d.ts:20187:     * The deprecated **`addListener()`** method of the `MediaQueryListener` that will run a custom callback function in response to the media query status changing.
+./node_modules/typescript/lib/lib.dom.d.ts:20218:     * The **`matches`** read-only property of the `true` if the document currently matches the media query list, or `false` if not.
+./node_modules/typescript/lib/lib.dom.d.ts:20224:     * The **`media`** read-only property of the a serialized media query.
+./node_modules/typescript/lib/lib.dom.d.ts:21965: * **`NodeList`** objects are collections of nodes, usually returned by properties such as Node.childNodes and methods such as document.querySelectorAll().
+./node_modules/typescript/lib/lib.dom.d.ts:22363: * When using the canvas element or the Canvas API, rendering, animation, and user interaction usually happen on the main execution thread of a web application.
+./node_modules/typescript/lib/lib.dom.d.ts:22706:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/querySelector)
+./node_modules/typescript/lib/lib.dom.d.ts:22708:    querySelector<K extends keyof HTMLElementTagNameMap>(selectors: K): HTMLElementTagNameMap[K] | null;
+./node_modules/typescript/lib/lib.dom.d.ts:22709:    querySelector<K extends keyof SVGElementTagNameMap>(selectors: K): SVGElementTagNameMap[K] | null;
+./node_modules/typescript/lib/lib.dom.d.ts:22710:    querySelector<K extends keyof MathMLElementTagNameMap>(selectors: K): MathMLElementTagNameMap[K] | null;
+./node_modules/typescript/lib/lib.dom.d.ts:22712:    querySelector<K extends keyof HTMLElementDeprecatedTagNameMap>(selectors: K): HTMLElementDeprecatedTagNameMap[K] | null;
+./node_modules/typescript/lib/lib.dom.d.ts:22713:    querySelector<E extends Element = Element>(selectors: string): E | null;
+./node_modules/typescript/lib/lib.dom.d.ts:22717:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)
+./node_modules/typescript/lib/lib.dom.d.ts:22719:    querySelectorAll<K extends keyof HTMLElementTagNameMap>(selectors: K): NodeListOf<HTMLElementTagNameMap[K]>;
+./node_modules/typescript/lib/lib.dom.d.ts:22720:    querySelectorAll<K extends keyof SVGElementTagNameMap>(selectors: K): NodeListOf<SVGElementTagNameMap[K]>;
+./node_modules/typescript/lib/lib.dom.d.ts:22721:    querySelectorAll<K extends keyof MathMLElementTagNameMap>(selectors: K): NodeListOf<MathMLElementTagNameMap[K]>;
+./node_modules/typescript/lib/lib.dom.d.ts:22723:    querySelectorAll<K extends keyof HTMLElementDeprecatedTagNameMap>(selectors: K): NodeListOf<HTMLElementDeprecatedTagNameMap[K]>;
+./node_modules/typescript/lib/lib.dom.d.ts:22724:    querySelectorAll<E extends Element = Element>(selectors: string): NodeListOf<E>;
+./node_modules/typescript/lib/lib.dom.d.ts:23223:     * The read-only **`processingEnd`** property returns the time the last event handler finished executing.
+./node_modules/typescript/lib/lib.dom.d.ts:23694:     * The legacy **`PerformanceTiming.domContentLoadedEventEnd`** read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right after all the scripts that need to be executed as soon as possible, in order or not, has been executed.
+./node_modules/typescript/lib/lib.dom.d.ts:23701:     * The legacy **`PerformanceTiming.domContentLoadedEventStart`** read-only property returns an `unsigned long long` representing the moment, in milliseconds since the UNIX epoch, right before the parser sent the executed right after parsing has been executed.
+./node_modules/typescript/lib/lib.dom.d.ts:23883: * The **`Permissions`** interface of the Permissions API provides the core Permission API functionality, such as methods for querying and revoking permissions - Permissions.query - : Returns the user permission status for a given API.
+./node_modules/typescript/lib/lib.dom.d.ts:23889:     * The **`query()`** method of the Permissions interface returns the state of a user permission on the global scope.
+./node_modules/typescript/lib/lib.dom.d.ts:23891:     * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Permissions/query)
+./node_modules/typescript/lib/lib.dom.d.ts:23893:    query(permissionDesc: PermissionDescriptor): Promise<PermissionStatus>;
+./node_modules/typescript/lib/lib.dom.d.ts:29602:     * The **`SVGStyleElement.media`** property is a media query string corresponding to the `media` attribute of the given SVG style element.
+./node_modules/typescript/lib/lib.dom.d.ts:30589:     * The **`ready`** read-only property of the ServiceWorkerContainer interface provides a way of delaying code execution until a service worker is active.
+./node_modules/typescript/lib/lib.dom.d.ts:31462:    matchMedium(mediaquery: string): boolean;
+./node_modules/typescript/lib/lib.dom.d.ts:32697:     * The **`search`** property of the URL interface is a search string, also called a _query string_, that is a string containing a `'?'` followed by the parameters of the URL.
+./node_modules/typescript/lib/lib.dom.d.ts:32703:     * The **`searchParams`** read-only property of the access to the [MISSING: httpmethod('GET')] decoded query arguments contained in the URL.
+./node_modules/typescript/lib/lib.dom.d.ts:32755: * The **`URLSearchParams`** interface defines utility methods to work with the query string of a URL.
+./node_modules/typescript/lib/lib.dom.d.ts:33172:     * The **`configure()`** method of the VideoEncoder interface changes the VideoEncoder.state of the encoder to 'configured' and asynchronously prepares the encoder to accept VideoEncoders for encoding with the specified parameters.
+./node_modules/typescript/lib/lib.dom.d.ts:34214:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.dom.d.ts:34373:    beginQuery(target: GLenum, query: WebGLQuery): void;
+./node_modules/typescript/lib/lib.dom.d.ts:34417:    deleteQuery(query: WebGLQuery | null): void;
+./node_modules/typescript/lib/lib.dom.d.ts:34459:    getQueryParameter(query: WebGLQuery, pname: GLenum): any;
+./node_modules/typescript/lib/lib.dom.d.ts:34475:    isQuery(query: WebGLQuery | null): GLboolean;
+./node_modules/typescript/lib/lib.dom.d.ts:34963: * The **`WebGLQuery`** interface is part of the WebGL 2 API and provides ways to asynchronously query for information.
+./node_modules/typescript/lib/lib.dom.d.ts:35141:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.dom.d.ts:35721:    readonly DELETE_STATUS: 0x8B80;
+./node_modules/typescript/lib/lib.dom.d.ts:36701:     * The Window interface's **`matchMedia()`** method returns a new MediaQueryList object that can then be used to determine if the document matches the media query string, as well as to monitor the document to detect when it matches (or stops matching) that media query.
+./node_modules/typescript/lib/lib.dom.d.ts:36705:    matchMedia(query: string): MediaQueryList;
+./node_modules/typescript/lib/lib.dom.d.ts:38737: * The Window interface's **`matchMedia()`** method returns a new MediaQueryList object that can then be used to determine if the document matches the media query string, as well as to monitor the document to detect when it matches (or stops matching) that media query.
+./node_modules/typescript/lib/lib.dom.d.ts:38741:declare function matchMedia(query: string): MediaQueryList;
+./node_modules/typescript/lib/_tsc.js:1433:      const match = /^function\s+([\w$]+)\s*\(/.exec(text);
+./node_modules/typescript/lib/_tsc.js:2300:  const match = versionRegExp.exec(text);
+./node_modules/typescript/lib/_tsc.js:2371:    const match = hyphenRegExp.exec(range);
+./node_modules/typescript/lib/_tsc.js:2376:        const match2 = rangeRegExp.exec(simple.trim());
+./node_modules/typescript/lib/_tsc.js:2385:  const match = partialRegExp.exec(text);
+./node_modules/typescript/lib/_tsc.js:4908:    const executingFilePath = __filename.endsWith("sys.js") ? _path.join(_path.dirname(__dirname), "__fake__.js") : __filename;
+./node_modules/typescript/lib/_tsc.js:4966:        return executingFilePath;
+./node_modules/typescript/lib/_tsc.js:4997:      cpuProfilingEnabled: () => !!activeSession || contains(process.execArgv, "--cpu-prof") || contains(process.execArgv, "--prof"),
+./node_modules/typescript/lib/_tsc.js:4999:      debugMode: !!process.env.NODE_INSPECTOR_IPC || !!process.env.VSCODE_INSPECTOR_OPTIONS || some(process.execArgv, (arg) => /^--(?:inspect|debug)(?:-brk)?(?:=\d+)?$/i.test(arg)) || !!process.recordreplay,
+./node_modules/typescript/lib/_tsc.js:5061:      const normalizedDir = normalizeSlashes(_path.dirname(executingFilePath));
+./node_modules/typescript/lib/_tsc.js:6465:  const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_import_declaration_or_export_assignment_or_type_query: diag(2475, 1 /* Error */, "const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_im_2475", "'const' enums can only be used in property or index access expressions or the right hand side of an import declaration or export assignment or type query."),
+./node_modules/typescript/lib/_tsc.js:6557:  Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery: diag(2581, 1 /* Error */, "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581", "Cannot find name '{0}'. Do you need to install type definitions for jQuery? Try `npm i --save-dev @types/jquery`."),
+./node_modules/typescript/lib/_tsc.js:6566:  Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery_and_then_add_jquery_to_the_types_field_in_your_tsconfig: diag(2592, 1 /* Error */, "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592", "Cannot find name '{0}'. Do you need to install type definitions for jQuery? Try `npm i --save-dev @types/jquery` and then add 'jquery' to the types field in your tsconfig."),
+./node_modules/typescript/lib/_tsc.js:8501:  const shebang = shebangTriviaRegex.exec(text)[0];
+./node_modules/typescript/lib/_tsc.js:8678:  const match = shebangTriviaRegex.exec(text);
+./node_modules/typescript/lib/_tsc.js:10873:    const match = commentDirectiveRegEx.exec(text2);
+./node_modules/typescript/lib/_tsc.js:11363:  const matchResult = /^([a-z]+)(?:[_-]([a-z]+))?$/.exec(lowerCaseLocale);
+./node_modules/typescript/lib/_tsc.js:19922:  "querystring",
+./node_modules/typescript/lib/_tsc.js:19950:  "node:sqlite",
+./node_modules/typescript/lib/_tsc.js:19962:  while (r.exec(file.text) !== null) {
+./node_modules/typescript/lib/_tsc.js:26262:                    if (f) throw new TypeError("Generator is already executing.");
+./node_modules/typescript/lib/_tsc.js:36237:  const tripleSlash = range.kind === 2 /* SingleLineCommentTrivia */ && tripleSlashXMLCommentStartRegEx.exec(text);
+./node_modules/typescript/lib/_tsc.js:36248:        const matchResult = matcher.exec(text);
+./node_modules/typescript/lib/_tsc.js:36271:  const singleLine = range.kind === 2 /* SingleLineCommentTrivia */ && singleLinePragmaRegEx.exec(text);
+./node_modules/typescript/lib/_tsc.js:36278:    while (multiLineMatch = multiLinePragmaRegEx.exec(text)) {
+./node_modules/typescript/lib/_tsc.js:39649:  const match = wildcardDirectoryPattern.exec(spec);
+./node_modules/typescript/lib/_tsc.js:45304:          const query = d.type;
+./node_modules/typescript/lib/_tsc.js:45305:          const entity = getResolvedSymbol(getFirstIdentifier2(query.exprName));
+./node_modules/typescript/lib/_tsc.js:69217:        return compilerOptions.types ? Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery_and_then_add_jquery_to_the_types_field_in_your_tsconfig : Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery;
+./node_modules/typescript/lib/_tsc.js:80859:      error(node, Diagnostics.const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_import_declaration_or_export_assignment_or_type_query);
+./node_modules/typescript/lib/_tsc.js:98808:      const initializerStatements = prepareConstructor(node, classInfo2);
+./node_modules/typescript/lib/_tsc.js:99142:  function prepareConstructor(_parent, classInfo2) {
+./node_modules/typescript/lib/_tsc.js:99189:      const initializerStatements = prepareConstructor(classInfo.class, classInfo);
+./node_modules/typescript/lib/_tsc.js:111665:    const executeStatements = visitNodes2(node.statements, topLevelVisitor, isStatement, statementOffset);
+./node_modules/typescript/lib/_tsc.js:111674:          "execute",
+./node_modules/typescript/lib/_tsc.js:111688:              executeStatements,
+./node_modules/typescript/lib/_tsc.js:130291:      executeSteps(0 /* CreateProgram */, cancellationToken);
+./node_modules/typescript/lib/_tsc.js:130297:    executeSteps(3 /* Done */, cancellationToken, writeFile2, customTransformers);
+./node_modules/typescript/lib/_tsc.js:130302:    executeSteps(0 /* CreateProgram */);
+./node_modules/typescript/lib/_tsc.js:130425:  function executeSteps(till, cancellationToken, writeFile2, customTransformers) {
+./node_modules/typescript/lib/_tsc.js:131514:// src/compiler/executeCommandLine.ts
+./node_modules/typescript/lib/_tsc.js:131941:function executeCommandLineWorker(sys2, cb, commandLine) {
+./node_modules/typescript/lib/_tsc.js:132095:function executeCommandLine(system, cb, commandLineArgs) {
+./node_modules/typescript/lib/_tsc.js:132120:    system.enableCPUProfiler(commandLine.options.generateCpuProfile, () => executeCommandLineWorker(
+./node_modules/typescript/lib/_tsc.js:132126:    return executeCommandLineWorker(system, cb, commandLine);
+./node_modules/typescript/lib/_tsc.js:133817:executeCommandLine(sys, noop, sys.args);
+./node_modules/typescript/lib/typescript.js:147:  PreparePasteEdits: () => ts_preparePasteEdits_exports,
+./node_modules/typescript/lib/typescript.js:536:  executeCommandLine: () => executeCommandLine,
+./node_modules/typescript/lib/typescript.js:4003:      const match = /^function\s+([\w$]+)\s*\(/.exec(text);
+./node_modules/typescript/lib/typescript.js:4870:  const match = versionRegExp.exec(text);
+./node_modules/typescript/lib/typescript.js:4941:    const match = hyphenRegExp.exec(range);
+./node_modules/typescript/lib/typescript.js:4946:        const match2 = rangeRegExp.exec(simple.trim());
+./node_modules/typescript/lib/typescript.js:4955:  const match = partialRegExp.exec(text);
+./node_modules/typescript/lib/typescript.js:8282:    const executingFilePath = __filename.endsWith("sys.js") ? _path.join(_path.dirname(__dirname), "__fake__.js") : __filename;
+./node_modules/typescript/lib/typescript.js:8340:        return executingFilePath;
+./node_modules/typescript/lib/typescript.js:8371:      cpuProfilingEnabled: () => !!activeSession || contains(process.execArgv, "--cpu-prof") || contains(process.execArgv, "--prof"),
+./node_modules/typescript/lib/typescript.js:8373:      debugMode: !!process.env.NODE_INSPECTOR_IPC || !!process.env.VSCODE_INSPECTOR_OPTIONS || some(process.execArgv, (arg) => /^--(?:inspect|debug)(?:-brk)?(?:=\d+)?$/i.test(arg)) || !!process.recordreplay,
+./node_modules/typescript/lib/typescript.js:8435:      const normalizedDir = normalizeSlashes(_path.dirname(executingFilePath));
+./node_modules/typescript/lib/typescript.js:9851:  const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_import_declaration_or_export_assignment_or_type_query: diag(2475, 1 /* Error */, "const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_im_2475", "'const' enums can only be used in property or index access expressions or the right hand side of an import declaration or export assignment or type query."),
+./node_modules/typescript/lib/typescript.js:9943:  Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery: diag(2581, 1 /* Error */, "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2581", "Cannot find name '{0}'. Do you need to install type definitions for jQuery? Try `npm i --save-dev @types/jquery`."),
+./node_modules/typescript/lib/typescript.js:9952:  Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery_and_then_add_jquery_to_the_types_field_in_your_tsconfig: diag(2592, 1 /* Error */, "Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slash_2592", "Cannot find name '{0}'. Do you need to install type definitions for jQuery? Try `npm i --save-dev @types/jquery` and then add 'jquery' to the types field in your tsconfig."),
+./node_modules/typescript/lib/typescript.js:11913:  const shebang = shebangTriviaRegex.exec(text)[0];
+./node_modules/typescript/lib/typescript.js:12090:  const match = shebangTriviaRegex.exec(text);
+./node_modules/typescript/lib/typescript.js:14285:    const match = commentDirectiveRegEx.exec(text2);
+./node_modules/typescript/lib/typescript.js:14886:  const matchResult = /^([a-z]+)(?:[_-]([a-z]+))?$/.exec(lowerCaseLocale);
+./node_modules/typescript/lib/typescript.js:24019:  "querystring",
+./node_modules/typescript/lib/typescript.js:24047:  "node:sqlite",
+./node_modules/typescript/lib/typescript.js:24059:  while (r.exec(file.text) !== null) {
+./node_modules/typescript/lib/typescript.js:30405:                    if (f) throw new TypeError("Generator is already executing.");
+./node_modules/typescript/lib/typescript.js:40498:  const tripleSlash = range.kind === 2 /* SingleLineCommentTrivia */ && tripleSlashXMLCommentStartRegEx.exec(text);
+./node_modules/typescript/lib/typescript.js:40509:        const matchResult = matcher.exec(text);
+./node_modules/typescript/lib/typescript.js:40532:  const singleLine = range.kind === 2 /* SingleLineCommentTrivia */ && singleLinePragmaRegEx.exec(text);
+./node_modules/typescript/lib/typescript.js:40539:    while (multiLineMatch = multiLinePragmaRegEx.exec(text)) {
+./node_modules/typescript/lib/typescript.js:43945:  const match = wildcardDirectoryPattern.exec(spec);
+./node_modules/typescript/lib/typescript.js:49815:          const query = d.type;
+./node_modules/typescript/lib/typescript.js:49816:          const entity = getResolvedSymbol(getFirstIdentifier2(query.exprName));
+./node_modules/typescript/lib/typescript.js:73828:        return compilerOptions.types ? Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery_and_then_add_jquery_to_the_types_field_in_your_tsconfig : Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery;
+./node_modules/typescript/lib/typescript.js:85470:      error2(node, Diagnostics.const_enums_can_only_be_used_in_property_or_index_access_expressions_or_the_right_hand_side_of_an_import_declaration_or_export_assignment_or_type_query);
+./node_modules/typescript/lib/typescript.js:96623:    const comment = sourceMapCommentRegExp.exec(line);
+./node_modules/typescript/lib/typescript.js:103601:      const initializerStatements = prepareConstructor(node, classInfo2);
+./node_modules/typescript/lib/typescript.js:103935:  function prepareConstructor(_parent, classInfo2) {
+./node_modules/typescript/lib/typescript.js:103982:      const initializerStatements = prepareConstructor(classInfo.class, classInfo);
+./node_modules/typescript/lib/typescript.js:116458:    const executeStatements = visitNodes2(node.statements, topLevelVisitor, isStatement, statementOffset);
+./node_modules/typescript/lib/typescript.js:116467:          "execute",
+./node_modules/typescript/lib/typescript.js:116481:              executeStatements,
+./node_modules/typescript/lib/typescript.js:135253:      executeSteps(0 /* CreateProgram */, cancellationToken);
+./node_modules/typescript/lib/typescript.js:135259:    executeSteps(3 /* Done */, cancellationToken, writeFile2, customTransformers);
+./node_modules/typescript/lib/typescript.js:135264:    executeSteps(0 /* CreateProgram */);
+./node_modules/typescript/lib/typescript.js:135387:  function executeSteps(till, cancellationToken, writeFile2, customTransformers) {
+./node_modules/typescript/lib/typescript.js:136476:// src/compiler/executeCommandLine.ts
+./node_modules/typescript/lib/typescript.js:136909:function executeCommandLineWorker(sys2, cb, commandLine) {
+./node_modules/typescript/lib/typescript.js:137063:function executeCommandLine(system, cb, commandLineArgs) {
+./node_modules/typescript/lib/typescript.js:137088:    system.enableCPUProfiler(commandLine.options.generateCpuProfile, () => executeCommandLineWorker(
+./node_modules/typescript/lib/typescript.js:137094:    return executeCommandLineWorker(system, cb, commandLine);
+./node_modules/typescript/lib/typescript.js:139010:    const matches = /^@([^/]+)\/([^/]+)$/.exec(packageName);
+./node_modules/typescript/lib/typescript.js:143248:    const match = tripleSlashXMLCommentRegEx.exec(text);
+./node_modules/typescript/lib/typescript.js:143265:      const attrMatch = attributeRegex.exec(attrText);
+./node_modules/typescript/lib/typescript.js:145053:    const match = base64UrlRegExp.exec(mapFileName);
+./node_modules/typescript/lib/typescript.js:149992:  const parsedFunctionIndexMatch = /^function_scope_(\d+)$/.exec(actionName2);
+./node_modules/typescript/lib/typescript.js:149998:  const parsedConstantIndexMatch = /^constant_scope_(\d+)$/.exec(actionName2);
+./node_modules/typescript/lib/typescript.js:152685:  "prepareCallHierarchy",
+./node_modules/typescript/lib/typescript.js:152710:  "preparePasteEditsForFile"
+./node_modules/typescript/lib/typescript.js:153226:  function preparePasteEditsForFile(fileName, copiedTextRange) {
+./node_modules/typescript/lib/typescript.js:153228:    return ts_preparePasteEdits_exports.preparePasteEdits(
+./node_modules/typescript/lib/typescript.js:153625:      const regExec = firstNonWhitespaceCharacterRegex.exec(lineText);
+./node_modules/typescript/lib/typescript.js:153824:      while (matchArray = regExp.exec(fileContents)) {
+./node_modules/typescript/lib/typescript.js:153933:  function prepareCallHierarchy(fileName, position) {
+./node_modules/typescript/lib/typescript.js:154027:    prepareCallHierarchy,
+./node_modules/typescript/lib/typescript.js:154036:    preparePasteEditsForFile,
+./node_modules/typescript/lib/typescript.js:158236:  Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery.code,
+./node_modules/typescript/lib/typescript.js:158241:  Diagnostics.Cannot_find_name_0_Do_you_need_to_install_type_definitions_for_jQuery_Try_npm_i_save_dev_types_Slashjquery_and_then_add_jquery_to_the_types_field_in_your_tsconfig.code,
+./node_modules/typescript/lib/typescript.js:165702:      accessorModifiers = factory.createModifiersFromModifierFlags(prepareModifierFlagsForAccessor(modifierFlags));
+./node_modules/typescript/lib/typescript.js:165703:      fieldModifiers = factory.createModifiersFromModifierFlags(prepareModifierFlagsForField(modifierFlags));
+./node_modules/typescript/lib/typescript.js:165738:function prepareModifierFlagsForAccessor(modifierFlags) {
+./node_modules/typescript/lib/typescript.js:165746:function prepareModifierFlagsForField(modifierFlags) {
+./node_modules/typescript/lib/typescript.js:171756:  const match = tripleSlashDirectiveFragmentRegex.exec(text);
+./node_modules/typescript/lib/typescript.js:177075:  const result = regionDelimiterRegExp.exec(lineText);
+./node_modules/typescript/lib/typescript.js:181041:    // This low-pri rule takes care of "try {", "catch {" and "finally {" in case the rule SpaceBeforeOpenBraceInControl didn't execute on FormatOnEnter.
+./node_modules/typescript/lib/typescript.js:181669:function prepareRangeContainsErrorFunction(errors, originalRange) {
+./node_modules/typescript/lib/typescript.js:181768:      prepareRangeContainsErrorFunction(sourceFile.parseDiagnostics, originalRange),
+./node_modules/typescript/lib/typescript.js:183113:// src/services/_namespaces/ts.preparePasteEdits.ts
+./node_modules/typescript/lib/typescript.js:183114:var ts_preparePasteEdits_exports = {};
+./node_modules/typescript/lib/typescript.js:183115:__export(ts_preparePasteEdits_exports, {
+./node_modules/typescript/lib/typescript.js:183116:  preparePasteEdits: () => preparePasteEdits
+./node_modules/typescript/lib/typescript.js:183119:// src/services/preparePasteEdits.ts
+./node_modules/typescript/lib/typescript.js:183120:function preparePasteEdits(sourceFile, copiedFromRange, checker) {
+./node_modules/typescript/lib/typescript.js:183377:  PreparePasteEdits: () => ts_preparePasteEdits_exports,
+./node_modules/typescript/lib/typescript.js:183766:  executeCommandLine: () => executeCommandLine,
+./node_modules/typescript/lib/typescript.js:186117:    this.executeWithThrottling();
+./node_modules/typescript/lib/typescript.js:186119:  executeWithThrottling() {
+./node_modules/typescript/lib/typescript.js:186126:        this.executeWithThrottling();
+./node_modules/typescript/lib/typescript.js:186400:  CommandTypes2["PreparePasteEdits"] = "preparePasteEdits";
+./node_modules/typescript/lib/typescript.js:186418:  CommandTypes2["PrepareCallHierarchy"] = "prepareCallHierarchy";
+./node_modules/typescript/lib/typescript.js:189420:function prepareConvertersForEnumLikeCompilerOptions(commandLineOptions) {
+./node_modules/typescript/lib/typescript.js:189433:var compilerOptionConverters = prepareConvertersForEnumLikeCompilerOptions(optionDeclarations);
+./node_modules/typescript/lib/typescript.js:189434:var watchOptionsConverters = prepareConvertersForEnumLikeCompilerOptions(optionsForWatch);
+./node_modules/typescript/lib/typescript.js:189441:  "jquery": {
+./node_modules/typescript/lib/typescript.js:189442:    // jquery files can have names like "jquery-1.10.2.min.js" (or "jquery.intellisense.js")
+./node_modules/typescript/lib/typescript.js:189443:    match: /jquery(-[\d.]+)?(\.intellisense)?(\.min)?\.js$/i,
+./node_modules/typescript/lib/typescript.js:189444:    types: ["jquery"]
+./node_modules/typescript/lib/typescript.js:189989:     * This is a map of config file paths existence that doesnt need query to disk
+./node_modules/typescript/lib/typescript.js:193619:    this.executeAction(action);
+./node_modules/typescript/lib/typescript.js:193636:        this.operationHost.executeWithRequestId(requestId, () => this.executeAction(action), this.performanceData);
+./node_modules/typescript/lib/typescript.js:193647:          this.operationHost.executeWithRequestId(requestId, () => this.executeAction(action), this.performanceData);
+./node_modules/typescript/lib/typescript.js:193654:  executeAction(action) {
+./node_modules/typescript/lib/typescript.js:194007:  "prepareCallHierarchy" /* PrepareCallHierarchy */,
+./node_modules/typescript/lib/typescript.js:194040:  "preparePasteEdits" /* PreparePasteEdits */
+./node_modules/typescript/lib/typescript.js:194564:      ["preparePasteEdits" /* PreparePasteEdits */]: (request) => {
+./node_modules/typescript/lib/typescript.js:194565:        return this.requiredResponse(this.preparePasteEdits(request.arguments));
+./node_modules/typescript/lib/typescript.js:194623:      ["prepareCallHierarchy" /* PrepareCallHierarchy */]: (request) => {
+./node_modules/typescript/lib/typescript.js:194624:        return this.requiredResponse(this.prepareCallHierarchy(request.arguments));
+./node_modules/typescript/lib/typescript.js:194710:      executeWithRequestId: (requestId, action, performanceData) => this.executeWithRequestId(requestId, action, performanceData),
+./node_modules/typescript/lib/typescript.js:194873:    let msg = "Exception on executing command " + cmd;
+./node_modules/typescript/lib/typescript.js:196446:  preparePasteEdits(args) {
+./node_modules/typescript/lib/typescript.js:196448:    return project.getLanguageService().preparePasteEditsForFile(file, args.copiedTextSpan.map((copies) => this.getRange({ file, startLine: copies.start.line, startOffset: copies.start.offset, endLine: copies.end.line, endOffset: copies.end.offset }, this.projectService.getScriptInfoForNormalizedPath(file))));
+./node_modules/typescript/lib/typescript.js:196756:  prepareCallHierarchy(args) {
+./node_modules/typescript/lib/typescript.js:196761:      const result = project.getLanguageService().prepareCallHierarchy(file, position);
+./node_modules/typescript/lib/typescript.js:196816:  executeWithRequestId(requestId, f, perfomanceData) {
+./node_modules/typescript/lib/typescript.js:196827:  executeCommand(request) {
+./node_modules/typescript/lib/typescript.js:196830:      const response = this.executeWithRequestId(
+./node_modules/typescript/lib/typescript.js:196873:        "executeCommand",
+./node_modules/typescript/lib/typescript.js:196878:      const { response, responseRequired, performanceData } = this.executeCommand(request);
+./node_modules/typescript/lib/typescript.js:197513:  execWalk(rangeStart, rangeLength, walkFns, childIndex, nodeType) {
+./node_modules/typescript/lib/typescript.js:197545:      if (this.execWalk(adjustedStart, rangeLength, walkFns, childIndex, 2 /* Entire */)) {
+./node_modules/typescript/lib/typescript.js:197549:      if (this.execWalk(adjustedStart, childCharCount - adjustedStart, walkFns, childIndex, 1 /* Start */)) {
+./node_modules/typescript/lib/typescript.js:197557:        if (this.execWalk(0, childCharCount, walkFns, childIndex, 3 /* Mid */)) {
+./node_modules/typescript/lib/typescript.js:197565:        if (this.execWalk(0, adjustedLength, walkFns, childIndex, 4 /* End */)) {
+./node_modules/typescript/lib/typescript.js:198527:  executeCommandLine,

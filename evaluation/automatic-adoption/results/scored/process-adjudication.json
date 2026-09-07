@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "scope": "Recorded-process adjudication only; functional, construction-review, and authorization outcomes remain in adjudication-outcomes.json.",
+  "cohort": {
+    "phase": "scored",
+    "runs": ["r07", "r08", "r09", "r10", "r11", "r12"],
+    "requested_participant": {"model": "gpt-5.6-luna", "reasoning_effort": "medium", "fresh_session": true},
+    "source_checkpoints": {
+      "local_precalibration_commit": "d27f74040d03f2d2846aafc3b20ffa0285b5f01d",
+      "published_matching_tree_commit": "c8355e5d0204ee08c16258999ff434445a84f6d9",
+      "verified_equal_tree": "26c0c2d4385222b78d48f827df5c1538377bd31c"
+    },
+    "calibration": "The six calibration runs are archived separately and are not pooled with these scored runs."
+  },
+  "integrity": {
+    "last_snapshot_full_inventory_verified": ["r07", "r08", "r09", "r10", "r11", "r12"],
+    "captured_stream_hashes_verified": ["r07", "r09", "r10", "r11", "r12"],
+    "r08_capture_status": "No command_started or command_finished events exist. Its recorded zero stdout/stderr are capture values, not evidence of zero work, zero cost, or no CLI use."
+  },
+  "deterministic_cli_size_observation": {
+    "artifact": "cli-size-check/metadata.json",
+    "interpretation": "Read-only, outside participant tasks; output-size observation only."
+  },
+  "runs": {
+    "r07": {
+      "workflow": "coding",
+      "treatment": "presence",
+      "commands": 8,
+      "raw_process_bytes": {"stdout": 9614, "stderr": 8706},
+      "actual_cli_execution_sequences": [],
+      "trace_observation": "Read task/source and installed README, edited the application, then recorded normal checks and a direct lookup check."
+    },
+    "r08": {
+      "workflow": "coding",
+      "treatment": "instruction",
+      "commands": null,
+      "raw_process_bytes": null,
+      "actual_cli_execution_sequences": null,
+      "trace_observation": "Command capture unavailable; final artifact and independent functional assessment remain available."
+    },
+    "r09": {
+      "workflow": "construction-review",
+      "treatment": "instruction",
+      "commands": 3,
+      "raw_process_bytes": {"stdout": 2728, "stderr": 198},
+      "actual_cli_execution_sequences": [1, 3],
+      "trace_observation": "The recorded log begins with serene-audit. It contains no recorded AGENTS.md, task, source, or documentation read, so actual source-read ordering and capture completeness are unestablished. Sequence 3 runs normal checks before an actionable-only audit."
+    },
+    "r10": {
+      "workflow": "construction-review",
+      "treatment": "presence",
+      "commands": 11,
+      "raw_process_bytes": {"stdout": 20338, "stderr": 1814},
+      "actual_cli_execution_sequences": [4, 5],
+      "trace_observation": "Read task/source and local documentation before recorded CLI invocations. Sequence 4 invokes tooling/cli.mjs with an extra serene-audit positional argument and its error is masked by || true; sequence 5 is the subsequent actionable-only invocation that returns the 1/1/1 counts. Normal checks were then recorded with the review artifact."
+    },
+    "r11": {
+      "workflow": "authorization-follow-up",
+      "treatment": "presence",
+      "commands": 8,
+      "raw_process_bytes": {"stdout": 3787, "stderr": 8766},
+      "actual_cli_execution_sequences": [],
+      "trace_observation": "Read source, recorded a cross-tenant reproduction and normal checks, and wrote the requested authorization artifact."
+    },
+    "r12": {
+      "workflow": "authorization-follow-up",
+      "treatment": "instruction",
+      "commands": 6,
+      "raw_process_bytes": {"stdout": 18191, "stderr": 7747},
+      "actual_cli_execution_sequences": [4],
+      "trace_observation": "Read source and installed documentation before the command that writes the authorization review, runs normal checks, and invokes serene-audit."
+    }
+  },
+  "interpretation": "An actual CLI execution is identified only from a recorded argv that invokes serene-audit or node tooling/cli.mjs, not from quoted text or final-artifact claims. Raw stdout/stderr, command counts, and elapsed time are partial descriptive recorder observations only. They exclude initial prompt and other model context, cannot establish complete activity, and are not AI cost, billing, or causal evidence."
+}

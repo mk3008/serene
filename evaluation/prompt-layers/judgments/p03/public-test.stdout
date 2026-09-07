@@ -1,0 +1,13 @@
+
+> test
+> node --test test.mjs
+
+✔ lists the seeded customers (2.41996ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.457126

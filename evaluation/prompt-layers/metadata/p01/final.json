@@ -1,0 +1,4 @@
+{
+  "final_message": "Implemented `findCustomerByEmail(db, email)` in `/tmp/repository-flow-probe/p01/app.mjs`.\n\n- Throws `TypeError` for empty or non-string emails before accessing `db`.\n- Queries by email and returns `null` when unmatched.\n- Returns exactly `{ id, email, name }` for matches.\n- Existing tests pass, plus manual checks for match, miss, and pre-query validation.",
+  "run_id": "p01"
+}

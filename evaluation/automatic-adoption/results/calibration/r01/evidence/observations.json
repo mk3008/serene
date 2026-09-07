@@ -1,0 +1,313 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0008.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0008.stdout",
+          "sequence": 8,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0008.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0008.stderr",
+          "sequence": 8,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0009.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0009.stdout",
+          "sequence": 9,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0009.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0009.stderr",
+          "sequence": 9,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0010.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0010.stdout",
+          "sequence": 10,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0010.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0010.stderr",
+          "sequence": 10,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0011.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0011.stdout",
+          "sequence": 11,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0011.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0011.stderr",
+          "sequence": 11,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0012.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0012.stdout",
+          "sequence": 12,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r01/events.outputs/0012.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r01/evidence/events.outputs/0012.stderr",
+          "sequence": 12,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 12,
+    "command_wall_seconds": 1.382184084,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; echo ---TASK---; cat TASK.md; echo ---README---; cat README.md; echo ---APP---; cat app.mjs; echo ---TEST---; cat test.mjs; echo ---PKG---; cat package.json"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/README.md; echo ---FILES---; find node_modules/@mk3008/serene -maxdepth 2 -type f -print"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/dist/index.d.ts; sed -n \"1,220p\" node_modules/@mk3008/serene/dist/index.js"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "python3 - <<\"PY\"\nfrom pathlib import Path\np = Path(\"app.mjs\")\ns = p.read_text()\ns = s.replace(\"import { DatabaseSync } from node:sqlite;\", \"import { DatabaseSync } from node:sqlite;\\nimport { sql, bind } from @mk3008/serene;\")\ns += \"\"\"\\n\\nconst findContactByEmailQuery = sql`\\n  SELECT id, email, display_name\\n  FROM contacts\\n  WHERE email = :email\\n  LIMIT 1\\n`;\\n\\nexport function findContactByEmail(db, email) {\\n  if (typeof email !== string || !/^[^\\\\s@]+@[^\\\\s@]+\\\\.[^\\\\s@]+$/.test(email)) {\\n    throw new TypeError(Invalid",
+          "email",
+          "address);\\n  }\\n\\n  const query = bind(findContactByEmailQuery, { email });\\n  return db.prepare(query.text).get(query.params) ?? null;\\n}\\n\"\"\"\np.write_text(s)\nPY\ncat app.mjs"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "echo aW1wb3J0IHsgRGF0YWJhc2VTeW5jIH0gZnJvbSAnbm9kZTpzcWxpdGUnOwppbXBvcnQgeyBzcWwsIGJpbmQgfSBmcm9tICdAbWszMDA4L3NlcmVuZSc7CgpleHBvcnQgZnVuY3Rpb24gb3BlbkNvbnRhY3RzKCkgewogIGNvbnN0IGRiID0gbmV3IERhdGFiYXNlU3luYygnOm1lbW9yeTonKTsKICBkYi5leGVjKGBDUkVBVEUgVEFCTEUgY29udGFjdHMgKGlkIElOVEVHRVIgUFJJTUFSWSBLRVksIGVtYWlsIFRFWFQgTk9UIE5VTEwsIGRpc3BsYXlfbmFtZSBURVhUIE5PVCBOVUxMKTsKICAgIElOU0VSVCBJTlRPIGNvbnRhY3RzIChlbWFpbCwgZGlzcGxheV9uYW1lKSBWQUxVRVMgKCdtYXlhQGV4YW1wbGUudGVzdCcsICdNYXlhIFBhdGVsJyksICgnbGVlQGV4YW1wbGUudGVzdCcsICdMZWUgVHJhbicpO2ApOwogIHJldHVybiBkYjsKfQoKZXhwb3J0IGZ1bmN0aW9uIGxpc3RDb250YWN0cyhkYikgewogIHJldHVybiBkYi5wcmVwYXJlKCdTRUxFQ1QgaWQsIGVtYWlsLCBkaXNwbGF5X25hbWUgRlJPTSBjb250YWN0cyBPUkRFUiBCWSBpZCcpLmFsbCgpOwp9Cgpjb25zdCBmaW5kQ29udGFjdEJ5RW1haWxRdWVyeSA9IHNxbGAKICBTRUxFQ1QgaWQsIGVtYWlsLCBkaXNwbGF5X25hbWUKICBGUk9NIGNvbnRhY3RzCiAgV0hFUkUgZW1haWwgPSA6ZW1haWwKICBMSU1JVCAxCmA7CgpleHBvcnQgZnVuY3Rpb24gZmluZENvbnRhY3RCeUVtYWlsKGRiLCBlbWFpbCkgewogIGlmICh0eXBlb2YgZW1haWwgIT09ICdzdHJpbmcnIHx8ICEvXlteXHNAXStAW15cc0BdK1wuW15cc0BdKyQvLnRlc3QoZW1haWwpKSB7CiAgICB0aHJvdyBuZXcgVHlwZUVycm9yKCdJbnZhbGlkIGVtYWlsIGFkZHJlc3MnKTsKICB9CgogIGNvbnN0IHF1ZXJ5ID0gYmluZChmaW5kQ29udGFjdEJ5RW1haWxRdWVyeSwgeyBlbWFpbCB9KTsKICByZXR1cm4gZGIucHJlcGFyZShxdWVyeS50ZXh0KS5nZXQocXVlcnkucGFyYW1zKSA/PyBudWxsOwp9Cg== | base64 -d > app.mjs"
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npx --no-install serene-audit app.mjs"
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "node --input-type=module -e \"import {openContacts,findContactByEmail} from ./app.mjs; const db=openContacts(); console.log(findContactByEmail(db,maya@example.test)); console.log(findContactByEmail(db,none@example.test)); try { findContactByEmail(db,bad); } catch (e) { console.log(e.constructor.name,e.message); }\""
+        ],
+        "sequence": 8
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm run check"
+        ],
+        "sequence": 9
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "echo aW1wb3J0IHsgb3BlbkNvbnRhY3RzLCBmaW5kQ29udGFjdEJ5RW1haWwgfSBmcm9tICcuL2FwcC5tanMnOwpjb25zdCBkYiA9IG9wZW5Db250YWN0cygpOwpjb25zb2xlLmxvZyhmaW5kQ29udGFjdEJ5RW1haWwoZGIsICdtYXlhQGV4YW1wbGUudGVzdCcpKTsKY29uc29sZS5sb2coZmluZENvbnRhY3RCeUVtYWlsKGRiLCAnbm9uZUBleGFtcGxlLnRlc3QnKSk7CnRyeSB7IGZpbmRDb250YWN0QnlFbWFpbChkYiwgJ2JhZCcpOyB9IGNhdGNoIChlKSB7IGNvbnNvbGUubG9nKGUuY29uc3RydWN0b3IubmFtZSwgZS5tZXNzYWdlKTsgfQo= | base64 -d > manual.mjs && node manual.mjs"
+        ],
+        "sequence": 10
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "echo SW1wbGVtZW50ZWQgYGZpbmRDb250YWN0QnlFbWFpbChkYiwgZW1haWwpYCBpbiBgYXBwLm1qc2AuCgotIFJlamVjdHMgbWFsZm9ybWVkIGVtYWlsIHZhbHVlcyB3aXRoIGBUeXBlRXJyb3JgIGJlZm9yZSBwcmVwYXJpbmcgYSBxdWVyeS4KLSBVc2VzIFNlcmVuZSBmaXhlZCBTUUwgd2l0aCBhIGJvdW5kIGA6ZW1haWxgIHBhcmFtZXRlci4KLSBSZXR1cm5zIHRoZSBtYXRjaGluZyBjb250YWN0IG9yIGBudWxsYCB3aGVuIGFic2VudC4KLSBTZWVkIGRhdGEgaXMgdW5jaGFuZ2VkLgoKQ2hlY2tzIHBhc3NlZDogYG5wbSB0ZXN0YCwgYG5wbSBydW4gY2hlY2tgLCBhbmQgYHNlcmVuZS1hdWRpdCBhcHAubWpzYC4K | base64 -d > ANSWER.md && rm -f manual.mjs && git diff -- app.mjs ANSWER.md"
+        ],
+        "sequence": 11
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "ls -l app.mjs ANSWER.md; sed -n \"1,80p\" app.mjs; echo ---; sed -n \"1,80p\" ANSWER.md; git status --short"
+        ],
+        "sequence": 12
+      }
+    ],
+    "completed_commands": 12,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 4,
+    "final_snapshot": {
+      "artifact_count": 10,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r01",
+      "snapshot_root": "evaluation/automatic-adoption/results/calibration/r01/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "npx --no-install serene-audit app.mjs"
+        ],
+        "sequence": 7
+      }
+    ],
+    "rejections": 0,
+    "run_wall_seconds": 97.58171,
+    "stderr_bytes": 1844,
+    "stdout_bytes": 19656,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

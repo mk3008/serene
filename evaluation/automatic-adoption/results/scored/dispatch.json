@@ -1,0 +1,17 @@
+{
+  "phase": "scored",
+  "runs": {
+    "r07": {"fixture": "product-sku-lookup", "treatment": "presence", "actor_id": "/root/participant_r07"},
+    "r08": {"fixture": "product-sku-lookup", "treatment": "instruction", "actor_id": "/root/participant_r08"},
+    "r09": {"fixture": "billing-construction-review", "treatment": "instruction", "actor_id": "/root/participant_r09"},
+    "r10": {"fixture": "billing-construction-review", "treatment": "presence", "actor_id": "/root/participant_r10"},
+    "r11": {"fixture": "invoice-authorization-followup", "treatment": "presence", "actor_id": "/root/participant_r11"},
+    "r12": {"fixture": "invoice-authorization-followup", "treatment": "instruction", "actor_id": "/root/participant_r12"}
+  },
+  "requested_participant": {"model": "gpt-5.6-luna", "reasoning_effort": "medium", "fresh_session": true, "fork_turns": "none"},
+  "source_checkpoints": {
+    "local_precalibration_commit": "d27f74040d03f2d2846aafc3b20ffa0285b5f01",
+    "published_matching_tree_commit": "c8355e5d0204ee08c16258999ff434445a84f6d9"
+  },
+  "metadata_source": "stage-manifest.json and dispatch records; no adoption grade fabricated"
+}

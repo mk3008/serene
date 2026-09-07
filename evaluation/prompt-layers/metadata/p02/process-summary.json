@@ -1,0 +1,68 @@
+{
+  "cli_entry_observation": {
+    "entries": [
+      {
+        "argv": [
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+          "/tmp/repository-flow-probe/p02/node_modules/.bin/serene-audit",
+          "app.mjs"
+        ],
+        "cwd": "/tmp/repository-flow-probe/p02",
+        "event": "cli_entry",
+        "pid": 55,
+        "recorded_at_ms": 1788760670645
+      }
+    ],
+    "meaning": "Recorded entries establish successful instrumented CLI-module entry only; they do not establish output reading, use, causal effect, or a complete process trace.",
+    "successful_esm_entries": 1
+  },
+  "integrity": {
+    "cli_event_log": {
+      "entries": 1,
+      "exists": true,
+      "path": "/tmp/repository-flow-probe/evidence/p02/cli-events.jsonl"
+    },
+    "cli_module": {
+      "bytes": 3435,
+      "sha256": "932856d8f2236d5e855c0e5a49e4286b55dc096f07455e29e7b88b2f7daa0e97"
+    },
+    "status": "pass",
+    "watch_paths": 14
+  },
+  "limits": "Inotify rows establish filesystem activity on watched paths only; they carry no actor PID and do not establish model comprehension, receipt, use, complete shell activity, timing, tokens, or cost.",
+  "observer": {
+    "event_names": {
+      "ACCESS": 38,
+      "CLOSE_NOWRITE": 38,
+      "OPEN": 40
+    },
+    "event_rows": 116,
+    "final": {
+      "event_count": 116,
+      "invalidation_count": 0,
+      "overflow_count": 0,
+      "pid": 4,
+      "stopped_at_ns": 1788760732805737104,
+      "stopped_by_shared_sentinel": true,
+      "watch_count": 14
+    },
+    "paths_with_events": {
+      "/tmp/repository-flow-probe/p02/AGENTS.md": 3,
+      "/tmp/repository-flow-probe/p02/app.mjs": 35,
+      "/tmp/repository-flow-probe/p02/database.mjs": 15,
+      "/tmp/repository-flow-probe/p02/node_modules/@mk3008/serene/README.md": 3,
+      "/tmp/repository-flow-probe/p02/node_modules/@mk3008/serene/package.json": 15,
+      "/tmp/repository-flow-probe/p02/package.json": 45
+    },
+    "ready": {
+      "event": "observer_ready",
+      "pid": 4,
+      "recorded_at_ns": 1788760601720131994,
+      "stop_file": "/tmp/repository-flow-probe/evidence/p02/observer.stop",
+      "watch_count": 14,
+      "watch_list_sha256": "f7910e2870115cf4a244dd96559042c265dfeef88e62d27a881aa8504ecd789c"
+    }
+  },
+  "run_id": "p02",
+  "source": "harvested archive only"
+}

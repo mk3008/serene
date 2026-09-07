@@ -1,0 +1,1 @@
+{"event":"cli_entry","recorded_at_ms":1788760670645,"pid":55,"argv":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","/tmp/repository-flow-probe/p02/node_modules/.bin/serene-audit","app.mjs"],"cwd":"/tmp/repository-flow-probe/p02"}

@@ -1,0 +1,7 @@
+[
+  {"line":9,"column":17,"function":"byId","level":"ordinary","code":"SCREENED_SOURCE","boundary":"serene"},
+  {"line":9,"column":22,"function":"byId","level":"ordinary","code":"SCREENED_SOURCE","boundary":"serene"},
+  {"line":10,"column":10,"function":"byId","level":"ordinary","code":"SCREENED_SOURCE","boundary":"driver-candidate"},
+  {"line":14,"column":10,"function":"byRegion","level":"violation","code":"STRING_CONSTRUCTION","boundary":"driver-candidate"},
+  {"line":17,"column":10,"function":"queued","level":"review-required","code":"UNRESOLVED","boundary":"driver-candidate"}
+]

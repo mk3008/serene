@@ -1,0 +1,120 @@
+{
+  "actual_paths": {
+    "event_log": "/tmp/repository-agent-study/evidence/r09/events.jsonl",
+    "evidence": "/tmp/repository-agent-study/evidence/r09",
+    "packet_root": "/tmp/repository-agent-study/r09",
+    "runner": "/tmp/repository-agent-study/runner.py",
+    "runtime": "/tmp/repository-agent-study"
+  },
+  "app_tree": {
+    "bytes": 4303,
+    "entries": 8,
+    "tree_sha256": "b748c65eae2960b92cf7cdf207b40cafe7a3272d4ad83c1dcaf01feecab52e39"
+  },
+  "caps": {
+    "commands": 30,
+    "output_threshold_bytes": 24000,
+    "timeout_seconds": 120
+  },
+  "documentation": {
+    "node_modules/@mk3008/serene/README.md": {
+      "bytes": 5062,
+      "sha256": "707a5594fe142dd39e5455dab4a7bf819062bfc1f0b314bf3c4f088f0d311533"
+    },
+    "node_modules/@mk3008/serene/docs": {
+      "bytes": 44895,
+      "entries": 7,
+      "tree_sha256": "0da463c88aaa783b38a8d478652acca628e80c892c4b27d1deaefedc4f903250"
+    }
+  },
+  "expected_sole_difference": "root AGENTS.md instruction bundle",
+  "fixture": "billing-construction-review",
+  "initial_text": {
+    "bytes": 136,
+    "path": "/tmp/repository-agent-study/evidence/r09/initial-text.txt",
+    "sha256": "7add24156b49ff214fdef49b437ecf777cea9bc8b7c80ee395d9b6a5d1b381bc"
+  },
+  "install_trees": {
+    "node_modules": {
+      "bytes": 23706045,
+      "entries": 178,
+      "tree_sha256": "d659e08ed822785250d729ec7d11520aa3582db97f41374b2666c5240f59a966"
+    },
+    "vendor": {
+      "bytes": 27911,
+      "entries": 1,
+      "tree_sha256": "e2114dc7edff839514852b313cf24337f845d2ab3080d362f2d25ba505520701"
+    }
+  },
+  "loaded_prompt": {
+    "bytes": 1250,
+    "canonical_sha256": "ff49bcc2aa663fca1840711b291cd8d46e930b17f69fb827a775f6c834a901b4",
+    "path": "/tmp/repository-agent-study/evidence/r09/participant-instructions.md",
+    "sha256": "140119361263dff7d8e73b4b3b6402240876a2ac4cbb78f5e597e1f82e820a52"
+  },
+  "package_install": {
+    "app": "/tmp/repository-agent-study/r09",
+    "installed_bin": "/tmp/repository-agent-study/r09/node_modules/.bin/serene-audit",
+    "installed_package_json_sha256": "2d229fd5777f85dc4314a297ed0205648c3b4b21970976a24915f48bf73392f7",
+    "installed_typescript_package_json_sha256": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6",
+    "package_json_sha256": "50af016ff424dfac0314dd5e62ff52d90285e4f4c7cff6d47da2373d7b6984ab",
+    "package_lock_sha256": "c76abb625ce53be6d28be4dfb99b21370695b43ea801875d98a6a68feda28032",
+    "staged_tarball": "/tmp/repository-agent-study/r09/vendor/mk3008-serene-0.1.0.tgz",
+    "tarball_sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b",
+    "typescript_version": "5.9.3"
+  },
+  "package_verify": {
+    "app": "/tmp/repository-agent-study/r09",
+    "cli_sha256": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c",
+    "cli_stderr": "",
+    "cli_stdout": "Usage: serene-audit [--strict] [--actionable-only] [--sink=name] file-or-directory ...\nJSON inventory; --actionable-only reports counts by candidate execution site and only non-ordinary findings. Exit 1 on violations (also review-required with --strict), 2 on input errors.\nRecursively selects .ts/.tsx/.mts/.cts/.js/.jsx/.mjs/.cjs. Skips node_modules, dist, build, coverage, .git and symbolic links. Explicit files remain supported. File-local candidate inventory, not whole-program coverage.\n",
+    "runtime_stdout": "{\"id\":7}\n"
+  },
+  "phase": "scored",
+  "requested_participant": {
+    "fork_turns": "none",
+    "fresh_session": true,
+    "model": "gpt-5.6-luna",
+    "reasoning_effort": "medium"
+  },
+  "run_id": "r09",
+  "runner": {
+    "sha256": "2bc8ca58a6d5eb4ea58d04c0e6cc38b55ebcb8825d9f7dadf5761e8a94c7fe30"
+  },
+  "serene_source_revision": "4c5204b40b384ad7304a7f90e145e60d4b7ac2c4",
+  "task_files": {
+    "AGENTS.md": {
+      "bytes": 528,
+      "sha256": "04e802d150cf65ccad2deb4897a2f7cb5447b67bc1c211acd4514946dce15079"
+    },
+    "README.md": {
+      "bytes": 361,
+      "sha256": "035a5c02ae1d4d1831de8462935b75acfeca298c42ad6aa609cb9c885598c0f9"
+    },
+    "TASK.md": {
+      "bytes": 175,
+      "sha256": "003ebd276b0ac85cc263b620a7b96a86e2755b81f2a553d0f2bdfefa7c53085c"
+    },
+    "app.mjs": {
+      "bytes": 871,
+      "sha256": "6e19ff92e740fc5bc43f5a419755fb7524dd88dabfbeed0a302a2620f52e89ab"
+    },
+    "database.mjs": {
+      "bytes": 257,
+      "sha256": "745885b90d83baf23b1c33bb3df2fc5ff69d1ebbb4b49122a2dc44426558763d"
+    },
+    "package-lock.json": {
+      "bytes": 1416,
+      "sha256": "c76abb625ce53be6d28be4dfb99b21370695b43ea801875d98a6a68feda28032"
+    },
+    "package.json": {
+      "bytes": 393,
+      "sha256": "50af016ff424dfac0314dd5e62ff52d90285e4f4c7cff6d47da2373d7b6984ab"
+    },
+    "test.mjs": {
+      "bytes": 302,
+      "sha256": "8a6f8503fd1981e854f28042f365549388ade0be6031dc6357dc2216aab5f200"
+    }
+  },
+  "treatment": "instruction"
+}

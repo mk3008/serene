@@ -1,0 +1,1 @@
+import assert from 'node:assert/strict'; import test from 'node:test'; import { openDatabase } from './database.mjs'; test('native records',()=>assert.deepEqual(openDatabase().query('SELECT tenant_id FROM documents ORDER BY id'),[{tenant_id:'north'},{tenant_id:'south'}]));

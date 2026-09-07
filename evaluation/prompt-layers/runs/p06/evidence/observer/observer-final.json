@@ -1,0 +1,9 @@
+{
+  "event_count": 95,
+  "invalidation_count": 0,
+  "overflow_count": 0,
+  "pid": 4,
+  "stopped_at_ns": 1788761021805522187,
+  "stopped_by_shared_sentinel": true,
+  "watch_count": 14
+}

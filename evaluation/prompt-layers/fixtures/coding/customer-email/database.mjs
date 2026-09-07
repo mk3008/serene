@@ -1,0 +1,2 @@
+import { DatabaseSync } from 'node:sqlite';
+export function openDatabase() { const db = new DatabaseSync(':memory:'); db.exec(`CREATE TABLE customers (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL); INSERT INTO customers (email,name) VALUES ('maya@example.test','Maya Patel'), ('o''connor@example.test','Nora O''Connor'), ('lee@example.test','Lee Tran');`); return { query(text, params = {}) { return db.prepare(text).all(params).map((row) => ({ ...row })); } }; }

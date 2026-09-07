@@ -1,0 +1,104 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r06/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r06/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 3,
+    "command_wall_seconds": 0.49103001300000004,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; printf \"\\n---TASK---\\n\"; cat TASK.md; printf \"\\n---PKG---\\n\"; cat package.json; printf \"\\n---README---\\n\"; cat README.md"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"1,240p\" app.mjs; printf \"\\n---DATABASE---\\n\"; sed -n \"1,260p\" database.mjs; printf \"\\n---TEST---\\n\"; sed -n \"1,300p\" test.mjs"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > AUTHORIZATION.md <<\"EOF\"\n# Authorization behavior\n\nA signed-in user can obtain another tenant\u2019s record if they know or can guess its ID and provide that tenant ID in the request. For example, an actor with `{ tenantId: \"north\" }` can call `caseById(db, actor, { tenantId: \"south\", id: 2 })` and receive the South record.\n\nThe cause is that `caseById` builds its SQL filter from `request.tenantId`; it never uses `actor.tenantId` to constrain the query. The `actor` argument is therefore ignored, so the request can select a different tenant. No application behavior was changed.\nEOF\nnpm test\nnpm run check"
+        ],
+        "sequence": 3
+      }
+    ],
+    "completed_commands": 3,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 0,
+    "final_snapshot": {
+      "artifact_count": 11,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r06",
+      "snapshot_root": "evaluation/automatic-adoption/results/calibration/r06/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [],
+    "rejections": 0,
+    "run_wall_seconds": 16.371267716,
+    "stderr_bytes": 198,
+    "stdout_bytes": 2503,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

@@ -1,0 +1,1 @@
+{"kind":"coding","exports":"findCustomerByEmail","valid":"maya@example.test","apostrophe":"o\u0027connor@example.test","absent":"nobody@example.test","blank":"TypeError before database access"}

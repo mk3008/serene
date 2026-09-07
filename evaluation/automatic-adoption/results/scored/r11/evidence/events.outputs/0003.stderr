@@ -1,0 +1,9 @@
+invoice.: line 1: warning: here-document at line 1 delimited by end-of-file (wanted `"EOF"n#')
+invoice.: line 1: invoiceById: command not found
+cat: authorizationnnA: No such file or directory
+cat: signed-in: No such file or directory
+cat: user: No such file or directory
+cat: can: No such file or directory
+cat: obtain: No such file or directory
+cat: another: No such file or directory
+cat: tenants: No such file or directory

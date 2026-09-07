@@ -1,0 +1,40 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+
+---TASK---
+Investigate the authorization behavior of `caseById`. Write a concise `AUTHORIZATION.md` that explains whether a signed-in user can obtain another tenant’s record and identifies the relevant cause. Do not change application behavior.
+
+---PKG---
+{
+  "name": "adoption-calibration-authorization-followup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check database.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}
+
+---README---
+# Case records
+
+A small tenant-facing record service.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.

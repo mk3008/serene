@@ -1,0 +1,18 @@
+{"id":2,"tenant_id":"south","subject":"South renewal"}
+
+> adoption-calibration-authorization-followup@1.0.0 test
+> node test.mjs
+
+case record checks passed
+
+> adoption-calibration-authorization-followup@1.0.0 check
+> node --check app.mjs && node --check database.mjs && node --check test.mjs
+
+# Authorization review
+
+A signed-in user can obtain another tenant’s case record through the caseById function. The function receives the signed-in actor, but never reads or validates actor.tenantId. Instead, the SQL query filters by request.tenantId and request.id, both supplied by the caller. For example, an actor from north can request { tenantId: "south", id: 2 } and receive the South record.
+
+The relevant cause is the missing authorization check tying the query’s tenant filter to the authenticated actor; tenant scoping is controlled by request input rather than the actor identity.
+Completed the authorization review in AUTHORIZATION.md. It finds that an actor from one tenant can retrieve another tenant’s record because caseById ignores actor.tenantId and trusts request.tenantId for the SQL filter. No application behavior was changed.
+
+Checks passed: npm test and npm run check.

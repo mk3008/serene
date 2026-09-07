@@ -1,0 +1,4 @@
+Patel), (lee@example.test, Lee: line 8: warning: here-document at line 1 delimited by end-of-file (wanted `EOF')
+Patel), (lee@example.test, Lee: line 1: bad substitution: no closing "`" in `CREATE TABLE contacts (id INTEGER PRIMARY KEY, email TEXT NOT NULL, display_name TEXT NOT NULL);
+    INSERT INTO contacts (email, display_name) VALUES (maya@example.test, Maya
+

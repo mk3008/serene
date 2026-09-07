@@ -1,0 +1,253 @@
+{
+  "p09": {
+    "condition": {
+      "p02_final_feature_valid": true,
+      "p02_serene_adoption": false
+    },
+    "decision": "not eligible; no actor dispatched",
+    "observed": {
+      "independent_judgment": {
+        "path": "evaluation/prompt-layers/judgments/p02/judgment.json",
+        "requested_site_serene_adoption": true,
+        "sha256": "a302774212c5e2fb0239ea3676e09ad5cdee63d728f0234055d3e5dbe078ae3c"
+      },
+      "p02_functional_outcome": "pass",
+      "p02_requested_site_serene_adoption": true,
+      "supporting_artifact": {
+        "artifact": "evaluation/prompt-layers/runs/p02/packet/app.mjs",
+        "artifact_sha256": "2e21978864073698db70843e77cade42ae35e865b90af23a0a94ddbafd531293",
+        "match": "@mk3008/serene import present"
+      }
+    },
+    "reason": "The frozen condition requires no requested-site Serene adoption. Independent adjudication records requested_site_serene_adoption=true and a functional pass for p02; adoption alone makes p09 ineligible. The package import is supporting artifact evidence, not the adoption criterion.",
+    "run_id": "p09"
+  },
+  "runs": [
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "4adcd889cc22dd1e1d4cc3890299880e31121d141888a5225b044d5edd21fd0b"
+        },
+        "final.json": {
+          "bytes": 407,
+          "sha256": "ae5ae69a848af68e4648f6ac153963189b715aaff93293366c7a2ab591e32395"
+        },
+        "process-summary.json": {
+          "bytes": 1843,
+          "sha256": "2f302f4c130d69308a71d14803c02ce6a66191b8899500b2b533568a5097f472"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 46,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p01"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "4fd2291a169332137cb9426ec85df86a99cf3be961bf86563748c113b2f5dd1e"
+        },
+        "final.json": {
+          "bytes": 338,
+          "sha256": "74c24913828243041f7fd683086b87e84ee40e133278c67809fade5832aade20"
+        },
+        "process-summary.json": {
+          "bytes": 2338,
+          "sha256": "ea264ef2c6ddebf14cfe0a88eadb38d57e1b2e167035856d4e76971b7288e09b"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 116,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p02"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "77d47f731e6f078d2307c1fda2bd93d022f7ddb34960e5e47698523a2cd527cb"
+        },
+        "final.json": {
+          "bytes": 430,
+          "sha256": "69d4fc476881f86ea59fe636cacd548ee2264c57ccfc127dbdc8618a3915d7c3"
+        },
+        "process-summary.json": {
+          "bytes": 1805,
+          "sha256": "e570993779464bfb3fbe9b5262d4e79a776c32623d446c590f7a3cf7633256be"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 40,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p03"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "cf9a6fe8a5f270460b3578ccf7253c9726be05559066d5a33de6157e22b5c754"
+        },
+        "final.json": {
+          "bytes": 482,
+          "sha256": "053b9cf4fdec198a6499253c8a639d86757c16260c191ec7209aaef13ae43cad"
+        },
+        "process-summary.json": {
+          "bytes": 2334,
+          "sha256": "1113fc60fde3223abacea8dbbc28ca33566d44fef50e578dae84b7174a6fd2af"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 76,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p04"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "31766c08519b2539bfb4ef61435990dbfab6973cefe04a6677647f0cad3cf0ba"
+        },
+        "final.json": {
+          "bytes": 441,
+          "sha256": "ea7049fdc742f4888905b70b13a4a778b43521cab620d508cad00fd05dbf1d12"
+        },
+        "process-summary.json": {
+          "bytes": 1858,
+          "sha256": "de98ab46492e61f8d5a46f311eae541114f598b46df3d1e896fd30c0c2236de6"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 54,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p05"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "46a2c39e6827e66a87e8268cd8bda56764eadc6e47ea94ee358b5b9919da88be"
+        },
+        "final.json": {
+          "bytes": 637,
+          "sha256": "639e42e3fb14c5a72cf8881af598297cedd2244c5808061b6ddc4d8518c75c12"
+        },
+        "process-summary.json": {
+          "bytes": 3754,
+          "sha256": "5e69bc1537f1118780b0b094f48e6915381667a49f3c34b0cfe7e8fa1b6d5b82"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 95,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p06"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "06695073e6d30d64d46679841496167ffb6c077a5b2b0dfc9900478b5af58ccb"
+        },
+        "final.json": {
+          "bytes": 399,
+          "sha256": "3a7cdb1b74142c2649a9a6eb6f749963567315075b833cd7fcbbedf648749037"
+        },
+        "process-summary.json": {
+          "bytes": 1942,
+          "sha256": "e3c5fa165b5d132eefb75edc4b5c7bedf5944a89466b0d50d541ed8d91427c4e"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 51,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p07"
+    },
+    {
+      "evidence_differences": [],
+      "final_manifest_evidence_hashes_match": true,
+      "final_manifest_packet_hashes_match": true,
+      "metadata_hashes": {
+        "dispatch.json": {
+          "bytes": 447,
+          "sha256": "6b73f4eb162de26135e43de30e25bfa80da84da1a213d75949217c44c1aa45a9"
+        },
+        "final.json": {
+          "bytes": 486,
+          "sha256": "fff2da68279a50d738a0f43874aaaacee70c960b7afea407c4bddf16593d61a0"
+        },
+        "process-summary.json": {
+          "bytes": 1943,
+          "sha256": "a86964d36580a83cbd7e057aa33697d70f13553a6b707fbc43ad6db76cd8cb47"
+        }
+      },
+      "observer_stop_health": {
+        "event_count": 84,
+        "invalidation_count": 0,
+        "overflow_count": 0,
+        "stopped_by_shared_sentinel": true
+      },
+      "packet_differences": [],
+      "postrun_integrity_status": "pass",
+      "run_id": "p08"
+    }
+  ],
+  "scope": "recomputed raw hashes from each completed archive final-manifest and checked archived observer stop health; no packet bytes were changed or normalized",
+  "status": "pass"
+}

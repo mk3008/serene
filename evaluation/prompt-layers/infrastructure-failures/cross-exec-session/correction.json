@@ -1,0 +1,41 @@
+{
+  "capability_interpretation": "The probe supports cross-exec inotify delivery only as an observed lifecycle result. It does not supply a replayable exact command transcript.",
+  "clarification": {
+    "held_session_command": "A prose command summary, not an exact shell transcript. In particular, its `cat events.log/inotify.err` text is not a valid literal command.",
+    "raw_result": "Copied raw files below are the only retained raw probe outputs; no command transcript is reconstructed.",
+    "separate_exec_command": "A prose stop-sequence summary, not an exact shell transcript. Its `wait for done` text is not executable shell syntax."
+  },
+  "raw_artifacts": {
+    "done": {
+      "bytes": 5,
+      "sha256": "d117fa006ba9208500b2930ce69cbde436c647afa917cb7396a9bc9111a46dd2"
+    },
+    "events.log": {
+      "bytes": 158,
+      "sha256": "c6961e6742033958190291d8e99cb75d7430f252fb295ab8a17605206573cc2a"
+    },
+    "inotify.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ready": {
+      "bytes": 6,
+      "sha256": "ed1a545bb85e55816bbf9566b028b2a0bc456b88f49f6f266c0401048824194b"
+    },
+    "result.txt": {
+      "bytes": 172,
+      "sha256": "4705d2c57828d2e04de98da78d98fad792c185bef7a549bc2d7ace0cc53591c8"
+    },
+    "stop": {
+      "bytes": 5,
+      "sha256": "a11c3d917a2149a4b548217038bc8f2dd2130a1966e0c7af5c4225d81f25a8c3"
+    },
+    "watched.txt": {
+      "bytes": 18,
+      "sha256": "a4be1af6cabe0430ef901fb4b17303d8c47847cb74d78e6ba8a0cc7c36827e82"
+    }
+  },
+  "record_status": "preserved original artifact",
+  "scope": "correction to record.json without changing it",
+  "source_directory": "/tmp/prompt-layers-cross-exec"
+}

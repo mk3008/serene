@@ -1,0 +1,146 @@
+71:export function bind(sql, params = {}, style) {
+import { scan, compile } from './scanner.js';
+import { SereneError } from './error.js';
+export { SereneError } from './error.js';
+const statements = new WeakMap();
+const sorts = new WeakMap();
+const bound = new WeakSet();
+function literal(strings, values) {
+    if (!Array.isArray(strings) || !Object.isFrozen(strings) || strings.length !== 1 ||
+        !Array.isArray(strings.raw) || !Object.isFrozen(strings.raw) || strings.raw.length !== 1 ||
+        typeof strings.raw[0] !== 'string' || typeof strings[0] !== 'string' || values.length) {
+        throw new SereneError('LITERAL_ONLY', 'Use a template literal without interpolation; bind named values separately.');
+    }
+    // Standard JavaScript template escaping; source auditing excludes fabricated tag calls.
+    return strings[0];
+}
+function create(data) {
+    const sql = Object.freeze({ sourceText: data.sourceText });
+    statements.set(sql, data);
+    return sql;
+}
+/** Fixed native SQL; :name notation is needed only for positional lowering. */
+export function sql(strings, ...values) {
+    return create({ sourceText: literal(strings, values), sorted: false });
+}
+/** Static, deliberately limited ORDER BY terms; no arbitrary fragments. */
+export function sort(strings, ...values) {
+    const text = literal(strings, values).trim();
+    const id = '[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*';
+    const term = `${id}(?:\\s+(?:ASC|DESC))?`;
+    if (!new RegExp(`^${term}(?:\\s*,\\s*${term})*$`, 'i').test(text)) {
+        throw new SereneError('SORT_TERMS', 'Sort terms must be unquoted column paths with optional ASC/DESC.');
+    }
+    const result = Object.freeze({});
+    sorts.set(result, text);
+    return result;
+}
+/** Select finite reviewed terms in caller-specified order; no arbitrary fragments. */
+export function orderBy(sql, choices, selection) {
+    const data = statements.get(sql);
+    if (!data)
+        throw new SereneError('UNSCREENED', 'Expected a Serene SQL object.');
+    if (!choices || typeof choices !== 'object')
+        throw new SereneError('SORT_CHOICES', 'Expected a finite sort map.');
+    const descriptors = Object.getOwnPropertyDescriptors(choices);
+    for (const key of Reflect.ownKeys(descriptors)) {
+        const descriptor = descriptors[key];
+        if (typeof key !== 'string' || !('value' in descriptor) || !sorts.has(descriptor.value)) {
+            throw new SereneError('SORT_CHOICES', 'Every sort choice must be a static Serene sort; accessors are unsupported.');
+        }
+    }
+    if (typeof selection !== 'string' && !Array.isArray(selection)) {
+        throw new SereneError('SORT_KEY', 'Expected a sort key or array of sort keys.');
+    }
+    const keys = typeof selection === 'string' ? [selection] : [...selection];
+    const seen = new Set();
+    const selected = [];
+    for (const key of keys) {
+        if (typeof key !== 'string' || !Object.hasOwn(descriptors, key))
+            throw new SereneError('SORT_KEY', 'Unknown sort key.');
+        if (seen.has(key))
+            throw new SereneError('SORT_DUPLICATE', 'Repeated sort keys are unsupported.');
+        seen.add(key);
+        selected.push(sorts.get(descriptors[key].value));
+    }
+    if (!selected.length)
+        return sql;
+    if (data.sorted || scan(data.sourceText, new Set()).terminated)
+        throw new SereneError('SORT_POSITION', 'Append ORDER BY once, before any statement terminator.');
+    return create({ ...data, sourceText: `${data.sourceText}\nORDER BY ${selected.join(', ')}`, sorted: true });
+}
+export function bind(sql, params = {}, style) {
+    const data = statements.get(sql);
+    if (!data)
+        throw new SereneError('UNSCREENED', 'Expected a Serene SQL object.');
+    if (!params || typeof params !== 'object')
+        throw new SereneError('PARAMETERS', 'Expected named parameters.');
+    if (style !== undefined && style !== 'indexed' && style !== 'anonymous') {
+        throw new SereneError('PARAMETER_STYLE', 'Unknown parameter output style.');
+    }
+    const descriptors = Object.getOwnPropertyDescriptors(params);
+    const requested = new Set();
+    for (const name of Reflect.ownKeys(descriptors)) {
+        if (typeof name !== 'string' || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) {
+            throw new SereneError('PARAMETER_NAME', 'Parameter names must be ASCII identifiers.');
+        }
+        const descriptor = descriptors[name];
+        if (!('value' in descriptor) || descriptor.value === undefined) {
+            throw new SereneError('PARAMETER_VALUE', `Parameter ${name} must be an own data property, not undefined.`);
+        }
+        requested.add(name);
+    }
+    // Native named binding needs no SQL inspection, including no collision checks.
+    const rendered = style === undefined ? { text: data.sourceText, names: [...requested] } :
+        compile(scan(data.sourceText, requested), style);
+    const required = new Set(rendered.names);
+    for (const name of requested) {
+        if (!required.has(name))
+            throw new SereneError('UNUSED_PARAMETER', `Unused parameter: ${name}`);
+    }
+    const result = Object.freeze({ text: rendered.text, sourceText: data.sourceText,
+        names: Object.freeze([...rendered.names]), values: rendered.names.map(name => descriptors[name].value),
+        params: Object.freeze(Object.fromEntries([...required].map(name => [name, descriptors[name].value]))) });
+    bound.add(result);
+    return result;
+}
+/** Runtime provenance only; ordinary source review also requires serene-audit. */
+export function review(value) {
+    const known = value !== null && typeof value === 'object' &&
+        (statements.has(value) || bound.has(value));
+    return known ? { level: 'ordinary', code: 'SERENE_PROVENANCE' } :
+        { level: 'review-required', code: 'UNSCREENED' };
+}
+import { type ParameterStyle } from './scanner.js';
+export { SereneError } from './error.js';
+export type { ParameterStyle } from './scanner.js';
+declare const sqlBrand: unique symbol;
+declare const sortBrand: unique symbol;
+export type Sql = {
+    readonly [sqlBrand]: true;
+    readonly sourceText: string;
+};
+export type Sort = {
+    readonly [sortBrand]: true;
+};
+/** Fixed native SQL; :name notation is needed only for positional lowering. */
+export declare function sql(strings: TemplateStringsArray, ...values: never[]): Sql;
+/** Static, deliberately limited ORDER BY terms; no arbitrary fragments. */
+export declare function sort(strings: TemplateStringsArray, ...values: never[]): Sort;
+/** Select finite reviewed terms in caller-specified order; no arbitrary fragments. */
+export declare function orderBy(sql: Sql, choices: Readonly<Record<string, Sort>>, selection: string | readonly string[]): Sql;
+export interface BoundSql {
+    readonly text: string;
+    /** Review/debug SQL before output-marker lowering; contains no bound values. */
+    readonly sourceText: string;
+    /** Supplied-name order in passthrough; marker order when lowering (anonymous repeats). */
+    readonly values: unknown[];
+    readonly names: readonly string[];
+    readonly params: Readonly<Record<string, unknown>>;
+}
+export declare function bind(sql: Sql, params?: Readonly<Record<string, unknown>>, style?: ParameterStyle): BoundSql;
+/** Runtime provenance only; ordinary source review also requires serene-audit. */
+export declare function review(value: unknown): {
+    level: 'ordinary' | 'review-required';
+    code: string;
+};

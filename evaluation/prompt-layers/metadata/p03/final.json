@@ -1,0 +1,4 @@
+{
+  "final_message": "Implemented `findCustomerByEmail(db, email)` in `/tmp/repository-flow-probe/p03/app.mjs`.\n\n- Throws `TypeError` for empty or non-string emails before database access.\n- Returns the selected customer\u2019s `id`, `email`, and `name`.\n- Returns `null` when no match exists.\n- Existing `listCustomers` behavior remains unchanged.\n\nVerified with `npm test` and manual lookup checks.",
+  "run_id": "p03"
+}

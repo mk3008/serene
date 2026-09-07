@@ -127,7 +127,10 @@ presence arm had no Serene task cue, but both arms had the authored tiny fixture
 and an explicit local README/package cue.
 
 Keep the tested 53-word bundle as the candidate policy for this narrow task
-family. The cohort does not prove it is globally shortest, and no scoped failure
+family. The later [prompt-layer study](../prompt-layers/REPORT.md) is a separate
+eight-run matched packet with a different 2×2 coding design and export-focused
+review/authorization tasks; its outcomes must not be pooled with this historical
+cohort. The cohort does not prove it is globally shortest, and no scoped failure
 here identifies a reason to lengthen it. Any wording replacement should therefore
 be a separately frozen later stage tied to a specific, predeclared failure—not a
 post-hoc adjustment to these outcomes.

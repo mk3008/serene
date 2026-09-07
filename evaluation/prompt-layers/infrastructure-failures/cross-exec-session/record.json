@@ -1,0 +1,9 @@
+{
+  "held_session_command": "inotifywait -m -q -e open -e access -e close_nowrite --format '%e|%w%f' /tmp/prompt-layers-cross-exec/watched.txt > events.log 2> inotify.err & watcher=$!; sleep 0.3; printf 'ready\\n' > ready; while [ ! -e stop ]; do sleep 0.1; done; kill $watcher; wait $watcher; cat events.log/inotify.err > result.txt; printf 'done\\n' > done",
+  "raw_result": "events\nOPEN|/tmp/prompt-layers-cross-exec/watched.txt\nACCESS|/tmp/prompt-layers-cross-exec/watched.txt\nCLOSE_NOWRITE,CLOSE|/tmp/prompt-layers-cross-exec/watched.txt\nerrors\n",
+  "scope": "one real cross-exec persistent-session probe; no actor",
+  "separate_exec_command": "test -f ready; cat watched.txt >/dev/null; printf 'stop\\n' > stop; wait for done; cat result.txt",
+  "session_completion": "poll original yielding exec session after done; exit_code 0",
+  "status": "pass",
+  "watched_file": "/tmp/prompt-layers-cross-exec/watched.txt"
+}

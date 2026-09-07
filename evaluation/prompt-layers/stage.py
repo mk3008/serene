@@ -111,10 +111,10 @@ def stage(args: argparse.Namespace) -> int:
         'cli_module': {'path': str(module), 'original': original_module, 'instrumented': instrumented_module},
         'initial_prompt': sha(evidence/'initial-prompt.txt'), 'initial_snapshot_excluding_dependencies': file_inventory(root),
         'installed_docs': {str(path.relative_to(root)): sha(path) for path in docs}, 'watch_list': sha(evidence/'watch-list.json'),
-        'observer_contract': 'Start detached and obtain observer_ready before dispatch; stop before any parent harvest. Events prove file-system activity only, not PID, model comprehension, receipt, or use.',
+        'observer_contract': 'Keep observer.py session alive in the same yielding tool session across actor commands; start before dispatch and create its shared stop-file before any parent harvest. Events prove file-system activity only, not PID, model comprehension, receipt, or use.',
     }
     write_json(evidence/'stage-manifest.json', manifest)
-    print(json.dumps({'run_id': args.run_id, 'packet_root': str(root), 'evidence': str(evidence), 'observer_start': [sys.executable, str(HERE/'observer.py'), 'start', '--evidence', str(evidence/'observer'), '--watch-list', str(evidence/'watch-list.json')]}, sort_keys=True))
+    print(json.dumps({'run_id': args.run_id, 'packet_root': str(root), 'evidence': str(evidence), 'observer_session': [sys.executable, str(HERE/'observer.py'), 'session', '--evidence', str(evidence/'observer'), '--watch-list', str(evidence/'watch-list.json'), '--stop-file', str(evidence/'observer.stop')]}, sort_keys=True))
     return 0
 def verify(args: argparse.Namespace) -> int:
     evidence = Path(args.evidence).resolve(); manifest = json.loads((evidence/'stage-manifest.json').read_text())
@@ -205,6 +205,7 @@ def freeze(args: argparse.Namespace) -> int:
             'implementations': {name: sha(HERE/name) for name in ('stage.py', 'observer.py', 'cli-entry-hook.mjs', 'preflight.py')},
             'fixtures': {name: file_inventory(HERE/'fixtures'/name) for name in FIXTURES.values()},
             'gold': {name: file_inventory(HERE/'gold'/name) for name in FIXTURES.values()},
+            'infrastructure_preflight': file_inventory(HERE/'infrastructure-failures'),
         },
         'packets': {run_id: {
             'workflow': item['workflow'], 'policy': item['policy'], 'load_cue': item['load_cue'], 'optional_task_cue': item['optional_task_cue'],

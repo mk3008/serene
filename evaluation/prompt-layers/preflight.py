@@ -57,12 +57,16 @@ def main() -> int:
         for name, content in {'AGENTS.md':'Work here.\n', 'README.md':'Readme.\n', 'package.json':'{}\n', 'app.mjs':'export {};\n'}.items(): (observed_root/name).write_text(content)
         docs = observed_root/'node_modules/@mk3008/serene/docs'; docs.mkdir(parents=True); (observed_root/'node_modules/@mk3008/serene/README.md').write_text('doc\n'); (observed_root/'node_modules/@mk3008/serene/package.json').write_text('{}\n'); (docs/'guide.md').write_text('guide\n')
         watch_list = evidence/'watch-list.json'; write_json(watch_list, {'paths': [str(path) for path in watch_paths(observed_root)]})
-        started = run([sys.executable, str(HERE/'observer.py'), 'start', '--evidence', str(evidence/'observer'), '--watch-list', str(watch_list)], REPO)
-        if started.returncode: raise RuntimeError(started.stderr.decode())
+        observer_evidence, stop_file = evidence/'observer', evidence/'observer.stop'
+        monitor = subprocess.Popen([sys.executable, str(HERE/'observer.py'), 'session', '--evidence', str(observer_evidence), '--watch-list', str(watch_list), '--stop-file', str(stop_file)], cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        deadline = __import__('time').monotonic() + 5
+        while not (observer_evidence/'observer-start.json').is_file() and __import__('time').monotonic() < deadline: __import__('time').sleep(0.02)
+        if not (observer_evidence/'observer-start.json').is_file():
+            monitor.terminate(); raise RuntimeError('session-held observer did not become ready')
         for watched in json.loads(watch_list.read_text())['paths']: Path(watched).read_bytes()
-        stopped = run([sys.executable, str(HERE/'observer.py'), 'stop', '--evidence', str(evidence/'observer')], REPO)
-        if stopped.returncode: raise RuntimeError(stopped.stderr.decode())
-        event_rows = [json.loads(line) for line in (evidence/'observer'/'inotify-events.jsonl').read_text().splitlines()]
+        stop_file.write_text('stop\n')
+        if monitor.wait(timeout=5): raise RuntimeError((monitor.stderr.read() or b'').decode())
+        event_rows = [json.loads(line) for line in (observer_evidence/'inotify-events.jsonl').read_text().splitlines()]
         if not any(row.get('event') == 'inotify' and 'OPEN' in row.get('names', []) for row in event_rows): raise RuntimeError('inotify observer did not report OPEN')
         result = {'status': 'pass', 'artifact': sha(TARBALL), 'cli_module_original': original_hash, 'cli_module_instrumented': instrumented_hash, 'parity': comparisons, 'instrumented_successful_entry_events': len(entries), 'observer_events': len(event_rows), 'observer_records_open_access_only': True}
         print(json.dumps(result, indent=2, sort_keys=True))

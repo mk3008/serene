@@ -1,0 +1,16 @@
+{
+  "reason": "detached observer process did not survive across tool calls; /proc/<pid> absent and no final health record",
+  "runs": {
+    "p01": [
+      "observer-start.json",
+      "observer.pid.json",
+      "inotify-events.jsonl"
+    ],
+    "p02": [
+      "observer-start.json",
+      "observer.pid.json",
+      "inotify-events.jsonl"
+    ]
+  },
+  "status": "failed-pre-dispatch"
+}

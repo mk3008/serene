@@ -110,8 +110,7 @@ self-selected CLI entry are secondary process observations only.
 A silent hook at the installed CLI entry is present in every arm. It records a
 self-selected CLI entry while preserving the original CLI’s stdout, stderr, exit
 status, and observable bytes. It neither supplies an audit result nor requires an
-invocation. An external inotify watch starts before dispatch and stops before
-harvest. File-access events are not evidence that a model read, received, or used a
+invocation. An external inotify watch runs in a still-yielding observer session before dispatch and stops through its shared sentinel before harvest. A detached observer is not used, because its lifetime is not established across Work tool calls. File-access events are not evidence that a model read, received, or used a
 file. Neither observer establishes OS isolation, a full process trace, total cost,
 or early source exposure.
 

@@ -87,7 +87,7 @@
     }
   },
   "load_cue": true,
-  "observer_contract": "Start detached and obtain observer_ready before dispatch; stop before any parent harvest. Events prove file-system activity only, not PID, model comprehension, receipt, or use.",
+  "observer_contract": "Keep observer.py session alive in the same yielding tool session across actor commands; start before dispatch and create its shared stop-file before any parent harvest. Events prove file-system activity only, not PID, model comprehension, receipt, or use.",
   "optional_task_cue": false,
   "paths": {
     "evidence": "/tmp/repository-flow-probe/evidence/p03",
@@ -135,12 +135,12 @@
       "sha256": "a2cc33b00c3612ef143b2f2b28713172b9e49a4f0ab730896498dabb38f33d7f"
     },
     "observer.py": {
-      "bytes": 6592,
-      "sha256": "87a66485391dd3b7251ea274ddef373867100b802f281c20fc5207ad4c8133a0"
+      "bytes": 4127,
+      "sha256": "adf4146889a19c9dea3d091908004e94a314c6489a71f2c20d2f9cd76398f709"
     },
     "stage.py": {
-      "bytes": 19056,
-      "sha256": "ad08a5d9a4415ea65499deb7383faaa26838d8e696e48ece87de67114a6762a2"
+      "bytes": 20930,
+      "sha256": "644ebb4a9bf95d0b7078580c6fba882c7177d3607c6f6c5f6076e1685f8369ae"
     }
   },
   "watch_list": {

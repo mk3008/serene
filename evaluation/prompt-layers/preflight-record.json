@@ -12,7 +12,7 @@
     "sha256": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c"
   },
   "instrumented_successful_entry_events": 8,
-  "observer_events": 22,
+  "observer_events": 7,
   "observer_records_open_access_only": true,
   "parity": [
     {

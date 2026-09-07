@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/prompt-layers/observer.py",
+    "serve",
+    "--evidence",
+    "/tmp/repository-flow-probe/evidence/p01/observer",
+    "--watch-list",
+    "/tmp/repository-flow-probe/evidence/p01/watch-list.json"
+  ],
+  "ready": {
+    "event": "observer_ready",
+    "pid": 7,
+    "recorded_at_ns": 1788760289878908340,
+    "watch_count": 14,
+    "watch_list_sha256": "9611a73b26a279e9f63683d6872f7c1669f7a6b6e9526704eb0b14fbed3e8369"
+  },
+  "started_by_pid": 4
+}

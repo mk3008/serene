@@ -21,3 +21,8 @@ not an actor PID, model comprehension, received prompt context, or policy use.
 Work-mode spawning does not expose a working-directory setting. The frozen direct prompt names the
 opaque packet root, but this preflight does not claim that the platform natively bootstraps a
 repository-root `AGENTS.md`; the load cue is the only explicit instruction to read it.
+
+The committed local observer preflight runs a child process from one host process. It does not
+prove that a detached watcher survives separate Work tool calls. The separate cross-exec record
+validates only the session-held observer pattern: keep its yielding shell session open, then use
+another tool call to read a disposable watched file and create the shared stop sentinel.

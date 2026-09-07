@@ -7,6 +7,7 @@ Discovery, referral, correct defect diagnosis, and review cost are separate. The
 | Literal Serene SQL, bind, direct candidate driver call | Ordinary construction | SQL meaning, authorization, matching values, actual driver use |
 | Visible concatenation/interpolation at a known sink | Violation | Determine exploitability; policy violation is not proof of a vulnerability |
 | Unknown argument at a known sink | Review required | Trace its origin |
+| SQL imported from another source file | May remain review required even when both files are selected | Follow definition/export/import through binding and execution; see [layout and provenance](sql-layout.md) |
 | Local const alias/destructuring/Function.bind of a named sink | Violation or review required, never ordinary | Receiver, prebound arguments, actual target |
 | Computed invocation | Review required | Whether it executes SQL and which function is called |
 | Custom wrapper with configured sink name | Candidate, argument classified conservatively | Wrapper behavior and argument contract |

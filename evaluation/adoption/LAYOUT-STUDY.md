@@ -1,5 +1,9 @@
 # Layout comparison: dedicated file versus authoritative definition
 
+> Historical, unexecuted protocol. Superseded for Issue #8 by the
+> [Serene-owned layout decision](../layout-ownership/REPORT.md). The upstream Rules
+> proposal and large study below are not current tasks or completion requirements.
+
 > Independent Rules integration/layout track. SQL discovery, binding/execution
 > follow-through and layout friction do not enter the Serene safety-triage score.
 > See the [research map](../README.md).

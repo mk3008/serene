@@ -1,0 +1,1 @@
+{"dependencies":{"@mk3008/serene":"0.1.0"},"devDependencies":{"typescript":"5.9.3"},"name":"prompt-layer-document-access","private":true,"scripts":{"check":"npm test","test":"node --test test.mjs"},"type":"module"}

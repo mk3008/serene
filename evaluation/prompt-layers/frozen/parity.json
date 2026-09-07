@@ -1,0 +1,135 @@
+{
+  "pairs": [
+    {
+      "canonical_prompt_equal": true,
+      "changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "expected_canonical_prompt_equal": true,
+      "expected_changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p01",
+        "p02"
+      ],
+      "pass": true
+    },
+    {
+      "canonical_prompt_equal": false,
+      "changed_packet_files": [],
+      "expected_canonical_prompt_equal": false,
+      "expected_changed_packet_files": [],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p01",
+        "p03"
+      ],
+      "pass": true
+    },
+    {
+      "canonical_prompt_equal": false,
+      "changed_packet_files": [],
+      "expected_canonical_prompt_equal": false,
+      "expected_changed_packet_files": [],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p02",
+        "p04"
+      ],
+      "pass": true
+    },
+    {
+      "canonical_prompt_equal": true,
+      "changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "expected_canonical_prompt_equal": true,
+      "expected_changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p03",
+        "p04"
+      ],
+      "pass": true
+    },
+    {
+      "canonical_prompt_equal": true,
+      "changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "expected_canonical_prompt_equal": true,
+      "expected_changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p05",
+        "p06"
+      ],
+      "pass": true
+    },
+    {
+      "canonical_prompt_equal": true,
+      "changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "expected_canonical_prompt_equal": true,
+      "expected_changed_packet_files": [
+        "AGENTS.md"
+      ],
+      "non_treatment_equal": {
+        "cli_module_bytes": true,
+        "declared_packet_package_json": true,
+        "installed_docs": true,
+        "runtime_bytes": true,
+        "source_hashes": true,
+        "workflow": true
+      },
+      "pair": [
+        "p07",
+        "p08"
+      ],
+      "pass": true
+    }
+  ],
+  "status": "pass"
+}

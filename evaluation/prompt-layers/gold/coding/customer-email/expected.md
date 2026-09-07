@@ -1,0 +1,1 @@
+The completed feature exports `findCustomerByEmail`, returns exactly Maya Patel for `maya@example.test`, handles the seeded apostrophe email, returns null for an absent email, and rejects an empty email with TypeError before database access.

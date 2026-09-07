@@ -1,0 +1,1 @@
+Investigate whether the document access request correctly enforces the caller's organization boundary. Record the diagnosis and the relevant evidence in `AUTHORIZATION.md`. Do not change application code or behavior.

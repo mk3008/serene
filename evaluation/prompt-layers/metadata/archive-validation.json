@@ -6,14 +6,20 @@
     },
     "decision": "not eligible; no actor dispatched",
     "observed": {
-      "evidence": {
+      "independent_judgment": {
+        "path": "evaluation/prompt-layers/judgments/p02/judgment.json",
+        "requested_site_serene_adoption": true,
+        "sha256": "a302774212c5e2fb0239ea3676e09ad5cdee63d728f0234055d3e5dbe078ae3c"
+      },
+      "p02_functional_outcome": "pass",
+      "p02_requested_site_serene_adoption": true,
+      "supporting_artifact": {
         "artifact": "evaluation/prompt-layers/runs/p02/packet/app.mjs",
         "artifact_sha256": "2e21978864073698db70843e77cade42ae35e865b90af23a0a94ddbafd531293",
         "match": "@mk3008/serene import present"
-      },
-      "p02_serene_adoption": true
+      }
     },
-    "reason": "The frozen condition requires no Serene adoption; observed p02 final artifact imports Serene. This is sufficient to keep p09 pending without inferring other outcomes.",
+    "reason": "The frozen condition requires no requested-site Serene adoption. Independent adjudication records requested_site_serene_adoption=true and a functional pass for p02; adoption alone makes p09 ineligible. The package import is supporting artifact evidence, not the adoption criterion.",
     "run_id": "p09"
   },
   "runs": [

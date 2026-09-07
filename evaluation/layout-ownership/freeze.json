@@ -1,0 +1,32 @@
+{
+  "serene": "b0f9b40f68cf245f1629585447f26edb6125cbac",
+  "rules": {
+    "repository": "mk3008/raw-sql-rules",
+    "commit": "7d211f53dc67b40c49042fbb671304880bad0319",
+    "path": "raw-sql-rules.md",
+    "blob": "6b2a6f659e2d106a12f4f0c9da2c7444f178adf4",
+    "version": "v0.2",
+    "role": "external reference only"
+  },
+  "sha256": {
+    "src/error.ts": "d0a37554fe359777731d06faf719841fed34c41e88ccb62c023cf64ff013657d",
+    "src/index.ts": "07d810e449188ee10f88bae04c9871bfec2bb5c5f08cc0117e8e62ff74dfd92c",
+    "src/scanner.ts": "ba2894e8fd1a31ef9289a8b02094af9212e798f785ec3a6d066383e03c7159a9",
+    "tooling/audit.d.mts": "efc22d286b18e0b8ad000b373bd82757e5c77c8a754ae0f14e1c82f4bb4f24c9",
+    "tooling/audit.mjs": "c9eec574018b4b8523cefbc2c72cde09fa0de8f8befcb6b70811eea8fbe106b8",
+    "tooling/cli.mjs": "7e8429a179c736d064967e25d2cbe42ea830fda66c56aeec34fbd063317e3d0c",
+    "tooling/files.mjs": "436c1d71f14b57a4799b37a9ec67da02cc5115a6b870e64c4d3142d62720c468",
+    "tooling/filter.d.mts": "4d79b52291015fa0502694b2ffbcc5e7cb68fa7903330fca299041d2daeec06d",
+    "tooling/filter.mjs": "ccef7c757f70ef35b1074776c7eba3c1cb6bd074360b1728b015104d2a2860f3",
+    "package.json": "ce083f5964b30e9757e323a7c5517ee08bbfbe53670dd7f9511e02c47920ee5f",
+    "tsconfig.json": "736429c15f775b49f8e280977cbb117b543d2ab2a3264985ccd840133593e4a6",
+    "evaluation/adoption/preflight/schema.sql": "c47f8ad627442654b0760af60eed8c180417f61306827cf2ea504dc1d4f6ef9a",
+    "evaluation/adoption/preflight/seed.sql": "7c90a2dae55c2dbaa8131a5e73048ad6c8b9dc08a0c7ddff721de12ab36b6613",
+    "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs": "19b03bffecf57c5ee88a23e3a149d8af9075ec32861d0503e632203540c8d2a0",
+    "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs": "959be12115e45b9ef8117d8ac4023b7d9a5f364e24fcfc6e6b5ba0ee4a6da28f",
+    "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs": "7f4de9c9bc23c674f39aa692d479a16c6a864c50650f883464f192cb7b48c92d",
+    "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs": "fc4dec7900e2f230b67b2bfa28aa2f2c90016a48a8ca594ca62ed05fa2d29054",
+    "evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs": "959be12115e45b9ef8117d8ac4023b7d9a5f364e24fcfc6e6b5ba0ee4a6da28f",
+    "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs": "6df225a132ec5026a1bda455a8b03a3b35a1749f009a39c9c1afbcf3ce6e5a9c"
+  }
+}

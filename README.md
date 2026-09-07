@@ -105,6 +105,12 @@ The audit is deliberately conservative and file-local. See [review coverage](doc
 
 The CLI provides the review signal; it does not force an AI agent to invoke or consume it. Evaluation shows that integration timing matters: filtering source-bearing responses before model delivery can avoid ordinary-body exposure, while adding Serene only after the agent has already read those bodies can add cost instead. The pre-exposure host/filter used in that study is not a shipped CLI feature. See the [evaluation map](evaluation/README.md).
 
+### Using the audit with AI agents
+
+For AI coding or review agents, keep the durable Serene policy in the repository's `AGENTS.md` (or equivalent) instead of repeating Serene in every task prompt. Keep individual prompts focused on the actual business or review task; the repository policy can tell the agent to use `serene-audit` for SQL-construction review when relevant and to treat `ordinary` only as construction/provenance triage.
+
+See the [AI adoption guide](docs/ai-adoption.md) for a candidate policy and the bounded evidence behind this usage pattern.
+
 ## Dynamic ORDER BY without dynamic SQL
 
 ```ts

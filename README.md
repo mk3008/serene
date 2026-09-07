@@ -103,6 +103,9 @@ Findings are intentionally simple:
 
 The audit is deliberately conservative and file-local. See [review coverage](docs/review-coverage.md) for what it can and cannot discover.
 
+Building an AI review tool? Use the [pre-exposure filter](docs/pre-exposure-filter.md)
+to replace recognized construction with navigation metadata before source reaches the model.
+
 The CLI provides the review signal; it does not force an AI agent to invoke or consume it. Evaluation shows that integration timing matters: filtering source-bearing responses before model delivery can avoid ordinary-body exposure, while adding Serene only after the agent has already read those bodies can add cost instead. The pre-exposure host/filter used in that study is not a shipped CLI feature. See the [evaluation map](evaluation/README.md).
 
 ## Dynamic ORDER BY without dynamic SQL

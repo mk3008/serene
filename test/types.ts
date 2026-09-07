@@ -54,3 +54,20 @@ if (filtered.filtered) {
 filterConstructionSource({ file: 'app.ts', source: '' }, { ...snapshot, ranges: [] });
 // @ts-expect-error Ranges need exact text as well as offsets.
 filterConstructionSource(snapshot, { ...snapshot, ranges: [{ start: 0, end: 1 }] });
+
+import { filterConstructionDiff, type DiffSnapshot, type DiffFilterResult } from '@mk3008/serene/filter';
+const diffSnapshot: DiffSnapshot = { base: snapshot, head: { ...snapshot, revision: 'r2' } };
+const diffResult: DiffFilterResult = filterConstructionDiff(diffSnapshot, { ...diffSnapshot, changes: [] });
+for (const change of diffResult.changes) {
+  if (change.kind === 'ordinary') {
+    const revision: string = change.head.function.revision;
+    const kind: 'addition' | 'deletion' | 'modification' = change.change;
+    void revision; void kind;
+    // @ts-expect-error Suppressed source must not be available on an ordinary change.
+    change.head.text;
+  } else { const original: string = change.base.text; void original; }
+}
+// @ts-expect-error Both current full-source contexts are mandatory.
+filterConstructionDiff(diffSnapshot, { base: snapshot, changes: [] });
+// @ts-expect-error Patch text alone is not a complete paired edit range.
+filterConstructionDiff(diffSnapshot, { ...diffSnapshot, changes: [{ base: { text: '' }, head: { text: '' } }] });

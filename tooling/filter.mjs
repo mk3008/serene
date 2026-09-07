@@ -115,3 +115,95 @@ export function filterConstructionSource(snapshot, response) {
   });
   return filtered ? { filtered: true, ranges } : plain('no-ordinary-range');
 }
+
+/** Filter a complete, host-owned edit list; never parse or generate a Git patch. */
+export function filterConstructionDiff(snapshot, response) {
+  for (const pair of [snapshot, response]) {
+    checkContext(pair?.base);
+    checkContext(pair?.head);
+  }
+  if (!Array.isArray(response.changes) || response.changes.some(c =>
+    !c || typeof c.base?.text !== 'string' || typeof c.head?.text !== 'string')) {
+    throw new TypeError('Paired base/head change ranges with text are required.');
+  }
+  const identity = ({ file, revision }) => ({ file, revision });
+  const range = ({ start, end, text }) => ({ start, end, text });
+  const changes = response.changes.map((c, index) => ({ index, kind: 'source',
+    base: range(c.base), head: range(c.head) }));
+  const plain = reason => ({ filtered: false, reason,
+    base: identity(response.base), head: identity(response.head), changes });
+  for (const side of ['base', 'head']) {
+    if (['file', 'revision', 'source'].some(key => snapshot[side][key] !== response[side][key])) {
+      return plain('snapshot-mismatch');
+    }
+  }
+  if (snapshot.base.file !== snapshot.head.file) return plain('file-identity-change');
+  if (snapshot.base.revision === snapshot.head.revision && snapshot.base.source !== snapshot.head.source) {
+    return plain('diff-mismatch');
+  }
+  if (!/\.(?:[cm]?[jt]s|[jt]sx)$/.test(snapshot.base.file)) return plain('unsupported-file');
+  const valid = (r, source) => Number.isSafeInteger(r.start) && Number.isSafeInteger(r.end) &&
+    r.start >= 0 && r.end >= r.start && r.end <= source.length && source.slice(r.start, r.end) === r.text;
+  let baseEnd = 0, headEnd = 0;
+  for (const c of changes) {
+    if (!valid(c.base, snapshot.base.source) || !valid(c.head, snapshot.head.source)) return plain('range-mismatch');
+    // Equal gaps establish that this is a complete edit list, not a selected hunk.
+    if (c.base.start < baseEnd || c.head.start < headEnd ||
+        snapshot.base.source.slice(baseEnd, c.base.start) !== snapshot.head.source.slice(headEnd, c.head.start)) {
+      return plain('diff-mismatch');
+    }
+    baseEnd = c.base.end;
+    headEnd = c.head.end;
+  }
+  if (snapshot.base.source.slice(baseEnd) !== snapshot.head.source.slice(headEnd)) return plain('diff-mismatch');
+  let masks;
+  try {
+    masks = Object.fromEntries(['base', 'head'].map(side => [side,
+      constructionFunctions(snapshot[side].source, snapshot[side].file)]));
+  } catch { return plain('analysis-failed'); }
+  if (!masks.base || !masks.head) return plain('parse-failed');
+  const metadata = (side, mask) => ({ ...mask, revision: snapshot[side].revision });
+  const names = side => masks[side].map(m => m.function);
+  if (['base', 'head'].some(side => names(side).some(n => !n) || new Set(names(side)).size !== masks[side].length)) {
+    return plain('ambiguous-functions');
+  }
+  const lost = masks.base.filter(m => !names('head').includes(m.function));
+  const gained = masks.head.filter(m => !names('base').includes(m.function));
+  if (lost.length || gained.length) {
+    // An import edit can change provenance at execution sites absent from the diff.
+    // Preserve the whole file's edits and explicitly direct follow-up to those sites.
+    return { ...plain('ordinary-set-changed'), transitions: {
+      base: lost.map(m => metadata('base', m)), head: gained.map(m => metadata('head', m)) } };
+  }
+  const contains = (m, r) => r.start === r.end
+    ? m.start < r.start && r.end < m.end
+    : m.start <= r.start && r.end <= m.end;
+  const touches = (m, r) => r.start === r.end
+    ? m.start <= r.start && r.end <= m.end
+    : r.start < m.end && m.start < r.end;
+  let filtered = false;
+  for (const before of masks.base) {
+    const after = masks.head.find(m => m.function === before.function);
+    const involved = changes.filter(c => touches(before, c.base) || touches(after, c.head));
+    if (!involved.length || involved.some(c => !contains(before, c.base) || !contains(after, c.head))) continue;
+    // Require corresponding full function spans, not merely an equal name somewhere.
+    let cursor = before.start, rebuilt = '';
+    for (const c of involved) {
+      rebuilt += snapshot.base.source.slice(cursor, c.base.start) + c.head.text;
+      cursor = c.base.end;
+    }
+    rebuilt += snapshot.base.source.slice(cursor, before.end);
+    if (rebuilt !== snapshot.head.source.slice(after.start, after.end)) continue;
+    for (const c of involved) {
+      if (c.base.text === c.head.text) continue;
+      c.kind = 'ordinary';
+      c.scope = 'sql-construction';
+      c.change = !c.base.text ? 'addition' : !c.head.text ? 'deletion' : 'modification';
+      c.base = { start: c.base.start, end: c.base.end, function: metadata('base', before) };
+      c.head = { start: c.head.start, end: c.head.end, function: metadata('head', after) };
+      filtered = true;
+    }
+  }
+  return filtered ? { filtered: true, base: identity(response.base), head: identity(response.head), changes }
+    : plain('no-ordinary-change');
+}

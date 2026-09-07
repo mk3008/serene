@@ -140,6 +140,14 @@ const modelDiff = filterConstructionDiff(pinnedPair, {
 });
 ```
 
+For PR or commit review, the host can start from a normal Git diff:
+
+```sh
+git diff --unified=0 BASE...HEAD
+```
+
+Convert those diff hunks into `pairedEdits`, then pass them to `filterConstructionDiff`. Serene deliberately does not parse or run `git diff` itself.
+
 Send `modelRead` / `modelDiff` to the AI instead of the unfiltered source response. See the [source filter](docs/pre-exposure-filter.md) and [diff filter](docs/diff-filter.md) for the host contract and limits.
 
 ## Dynamic ORDER BY without dynamic SQL

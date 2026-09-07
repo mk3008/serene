@@ -1,0 +1,46 @@
+{
+  "base": "5188f6d72deb28a255952f26110e80e0d49d6066",
+  "files": {
+    "operations.ts": {
+      "path": "evaluation/end-to-end/tasks/ticketing/serene/operations.ts",
+      "sha256": "144c611f951c59dc82fec61a50cd1ba3fac690f9e20229bcef221c4eb83ab2f8"
+    },
+    "reporting.ts": {
+      "path": "evaluation/end-to-end/tasks/ticketing/serene/reporting.ts",
+      "sha256": "8c61fd2f49cfb04ecbce0dce7a86f933ef7387833ef19700d14b7720bf4a7b3a"
+    },
+    "maintenance.ts": {
+      "path": "evaluation/end-to-end/tasks/ticketing/serene/maintenance.ts",
+      "sha256": "6277720e11c223cb16c4e73b6145e8d11f6425b1c3976f7dd911b44244fee7d3"
+    },
+    "contracts.ts": {
+      "path": "evaluation/end-to-end/tasks/ticketing/serene/contracts.ts",
+      "sha256": "18b2cd9b450d41cd3ea00eb55db0a5b801b83c9be2ac998dcf543890547f2e5a"
+    }
+  },
+  "inputs": {
+    "evaluation/filter-smoke/host.mjs": "1b8e617bbb8b1079180e573fc98df5583bf661421e763eacc6fa61fea8b70913",
+    "evaluation/filter-smoke/TASK.md": "ae5ce453dd98a7e3f5f534430ba3a79055a414030b3f670d30af591e10a861f0",
+    "evaluation/filter-smoke/PLAN.md": "9c14214934d41eed5451131da4d6d737185f4bb5ef11ff372ae53883a6c71a96",
+    "tooling/filter.mjs": "d59598bc8ecebe74454527d61318c286d449724ad0149338e09d1596daf5df43",
+    "tooling/filter.d.mts": "797dd838bd271a6d2823ca86993911e1eb9b018ec6e5b05b2b9bc9da08ed0b66",
+    "tooling/audit.mjs": "c9eec574018b4b8523cefbc2c72cde09fa0de8f8befcb6b70811eea8fbe106b8",
+    "package.json": "ce083f5964b30e9757e323a7c5517ee08bbfbe53670dd7f9511e02c47920ee5f"
+  },
+  "runs": [
+    {
+      "id": "r01",
+      "arm": "Raw"
+    },
+    {
+      "id": "r02",
+      "arm": "filter"
+    }
+  ],
+  "participant": {
+    "model": "gpt-5.6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "sequential": true
+  }
+}

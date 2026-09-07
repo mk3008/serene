@@ -115,3 +115,11 @@ false candidates. Local alias discovery improves inventory, but never proves dri
 identity or upgrades aliases to ordinary. General code review must retain ordinary
 construction sites: wrong values, authorization defects and database-side dynamic
 SQL remain possible there.
+
+The optional [pre-exposure filter](pre-exposure-filter.md) can suppress recognized
+construction-only functions before model delivery in a specialized construction
+review. It checks full source, revision and range agreement against host-owned
+context. It does not verify Git state or host honesty, and stale/unsupported content
+stays visible. This omission must not be applied to general, authorization,
+SQL-meaning or driver-binding review. The host owns interception of source-bearing
+tools and retention of an unfiltered path for those review scopes.

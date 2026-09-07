@@ -1,0 +1,11 @@
+{
+  "host_operations": 12,
+  "stdout_equals_recorded_wire": true,
+  "ordinary_body_hidden": true,
+  "nonordinary_source_preserved": true,
+  "frozen_inputs_match": true,
+  "production_gate": {
+    "passed": 32,
+    "failed": 0
+  }
+}

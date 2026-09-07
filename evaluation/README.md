@@ -44,9 +44,10 @@ The combined evidence supports a narrower, practical conclusion:
 - Adding authoritative `function: string | null` navigation metadata removed the observed hidden-function naming errors. It did not establish uniform cost reduction.
 
 These are small, mediated workflow results, not proof of universal token, billing,
-latency, security, or whole-program coverage gains. The successful pre-exposure
-filter remains evaluation-only; the standalone CLI does not make an arbitrary AI
-agent invoke or integrate Serene automatically.
+latency, security, or whole-program coverage gains. The historical pre-exposure
+filter remains evaluation-only. The [production library boundary](../docs/pre-exposure-filter.md)
+now lets a host filter source before delivery; the host must integrate it into
+source-bearing tools. The standalone CLI does not do that automatically.
 
 The earlier [end-to-end late-handoff comparison](end-to-end/REPORT.md),
 [pre-exposure experiment](pre-exposure/REPORT.md), and
@@ -69,7 +70,8 @@ workflow/interface failures; the earlier context-expansion interpretation remain
 superseded. All source/gold/answers are preserved, with no pooled product score.
 Broader testing would need varied samples and unmatched/false-ordinary controls.
 The compact audit CLI option and function navigation metadata are implemented; the
-pre-exposure host integration is not.
+pre-exposure [library boundary](../docs/pre-exposure-filter.md) is now implemented.
+Host-specific adapters remain outside this checkpoint.
 
 ## Follow-up research
 

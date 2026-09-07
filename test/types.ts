@@ -40,3 +40,17 @@ bind(stmt, { id: 1 }, 'named');
 bind(stmt, { id: 1 }, 'at-named');
 // @ts-expect-error Passthrough is omission, not another ParameterStyle.
 bind(stmt, { id: 1 }, 'passthrough');
+
+import { filterConstructionSource, type SourceSnapshot, type FilterResult } from '@mk3008/serene/filter';
+const snapshot: SourceSnapshot = { file: 'app.ts', revision: 'r1', source: '' };
+const filtered: FilterResult = filterConstructionSource(snapshot, { ...snapshot, ranges: [] });
+if (filtered.filtered) {
+  for (const range of filtered.ranges) for (const part of range.parts) {
+    if (part.kind === 'ordinary') { const name: string | null = part.function; void name; }
+    else { const text: string = part.text; void text; }
+  }
+}
+// @ts-expect-error A revision is required, not an optional freshness flag.
+filterConstructionSource({ file: 'app.ts', source: '' }, { ...snapshot, ranges: [] });
+// @ts-expect-error Ranges need exact text as well as offsets.
+filterConstructionSource(snapshot, { ...snapshot, ranges: [{ start: 0, end: 1 }] });

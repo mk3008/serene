@@ -42,6 +42,10 @@ treat ordinary construction as evidence that access is correct. Run the audit
 when construction provenance is part of the task or when it helps inventory
 changed SQL paths.
 
+Serene does not choose the application's SQL file layout. Imported definitions may
+remain review-required; follow their binding/execution path instead of relocating
+or duplicating SQL to satisfy a gate. See [SQL layout and imported provenance](sql-layout.md).
+
 The prior automatic-adoption pilot is complete, with all twelve sessions
 finished. Its explicit `AGENTS.md` load cue is conditional evidence from that
 matched setup, not proof of automatic instruction discovery or a generally

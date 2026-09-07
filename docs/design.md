@@ -99,5 +99,8 @@ or schema responsibilities.
 
 Future proposals, not implemented: application-specific sink coverage manifests,
 selected real-driver integration probes, and measured review effort using a real
-application. Cross-file provenance, ESLint integration and C#/Bun adapters need a
-separate value/cost decision. Do not add them solely for feature parity.
+application. The [Issue #8 ownership decision](sql-layout.md) retains layout-neutral,
+file-local provenance; imported paths remain explicit additional review. Bounded
+cross-file recognition can be reconsidered with concrete review-work and coherence
+evidence. ESLint integration and C#/Bun adapters need a separate value/cost decision.
+Do not add them solely for feature parity.

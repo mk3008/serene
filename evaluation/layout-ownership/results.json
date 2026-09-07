@@ -1,0 +1,847 @@
+{
+  "serene": "b0f9b40f68cf245f1629585447f26edb6125cbac",
+  "rulesReference": {
+    "repository": "mk3008/raw-sql-rules",
+    "commit": "7d211f53dc67b40c49042fbb671304880bad0319",
+    "path": "raw-sql-rules.md",
+    "blob": "6b2a6f659e2d106a12f4f0c9da2c7444f178adf4",
+    "version": "v0.2",
+    "role": "external reference only"
+  },
+  "node": "v24.19.0",
+  "sqlite": "3.53.3",
+  "method": "mechanical route from known operation file; not AI/human effort",
+  "behaviorCases": 20,
+  "observations": [
+    {
+      "task": "lookup",
+      "layout": "dedicated",
+      "source": {
+        "reads": [
+          "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs",
+          "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs"
+        ],
+        "fullFileReads": 2,
+        "importEdges": 1,
+        "authoritativeDefinitions": 1,
+        "sql": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+        "paths": [
+          {
+            "function": "lookup",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs",
+              "line": 2,
+              "column": 14
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs",
+              "line": 5,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "bodySha256": "9baa2d96f917bb987b1352270486ea8abc75a8daab6ff73e6edf92138360c863"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "name": "owned",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10
+          },
+          "result": {
+            "name": "Alice",
+            "balance": 100
+          },
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "other-tenant",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 2,
+            "accountId": 10
+          },
+          "result": {
+            "name": "Other Alice",
+            "balance": 900
+          },
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 2,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "missing",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": 30
+          },
+          "result": null,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 30
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "hostile",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": "10 OR 1=1 --"
+          },
+          "result": null,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": "10 OR 1=1 --"
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        }
+      ],
+      "audit": [
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "evaluation/adoption/preflight/fixtures/lookup/dedicated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs\",\n    \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs\",\n      \"line\": 2,\n      \"column\": 28,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"lookup\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"lookup\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "review-required"
+          ]
+        },
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "--strict",
+            "evaluation/adoption/preflight/fixtures/lookup/dedicated/src"
+          ],
+          "exit": 1,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs\",\n    \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/findAccount.mjs\",\n      \"line\": 2,\n      \"column\": 28,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"lookup\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/dedicated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"lookup\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "review-required"
+          ]
+        }
+      ]
+    },
+    {
+      "task": "lookup",
+      "layout": "colocated",
+      "source": {
+        "reads": [
+          "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs"
+        ],
+        "fullFileReads": 1,
+        "importEdges": 0,
+        "authoritativeDefinitions": 1,
+        "sql": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+        "paths": [
+          {
+            "function": "lookup",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs",
+              "line": 2,
+              "column": 7
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs",
+              "line": 5,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "bodySha256": "9baa2d96f917bb987b1352270486ea8abc75a8daab6ff73e6edf92138360c863"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "name": "owned",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10
+          },
+          "result": {
+            "name": "Alice",
+            "balance": 100
+          },
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "other-tenant",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 2,
+            "accountId": 10
+          },
+          "result": {
+            "name": "Other Alice",
+            "balance": 900
+          },
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 2,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "missing",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": 30
+          },
+          "result": null,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 30
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "hostile",
+          "operation": "lookup",
+          "args": {
+            "tenantId": 1,
+            "accountId": "10 OR 1=1 --"
+          },
+          "result": null,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": "10 OR 1=1 --"
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        }
+      ],
+      "audit": [
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "evaluation/adoption/preflight/fixtures/lookup/colocated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 2,\n      \"column\": 21,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"lookup\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"lookup\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "ordinary"
+          ]
+        },
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "--strict",
+            "evaluation/adoption/preflight/fixtures/lookup/colocated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 2,\n      \"column\": 21,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"lookup\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/lookup/colocated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"lookup\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "ordinary"
+          ]
+        }
+      ]
+    },
+    {
+      "task": "shared",
+      "layout": "dedicated",
+      "source": {
+        "reads": [
+          "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+          "evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs"
+        ],
+        "fullFileReads": 2,
+        "importEdges": 1,
+        "authoritativeDefinitions": 1,
+        "sql": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+        "paths": [
+          {
+            "function": "accountName",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs",
+              "line": 2,
+              "column": 14
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 5,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "bodySha256": "b84840b429cce28fa7a0687658b19b84de855817297a8f57734c5e35b0dbca61"
+          },
+          {
+            "function": "canSpend",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs",
+              "line": 2,
+              "column": 14
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 10,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 11,
+              "column": 19
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs",
+              "line": 11,
+              "column": 19
+            },
+            "bodySha256": "9428ca41ad46a60a26335ea25d39ef418c365165f4d77fb2835ef59786ebe000"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "name": "name",
+          "operation": "accountName",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10
+          },
+          "result": "Alice",
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "other-tenant-name",
+          "operation": "accountName",
+          "args": {
+            "tenantId": 2,
+            "accountId": 10
+          },
+          "result": "Other Alice",
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 2,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "can-spend",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": 50
+          },
+          "result": true,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "insufficient",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": 101
+          },
+          "result": false,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "invalid",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": -1
+          },
+          "result": false,
+          "trace": [],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "hostile",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": "10 OR 1=1 --",
+            "amount": 1
+          },
+          "result": false,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": "10 OR 1=1 --"
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        }
+      ],
+      "audit": [
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "evaluation/adoption/preflight/fixtures/shared/dedicated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs\",\n    \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs\",\n      \"line\": 2,\n      \"column\": 28,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"accountName\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"accountName\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 10,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"canSpend\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 11,\n      \"column\": 19,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"canSpend\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "review-required",
+            "review-required"
+          ]
+        },
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "--strict",
+            "evaluation/adoption/preflight/fixtures/shared/dedicated/src"
+          ],
+          "exit": 1,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs\",\n    \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/findAccount.mjs\",\n      \"line\": 2,\n      \"column\": 28,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"accountName\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"accountName\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 10,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"canSpend\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/dedicated/src/operation.mjs\",\n      \"line\": 11,\n      \"column\": 19,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"canSpend\",\n      \"level\": \"review-required\",\n      \"code\": \"UNRESOLVED\",\n      \"detail\": \"SQL provenance cannot be established in this file.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "review-required",
+            "review-required"
+          ]
+        }
+      ]
+    },
+    {
+      "task": "shared",
+      "layout": "colocated",
+      "source": {
+        "reads": [
+          "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs"
+        ],
+        "fullFileReads": 1,
+        "importEdges": 0,
+        "authoritativeDefinitions": 1,
+        "sql": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+        "paths": [
+          {
+            "function": "accountName",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 2,
+              "column": 7
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 5,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 6,
+              "column": 10
+            },
+            "bodySha256": "b84840b429cce28fa7a0687658b19b84de855817297a8f57734c5e35b0dbca61"
+          },
+          {
+            "function": "canSpend",
+            "definition": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 2,
+              "column": 7
+            },
+            "binding": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 10,
+              "column": 13,
+              "values": "{ tenantId, accountId }"
+            },
+            "preparation": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 11,
+              "column": 19
+            },
+            "execution": {
+              "file": "evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs",
+              "line": 11,
+              "column": 19
+            },
+            "bodySha256": "9428ca41ad46a60a26335ea25d39ef418c365165f4d77fb2835ef59786ebe000"
+          }
+        ]
+      },
+      "cases": [
+        {
+          "name": "name",
+          "operation": "accountName",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10
+          },
+          "result": "Alice",
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "other-tenant-name",
+          "operation": "accountName",
+          "args": {
+            "tenantId": 2,
+            "accountId": 10
+          },
+          "result": "Other Alice",
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 2,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "can-spend",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": 50
+          },
+          "result": true,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "insufficient",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": 101
+          },
+          "result": false,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": 10
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "invalid",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": 10,
+            "amount": -1
+          },
+          "result": false,
+          "trace": [],
+          "unchangedAccounts": true
+        },
+        {
+          "name": "hostile",
+          "operation": "canSpend",
+          "args": {
+            "tenantId": 1,
+            "accountId": "10 OR 1=1 --",
+            "amount": 1
+          },
+          "result": false,
+          "trace": [
+            {
+              "text": "SELECT name, balance FROM accounts WHERE tenant_id = :tenantId AND id = :accountId",
+              "values": {
+                "tenantId": 1,
+                "accountId": "10 OR 1=1 --"
+              },
+              "method": "get"
+            }
+          ],
+          "unchangedAccounts": true
+        }
+      ],
+      "audit": [
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "evaluation/adoption/preflight/fixtures/shared/colocated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 2,\n      \"column\": 21,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"accountName\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"accountName\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 10,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"canSpend\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 11,\n      \"column\": 19,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"canSpend\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "ordinary",
+            "ordinary"
+          ]
+        },
+        {
+          "command": [
+            "node",
+            "tooling/cli.mjs",
+            "--sink=prepare",
+            "--strict",
+            "evaluation/adoption/preflight/fixtures/shared/colocated/src"
+          ],
+          "exit": 0,
+          "stdout": "{\n  \"files\": [\n    \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\"\n  ],\n  \"skipped\": [],\n  \"findings\": [\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 2,\n      \"column\": 21,\n      \"boundary\": \"serene\",\n      \"function\": null,\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 5,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"accountName\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 6,\n      \"column\": 10,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"accountName\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 10,\n      \"column\": 13,\n      \"boundary\": \"serene\",\n      \"function\": \"canSpend\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    },\n    {\n      \"file\": \"evaluation/adoption/preflight/fixtures/shared/colocated/src/operation.mjs\",\n      \"line\": 11,\n      \"column\": 19,\n      \"boundary\": \"driver-candidate\",\n      \"function\": \"canSpend\",\n      \"level\": \"ordinary\",\n      \"code\": \"SCREENED_SOURCE\",\n      \"detail\": \"Literal SQL through Serene; review SQL meaning and binding use separately.\"\n    }\n  ],\n  \"scope\": \"file-local candidate inventory; not exhaustive driver discovery\"\n}\n",
+          "stderr": "",
+          "candidateLevels": [
+            "ordinary",
+            "ordinary"
+          ]
+        }
+      ]
+    }
+  ],
+  "negativeControls": [
+    {
+      "name": "wrong-module",
+      "source": "import { bind } from '@mk3008/serene';\nimport { findAccount } from './missing.mjs';\n\nexport function lookup(db, { tenantId, accountId }) {\n  const q = bind(findAccount, { tenantId, accountId });\n  return db.prepare(q.text).get(q.params) ?? null;\n}\n",
+      "findings": [
+        {
+          "file": "operation.mjs",
+          "line": 5,
+          "column": 13,
+          "boundary": "serene",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "operation.mjs",
+          "line": 6,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        }
+      ]
+    },
+    {
+      "name": "wrong-export",
+      "source": "import { bind } from '@mk3008/serene';\nimport { absent as findAccount } from './findAccount.mjs';\n\nexport function lookup(db, { tenantId, accountId }) {\n  const q = bind(findAccount, { tenantId, accountId });\n  return db.prepare(q.text).get(q.params) ?? null;\n}\n",
+      "findings": [
+        {
+          "file": "operation.mjs",
+          "line": 5,
+          "column": 13,
+          "boundary": "serene",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "operation.mjs",
+          "line": 6,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        }
+      ]
+    },
+    {
+      "name": "aliased-import",
+      "source": "import { bind } from '@mk3008/serene';\nimport { findAccount as chosen } from './findAccount.mjs';\n\nexport function lookup(db, { tenantId, accountId }) {\n  const q = bind(chosen, { tenantId, accountId });\n  return db.prepare(q.text).get(q.params) ?? null;\n}\n",
+      "findings": [
+        {
+          "file": "operation.mjs",
+          "line": 5,
+          "column": 13,
+          "boundary": "serene",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        },
+        {
+          "file": "operation.mjs",
+          "line": 6,
+          "column": 10,
+          "boundary": "driver-candidate",
+          "function": "lookup",
+          "level": "review-required",
+          "code": "UNRESOLVED",
+          "detail": "SQL provenance cannot be established in this file."
+        }
+      ]
+    }
+  ]
+}

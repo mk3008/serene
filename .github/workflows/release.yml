@@ -1,20 +1,31 @@
 name: Release
 
 on:
+  pull_request:
+    paths:
+      - package.json
+      - 'releases/v*.md'
+      - '.github/workflows/release.yml'
   push:
     branches: [main]
     paths:
       - package.json
       - 'releases/v*.md'
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  release:
+  validate:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      tag: ${{ steps.release.outputs.tag }}
+      notes: ${{ steps.release.outputs.notes }}
+      title: ${{ steps.release.outputs.title }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,13 +48,29 @@ jobs:
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "notes=$notes" >> "$GITHUB_OUTPUT"
           echo "title=$title" >> "$GITHUB_OUTPUT"
+      - run: npm pack
+
+  release:
+    if: github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.release.outputs.tag }}
-          VERSION: ${{ steps.release.outputs.version }}
-          NOTES: ${{ steps.release.outputs.notes }}
-          TITLE: ${{ steps.release.outputs.title }}
+          TAG: ${{ needs.validate.outputs.tag }}
+          VERSION: ${{ needs.validate.outputs.version }}
+          NOTES: ${{ needs.validate.outputs.notes }}
+          TITLE: ${{ needs.validate.outputs.title }}
         shell: bash
         run: |
           if gh release view "$TAG" >/dev/null 2>&1; then

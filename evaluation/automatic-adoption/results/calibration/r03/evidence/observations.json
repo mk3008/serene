@@ -1,0 +1,179 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r03/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r03/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 6,
+    "command_wall_seconds": 1.135392263,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; echo ---TASK---; cat TASK.md; echo ---FILES---; cat README.md; cat package.json; sed -n \"1,240p\" app.mjs; sed -n \"1,200p\" database.mjs; sed -n \"1,200p\" test.mjs"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/README.md"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npx --no-install serene-audit --actionable-only . || true"
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > REVIEW.md <<\"EOF\"\n# SQL construction review\n\nThe following SQL construction paths need follow-up:\n\n- `byRegion` in `app.mjs` builds the `WHERE region` clause by concatenating the caller-provided `region` into SQL text before passing it to `db.query`. This is a raw dynamic SQL boundary and should be changed to a bound parameter (or otherwise reviewed for injection and quoting behavior).\n- `queued` in `app.mjs` passes a raw SQL string directly to `db.query`. The string is currently fixed, but its provenance is unresolved to the Serene audit, so confirm it remains fixed and intentional or mark it using the project\u2019s recognized SQL boundary.\n\n`byId` uses a literal `sql` template and `bind` with a separate `id` parameter; the audit recognizes this construction. `openQueue` executes a fixed schema/seed script, and `database.query` is the native execution wrapper; review callers at that wrapper as the application grows.\nEOF\nnpm test\nnpm run check"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat REVIEW.md"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "git diff -- REVIEW.md 2>/dev/null || true; git status --short 2>/dev/null || true"
+        ],
+        "sequence": 7
+      }
+    ],
+    "completed_commands": 6,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 0,
+    "final_snapshot": {
+      "artifact_count": 11,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r03",
+      "snapshot_root": "evaluation/automatic-adoption/results/calibration/r03/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [
+      {
+        "rawargv": [
+          "bash",
+          "-lc",
+          "npx --no-install serene-audit --actionable-only . || true"
+        ],
+        "sequence": 3
+      }
+    ],
+    "rejections": 0,
+    "run_wall_seconds": 33.759531068,
+    "stderr_bytes": 297,
+    "stdout_bytes": 9638,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

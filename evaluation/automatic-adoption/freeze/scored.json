@@ -13,8 +13,8 @@
         "tarball_sha256": true
       },
       "pair": [
-        "r01",
-        "r02"
+        "r07",
+        "r08"
       ],
       "pass": true
     },
@@ -30,8 +30,8 @@
         "tarball_sha256": true
       },
       "pair": [
-        "r03",
-        "r04"
+        "r09",
+        "r10"
       ],
       "pass": true
     },
@@ -47,13 +47,13 @@
         "tarball_sha256": true
       },
       "pair": [
-        "r05",
-        "r06"
+        "r11",
+        "r12"
       ],
       "pass": true
     }
   ],
-  "phase": "calibration",
+  "phase": "scored",
   "requested_participant": {
     "fork_turns": "none",
     "fresh_session": true,
@@ -61,12 +61,12 @@
     "reasoning_effort": "medium"
   },
   "runs": [
-    "r01",
-    "r02",
-    "r03",
-    "r04",
-    "r05",
-    "r06"
+    "r07",
+    "r08",
+    "r09",
+    "r10",
+    "r11",
+    "r12"
   ],
   "shared_tarball": {
     "bytes": 27911,
@@ -74,38 +74,43 @@
     "sha256": "ad0dd1bab399697ddc56a4ad8d5c630cf9bdefa0b70a3310f89d2fa564da5a5b"
   },
   "source_evidence": {
+    "calibration_gate": {
+      "bytes": 7451,
+      "path": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/results/calibration/interface-gate.json",
+      "sha256": "c79344975305344374aa739dbba744022ea74e1767b4ebcd8861fef4ee67056b"
+    },
     "fixtures": {
-      "calibration-authorization-followup": {
-        "bytes": 2060,
+      "billing-construction-review": {
+        "bytes": 2335,
         "entries": 7,
-        "tree_sha256": "2239cc05b11bda20126fa68e7ee4b76516510c10f7c6ff7a42554316e5efaf32"
+        "tree_sha256": "93a850c8081ea35582cffd40ca96fa1a3dd3d431eca6394cc1480cbe8f355588"
       },
-      "calibration-construction-review": {
-        "bytes": 2244,
+      "invoice-authorization-followup": {
+        "bytes": 2059,
         "entries": 7,
-        "tree_sha256": "9719d026dadb4489d229349e148c248a750c535aac42708b5a9e575e739e9948"
+        "tree_sha256": "1c4351228a0eb3a7fbf89d7e884eb1c6b831a69a49efdf612610ff27a652b971"
       },
-      "calibration-contact-lookup": {
-        "bytes": 1732,
+      "product-sku-lookup": {
+        "bytes": 1711,
         "entries": 6,
-        "tree_sha256": "588572531f7b1ae365f858e543c1faf64124a1af171649a411b5e47ab22289b5"
+        "tree_sha256": "d4337c86f27c1f0799f6d0ef1163d80c96382b126a2a9c83a6f0f7f93174a5a5"
       }
     },
     "gold": {
-      "calibration-authorization-followup": {
-        "bytes": 1811,
-        "entries": 4,
-        "tree_sha256": "7ebf45fb642606037b2676c78292928e4a8d33590b010f256472cd3b58d025f5"
-      },
-      "calibration-construction-review": {
-        "bytes": 3518,
+      "billing-construction-review": {
+        "bytes": 3535,
         "entries": 5,
-        "tree_sha256": "aee4e79eeb2c8dd80e25bf09a5877ee6b7acc324944b094179443d0118ec00ef"
+        "tree_sha256": "fc42f776ce0abc7b13b28296dbc1aa05b1d2b5e97069f7f83cf3cbde573ecd53"
       },
-      "calibration-contact-lookup": {
-        "bytes": 2034,
+      "invoice-authorization-followup": {
+        "bytes": 1831,
+        "entries": 4,
+        "tree_sha256": "3144dd32079e7d053b4c35bff5cff15303ac3c3e6539d5380010601ba3175edc"
+      },
+      "product-sku-lookup": {
+        "bytes": 1938,
         "entries": 3,
-        "tree_sha256": "504dbd4837e4cce9ba3320e8486e8c922d40fd9d4c1fcce7d714d9aa5cf4383c"
+        "tree_sha256": "d3bae6fcf60c2baa0526a4ab367fa7e902defe408a7cbc8ed8e758fd51844065"
       }
     },
     "package_stager": {
@@ -126,11 +131,11 @@
     }
   },
   "stage_manifests": {
-    "r01": "/tmp/repository-agent-study/evidence/r01/stage-manifest.json",
-    "r02": "/tmp/repository-agent-study/evidence/r02/stage-manifest.json",
-    "r03": "/tmp/repository-agent-study/evidence/r03/stage-manifest.json",
-    "r04": "/tmp/repository-agent-study/evidence/r04/stage-manifest.json",
-    "r05": "/tmp/repository-agent-study/evidence/r05/stage-manifest.json",
-    "r06": "/tmp/repository-agent-study/evidence/r06/stage-manifest.json"
+    "r07": "/tmp/repository-agent-study/evidence/r07/stage-manifest.json",
+    "r08": "/tmp/repository-agent-study/evidence/r08/stage-manifest.json",
+    "r09": "/tmp/repository-agent-study/evidence/r09/stage-manifest.json",
+    "r10": "/tmp/repository-agent-study/evidence/r10/stage-manifest.json",
+    "r11": "/tmp/repository-agent-study/evidence/r11/stage-manifest.json",
+    "r12": "/tmp/repository-agent-study/evidence/r12/stage-manifest.json"
   }
 }

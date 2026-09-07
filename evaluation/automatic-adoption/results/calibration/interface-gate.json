@@ -1,0 +1,171 @@
+{
+  "status": "pass",
+  "basis": "actual recorder stream integrity, last finish-snapshot full inventories, and paired-task scorable artifacts",
+  "automatic_adoption_grade": null,
+  "no_reruns": true,
+  "no_prompt_or_wording_changes": true,
+  "runs": {
+    "r01": {
+      "commands": 12,
+      "stdout_bytes": 19656,
+      "stderr_bytes": 1844,
+      "possible_cli_invocations": 1,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "ANSWER.md",
+      "task_answer_present": true,
+      "launch_errors": [],
+      "output_cap_breaches": 0,
+      "actual_cli_sequences": [
+        7
+      ],
+      "final_snapshot_sequences": [
+        13
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      }
+    },
+    "r02": {
+      "commands": 9,
+      "stdout_bytes": 16668,
+      "stderr_bytes": 7946,
+      "possible_cli_invocations": 0,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "ANSWER.md",
+      "task_answer_present": true,
+      "launch_errors": [],
+      "output_cap_breaches": 0,
+      "final_snapshot_sequences": [
+        9
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      }
+    },
+    "r03": {
+      "commands": 6,
+      "stdout_bytes": 9638,
+      "stderr_bytes": 297,
+      "possible_cli_invocations": 1,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "REVIEW.md",
+      "task_answer_present": true,
+      "answer_md_present": false,
+      "launch_errors": [],
+      "output_cap_breaches": 0,
+      "actual_cli_sequences": [
+        3
+      ],
+      "final_snapshot_sequences": [
+        5
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      },
+      "post_finish_commands": [
+        6,
+        7
+      ],
+      "post_finish_note": "Commands 6 and 7 only read REVIEW.md and Git status/diff; the archive exactly matches finish snapshot sequence 5."
+    },
+    "r04": {
+      "commands": 8,
+      "stdout_bytes": 107584,
+      "stderr_bytes": 288,
+      "possible_cli_invocations": 3,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "ANSWER.md",
+      "task_answer_present": true,
+      "launch_errors": [],
+      "output_cap_breaches": 1,
+      "actual_cli_sequences": [
+        3,
+        4,
+        7
+      ],
+      "output_cap_note": "Sequence 2 recorded 93,254 stdout bytes and exceeded the 24,000-byte post-hoc threshold; the complete raw stream is archived and hash-verified. No outer-response truncation is evidenced.",
+      "final_snapshot_sequences": [
+        8,
+        10
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      },
+      "multiple_finish_note": "Finish sequence 8 predates command 9, which creates ANSWER.md. A later finish sequence 10 includes ANSWER.md; its complete file inventory and hashes exactly match the stage-harvest packet archive.",
+      "external_write_note": "Sequence 7 redirects audit output to /tmp/serene-audit.json outside the participant packet. This is recorded shell activity, but the study boundary is instructional rather than OS-enforced; it is a capture-boundary limitation, not hidden evidence."
+    },
+    "r05": {
+      "commands": 5,
+      "stdout_bytes": 5167,
+      "stderr_bytes": 692,
+      "possible_cli_invocations": 0,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "AUTHORIZATION.md",
+      "task_answer_present": true,
+      "answer_md_present": true,
+      "launch_errors": [],
+      "output_cap_breaches": 0,
+      "final_snapshot_sequences": [
+        6
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      }
+    },
+    "r06": {
+      "commands": 3,
+      "stdout_bytes": 2503,
+      "stderr_bytes": 198,
+      "possible_cli_invocations": 0,
+      "raw_streams_verified": true,
+      "snapshot_verified": "last recorded snapshot full inventory verified against archive",
+      "required_task_answer": "AUTHORIZATION.md",
+      "task_answer_present": true,
+      "answer_md_present": false,
+      "launch_errors": [],
+      "output_cap_breaches": 0,
+      "final_snapshot_sequences": [
+        4
+      ],
+      "archive_matches_last_snapshot_full_inventory": true,
+      "archive_snapshot_inventory_difference": {
+        "missing_from_archive": [],
+        "extra_in_archive": [],
+        "hash_mismatches": []
+      }
+    }
+  },
+  "paired_task_scorable": {
+    "r01_r02": true,
+    "r03_r04": true,
+    "r05_r06": true
+  },
+  "interface_findings": [
+    "r03 REVIEW.md is present; absent ANSWER.md is preserved as prompt adherence and does not affect review-artifact scorability. Commands 6 and 7 occurred after finish sequence 5 but were read-only; the archive matches that snapshot.",
+    "r04 has one 24,000-byte post-hoc raw-output threshold breach (sequence 2); the 93,254-byte stream is preserved and hash-verified, so this is a descriptive cost limitation rather than a recorder failure.",
+    "r04 finish sequence 8 predates command 9, which writes ANSWER.md. Later finish sequence 10 contains ANSWER.md and exactly matches the complete stage-harvest archive. Sequence 7 writes /tmp/serene-audit.json outside the packet; this is recorded but illustrates the stated non-OS-enforced boundary.",
+    "r05 AUTHORIZATION.md and ANSWER.md are present. Sequence 2 contains shell command-substitution errors from an unquoted heredoc; later sequence 4 writes the retained authorization artifact and sequence 5 records the working cross-tenant reproduction plus normal checks.",
+    "r06 AUTHORIZATION.md is present; absent ANSWER.md is preserved as prompt adherence and does not affect authorization-artifact scorability."
+  ],
+  "interpretation": "This is an interface gate only. It does not automatically grade adoption, correctness, vulnerability discovery, tokens, billing, latency, or security. CLI sequences identify actual recorded executions, not command-string mentions or quoted documentation. Construction review requires the concatenation finding and retained/source-resolved unresolved path; ordinary mention is optional. Authorization is separate from construction provenance. The archive is verified against the final recorded snapshot inventory for each run; the command log remains evidence of reported shell activity, not complete OS-level capture."
+}

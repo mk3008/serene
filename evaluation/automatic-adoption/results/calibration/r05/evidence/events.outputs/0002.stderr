@@ -1,0 +1,8 @@
+bash: line 1: caseById: command not found
+bash: line 1: actor.tenantId: command not found
+bash: line 1: request.tenantId: command not found
+bash: line 1: request.id: command not found
+bash: line 1: north: command not found
+bash: command substitution: line 2: syntax error: unexpected end of file
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

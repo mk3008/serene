@@ -93,8 +93,11 @@ def stage(args: argparse.Namespace) -> int:
 def harvest(args: argparse.Namespace) -> int:
  runtime=Path(args.runtime).resolve(); root=runtime/args.run_id; evidence=runtime/'evidence'/args.run_id; archive=Path(args.archive).resolve()/args.run_id
  if not root.is_dir() or not evidence.is_dir() or archive.exists(): raise SystemExit('missing run artifacts or archive already exists')
+ source_packet_tree=tree(root,exclude=('node_modules','.git'))
  archive.mkdir(parents=True); copy_packet(root,archive/'packet'); shutil.copytree(evidence,archive/'evidence',ignore=shutil.ignore_patterns('node_modules','.git'))
- manifest={'run_id':args.run_id,'actual_paths':{'packet_root':str(root),'evidence':str(evidence)},'archive_paths':{'packet':str(archive/'packet'),'evidence':str(archive/'evidence')},'packet_tree':tree(archive/'packet'),'evidence_tree':tree(archive/'evidence')}
+ archived_packet_tree=tree(archive/'packet')
+ if source_packet_tree != archived_packet_tree: raise SystemExit('archived packet tree differs from final staged root')
+ manifest={'run_id':args.run_id,'actual_paths':{'packet_root':str(root),'evidence':str(evidence)},'archive_paths':{'packet':str(archive/'packet'),'evidence':str(archive/'evidence')},'final_root_tree_excluding_dependencies':source_packet_tree,'packet_tree':archived_packet_tree,'evidence_tree':tree(archive/'evidence')}
  write_json(archive/'run-manifest.json',manifest); print(json.dumps(manifest))
  return 0
 
@@ -124,7 +127,19 @@ def freeze(args: argparse.Namespace) -> int:
  if not destination.exists(): shutil.copy2(source,destination)
  requested={json.dumps(value['requested_participant'],sort_keys=True) for value in manifests.values()}
  if len(requested)!=1: raise SystemExit('phase does not have one requested participant configuration')
- frozen={'phase':args.phase,'runs':selected,'requested_participant':json.loads(next(iter(requested))),'cohort_manifest':'pending agent identifiers after dispatch','shared_tarball':{'path':str(destination),'bytes':sha(destination)[0],'sha256':sha(destination)[1]},'parity':parity,'stage_manifests':{run:str(runtime/'evidence'/run/'stage-manifest.json') for run in selected}}
+ fixture_ids=sorted({value['fixture'] for value in manifests.values()})
+ source_evidence={
+  'prompt_template':{'bytes':sha(HERE/'PROMPT-TEMPLATE.md')[0],'sha256':sha(HERE/'PROMPT-TEMPLATE.md')[1]},
+  'runner':{'bytes':sha(HERE/'runner.py')[0],'sha256':sha(HERE/'runner.py')[1]},
+  'package_stager':{'bytes':sha(HERE/'prepare-package.mjs')[0],'sha256':sha(HERE/'prepare-package.mjs')[1]},
+  'packet_stager':{'bytes':sha(HERE/'stage.py')[0],'sha256':sha(HERE/'stage.py')[1]},
+  'fixtures':{fixture:tree(HERE/'fixtures'/fixture) for fixture in fixture_ids},
+  'gold':{fixture:tree(HERE/'gold'/fixture) for fixture in fixture_ids},
+ }
+ if args.phase == 'scored':
+  gate_path=Path(args.calibration_gate).resolve() if args.calibration_gate else HERE/'results'/'calibration'/'interface-gate.json'
+  if gate_path.is_file(): source_evidence['calibration_gate']={'path':str(gate_path),'bytes':sha(gate_path)[0],'sha256':sha(gate_path)[1]}
+ frozen={'phase':args.phase,'runs':selected,'requested_participant':json.loads(next(iter(requested))),'cohort_manifest':'pending agent identifiers after dispatch','shared_tarball':{'path':str(destination),'bytes':sha(destination)[0],'sha256':sha(destination)[1]},'source_evidence':source_evidence,'parity':parity,'stage_manifests':{run:str(runtime/'evidence'/run/'stage-manifest.json') for run in selected}}
  write_json(HERE/'freeze'/f'{args.phase}.json',frozen); print(json.dumps(frozen))
  return 0
 
@@ -132,6 +147,6 @@ def main() -> int:
  p=argparse.ArgumentParser(); sub=p.add_subparsers(dest='operation',required=True)
  s=sub.add_parser('stage'); s.add_argument('--run-id',choices=RUNS,required=True); s.add_argument('--phase',choices=('calibration','scored'),required=True); s.add_argument('--tarball',required=True); s.add_argument('--runtime',default=str(RUNTIME)); s.add_argument('--calibration-gate')
  h=sub.add_parser('harvest'); h.add_argument('--run-id',choices=RUNS,required=True); h.add_argument('--runtime',default=str(RUNTIME)); h.add_argument('--archive',default=str(HERE/'results'))
- f=sub.add_parser('freeze'); f.add_argument('--phase',choices=('calibration','scored'),required=True); f.add_argument('--runtime',default=str(RUNTIME))
+ f=sub.add_parser('freeze'); f.add_argument('--phase',choices=('calibration','scored'),required=True); f.add_argument('--runtime',default=str(RUNTIME)); f.add_argument('--calibration-gate')
  a=p.parse_args(); return stage(a) if a.operation=='stage' else (harvest(a) if a.operation=='harvest' else freeze(a))
 if __name__=='__main__': raise SystemExit(main())

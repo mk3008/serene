@@ -1,0 +1,17 @@
+{
+  "phase": "calibration",
+  "runs": {
+    "r01": {"fixture": "calibration-contact-lookup", "treatment": "instruction", "actor_id": "/root/participant_r01"},
+    "r02": {"fixture": "calibration-contact-lookup", "treatment": "presence", "actor_id": "/root/participant_r02"},
+    "r03": {"fixture": "calibration-construction-review", "treatment": "presence", "actor_id": "/root/participant_r03"},
+    "r04": {"fixture": "calibration-construction-review", "treatment": "instruction", "actor_id": "/root/participant_r04"},
+    "r05": {"fixture": "calibration-authorization-followup", "treatment": "instruction", "actor_id": "/root/participant_r05"},
+    "r06": {"fixture": "calibration-authorization-followup", "treatment": "presence", "actor_id": "/root/participant_r06"}
+  },
+  "requested_participant": {"model": "gpt-5.6-luna", "reasoning_effort": "medium", "fresh_session": true, "fork_turns": "none"},
+  "source_checkpoints": {
+    "local_precalibration_commit": "ed7e7c6f",
+    "published_matching_tree_commit": "d4540492fe130c1fb0ed797060a1627b49b8fedf"
+  },
+  "metadata_source": "stage-manifest.json and dispatch records; no timestamps or outcomes fabricated"
+}

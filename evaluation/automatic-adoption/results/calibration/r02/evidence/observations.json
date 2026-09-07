@@ -1,0 +1,251 @@
+{
+  "interpretation": "Observations only; no vulnerability, adoption, token, billing, or bypass conclusion is made.",
+  "observations": {
+    "captured_streams": {
+      "artifact_root": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs",
+      "integrity_verified": true,
+      "mismatches": [],
+      "streams": [
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0001.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0001.stdout",
+          "sequence": 1,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0001.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0001.stderr",
+          "sequence": 1,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0002.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0002.stdout",
+          "sequence": 2,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0002.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0002.stderr",
+          "sequence": 2,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0003.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0003.stdout",
+          "sequence": 3,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0003.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0003.stderr",
+          "sequence": 3,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0004.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0004.stdout",
+          "sequence": 4,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0004.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0004.stderr",
+          "sequence": 4,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0005.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0005.stdout",
+          "sequence": 5,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0005.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0005.stderr",
+          "sequence": 5,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0006.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0006.stdout",
+          "sequence": 6,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0006.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0006.stderr",
+          "sequence": 6,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0007.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0007.stdout",
+          "sequence": 7,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0007.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0007.stderr",
+          "sequence": 7,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0008.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0008.stdout",
+          "sequence": 8,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0008.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0008.stderr",
+          "sequence": 8,
+          "stream": "stderr",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0010.stdout",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0010.stdout",
+          "sequence": 10,
+          "stream": "stdout",
+          "verified": true
+        },
+        {
+          "original_path": "/tmp/repository-agent-study/evidence/r02/events.outputs/0010.stderr",
+          "resolved_path": "evaluation/automatic-adoption/results/calibration/r02/evidence/events.outputs/0010.stderr",
+          "sequence": 10,
+          "stream": "stderr",
+          "verified": true
+        }
+      ]
+    },
+    "command_started": 9,
+    "command_wall_seconds": 0.610264178,
+    "commands": [
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat AGENTS.md; echo ---TASK---; cat TASK.md; echo ---PKG---; cat package.json; echo ---APP---; sed -n \"1,240p\" app.mjs; echo ---TEST---; sed -n \"1,260p\" test.mjs; echo ---README---; cat README.md"
+        ],
+        "sequence": 1
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat node_modules/@mk3008/serene/README.md"
+        ],
+        "sequence": 2
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "tar -tf vendor/mk3008-serene-0.1.0.tgz | head -30; node -e \"import(\\\"@mk3008/serene\\\").then(m=>console.log(Object.keys(m)))\""
+        ],
+        "sequence": 3
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "grep -n \"function bind\\|const bind\\|bind(\" node_modules/@mk3008/serene/dist/index.js | head -20; sed -n \"1,180p\" node_modules/@mk3008/serene/dist/index.js; cat node_modules/@mk3008/serene/dist/index.d.ts"
+        ],
+        "sequence": 4
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat > app.mjs <<EOF\nimport { DatabaseSync } from node:sqlite;\nimport { bind, sql } from @mk3008/serene;\n\nexport function openContacts() {\n  const db = new DatabaseSync(:memory:);\n  db.exec(`CREATE TABLE contacts (id INTEGER PRIMARY KEY, email TEXT NOT NULL, display_name TEXT NOT NULL);\n    INSERT INTO contacts (email, display_name) VALUES (maya@example.test, Maya",
+          "Patel), (lee@example.test, Lee",
+          "Tran);`);\n  return db;\n}\n\nexport function listContacts(db) {\n  return db.prepare(SELECT",
+          "id,",
+          "email,",
+          "display_name",
+          "FROM",
+          "contacts",
+          "ORDER",
+          "BY",
+          "id).all();\n}\n\nconst contactByEmail = sql`\n  SELECT id, email, display_name\n  FROM contacts\n  WHERE email = :email\n`;\n\nexport function findContactByEmail(db, email) {\n  if (typeof email !== string || !/^[^\\s@]+@(?:[^\\s@.]+\\.)+[^\\s@.]+$/.test(email)) {\n    throw new TypeError(Email",
+          "must",
+          "be",
+          "a",
+          "valid",
+          "address.);\n  }\n\n  const query = bind(contactByEmail, { email });\n  return db.prepare(query.text).get(query.params) ?? null;\n}\nEOF\nnpm test\nnpm run check"
+        ],
+        "sequence": 5
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "cat app.mjs"
+        ],
+        "sequence": 6
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "npm test && npm run check && node --input-type=module -e \"import {openContacts,findContactByEmail} from \\\"./app.mjs\\\"; const db=openContacts(); console.log(findContactByEmail(db,\\\"maya@example.test\\\")); console.log(findContactByEmail(db,\\\"none@example.test\\\")); for (const x of [null,\\\"bad\\\",\\\"a@b\\\",\\\"a@.com\\\"]) { try { findContactByEmail(db,x); console.log(\\\"accepted\\\",x); } catch(e) { console.log(e.constructor.name); } }\""
+        ],
+        "sequence": 7
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "git diff -- app.mjs; cat > ANSWER.md <<\"EOF\"\nImplemented `findContactByEmail(db, email)` in `app.mjs`.\n\nIt validates email input before preparing a query, binds the email through Serene/native named parameters, returns the matching contact, and returns `null` when absent. Seed data is unchanged.\n\nChecks passed: `npm test`, `npm run check`, and manual found/missing/malformed lookup checks.\nEOF\ncat ANSWER.md"
+        ],
+        "sequence": 8
+      },
+      {
+        "argv": [
+          "bash",
+          "-lc",
+          "sed -n \"1,200p\" app.mjs; test -s ANSWER.md && echo answer-ok"
+        ],
+        "sequence": 10
+      }
+    ],
+    "completed_commands": 9,
+    "elapsed_seconds": null,
+    "elapsed_values_provided": 0,
+    "failures": 1,
+    "final_snapshot": {
+      "artifact_count": 10,
+      "artifact_integrity_verified": true,
+      "artifact_sha256_mismatches": [],
+      "final_snapshot_count": 1,
+      "final_snapshot_present": true,
+      "recorded_root": "/tmp/repository-agent-study/r02",
+      "snapshot_root": "evaluation/automatic-adoption/results/calibration/r02/packet"
+    },
+    "incomplete_commands": [],
+    "output_cap_breaches": 0,
+    "possible_cli_invocations_for_human_review": [],
+    "rejections": 0,
+    "run_wall_seconds": 84.595096361,
+    "stderr_bytes": 7946,
+    "stdout_bytes": 16668,
+    "timed_out": 0
+  },
+  "parse_errors": []
+}

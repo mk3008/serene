@@ -1,0 +1,21 @@
+{
+  "actual_paths": {
+    "evidence": "/tmp/repository-agent-study/evidence/r03",
+    "packet_root": "/tmp/repository-agent-study/r03"
+  },
+  "archive_paths": {
+    "evidence": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/results/calibration/r03/evidence",
+    "packet": "/workspace/scratch/6d978950e2be/serene-issue6-adoption/evaluation/automatic-adoption/results/calibration/r03/packet"
+  },
+  "evidence_tree": {
+    "bytes": 58331,
+    "entries": 34,
+    "tree_sha256": "059d9c7deb25b3e4807c5f430594d8fde9fab6874faf4431906c043c870c7d20"
+  },
+  "packet_tree": {
+    "bytes": 32630,
+    "entries": 11,
+    "tree_sha256": "b529a35569d00eb2adf898868382dfd84801d6b7bfbbff40f1deacd3f84f891f"
+  },
+  "run_id": "r03"
+}

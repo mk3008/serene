@@ -1,0 +1,7 @@
+[Object: null prototype] {
+  id: 1,
+  email: 'maya@example.test',
+  display_name: 'Maya Patel'
+}
+null
+TypeError Invalid email address

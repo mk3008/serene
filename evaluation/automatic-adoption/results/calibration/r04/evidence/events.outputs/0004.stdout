@@ -1,0 +1,60 @@
+{
+  "files": [
+    "app.mjs",
+    "database.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 9,
+      "column": 17,
+      "boundary": "serene",
+      "function": "byId",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 9,
+      "column": 22,
+      "boundary": "serene",
+      "function": "byId",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 10,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "byId",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 14,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "byRegion",
+      "level": "violation",
+      "code": "STRING_CONSTRUCTION",
+      "detail": "Concatenation/interpolation at a SQL boundary."
+    },
+    {
+      "file": "app.mjs",
+      "line": 17,
+      "column": 10,
+      "boundary": "driver-candidate",
+      "function": "queued",
+      "level": "review-required",
+      "code": "UNRESOLVED",
+      "detail": "SQL provenance cannot be established in this file."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

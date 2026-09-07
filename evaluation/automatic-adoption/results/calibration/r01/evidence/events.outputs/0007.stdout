@@ -1,0 +1,29 @@
+{
+  "files": [
+    "app.mjs"
+  ],
+  "skipped": [],
+  "findings": [
+    {
+      "file": "app.mjs",
+      "line": 15,
+      "column": 33,
+      "boundary": "serene",
+      "function": null,
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    },
+    {
+      "file": "app.mjs",
+      "line": 27,
+      "column": 17,
+      "boundary": "serene",
+      "function": "findContactByEmail",
+      "level": "ordinary",
+      "code": "SCREENED_SOURCE",
+      "detail": "Literal SQL through Serene; review SQL meaning and binding use separately."
+    }
+  ],
+  "scope": "file-local candidate inventory; not exhaustive driver discovery"
+}

@@ -1,0 +1,5 @@
+email: line 6: warning: here-document at line 1 delimited by end-of-file (wanted `PY')
+  File "<stdin>", line 5
+    s += """\n\nconst findContactByEmailQuery = sql`\n  SELECT id, email, display_name\n  FROM contacts\n  WHERE email = :email\n  LIMIT 1\n`;\n\nexport function findContactByEmail(db, email) {\n  if (typeof email !== string || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {\n    throw new TypeError(Invalid
+         ^
+SyntaxError: unterminated triple-quoted string literal (detected at line 5)

@@ -1,0 +1,6 @@
+{
+  "run_id": "r04",
+  "missing_output": [],
+  "launch_errors": [],
+  "gold_acceptance_scope": "Authored baseline fixture verifier run against the untouched active final root; not participant review correctness"
+}

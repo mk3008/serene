@@ -1,0 +1,42 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+
+Use `@mk3008/serene` as the default construction path for executable raw SQL; if it cannot preserve needed SQL behavior, keep the exception explicit for additional review. For SQL-construction review, use the installed `serene-audit` and keep unresolved paths in review. Use ordinary results to skip redundant construction-provenance review, not SQL meaning/binding, authorization, or business-behavior checks.
+
+---TASK---
+Review SQL construction in this application and write a concise note in `REVIEW.md` describing the construction paths that need follow-up. Do not change application behavior.
+
+---PACKAGE---
+{
+  "name": "adoption-calibration-construction-review",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check database.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}
+
+---README---
+# Shipping queue
+
+A compact operations utility.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.

@@ -1,0 +1,56 @@
+# Working notes
+
+Make the requested change, keep the app small, and run its existing checks before handing it back.
+---TASK---
+Add a lookup for one contact by email. Export `findContactByEmail(db, email)` from `app.mjs`. It must reject malformed email input before querying, return `null` when no contact exists, and return the selected contact otherwise. Keep query values bound rather than inserted into SQL text. Do not change the seed data.
+---PKG---
+{
+  "name": "adoption-calibration-contact-lookup",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "check": "node --check app.mjs && node --check test.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@mk3008/serene": "file:vendor/mk3008-serene-0.1.0.tgz"
+  }
+}
+---APP---
+import { DatabaseSync } from 'node:sqlite';
+
+export function openContacts() {
+  const db = new DatabaseSync(':memory:');
+  db.exec(`CREATE TABLE contacts (id INTEGER PRIMARY KEY, email TEXT NOT NULL, display_name TEXT NOT NULL);
+    INSERT INTO contacts (email, display_name) VALUES ('maya@example.test', 'Maya Patel'), ('lee@example.test', 'Lee Tran');`);
+  return db;
+}
+
+export function listContacts(db) {
+  return db.prepare('SELECT id, email, display_name FROM contacts ORDER BY id').all();
+}
+---TEST---
+import assert from 'node:assert/strict';
+import { listContacts, openContacts } from './app.mjs';
+const db = openContacts();
+assert.equal(listContacts(db).length, 2);
+console.log('contact desk checks passed');
+---README---
+# Contact desk
+
+A small internal contact lookup utility.
+
+## Run
+
+Use Node.js 22 or newer. Install the package dependencies, then run:
+
+```sh
+npm test
+npm run check
+```
+
+This app uses native `node:sqlite`. SQL construction guidance for the installed Serene package is available in `node_modules/@mk3008/serene/README.md` and at https://github.com/mk3008/serene#readme.

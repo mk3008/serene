@@ -1,0 +1,4 @@
+
+> adoption-calibration-contact-lookup@1.0.0 check
+> node --check app.mjs && node --check test.mjs
+

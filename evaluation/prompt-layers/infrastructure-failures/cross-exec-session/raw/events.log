@@ -1,0 +1,3 @@
+OPEN|/tmp/prompt-layers-cross-exec/watched.txt
+ACCESS|/tmp/prompt-layers-cross-exec/watched.txt
+CLOSE_NOWRITE,CLOSE|/tmp/prompt-layers-cross-exec/watched.txt

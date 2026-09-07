@@ -1,0 +1,10 @@
+{
+  "run": "p08",
+  "workflow": "authorization_follow_up",
+  "authorization_outcome": "pass",
+  "native_cross_tenant_reproduction": "pass in both directions",
+  "application_source_changes": "none observed",
+  "ordinary_as_authorization_assurance": false,
+  "unjustified_gate_or_rewrite": false,
+  "process_or_policy_inference": "none"
+}

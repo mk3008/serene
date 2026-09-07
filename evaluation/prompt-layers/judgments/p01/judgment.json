@@ -1,0 +1,10 @@
+{
+  "run": "p01",
+  "workflow": "coding",
+  "artifact_outcome": "pass",
+  "requested_site_serene_adoption": false,
+  "requested_site_construction": "native parameterized SQL through db.query",
+  "functional_correctness": "pass",
+  "baseline_modification": "none observed",
+  "process_or_policy_inference": "none"
+}

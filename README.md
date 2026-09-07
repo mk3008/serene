@@ -122,7 +122,33 @@ business-behavior checks.
 
 Then keep individual prompts focused on the actual task; they do not need to mention Serene each time. See the [AI adoption guide](docs/ai-adoption.md) for details and evidence.
 
-Building an AI review tool or source middleware? `@mk3008/serene/filter` can replace recognized construction-only functions with navigation metadata before source reaches the model. See the [pre-exposure filter](docs/pre-exposure-filter.md) for the host integration boundary and limits.
+### Filter source before AI delivery
+
+Serene does not install itself into an AI agent. Call the filter in the host/tool layer **before** returning source-bearing results to the model:
+
+```ts
+import { filterConstructionSource, filterConstructionDiff } from '@mk3008/serene/filter';
+
+const modelRead = filterConstructionSource(pinnedSource, {
+  ...currentSource,
+  ranges: readRanges,
+});
+
+const modelDiff = filterConstructionDiff(pinnedPair, {
+  ...currentPair,
+  changes: pairedEdits,
+});
+```
+
+For PR or commit review, the host can start from a normal Git diff:
+
+```sh
+git diff --unified=0 BASE...HEAD
+```
+
+Convert those diff hunks into `pairedEdits`, then pass them to `filterConstructionDiff`. Serene deliberately does not parse or run `git diff` itself.
+
+Send `modelRead` / `modelDiff` to the AI instead of the unfiltered source response. See the [source filter](docs/pre-exposure-filter.md) and [diff filter](docs/diff-filter.md) for the host contract and limits.
 
 ## Dynamic ORDER BY without dynamic SQL
 
@@ -172,6 +198,7 @@ If users can change the query structure itself—for example, adding arbitrary j
 - [Review coverage](docs/review-coverage.md) — what source inspection detects, refers, or may miss.
 - [Binding verification](docs/parameter-scanning-verification.md) — detailed parameter behavior and regression evidence.
 - [Pre-exposure filter](docs/pre-exposure-filter.md) — host API for filtering construction-only source before AI delivery.
+- [Diff filter](docs/diff-filter.md) — paired base/head filtering for PR and commit changes.
 - [Evaluation map](evaluation/README.md) — current research questions, AI-review evidence, and limits.
 - [AI adoption guide](docs/ai-adoption.md) — optional repository policy for installed Serene and AI review.
 

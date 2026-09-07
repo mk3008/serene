@@ -123,3 +123,11 @@ context. It does not verify Git state or host honesty, and stale/unsupported con
 stays visible. This omission must not be applied to general, authorization,
 SQL-meaning or driver-binding review. The host owns interception of source-bearing
 tools and retention of an unfiltered path for those review scopes.
+
+The [diff companion](diff-filter.md) checks both full file versions and complete
+paired edit ranges before suppressing changed source. Only corresponding ordinary
+construction-only functions can compress. Lost/gained ordinary recognition keeps
+all edits visible and reports side-specific follow-up navigation, including affected
+execution sites outside the diff. Every input edit remains represented; a marker
+must never be displayed as no change. This does not authenticate Git revisions,
+decode a patch or establish general PR-review coverage.

@@ -49,3 +49,56 @@ export type FilterResult =
  * arguments throw TypeError; the host must preserve its original response on error.
  */
 export function filterConstructionSource(snapshot: SourceSnapshot, response: SourceResponse): FilterResult;
+
+export interface DiffSnapshot {
+  readonly base: SourceSnapshot;
+  readonly head: SourceSnapshot;
+}
+
+/** Complete ordered edits: text between paired ranges must be identical on both sides. */
+export interface DiffResponse extends DiffSnapshot {
+  readonly changes: readonly { readonly base: SourceRange; readonly head: SourceRange }[];
+}
+
+export interface SourceChange {
+  /** Zero-based input record index. No record is dropped or combined. */
+  readonly index: number;
+  readonly kind: 'source';
+  readonly base: SourceRange;
+  readonly head: SourceRange;
+}
+
+export interface OrdinaryChange {
+  readonly index: number;
+  readonly kind: 'ordinary';
+  readonly scope: 'sql-construction';
+  readonly change: 'addition' | 'deletion' | 'modification';
+  /** Changed offsets plus full corresponding function navigation on each side. */
+  readonly base: { readonly start: number; readonly end: number; readonly function: OrdinaryPart };
+  readonly head: { readonly start: number; readonly end: number; readonly function: OrdinaryPart };
+}
+
+interface DiffIdentity {
+  readonly base: { readonly file: string; readonly revision: string };
+  readonly head: { readonly file: string; readonly revision: string };
+}
+
+export type DiffFilterResult = DiffIdentity & (
+  | { readonly filtered: false;
+      readonly reason: 'snapshot-mismatch' | 'file-identity-change' | 'unsupported-file' |
+        'range-mismatch' | 'diff-mismatch' | 'analysis-failed' | 'parse-failed' |
+        'ambiguous-functions' | 'ordinary-set-changed' | 'no-ordinary-change';
+      readonly changes: readonly SourceChange[];
+      /** Side-specific loss/gain of ordinary recognition, including unchanged execution sites.
+       * Not a full classification inventory or a semantic identity match. */
+      readonly transitions?: { readonly base: readonly OrdinaryPart[]; readonly head: readonly OrdinaryPart[] } }
+  | { readonly filtered: true; readonly changes: readonly (SourceChange | OrdinaryChange)[] }
+);
+
+/**
+ * Construction-only diff boundary. Host owns patch decoding, edit completeness,
+ * coherent base/head snapshots and source interception. Renames, unsupported or
+ * incoherent responses retain supplied changes; malformed envelopes throw TypeError.
+ * This does not authenticate revisions, generate diffs or render unified patches.
+ */
+export function filterConstructionDiff(snapshot: DiffSnapshot, response: DiffResponse): DiffFilterResult;

@@ -1,9 +1,13 @@
 # Filter source before AI delivery
 
-`@mk3008/serene/filter` exports one host-facing function:
+For search/read responses, `@mk3008/serene/filter` exports
 `filterConstructionSource(snapshot, response)`. Use it between a source-bearing
 tool operation and model delivery in a **SQL-construction review** workflow.
 It uses the optional TypeScript dependency, like `@mk3008/serene/audit`.
+
+For PR/commit changes, use the small paired-source companion
+[`filterConstructionDiff`](diff-filter.md) from the same entry. Filtering the two
+sides independently cannot establish transition safety.
 
 The host chooses files, searches and reads. Serene receives a full file context
 and the exact ranges the host was about to deliver; it does not search the

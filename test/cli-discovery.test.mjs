@@ -29,8 +29,16 @@ test('excluded directories and symlink cycles are visible omissions; explicit fi
   const {root,write,run} = fixture(t);
   write('src/ok.ts');
   for (const dir of ['node_modules','dist','build','coverage','.git']) write(`${dir}/bad.ts`, 'db.query("SELECT " + input)');
-  symlinkSync(root, join(root, 'src/loop'), 'dir');
-  symlinkSync(join(root, 'src/ok.ts'), join(root, 'src/link.ts'));
+  try {
+    symlinkSync(root, join(root, 'src/loop'), 'dir');
+    symlinkSync(join(root, 'src/ok.ts'), join(root, 'src/link.ts'));
+  } catch (error) {
+    if (error?.code === 'EPERM' || error?.code === 'EACCES') {
+      t.skip('symbolic-link creation is not permitted in this environment');
+      return;
+    }
+    throw error;
+  }
   const result = run('.'); assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout);
   assert.equal(report.files.length, 1); assert.equal(report.skipped.length, 7);

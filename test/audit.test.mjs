@@ -44,6 +44,14 @@ test('import aliases work but same spelling from another library does not establ
   rows = auditSource('import {sql as literalSql, bind} from "other"; const q=bind(literalSql`SELECT 1`); db.query(q.text)');
   assert.equal(rows.find(f => f.boundary === 'driver-candidate').level, 'review-required');
 });
+test('Windows absolute paths retain recognized provenance and original report paths', () => {
+  const source = 'import {sql, bind} from "@mk3008/serene"; const q=bind(sql`SELECT 1`); db.query(q.text)';
+  for (const filename of [String.raw`C:\workspace\repro.ts`, 'C:/workspace/repro.ts']) {
+    const row = auditSource(source, filename).find(f => f.boundary === 'driver-candidate');
+    assert.equal(row.level, 'ordinary', filename);
+    assert.equal(row.file, filename);
+  }
+});
 test('direct tag calls remain violations; SQL syntax is application-owned', () => {
   assert.equal(auditSource(imports + 'literalSql(fake)')[0].code, 'DIRECT_TAG_CALL');
   const rows = auditSource(imports + 'literalSql`SELECT $1`');

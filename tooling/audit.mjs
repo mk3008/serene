@@ -10,16 +10,20 @@ const violation = (code, detail) => result('violation', code, detail);
 
 /** Conservative, file-local source inventory. No type assertion establishes trust. */
 export function auditSource(source, filename = 'input.ts', options = {}) {
-  const sourceFile = ts.createSourceFile(filename, source, ts.ScriptTarget.Latest, true,
+  // TypeScript canonicalizes Windows paths to forward slashes while creating a
+  // Program. Keep that spelling inside the virtual host, but retain `filename`
+  // below so findings report exactly the path supplied by the caller.
+  const compilerFilename = filename.replaceAll('\\', '/');
+  const sourceFile = ts.createSourceFile(compilerFilename, source, ts.ScriptTarget.Latest, true,
     /\.[cm]?jsx?$/.test(filename) ? ts.ScriptKind.JS : filename.endsWith('.tsx') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
   const host = {
-    getSourceFile: name => name === filename ? sourceFile : undefined,
+    getSourceFile: name => name === compilerFilename ? sourceFile : undefined,
     getDefaultLibFileName: () => '', writeFile() {}, getCurrentDirectory: () => '',
-    getDirectories: () => [], fileExists: name => name === filename,
-    readFile: name => name === filename ? source : undefined,
+    getDirectories: () => [], fileExists: name => name === compilerFilename,
+    readFile: name => name === compilerFilename ? source : undefined,
     getCanonicalFileName: name => name, useCaseSensitiveFileNames: () => true, getNewLine: () => '\n',
   };
-  const program = ts.createProgram([filename], { noLib: true, noResolve: true, allowJs: true }, host);
+  const program = ts.createProgram([compilerFilename], { noLib: true, noResolve: true, allowJs: true }, host);
   const checker = program.getTypeChecker();
   const rows = [];
   const sinkNames = new Set(options.sinkNames ?? ['query', 'execute', 'unsafe']);

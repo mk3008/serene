@@ -1,0 +1,222 @@
+{
+  "baseline": "a7525ca7dd324ac9a22f83a2f188249f207c538d",
+  "node": "v24.19.0",
+  "versions": {
+    "kysely": "0.29.5",
+    "better-sqlite3": "13.0.3",
+    "pg": "8.23.0"
+  },
+  "productionHashes": {
+    "src/index.ts": "07d810e449188ee10f88bae04c9871bfec2bb5c5f08cc0117e8e62ff74dfd92c",
+    "tooling/audit.mjs": "982a13715249833302f3029076902b09fe75161ac346440a15f9a9a64bb8d77f"
+  },
+  "checks": {
+    "sqliteNativeAndKyselyExactRows": "pass",
+    "repeatedBinding": "pass",
+    "nullBinding": "pass",
+    "sqliteRollback": "pass",
+    "compiledQuerySkipsTransformQuery": "pass",
+    "transformResultRuns": "pass",
+    "postgresDriverBoundary": "pass",
+    "pgConfigNormalization": "pass",
+    "livePostgres": "not exercised"
+  },
+  "audit": [
+    {
+      "id": "native_direct",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nclient.query(q.text, q.values);",
+      "default": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ]
+    },
+    {
+      "id": "native_bound_object",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nclient.query(q);",
+      "default": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "id": "native_config",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nclient.query({text: q.text, values: q.values});",
+      "default": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "id": "native_config_alias",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nconst config = {text: q.text, values: q.values}; client.query(config);",
+      "default": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "id": "native_config_unsafe",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nclient.query({text: \"SELECT \" + input, values: []});",
+      "default": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "id": "native_wrapper",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nfunction run(q) { return client.query(q.text, q.values); } run(q);",
+      "default": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ]
+    },
+    {
+      "id": "kysely_compiled",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\ndb.executeQuery(CompiledQuery.raw(q.text, q.values));",
+      "default": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        },
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ]
+    },
+    {
+      "id": "kysely_unsafe",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\ndb.executeQuery(CompiledQuery.raw(\"SELECT \" + input, []));",
+      "default": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        },
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ]
+    },
+    {
+      "id": "native_direct_unsafe",
+      "source": "import {sql, bind} from '@mk3008/serene';\nconst q = bind(sql`SELECT :id`, {id: 1}, 'indexed');\nclient.query(\"SELECT \" + input);",
+      "default": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "configured": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "rawConfigured": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ]
+    }
+  ]
+}

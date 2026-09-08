@@ -85,3 +85,9 @@ PR #4 stops at this evidence/product checkpoint. Follow-up work is tracked separ
 The historical JSONL handoff remains evidence of a safe fail-closed candidate protocol,
 but its tested late-handoff workflow added cost; it is not the selected production
 integration direction by itself.
+
+## ORM examples as native-driver research
+
+[Sequential research](orm-native-audit/README.md) starts with Kysely: unchanged-runtime
+compatibility and audit shape probes, with native-driver applicability required
+for any product-change proposal. This is not an AI-efficiency evaluation.

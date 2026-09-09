@@ -1,18 +1,15 @@
 # Sequelize: stop at downstream SQL rewriting boundary
 
-## Outcome and stop decision
+## Final decision
 
 Sequelize 6.37.8 can receive Serene text and separate values via bind, and its
 query method is already an audit candidate. However, it does not generally
-preserve fixed native SQL text. Stop before Knex under PR comment 5594087865's
-security-contract/design-decision rule. Do not add a Sequelize escape adapter or
-change Serene's runtime, scanner, audit or filter to compensate.
-
-The pending decision is how this path may be described in coexistence guidance:
-reject it as a transparent native-SQL recipe, or explicitly scope a guide to
-Sequelize's additional SQL authoring conventions. This is not a request to build
-compatibility features. Recommended disposition: no blanket compatibility claim;
-any later guide must require independent review of downstream SQL handling.
+preserve fixed native SQL text. Per PR comment 5595773379, close this phase with Sequelize-specific support rejected.
+Parameter separation holds, but downstream SQL-text reinterpretation prevents
+calling this a transparent native-SQL path. No Sequelize adapter, escape/rewrite
+correction, special audit handling or absorption of its bind rules is adopted.
+This falls in the same excluded adaptation category as Prisma 8 / Drizzle fragment
+adaptation. Limited technical coexistence is not a support commitment. Proceed to Knex.
 
 ## Reproduction
 
@@ -52,9 +49,8 @@ ordinary finding under the existing conditional contract.
 Nevertheless, docs/security.md explicitly requires review of downstream
 formatters/transpilers/composers and actual binding. Unlike the examined Kysely
 compiled path, this path has an additional SQL-text interpretation step. Treating
-it as transparent native execution would misstate the evidence. The pause is for
-the interoperability-guidance boundary, not a claim that Serene's guarantees have
-been disproved. No new general-purpose SQL parser or audit feature is justified.
+it as transparent native execution would misstate the evidence. The resolved decision concerns the interoperability-guidance boundary, not a claim
+that Serene's guarantees have been disproved. No new general-purpose SQL parser or audit feature is justified.
 
 ## Completed checks and limits
 

@@ -16,8 +16,8 @@ correctness into the existing construction-provenance guarantee.
 | Kysely | [Investigated; Kysely-specific features rejected](kysely/REPORT.md). Native bounded follow-up completed; candidate recorded. |
 | TypeORM | [Completed: no change needed](typeorm/REPORT.md) |
 | Prisma 7 | [Completed: configuration only](prisma7/REPORT.md) |
-| Sequelize | [Investigated: stopped at contract boundary](sequelize/REPORT.md) |
-| Knex | Not started; paused after Sequelize finding |
+| Sequelize | [Closed: ORM-specific adaptation rejected](sequelize/REPORT.md) |
+| Knex | In progress; final planned subject |
 | Prisma 8 / Drizzle fragment adaptation | Excluded from this research scope |
 
 Per the latest PR review, advance sequentially without a human stop when no new
@@ -35,8 +35,8 @@ unchanged. The child package dependencies are isolated reproducibility tools.
 Kysely audit matrix cells asserted. Recommend the bounded native feature for a
 separate production change; no product implementation. Remaining ORM phases follow the updated stop rules.
 
-## Current stop
+## Sequelize decision
 
-Sequelize bind processing rewrites a fixed SQL literal before the driver boundary.
-The research pauses for the compatibility/security-contract decision documented
-in its report, per PR comment 5594087865. No production correction is proposed.
+Per PR comment 5595773379, Sequelize-specific adaptation is rejected and the phase
+is closed. Parameter separation does not establish transparent native-SQL
+compatibility. Proceed to Knex without implementing compatibility corrections.

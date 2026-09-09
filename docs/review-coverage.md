@@ -16,6 +16,33 @@ Discovery, referral, correct defect diagnosis, and review cost are separate. The
 | Non-SQL query/execute methods | Possible false candidates | Dismiss after verifying target |
 | Wrong values, missing tenant filter, SQL execution within DB | Can remain ordinary construction | Full application/security review |
 
+## Bounded native QueryConfig recognition
+
+For a direct candidate named `query` with exactly one argument, the audit also
+recognizes a proven Serene `BoundSql`, such as `client.query(q)` or
+``client.query(bind(sql`SELECT :id`, { id }, 'indexed'))``. Existing file-local
+`const` aliases of the binding retain its provenance.
+
+An inline `{ text: q.text, values: q.values }` is ordinary only when it has exactly
+those two identifier-named data properties, each accessing a recognized BoundSql.
+Property order and parentheses do not matter. This is construction provenance,
+not validation of the driver's QueryConfig contract. Both fields can originate
+from different bindings; matching values, mutable array contents, serializers,
+SQL meaning and driver identity still require separate review.
+
+Configuration-object aliases (including `const`), mutable bindings, getters,
+computed or quoted keys, shorthand, spreads, duplicate/extra properties, casts,
+unknown fields, wrappers and factories remain review-required. The new recognition
+does not apply to local sink aliases, other sink names or extra call arguments.
+Existing direct `.text` recognition and visible string-construction violations
+are unchanged; unsupported objects are unresolved rather than recursively inspected.
+
+The source and diff filters deliberately retain their stricter driver-argument
+syntax: QueryConfig calls remain source-visible even when the audit marks them
+ordinary. Changes between a suppressible `.text` call and a QueryConfig call stay
+visible, with lost/gained construction-function navigation. No ORM adapter or
+arbitrary object-flow analysis is involved.
+
 ## Evidence, not a blanket safety claim
 
 At checkpoint `b93e3d4a92df353cfdbec6154c0144739f6eb2e6`, the frozen challenge set has 33 SQL execution sites and 7 non-SQL controls. Local

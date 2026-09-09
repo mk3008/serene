@@ -1,5 +1,11 @@
 # ORM examples as native-driver audit research
 
+This is the historical PR #17 research record. Issue #18 productizes only its
+bounded native QueryConfig recognition; see the current [audit coverage](../../docs/review-coverage.md).
+To reproduce the original before/after probes, use baseline commit
+`ded88ee5c5aa541b2b567e9e6bbdf7de06bbf38a` in a separate checkout. Their assertions
+and recorded results intentionally describe the pre-productization audit.
+
 Serene remains raw SQL + native driver first. This branch studies one library at a
 time. A library's popularity or compatibility gap is not a reason to add features.
 

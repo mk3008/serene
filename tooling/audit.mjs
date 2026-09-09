@@ -132,6 +132,29 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     }
     return unknown();
   }
+  function queryConfig(node) {
+    node = unparen(node);
+    if (!node) return undefined;
+    // Only recognized identity-backed BoundSql, never a shape assertion.
+    if (classify(node, 'bound').level === 'ordinary') return ordinary();
+    // Do not resolve object aliases: const does not prevent property writes.
+    if (!ts.isObjectLiteralExpression(node)) return undefined;
+    if (node.properties.length !== 2) return unknown();
+    const fields = new Map();
+    for (const p of node.properties) {
+      if (!ts.isPropertyAssignment(p) || !ts.isIdentifier(p.name) ||
+          !['text', 'values'].includes(p.name.text) || fields.has(p.name.text)) return unknown();
+      fields.set(p.name.text, unparen(p.initializer));
+    }
+    const text = fields.get('text'), values = fields.get('values');
+    if (!text || !values || !ts.isPropertyAccessExpression(text) || text.name.text !== 'text' ||
+        !ts.isPropertyAccessExpression(values) || values.name.text !== 'values') return unknown();
+    // Both properties must come from a recognized BoundSql. This does not claim
+    // value integrity, serializer safety or semantic parameter correctness.
+    if (classify(text.expression, 'bound').level !== 'ordinary' ||
+        classify(values.expression, 'bound').level !== 'ordinary') return unknown();
+    return ordinary();
+  }
   // A function label is supplementary location metadata. It never participates in
   // provenance classification, and an anonymous lexical callback deliberately
   // blocks a fallback to any named outer function.
@@ -176,7 +199,8 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
         const expr = node.expression;
         const sink = sinkInfo(expr);
         if (sink) {
-          const finding = classify(node.arguments[0], 'text');
+          const finding = (!sink.alias && sink.name === 'query' && node.arguments.length === 1
+            ? queryConfig(node.arguments[0]) : undefined) ?? classify(node.arguments[0], 'text');
           emit(node, sink.alias && finding.level !== 'violation' ?
             result('review-required', 'SINK_ALIAS', 'Local execution alias; inspect its receiver and any prebound arguments.') :
             finding, 'driver-candidate');

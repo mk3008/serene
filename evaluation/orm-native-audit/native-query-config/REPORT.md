@@ -68,7 +68,12 @@ wrapper, cross-file or Kysely-specific analysis is justified by these results.
 
 ## Reproduce
 
-From repository root, Node 24:
+These are historical pre-productization results. For reproduction, use a separate
+checkout at `ded88ee5c5aa541b2b567e9e6bbdf7de06bbf38a`; the hash guard deliberately
+rejects the newer production audit. Current regression coverage is in
+`test/query-config.test.mjs`.
+
+From that checkout's repository root, Node 24:
 
 ```sh
 npm ci

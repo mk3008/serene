@@ -15,7 +15,7 @@ correctness into the existing construction-provenance guarantee.
 | --- | --- |
 | Kysely | [Investigated; Kysely-specific features rejected](kysely/REPORT.md). Native bounded follow-up completed; candidate recorded. |
 | TypeORM | [Completed: no change needed](typeorm/REPORT.md) |
-| Prisma 7 | Not started; later configurable sink / variadic arguments |
+| Prisma 7 | [Completed: configuration only](prisma7/REPORT.md) |
 | Sequelize | Not started; later options-object binding |
 | Knex | Not started; optional later object construction/execution study |
 | Prisma 8 / Drizzle fragment adaptation | Excluded from this research scope |

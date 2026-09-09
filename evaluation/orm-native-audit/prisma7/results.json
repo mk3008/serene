@@ -1,0 +1,89 @@
+{
+  "versions": {
+    "@prisma/client": "7.10.0",
+    "prisma": "7.10.0",
+    "@prisma/adapter-better-sqlite3": "7.10.0"
+  },
+  "checks": {
+    "realSqlite": "pass",
+    "hostileValue": "pass",
+    "repeated": "pass",
+    "null": "pass",
+    "rollback": "pass",
+    "livePostgres": "not exercised"
+  },
+  "audit": [
+    {
+      "id": "select",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.$queryRawUnsafe(q.text,...q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "write",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.$executeRawUnsafe(q.text,...q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "transaction",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ntx.$queryRawUnsafe(q.text,...q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "unknown",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.$queryRawUnsafe(input)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "concat",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.$queryRawUnsafe(\"SELECT \"+input)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "expected": "violation"
+    },
+    {
+      "id": "alias",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nconst run=db.$queryRawUnsafe;run(q.text,...q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "expected": "review-required"
+    }
+  ]
+}

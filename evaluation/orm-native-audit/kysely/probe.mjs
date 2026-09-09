@@ -67,11 +67,24 @@ const audit = Object.entries(cases).map(([id, code]) => {
   const select = options => auditSource(source, id + '.ts', options).filter(r => r.boundary === 'driver-candidate').map(({level,code}) => ({level,code}));
   return { id, source, default: select(), configured: select({sinkNames:['query','execute','unsafe','executeQuery']}), rawConfigured: select({sinkNames:['query','execute','unsafe','executeQuery','raw']}) };
 });
-assert.equal(audit.find(x=>x.id==='native_direct').default[0].level, 'ordinary');
-assert.equal(audit.find(x=>x.id==='native_bound_object').default[0].level, 'review-required');
-assert.equal(audit.find(x=>x.id==='kysely_compiled').default.length, 0);
-assert.equal(audit.find(x=>x.id==='kysely_compiled').configured[0].level, 'review-required');
-assert.equal(audit.find(x=>x.id==='native_direct_unsafe').default[0].level, 'violation');
+const O = {level:'ordinary',code:'SCREENED_SOURCE'};
+const U = {level:'review-required',code:'UNRESOLVED'};
+const V = {level:'violation',code:'STRING_CONSTRUCTION'};
+const expected = {
+ native_direct:[[O],[O],[O]],
+ native_bound_object:[[U],[U],[U]],
+ native_config:[[U],[U],[U]],
+ native_config_alias:[[U],[U],[U]],
+ native_config_unsafe:[[U],[U],[U]],
+ native_wrapper:[[U],[U],[U]],
+ kysely_compiled:[[],[U],[U,O]],
+ kysely_unsafe:[[],[U],[U,V]],
+ native_direct_unsafe:[[V],[V],[V]],
+};
+assert.deepEqual(Object.keys(cases), Object.keys(expected));
+for (const row of audit) {
+ assert.deepEqual([row.default,row.configured,row.rawConfigured],expected[row.id],row.id);
+}
 await db.destroy(); await pdb.destroy();
 const hash = path => createHash('sha256').update(readFileSync(path)).digest('hex');
 const report = {

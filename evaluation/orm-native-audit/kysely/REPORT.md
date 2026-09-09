@@ -146,3 +146,10 @@ Validation on this branch: the probe completed all eight named checks; the
 standalone TypeScript example passed type checking; `npm run check` passed
 lint/typecheck and all 127 existing tests; `git diff --check` passed. These do not
 upgrade the explicitly unexercised live PostgreSQL path to tested support.
+
+## PR review follow-up
+
+See [native QueryConfig follow-up](../native-query-config/REPORT.md). The original
+9-by-3 audit matrix now has complete assertions. `native-example.ts` adds pinned
+Client/Pool QueryConfig type checks; @types/pg and @types/node are lockfile-pinned.
+The original outcomes and results.json are unchanged.

@@ -1,0 +1,430 @@
+{
+  "scope": "evaluation-only; query-name candidacy, not authenticated driver identity",
+  "cases": [
+    {
+      "id": "bound",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(q)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "inlineBind",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(bind(sql`SELECT :id`, {id:1}, \"indexed\"))",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "poolBound",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\npool.query(q)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "inlineConfig",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text, values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "reversed",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({values:q.values, text:q.text})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "configAlias",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nconst c={text:q.text,values:q.values}; client.query(c)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "mutatedAlias",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nconst c={text:q.text,values:q.values}; c.text=input; client.query(c)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "letAlias",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nlet c=q; client.query(c)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "getter",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({get text(){return q.text},values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "computed",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({[\"text\"]:q.text,values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "spread",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({...q})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "overwrite",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text,values:q.values,...input})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "duplicate",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text,values:q.values,text:input})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "cast",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(q as any)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "castText",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text as string,values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "unknown",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:input,values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "concat",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text+input,values:q.values})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "wrapper",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(make(q))",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "factory",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(CompiledQuery.raw(q.text,q.values))",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "sinkAlias",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nconst run=client.query; run(q)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "extraOption",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text,values:q.values,rowMode:\"array\"})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "unknownValues",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query({text:q.text,values:input})",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "otherSink",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.execute(q)",
+      "before": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "after": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "directText",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(q.text,q.values)",
+      "before": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "after": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "directConcat",
+      "source": "import {sql, bind} from '@mk3008/serene'; const q = bind(sql`SELECT :id`, {id:1}, 'indexed');\nclient.query(\"SELECT \"+input)",
+      "before": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "after": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "expected": "violation"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ correctness into the existing construction-provenance guarantee.
 
 | Subject | Status |
 | --- | --- |
-| Kysely | [Investigated; decision proposal](kysely/REPORT.md). Stop here for review. |
+| Kysely | [Investigated; Kysely-specific features rejected](kysely/REPORT.md). Native bounded follow-up completed; stop for review. |
 | TypeORM | Not started; later direct-call control |
 | Prisma 7 | Not started; later configurable sink / variadic arguments |
 | Sequelize | Not started; later options-object binding |
@@ -23,3 +23,10 @@ correctness into the existing construction-provenance guarantee.
 No automatic advance to another library. This phase changes research artifacts
 only; production source, tooling, package dependencies and public promises remain
 unchanged. The child package dependencies are isolated reproducibility tools.
+
+## Native follow-up
+
+[Bounded QueryConfig prototype and decision](native-query-config/REPORT.md):
+25 before/after cases, pinned native TypeScript compatibility, and all 27 original
+Kysely audit matrix cells asserted. Recommend the bounded native feature for a
+separate production change; no product implementation or next ORM phase yet.

@@ -14,10 +14,10 @@ Serene is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
 
-Current release: **0.2.0** (`v0.2.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
+Current release: **0.3.0** (`v0.3.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
 
 ```sh
-npm install github:mk3008/serene#v0.2.0
+npm install github:mk3008/serene#v0.3.0
 ```
 
 Use `github:mk3008/serene` only when you intentionally want the latest `main` instead of a pinned release.

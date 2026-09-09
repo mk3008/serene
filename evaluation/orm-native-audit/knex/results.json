@@ -1,0 +1,94 @@
+{
+  "versions": {
+    "knex": "3.3.0",
+    "better-sqlite3": "13.0.3"
+  },
+  "checks": {
+    "realSqlite": "pass",
+    "hostileValue": "pass",
+    "repeated": "pass",
+    "null": "pass",
+    "rollback": "pass",
+    "pgCompilationOnly": "pass",
+    "livePostgres": "not exercised"
+  },
+  "incompatibility": {
+    "sql": "SELECT '?' AS literal, ? AS value",
+    "native": "executes with unchanged literal",
+    "knexError": "Expected 1 bindings, saw 2"
+  },
+  "audit": [
+    {
+      "id": "direct",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nawait db.raw(q.text,q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "transaction",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nawait trx.raw(q.text,q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "deferred",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nconst pending=db.raw(q.text,q.values); await pending",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "unknown",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nawait db.raw(input,[])",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "concat",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nawait db.raw(\"SELECT \"+input,[])",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "expected": "violation"
+    },
+    {
+      "id": "alias",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'anonymous');\nconst run=db.raw;await run(q.text,q.values)",
+      "defaults": [],
+      "configured": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "expected": "review-required"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ correctness into the existing construction-provenance guarantee.
 | TypeORM | [Completed: no change needed](typeorm/REPORT.md) |
 | Prisma 7 | [Completed: configuration only](prisma7/REPORT.md) |
 | Sequelize | [Closed: ORM-specific adaptation rejected](sequelize/REPORT.md) |
-| Knex | In progress; final planned subject |
+| Knex | [Completed: Knex-specific adaptation rejected](knex/REPORT.md) |
 | Prisma 8 / Drizzle fragment adaptation | Excluded from this research scope |
 
 Per the latest PR review, advance sequentially without a human stop when no new
@@ -33,10 +33,20 @@ unchanged. The child package dependencies are isolated reproducibility tools.
 [Bounded QueryConfig prototype and decision](native-query-config/REPORT.md):
 25 before/after cases, pinned native TypeScript compatibility, and all 27 original
 Kysely audit matrix cells asserted. Recommend the bounded native feature for a
-separate production change; no product implementation. Remaining ORM phases follow the updated stop rules.
+separate production change; no product implementation. All planned ORM phases are now complete.
 
 ## Sequelize decision
 
 Per PR comment 5595773379, Sequelize-specific adaptation is rejected and the phase
 is closed. Parameter separation does not establish transparent native-SQL
-compatibility. Proceed to Knex without implementing compatibility corrections.
+compatibility. Knex was subsequently evaluated without implementing compatibility corrections.
+
+## Final research outcome
+
+All five planned libraries were investigated sequentially. No production changes
+were made. The bounded native QueryConfig concept remains the only recorded
+production adoption candidate; its separate production/filter validation gate is
+still pending. Kysely, TypeORM and Prisma 7 have bounded coexistence evidence.
+Sequelize and Knex reinterpret SQL downstream; their specific corrections are
+rejected. Neither this matrix nor ordinary audit status certifies all SQL spellings,
+dialects, plugins, serializers or application authorization.

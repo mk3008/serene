@@ -23,11 +23,19 @@ function contentSignals(text) {
     add('SQL_CREATE_TEMP', 'Temporary creation may introduce operational state.');
   }
   for (const statement of apparent.split(';')) {
-    // Look near an AS-opened body after WITH, including later CTE definitions.
-    // Outer DML after a SELECT body is not evidence of a modifying CTE.
-    if (/\bWITH\b[\s\S]*?\bAS\s*(?:(?:NOT\s+)?MATERIALIZED\s*)?\(\s*(?:\(\s*)*(?:INSERT|UPDATE|DELETE)\b/i.test(statement)) {
-      if (!signals.some(s => s.code === 'SQL_DATA_MODIFYING_CTE')) {
-        add('SQL_DATA_MODIFYING_CTE', 'A CTE-shaped AS body begins with data modification; inspect its effects.');
+    // Inspect only the start of AS-opened bodies after WITH, including later
+    // definitions. No closing-parenthesis matching or full CTE recognition.
+    const withStart = /\bWITH\b/i.exec(statement);
+    if (withStart) {
+      const tail = statement.slice(withStart.index + withStart[0].length);
+      for (const body of tail.matchAll(/\bAS\s*(?:(?:NOT\s+)?MATERIALIZED\s*)?\(/gi)) {
+        const start = /^\s*(?:\(\s*)*([A-Za-z_][A-Za-z0-9_]*)/.exec(tail.slice(body.index + body[0].length))?.[1].toUpperCase();
+        if (start === 'SELECT') continue;
+        const modifying = ['INSERT', 'UPDATE', 'DELETE'].includes(start);
+        const code = modifying ? 'SQL_DATA_MODIFYING_CTE' : 'SQL_UNRESOLVED_CTE';
+        if (!signals.some(s => s.code === code)) add(code, modifying
+          ? 'A CTE-shaped AS body begins with data modification; inspect its effects.'
+          : 'A CTE-shaped AS body has an unsupported or unclear start; inspect its structure.');
       }
     }
     // A later query's WHERE must not clear an earlier operation. This intentionally

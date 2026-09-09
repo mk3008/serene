@@ -20,6 +20,7 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | `SQL_SELECT_WITHOUT_WHERE` | SELECT without an apparent WHERE before the next operation/semicolon |
 | `SQL_UPDATE_WITHOUT_WHERE` | UPDATE without an apparent WHERE before the next operation/semicolon |
 | `SQL_DELETE_WITHOUT_WHERE` | DELETE without an apparent WHERE before the next operation/semicolon |
+| `SQL_UNRESOLVED_CTE` | After WITH, an AS-opened body has a start other than SELECT/INSERT/UPDATE/DELETE, or no recognizable start |
 | `SQL_DATA_MODIFYING_CTE` | After WITH, an AS-opened body begins with INSERT/UPDATE/DELETE |
 
 Rules are case-insensitive and deduplicated by code per finding. DROP, TRUNCATE
@@ -34,7 +35,17 @@ keywords used as names, and legitimate maintenance SQL can all deserve a look.
 An outer INSERT/UPDATE/DELETE following a SELECT CTE does not trigger the CTE
 rule. It looks for `AS (` followed by DML, also in later CTE definitions; optional
 MATERIALIZED/NOT MATERIALIZED and extra opening parentheses are tolerated. This
-is a structural candidate, not proof of a CTE definition. Conversely,
+is a structural candidate, not proof of a CTE definition.
+
+The same body-start scan emits `SQL_UNRESOLVED_CTE` for other/unclear starts,
+including VALUES, TABLE, MERGE or a nested WITH. These may be valid SQL; they
+exceed this small recognizer. Multiple bodies can produce both CTE signal codes.
+Simple SELECT bodies acquire neither CTE signal, although other content rules
+still apply. No closing-parenthesis matching is added: SELECT-starting complex
+bodies and syntax with no recognized AS opener are not comprehensively referred.
+Absence of a CTE signal does not prove that its structure was understood.
+
+Conversely,
 WHERE true can avoid the absence signal despite imposing no useful restriction.
 Nested comments, dollar/backtick/bracket quoting, escape conventions, procedural
 SQL and other dialect details are not fully interpreted. Signals can be missed

@@ -163,3 +163,44 @@ test('CTE candidate tolerates parentheses/materialization but does not borrow WI
     assert.ok(!codes(auditSource(tagged(text))[0]).includes('SQL_DATA_MODIFYING_CTE'));
   }
 });
+
+for (const body of ['VALUES (1)', 'TABLE users',
+  'WITH inner_cte AS (SELECT 1 WHERE true) SELECT * FROM inner_cte WHERE true',
+  'MERGE INTO users USING incoming ON users.id=incoming.id WHEN MATCHED THEN DELETE', '']) {
+  test(`unsupported CTE body start suggests generic review: ${body}`, () => {
+    const row=auditSource(tagged(`WITH simple AS (SELECT 1 WHERE true), unusual AS (${body}) SELECT * FROM unusual WHERE true`))[0];
+    assert.equal(row.level,'ordinary');
+    assert.ok(codes(row).includes('SQL_UNRESOLVED_CTE'));
+    assert.ok(!codes(row).includes('SQL_DATA_MODIFYING_CTE'));
+  });
+}
+test('bounded SELECT and DML CTE starts do not acquire generic review', () => {
+  for (const body of ['SELECT id FROM users WHERE id=:id', 'INSERT INTO users VALUES (:id) RETURNING *',
+    'UPDATE users SET active=false WHERE id=:id RETURNING *', 'DELETE FROM users WHERE id=:id RETURNING *']) {
+    const row=auditSource(tagged(`WITH first AS (${body}), second AS (SELECT * FROM first WHERE true) SELECT * FROM second WHERE true`))[0];
+    assert.ok(!codes(row).includes('SQL_UNRESOLVED_CTE'));
+    assert.deepEqual(codes(row),body.startsWith('SELECT')?[]:['SQL_DATA_MODIFYING_CTE']);
+  }
+  for (const text of ['SELECT 1 WHERE true', 'SELECT * FROM users WITH (NOLOCK) WHERE id=:id',
+    'WITH x AS (SELECT 1 WHERE true) SELECT * FROM x WHERE true; SELECT 1 AS (VALUES) WHERE true']) {
+    assert.ok(!codes(auditSource(tagged(text))[0]).includes('SQL_UNRESOLVED_CTE'));
+  }
+});
+test('generic CTE signal prevents source/diff suppression without changing construction', () => {
+  const inline=body=>prefix+'function run(db) { const q=bind(sql`WITH x AS ('+body+') SELECT * FROM x WHERE true`); return db.query(q.text,q.values); }';
+  const b=inline('SELECT 1 WHERE true'),h=inline('VALUES (1)');
+  const snapshot={base:context(b,'b'),head:context(h,'h')};
+  const r=filterConstructionSource(snapshot.head,{...snapshot.head,ranges:[range(h)]});
+  assert.equal(r.filtered,false);assert.equal(r.ranges[0].text,h);
+  const changes=[{base:range(b),head:range(h)}];
+  const diff=filterConstructionDiff(snapshot,{...snapshot,changes});
+  assert.equal(diff.filtered,false);assert.equal(diff.reason,'ordinary-set-changed');
+  assert.deepEqual(diff.changes,changes.map((c,index)=>({index,kind:'source',...c})));
+  const dir=mkdtempSync(join(tmpdir(),'serene-cte-'));
+  try {
+    const file=join(dir,'query.ts');writeFileSync(file,h);
+    const cli=spawnSync(process.execPath,[new URL('../tooling/cli.mjs',import.meta.url).pathname,'--strict','--actionable-only',file],{encoding:'utf8'});
+    assert.equal(cli.status,0,cli.stderr);
+    assert.ok(JSON.parse(cli.stdout).findings.some(row=>row.boundary==='driver-candidate' && codes(row).includes('SQL_UNRESOLVED_CTE')));
+  } finally {rmSync(dir,{recursive:true,force:true});}
+});

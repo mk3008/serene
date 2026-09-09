@@ -20,6 +20,12 @@ or correct driver binding. An ordinary source finding is conditional on successf
 runtime checks: invalid supplied values and unknown sort keys still fail at runtime;
 output-marker collisions fail only on explicit positional-lowering paths.
 
+The independent [SQL-content axis](sql-content-review.md) can suggest review even
+for ordinary construction. These approximate signals neither reject runtime SQL
+nor establish SQL correctness or SQLi freedom. No signal means no heuristic
+matched, not that the SQL has been approved. Signaled paths remain visible in
+specialized source/diff filtering.
+
 ## Threat examples
 
 | Case | Result |

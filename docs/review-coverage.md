@@ -16,6 +16,13 @@ Discovery, referral, correct defect diagnosis, and review cost are separate. The
 | Non-SQL query/execute methods | Possible false candidates | Dismiss after verifying target |
 | Wrong values, missing tenant filter, SQL execution within DB | Can remain ordinary construction | Full application/security review |
 
+## Independent content review
+
+Recognized `sql` tags can carry `reviewSignals` independently of their construction
+level. See [SQL-content review](sql-content-review.md) for rules, false positives,
+misses, propagation and CLI/filter behavior. Ordinary construction with a signal
+remains actionable and cannot qualify for construction-source suppression.
+
 ## Bounded native QueryConfig recognition
 
 For a direct candidate named `query` with exactly one argument, the audit also
@@ -85,7 +92,7 @@ Select the real source path if it is needed. Unreadable/missing inputs and an em
 selection exit 2 without a partial JSON success report. A selected source with no
 candidate findings can still exit 0; always inspect the `files` coverage list.
 
-Exit 1 means a violation, or any review-required finding with `--strict`. Exit 0
+Exit 1 means a violation, or any review-required finding/content suggestion with `--strict`. Exit 0
 is not approval of every SQL path. Recursive selection does not add cross-file
 provenance or exhaustive sink discovery. For example, an imported SQL definition
 can remain review-required even when both files are selected.
@@ -93,8 +100,8 @@ can remain review-required even when both files are selected.
 `--actionable-only` retains the selected `files` and `skipped` coverage records, but
 reports `executionSiteCounts` from `driver-candidate` findings only. This prevents a
 single execution path from being counted again for its `serene` construction or
-binding boundaries. Its `findings` list omits ordinary rows and retains every
-review-required or violation row, including source parse errors and computed calls.
+binding boundaries. Its `findings` list omits ordinary rows without content signals and retains every
+review-required or violation row, including source parse errors, computed calls and ordinary content-review suggestions.
 The counts are therefore an inventory of recognized candidate execution sites, not a
 count of all SQL execution in the application.
 

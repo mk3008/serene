@@ -116,3 +116,7 @@ not install an adapter or prevent out-of-host access.
 
 See [deterministic validation](diff-filter-validation.md). This checkpoint completes
 the small production boundary requested by Issue #5; host integrations remain optional.
+
+Content [review suggestions](sql-content-review.md) also prevent suppression, even
+when construction remains ordinary. Eligibility transitions retain source and
+follow-up navigation under the existing diff contract.

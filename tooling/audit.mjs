@@ -8,6 +8,42 @@ const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL throug
 const unknown = () => result('review-required', 'UNRESOLVED', 'SQL provenance cannot be established in this file.');
 const violation = (code, detail) => result('violation', code, detail);
 
+// Deliberately approximate content triage, not a SQL parser. Destructive words
+// are searched even in comments/literals: false positives are review suggestions.
+function contentSignals(text) {
+  const signals = [];
+  const add = (code, detail) => signals.push({ code, detail: `Review suggested: ${detail}` });
+  for (const word of ['DROP', 'TRUNCATE', 'RENAME']) {
+    if (new RegExp(`\\b${word}\\b`, 'i').test(text)) add(`SQL_${word}`, `${word} keyword may indicate an exceptional operation.`);
+  }
+  // Mask common comments/quotes only to avoid accepting their WHERE as evidence
+  // of a restriction. Unsupported dialect forms and nesting are not interpreted.
+  const apparent = text.replace(/--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)|'(?:''|[^'])*(?:'|$)|"(?:""|[^"])*(?:"|$)/g, ' ');
+  if (/\bCREATE\s+(?:(?:GLOBAL|LOCAL)\s+)?TEMP(?:ORARY)?\b/i.test(apparent)) {
+    add('SQL_CREATE_TEMP', 'Temporary creation may introduce operational state.');
+  }
+  for (const statement of apparent.split(';')) {
+    if (/\bWITH\b/i.test(statement) && /\b(?:INSERT|UPDATE|DELETE)\b/i.test(statement)) {
+      if (!signals.some(s => s.code === 'SQL_DATA_MODIFYING_CTE')) {
+        add('SQL_DATA_MODIFYING_CTE', 'WITH and data modification occur together; inspect CTE effects.');
+      }
+    }
+    // A later query's WHERE must not clear an earlier operation. This intentionally
+    // over-refers nested queries and does not establish WHERE scope or selectivity.
+    const operations = [...statement.matchAll(/\b(SELECT|UPDATE|DELETE|INSERT)\b/gi)];
+    for (let i = 0; i < operations.length; i++) {
+      const operation = operations[i], name = operation[1].toUpperCase();
+      if (name === 'INSERT') continue;
+      const region = statement.slice(operation.index + operation[0].length, operations[i + 1]?.index);
+      const code = `SQL_${name}_WITHOUT_WHERE`;
+      if (!/\bWHERE\b/i.test(region) && !signals.some(s => s.code === code)) {
+        add(code, `${name} has no apparent WHERE before the next operation or statement boundary.`);
+      }
+    }
+  }
+  return signals;
+}
+
 /** Conservative, file-local source inventory. No type assertion establishes trust. */
 export function auditSource(source, filename = 'input.ts', options = {}) {
   // TypeScript canonicalizes Windows paths to forward slashes while creating a
@@ -96,12 +132,13 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
         return violation('INTERPOLATION', 'SQL interpolation is forbidden; use named parameters.');
       }
       if ((kind === 'sort') !== (name === 'sort') || !['sql', 'sort'].includes(kind)) return unknown();
+      const raw = source.slice(node.template.getStart(sourceFile) + 1, node.template.end - 1);
       try {
-        const raw = source.slice(node.template.getStart(sourceFile) + 1, node.template.end - 1);
         const strings = Object.assign([node.template.text], { raw: Object.freeze([raw]) });
         serene[name](Object.freeze(strings));
       } catch (error) { return violation(error.code ?? 'SQL_BOUNDARY', error.message); }
-      return ordinary();
+      const reviewSignals = name === 'sql' ? contentSignals(raw) : [];
+      return reviewSignals.length ? { ...ordinary(), reviewSignals } : ordinary();
     }
     if (ts.isCallExpression(node)) {
       const name = apiName(node.expression);
@@ -118,7 +155,7 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
           const choice = classify(property.initializer, 'sort', seen);
           if (choice.level !== 'ordinary') return choice;
         }
-        return ordinary();
+        return base;
       }
       if (ts.isPropertyAccessExpression(node.expression) && ['concat', 'join', 'replace', 'replaceAll'].includes(node.expression.name.text)) {
         return violation('STRING_CONSTRUCTION', 'String construction at a SQL boundary requires redesign or explicit review outside Serene.');
@@ -136,7 +173,8 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     node = unparen(node);
     if (!node) return undefined;
     // Only recognized identity-backed BoundSql, never a shape assertion.
-    if (classify(node, 'bound').level === 'ordinary') return ordinary();
+    const bound = classify(node, 'bound');
+    if (bound.level === 'ordinary') return bound;
     // Do not resolve object aliases: const does not prevent property writes.
     if (!ts.isObjectLiteralExpression(node)) return undefined;
     if (node.properties.length !== 2) return unknown();
@@ -151,9 +189,10 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
         !ts.isPropertyAccessExpression(values) || values.name.text !== 'values') return unknown();
     // Both properties must come from a recognized BoundSql. This does not claim
     // value integrity, serializer safety or semantic parameter correctness.
-    if (classify(text.expression, 'bound').level !== 'ordinary' ||
+    const textSource = classify(text.expression, 'bound');
+    if (textSource.level !== 'ordinary' ||
         classify(values.expression, 'bound').level !== 'ordinary') return unknown();
-    return ordinary();
+    return textSource;
   }
   // A function label is supplementary location metadata. It never participates in
   // provenance classification, and an anonymous lexical callback deliberately

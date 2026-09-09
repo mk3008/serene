@@ -4,7 +4,7 @@ import { auditSource } from '@mk3008/serene/audit';
 import { filterConstructionSource, filterConstructionDiff } from '@mk3008/serene/filter';
 
 const prefix = "import { sql, bind } from '@mk3008/serene';\n";
-const binding = "const q = bind(sql`SELECT :id`, {id: 1}, 'indexed');";
+const binding = "const q = bind(sql`SELECT :id WHERE :id IS NOT NULL`, {id: 1}, 'indexed');";
 const candidates = (body, options) => auditSource(prefix + binding + body, 'query.ts', options)
   .filter(row => row.boundary === 'driver-candidate');
 const positive = [

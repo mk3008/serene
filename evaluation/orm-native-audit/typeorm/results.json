@@ -1,0 +1,84 @@
+{
+  "versions": {
+    "typeorm": "1.1.1",
+    "better-sqlite3": "12.11.1",
+    "reflect-metadata": "0.2.2"
+  },
+  "checks": {
+    "realSqlite": "pass",
+    "hostileValue": "pass",
+    "repeatedBinding": "pass",
+    "null": "pass",
+    "dataSourceManagerQueryRunner": "pass",
+    "rollback": "pass",
+    "livePostgres": "not exercised"
+  },
+  "audit": [
+    {
+      "id": "dataSource",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nds.query(q.text,q.values)",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "manager",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nmanager.query(q.text,q.values)",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "queryRunner",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nrunner.query(q.text,q.values)",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "unknown",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nds.query(input,[])",
+      "findings": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "concat",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nds.query(\"SELECT \"+input,[])",
+      "findings": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "expected": "violation"
+    },
+    {
+      "id": "alias",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nconst run=ds.query; run(q.text,q.values)",
+      "findings": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "expected": "review-required"
+    }
+  ]
+}

@@ -13,14 +13,18 @@ correctness into the existing construction-provenance guarantee.
 
 | Subject | Status |
 | --- | --- |
-| Kysely | [Investigated; Kysely-specific features rejected](kysely/REPORT.md). Native bounded follow-up completed; stop for review. |
-| TypeORM | Not started; later direct-call control |
+| Kysely | [Investigated; Kysely-specific features rejected](kysely/REPORT.md). Native bounded follow-up completed; candidate recorded. |
+| TypeORM | [Completed: no change needed](typeorm/REPORT.md) |
 | Prisma 7 | Not started; later configurable sink / variadic arguments |
 | Sequelize | Not started; later options-object binding |
 | Knex | Not started; optional later object construction/execution study |
 | Prisma 8 / Drizzle fragment adaptation | Excluded from this research scope |
 
-No automatic advance to another library. This phase changes research artifacts
+Per the latest PR review, advance sequentially without a human stop when no new
+production adoption candidate or general improvement is found. Stop on a new
+candidate, contract conflict, scope/prerequisite uncertainty, or design decision.
+Record each library in its own commit. The known QueryConfig candidate remains
+pending independently; production changes are outside this research PR. This phase changes research artifacts
 only; production source, tooling, package dependencies and public promises remain
 unchanged. The child package dependencies are isolated reproducibility tools.
 
@@ -29,4 +33,4 @@ unchanged. The child package dependencies are isolated reproducibility tools.
 [Bounded QueryConfig prototype and decision](native-query-config/REPORT.md):
 25 before/after cases, pinned native TypeScript compatibility, and all 27 original
 Kysely audit matrix cells asserted. Recommend the bounded native feature for a
-separate production change; no product implementation or next ORM phase yet.
+separate production change; no product implementation. Remaining ORM phases follow the updated stop rules.

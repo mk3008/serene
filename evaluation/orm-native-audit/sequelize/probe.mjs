@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {Sequelize, QueryTypes} from 'sequelize';
+import {sql,bind} from '../../../dist/index.js';
+import {auditSource} from '../../../tooling/audit.mjs';
+const db=new Sequelize({dialect:'postgres',logging:false});
+const captured=[];
+const connection={query(text,values,callback){if(typeof values==='function'){callback=values;values=[];}captured.push({text,values});callback(null,{rows:[],rowCount:0});}};
+db.connectionManager.getConnection=async()=>connection;
+db.connectionManager.releaseConnection=async()=>{};
+try {
+ const payload="x' OR 1=1 --";
+ const q=bind(sql`SELECT :value::text AS a, :value::text AS b`,{value:payload},'indexed');
+ await db.query(q.text,{bind:q.values,type:QueryTypes.SELECT});
+ assert.deepEqual(captured.at(-1),{text:q.text,values:[payload]});
+ const named=bind(sql`SELECT $value::text AS a, $value::text AS b`,{value:payload});
+ await db.query(named.text,{bind:named.params,type:QueryTypes.SELECT});
+ assert.deepEqual(captured.at(-1),{text:'SELECT $1::text AS a, $1::text AS b',values:[payload]});
+ const n=bind(sql`SELECT :value::text AS missing`,{value:null},'indexed');
+ await db.query(n.text,{bind:n.values,type:QueryTypes.SELECT});assert.deepEqual(captured.at(-1),{text:n.text,values:[null]});
+ const literal=bind(sql`SELECT '$$' AS literal, :value::text AS value`,{value:payload},'indexed');
+ await db.query(literal.text,{bind:literal.values,type:QueryTypes.SELECT});
+ assert.equal(captured.at(-1).text,"SELECT '$' AS literal, $1::text AS value");
+ const literalRewrite={before:literal.text,after:captured.at(-1).text};
+ const prefix="import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\n";
+ const cases=[['indexed','db.query(q.text,{bind:q.values})','ordinary'],['named','db.query(q.text,{bind:q.params})','ordinary'],['transaction','db.query(q.text,{bind:q.values,transaction})','ordinary'],['unknown','db.query(input,{bind:[]})','review-required'],['concat','db.query("SELECT "+input,{bind:[]})','violation'],['alias','const run=db.query;run(q.text,{bind:q.values})','review-required']];
+ const audit=cases.map(([id,code,expected])=>{const source=prefix+code;const findings=auditSource(source,id+'.ts').filter(r=>r.boundary==='driver-candidate').map(({level,code})=>({level,code}));assert.equal(findings.length,1);assert.equal(findings[0].level,expected,id);return{id,source,findings,expected};});
+ const versions=Object.fromEntries(['sequelize','pg'].map(n=>[n,JSON.parse(readFileSync(new URL(`node_modules/${n}/package.json`,import.meta.url))).version]));
+ writeFileSync(new URL('results.json',import.meta.url),JSON.stringify({versions,checks:{actualSequelizeToRecordingPg:'pass',hostileValueSeparation:'pass',indexedAndNamed:'pass',repeated:'pass',null:'pass',literalRewrite:'reproduced',sqliteExecution:'not exercised: native dependency build failed',livePostgres:'not exercised',rollback:'not exercised',replacements:'excluded'},literalRewrite,audit},null,2)+'\n');console.log('Sequelize: driver-boundary checks and 6 audit cases passed; literal rewrite reproduced');
+} finally {await db.close();}

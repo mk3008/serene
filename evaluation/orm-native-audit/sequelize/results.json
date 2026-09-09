@@ -1,0 +1,90 @@
+{
+  "versions": {
+    "sequelize": "6.37.8",
+    "pg": "8.23.0"
+  },
+  "checks": {
+    "actualSequelizeToRecordingPg": "pass",
+    "hostileValueSeparation": "pass",
+    "indexedAndNamed": "pass",
+    "repeated": "pass",
+    "null": "pass",
+    "literalRewrite": "reproduced",
+    "sqliteExecution": "not exercised: native dependency build failed",
+    "livePostgres": "not exercised",
+    "rollback": "not exercised",
+    "replacements": "excluded"
+  },
+  "literalRewrite": {
+    "before": "SELECT '$$' AS literal, $1::text AS value",
+    "after": "SELECT '$' AS literal, $1::text AS value"
+  },
+  "audit": [
+    {
+      "id": "indexed",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.query(q.text,{bind:q.values})",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "named",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.query(q.text,{bind:q.params})",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "transaction",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.query(q.text,{bind:q.values,transaction})",
+      "findings": [
+        {
+          "level": "ordinary",
+          "code": "SCREENED_SOURCE"
+        }
+      ],
+      "expected": "ordinary"
+    },
+    {
+      "id": "unknown",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.query(input,{bind:[]})",
+      "findings": [
+        {
+          "level": "review-required",
+          "code": "UNRESOLVED"
+        }
+      ],
+      "expected": "review-required"
+    },
+    {
+      "id": "concat",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\ndb.query(\"SELECT \"+input,{bind:[]})",
+      "findings": [
+        {
+          "level": "violation",
+          "code": "STRING_CONSTRUCTION"
+        }
+      ],
+      "expected": "violation"
+    },
+    {
+      "id": "alias",
+      "source": "import {sql,bind} from '@mk3008/serene';const q=bind(sql`SELECT :id`,{id:1},'indexed');\nconst run=db.query;run(q.text,{bind:q.values})",
+      "findings": [
+        {
+          "level": "review-required",
+          "code": "SINK_ALIAS"
+        }
+      ],
+      "expected": "review-required"
+    }
+  ]
+}

@@ -77,6 +77,48 @@ const query = bind(findUser, { id }, 'anonymous');
 
 Serene does not prove that a query is correct, authorized, fast, or free of every SQL vulnerability. Its job is narrower: make SQL construction easier to classify during review.
 
+## Using Serene with ORMs
+
+Serene remains **native SQL / native driver first**. An application can keep its
+ORM and use Serene for its raw-query portions when the ORM provides a transparent,
+parameterized execution path: it passes Serene's SQL text and bound values to the
+native driver without reinterpreting them through its own SQL dialect, formatter,
+or query compiler.
+
+On that path, Serene's construction provenance and value separation remain intact,
+preserving their SQLi-prevention role when the driver binds those values correctly.
+Coexistence does not require choosing between Serene and an ORM, or adding an
+ORM-specific Serene adapter.
+
+The following bounded examples were verified with unchanged Serene v0.2. Start
+with `q = bind(statement, params, 'anonymous')` for the tested SQLite paths:
+
+| Library | Raw-query call | Evidence |
+| --- | --- | --- |
+| Kysely 0.29.5 | `db.executeQuery(CompiledQuery.raw(q.text, [...q.values]))` | SQLite execution and rollback; PostgreSQL driver-boundary check |
+| TypeORM 1.1.1 | `manager.query(q.text, q.values)` | SQLite execution and rollback; DataSource and QueryRunner calls also tested |
+| Prisma 7.10.0 | `db.$queryRawUnsafe(q.text, ...q.values)` | Generated client with SQLite adapter: execution and rollback |
+
+All three have type-checked examples. PostgreSQL requires matching indexed binding;
+no live PostgreSQL database was tested. Use the ORM's transaction client/manager
+for transactional work. Kysely's compiled-query path skips query-transform plugins;
+do not assume those plugins add tenant conditions or other query behavior.
+
+Runtime coexistence does not imply automatic `ordinary` audit classification.
+Prisma 7 needs its raw method names configured with `--sink`; Kysely's compiled
+execution remains additional review even with its execution name configured.
+SQL meaning, authorization, value pairing and downstream behavior still require
+review. These results are not blanket guarantees across versions, dialects,
+plugins or serializers.
+
+Sequelize and Knex raw-query paths reinterpret SQL text, so they are not treated
+as transparent native-SQL paths. Serene does not provide their adapters, escape
+corrections, placeholder corrections or SQL-dialect adaptations. Prisma 8 and
+Drizzle fragment adaptation are likewise outside scope.
+
+See the [coexistence research and reproducible examples](evaluation/orm-native-audit/README.md)
+and [security contract](docs/security.md) for evidence and limits.
+
 ## Audit SQL paths
 
 Run the audit on your source directory:

@@ -61,6 +61,11 @@ and simple ordinary candidate-driver calls are eligible. At least one execution
 is required. The filter uses the production audit and further restricts surrounding
 syntax; the audit's candidate-name heuristic still does not prove driver identity.
 
+The audit also recognizes bounded single-argument QueryConfig calls, but this
+filter keeps those calls visible; its simple driver-argument grammar still requires
+a direct identifier `.text` argument. Ordinary audit status alone does not enable
+suppression.
+
 Mixed bodies, control flow, defaults, destructuring, nested functions, unknown
 helpers/sinks, independent expressions in driver arguments and uncertain
 provenance stay visible. Same-line neighbors remain exact. TS/JS source extensions

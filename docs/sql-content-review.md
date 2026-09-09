@@ -20,7 +20,7 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | `SQL_SELECT_WITHOUT_WHERE` | SELECT without an apparent WHERE before the next operation/semicolon |
 | `SQL_UPDATE_WITHOUT_WHERE` | UPDATE without an apparent WHERE before the next operation/semicolon |
 | `SQL_DELETE_WITHOUT_WHERE` | DELETE without an apparent WHERE before the next operation/semicolon |
-| `SQL_DATA_MODIFYING_CTE` | WITH and INSERT/UPDATE/DELETE in the same apparent statement |
+| `SQL_DATA_MODIFYING_CTE` | After WITH, an AS-opened body begins with INSERT/UPDATE/DELETE |
 
 Rules are case-insensitive and deduplicated by code per finding. DROP, TRUNCATE
 and RENAME intentionally also match comments and literals. For the other rules,
@@ -31,7 +31,10 @@ this does not determine statement type, nested query scope or actual row limits.
 
 False positives are intentional: SELECT 1, aggregate queries, nested queries,
 keywords used as names, and legitimate maintenance SQL can all deserve a look.
-A WITH plus outer INSERT may be flagged without a modifying CTE body. Conversely,
+An outer INSERT/UPDATE/DELETE following a SELECT CTE does not trigger the CTE
+rule. It looks for `AS (` followed by DML, also in later CTE definitions; optional
+MATERIALIZED/NOT MATERIALIZED and extra opening parentheses are tolerated. This
+is a structural candidate, not proof of a CTE definition. Conversely,
 WHERE true can avoid the absence signal despite imposing no useful restriction.
 Nested comments, dollar/backtick/bracket quoting, escape conventions, procedural
 SQL and other dialect details are not fully interpreted. Signals can be missed
@@ -52,10 +55,12 @@ recognized tag at its definition can still carry its own content signals.
 it overlaps construction counts and is not a count of all SQL or of all signals.
 Definition/binding/execution findings can repeat the same signal for navigation.
 
-Normal CLI mode does not fail solely on suggestions. `--strict` also exits 1 for
-content suggestions, including tags without an execution in the supplied source.
-This is an optional review gate, not a declaration that an operation is forbidden.
-Serene does not record human approvals or introduce an exception manifest.
+Content suggestions do not affect exit status in either normal or `--strict`
+mode. They remain visible in both full and actionable output, including tags
+without a recognized execution. Construction violations still exit 1; construction
+review-required findings additionally exit 1 with `--strict`. Content suggestions
+are requests for additional review, not errors or required code changes. Serene
+does not record human approvals or introduce an exception manifest.
 
 Source/diff filters retain signaled construction bodies. Signals propagated from
 a definition outside a requested range still prevent suppression of its recognized

@@ -23,9 +23,11 @@ function contentSignals(text) {
     add('SQL_CREATE_TEMP', 'Temporary creation may introduce operational state.');
   }
   for (const statement of apparent.split(';')) {
-    if (/\bWITH\b/i.test(statement) && /\b(?:INSERT|UPDATE|DELETE)\b/i.test(statement)) {
+    // Look near an AS-opened body after WITH, including later CTE definitions.
+    // Outer DML after a SELECT body is not evidence of a modifying CTE.
+    if (/\bWITH\b[\s\S]*?\bAS\s*(?:(?:NOT\s+)?MATERIALIZED\s*)?\(\s*(?:\(\s*)*(?:INSERT|UPDATE|DELETE)\b/i.test(statement)) {
       if (!signals.some(s => s.code === 'SQL_DATA_MODIFYING_CTE')) {
-        add('SQL_DATA_MODIFYING_CTE', 'WITH and data modification occur together; inspect CTE effects.');
+        add('SQL_DATA_MODIFYING_CTE', 'A CTE-shaped AS body begins with data modification; inspect its effects.');
       }
     }
     // A later query's WHERE must not clear an earlier operation. This intentionally

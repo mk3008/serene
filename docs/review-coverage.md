@@ -92,7 +92,7 @@ Select the real source path if it is needed. Unreadable/missing inputs and an em
 selection exit 2 without a partial JSON success report. A selected source with no
 candidate findings can still exit 0; always inspect the `files` coverage list.
 
-Exit 1 means a violation, or any review-required finding/content suggestion with `--strict`. Exit 0
+Exit 1 means a violation, or any construction review-required finding with `--strict`. Exit 0
 is not approval of every SQL path. Recursive selection does not add cross-file
 provenance or exhaustive sink discovery. For example, an imported SQL definition
 can remain review-required even when both files are selected.

@@ -5,7 +5,7 @@ import { auditSource } from './audit.mjs';
 
 const args = process.argv.slice(2);
 if (!args.length || args.includes('--help')) {
-  console.log('Usage: serene-audit [--strict] [--actionable-only] [--sink=name] file-or-directory ...\nJSON inventory; --actionable-only reports counts by candidate execution site and non-ordinary findings and content review suggestions. Exit 1 on violations (also review-required or content review suggestions with --strict), 2 on input errors.\nRecursively selects .ts/.tsx/.mts/.cts/.js/.jsx/.mjs/.cjs. Skips node_modules, dist, build, coverage, .git and symbolic links. Explicit files remain supported. File-local candidate inventory, not whole-program coverage.');
+  console.log('Usage: serene-audit [--strict] [--actionable-only] [--sink=name] file-or-directory ...\nJSON inventory; --actionable-only reports counts by candidate execution site and non-ordinary findings and content review suggestions. Exit 1 on violations (also review-required with --strict; content suggestions do not affect exit status), 2 on input errors.\nRecursively selects .ts/.tsx/.mts/.cts/.js/.jsx/.mjs/.cjs. Skips node_modules, dist, build, coverage, .git and symbolic links. Explicit files remain supported. File-local candidate inventory, not whole-program coverage.');
   process.exit(args.includes('--help') ? 0 : 2);
 }
 const strict = args.includes('--strict');
@@ -29,5 +29,5 @@ try {
     scope: 'Counts cover recognized candidate driver execution sites only; Construction counts are independent of contentReviewExecutionSiteCount; findings retain all review-required, violation and content-review rows. File-local inventory is not exhaustive driver discovery.',
   } : { files: selection.files, skipped: selection.skipped, findings, scope: 'file-local candidate inventory; not exhaustive driver discovery' };
   console.log(JSON.stringify(report, null, 2));
-  process.exitCode = findings.some(f => f.level === 'violation' || strict && (f.level === 'review-required' || f.reviewSignals?.length)) ? 1 : 0;
+  process.exitCode = findings.some(f => f.level === 'violation' || strict && f.level === 'review-required') ? 1 : 0;
 } catch (error) { console.error(error.message); process.exitCode = 2; }

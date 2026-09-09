@@ -21,7 +21,7 @@ const cases = [
   ['UPDATE users SET active = false', 'SQL_UPDATE_WITHOUT_WHERE'],
   ['DELETE FROM users', 'SQL_DELETE_WITHOUT_WHERE'],
   ['WITH moved AS (DELETE FROM users WHERE id = :id RETURNING *) SELECT * FROM moved WHERE id = :id', 'SQL_DATA_MODIFYING_CTE'],
-  ['WITH x AS (SELECT 1 WHERE true) INSERT INTO users SELECT * FROM x WHERE true', 'SQL_DATA_MODIFYING_CTE'],
+  ['WITH x AS (INSERT INTO users VALUES (:id) RETURNING *) SELECT * FROM x WHERE true', 'SQL_DATA_MODIFYING_CTE'],
   ['WITH x AS (UPDATE users SET active = false WHERE id = :id RETURNING *) SELECT * FROM x WHERE true', 'SQL_DATA_MODIFYING_CTE'],
   ["DELETE FROM users /* WHERE id = :id */", 'SQL_DELETE_WITHOUT_WHERE'],
   ["UPDATE users SET note = 'WHERE'", 'SQL_UPDATE_WITHOUT_WHERE'],
@@ -97,7 +97,7 @@ test('diff never compresses changed signaled SQL even when both sides are ordina
   assert.equal(r.filtered,false);
   assert.deepEqual(r.changes,changes.map((c,index)=>({index,kind:'source',...c})));
 });
-test('CLI actionable output and strict status include ordinary content-review findings', () => {
+test('CLI retains content suggestions without turning them into strict failures', () => {
   const dir=mkdtempSync(join(tmpdir(),'serene-content-'));
   try {
     const file=join(dir,'query.ts');writeFileSync(file,source('DELETE FROM users'));
@@ -107,7 +107,17 @@ test('CLI actionable output and strict status include ordinary content-review fi
     assert.equal(report.executionSiteCounts.ordinary,1);
     assert.equal(report.contentReviewExecutionSiteCount,1);
     assert.ok(report.findings.some(r=>r.boundary==='driver-candidate' && codes(r).includes('SQL_DELETE_WITHOUT_WHERE')));
-    assert.equal(run(['--strict','--actionable-only']).status,1);
+    for (const args of [[], ['--strict'], ['--actionable-only'], ['--strict','--actionable-only']]) {
+      const r=run(args); assert.equal(r.status,0,r.stderr);
+      assert.ok(JSON.parse(r.stdout).findings.some(row => codes(row).includes('SQL_DELETE_WITHOUT_WHERE')));
+    }
+    for (const [body, normalStatus, strictStatus] of [
+      ['db.query(input)',0,1], ['db.query("SELECT " + input)',1,1],
+    ]) {
+      writeFileSync(file,body);
+      assert.equal(run([]).status,normalStatus);
+      assert.equal(run(['--strict']).status,strictStatus);
+    }
   } finally {rmSync(dir,{recursive:true,force:true});}
 });
 
@@ -118,5 +128,38 @@ test('every initial rule prevents source suppression independently', () => {
     const result=filterConstructionSource(snapshot,{...snapshot,ranges});
     assert.equal(result.filtered,false,text);
     assert.deepEqual(result.ranges,ranges);
+  }
+});
+
+for (const dml of ['INSERT INTO archive SELECT * FROM selected WHERE true',
+  'UPDATE users SET active=false WHERE id IN (SELECT id FROM selected WHERE true)',
+  'DELETE FROM users WHERE id IN (SELECT id FROM selected WHERE true)']) {
+  for (const definitions of ['selected AS (SELECT id FROM users WHERE active=true)',
+    'first AS (SELECT id FROM users WHERE active=true), selected AS (SELECT id FROM first WHERE true)']) {
+    test(`SELECT CTE with outer DML does not signal modifying CTE: ${definitions} ${dml}`, () => {
+      assert.ok(!codes(auditSource(tagged(`WITH ${definitions} ${dml}`))[0]).includes('SQL_DATA_MODIFYING_CTE'));
+    });
+  }
+}
+for (const dml of ['INSERT INTO archive VALUES (:id) RETURNING *',
+  'UPDATE users SET active=false WHERE id=:id RETURNING *',
+  'DELETE FROM users WHERE id=:id RETURNING *']) {
+  for (const before of ['', 'selected AS (SELECT id FROM users WHERE true), ']) {
+    test(`modifying CTE body is signaled: ${before} ${dml}`, () => {
+      const row=auditSource(tagged(`WITH ${before}changed AS (/* body */ ${dml}), last AS (SELECT * FROM changed WHERE true) SELECT * FROM last WHERE true`))[0];
+      assert.equal(row.level,'ordinary');
+      assert.equal(codes(row).filter(c=>c==='SQL_DATA_MODIFYING_CTE').length,1);
+    });
+  }
+}
+test('CTE candidate tolerates parentheses/materialization but does not borrow WITH across statements', () => {
+  for (const body of ['AS ((DELETE FROM users WHERE id=:id RETURNING *))',
+    'AS MATERIALIZED (DELETE FROM users WHERE id=:id RETURNING *)',
+    'AS NOT MATERIALIZED (DELETE FROM users WHERE id=:id RETURNING *)']) {
+    assert.ok(codes(auditSource(tagged(`WITH changed ${body} SELECT * FROM changed WHERE true`))[0]).includes('SQL_DATA_MODIFYING_CTE'));
+  }
+  for (const text of ["WITH selected AS (SELECT 'AS (DELETE' WHERE true) SELECT * FROM selected WHERE true",
+    'WITH selected AS (SELECT 1 WHERE true) SELECT * FROM selected WHERE true; SELECT x AS (DELETE) WHERE true']) {
+    assert.ok(!codes(auditSource(tagged(text))[0]).includes('SQL_DATA_MODIFYING_CTE'));
   }
 });

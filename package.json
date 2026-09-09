@@ -1,6 +1,6 @@
 {
   "name": "@mk3008/serene",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A micro screener for raw SQL review triage.",
   "repository": { "type": "git", "url": "git+https://github.com/mk3008/serene.git" },
   "type": "module",

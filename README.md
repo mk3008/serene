@@ -14,10 +14,10 @@ Serene is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
 
-Current release: **0.3.0** (`v0.3.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
+Current release: **0.4.0** (`v0.4.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
 
 ```sh
-npm install github:mk3008/serene#v0.3.0
+npm install github:mk3008/serene#v0.4.0
 ```
 
 Use `github:mk3008/serene` only when you intentionally want the latest `main` instead of a pinned release.
@@ -121,7 +121,7 @@ The audit also attaches independent **review suggestions** to recognized SQL for
 keywords such as DROP/TRUNCATE and operations without an apparent WHERE. Such
 findings remain actionable even when construction is `ordinary`; this is approximate
 triage, not SQL validation. See [SQL-content review](docs/sql-content-review.md)
-for the v0.4 behavior on this branch.
+for the v0.4 behavior.
 
 The audit is conservative and file-local. See [audit coverage](docs/review-coverage.md) for details.
 

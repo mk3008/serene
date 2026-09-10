@@ -111,13 +111,13 @@ test('CLI exit policy, JSON inventory and input errors', () => {
   } finally { rmSync(dir, {recursive:true, force:true}); }
 });
 
-test('CLI actionable-only counts execution candidates once and omits ordinary details', () => {
+test('CLI actionable-only counts execution candidates once and omits unflagged ordinary details', () => {
   const dir = mkdtempSync(join(tmpdir(), 'serene-actionable-'));
   const file = join(dir, 'input.ts');
   const run = args => spawnSync(process.execPath, ['tooling/cli.mjs', ...args], {encoding:'utf8'});
   try {
     writeFileSync(file, `${imports}
-const q = bind(literalSql\`SELECT 1\`);
+const q = bind(literalSql\`SELECT 1 WHERE true\`);
 db.query(q.text);
 db.execute(input);
 db.query('SELECT ' + input);`);

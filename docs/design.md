@@ -104,3 +104,11 @@ file-local provenance; imported paths remain explicit additional review. Bounded
 cross-file recognition can be reconsidered with concrete review-work and coherence
 evidence. ESLint integration and C#/Bun adapters need a separate value/cost decision.
 Do not add them solely for feature parity.
+
+## Lightweight SQL-content triage
+
+Issue #20 adds an independent, approximate content-review axis only inside
+recognized `sql` tags. A small keyword/absence heuristic set can recommend review
+without changing construction provenance or runtime behavior. Source/diff delivery
+retains signaled paths. This is not a parser, correctness test or ORM feature; see
+[the rule set and limits](sql-content-review.md).

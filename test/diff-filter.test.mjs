@@ -7,7 +7,9 @@ import { spawnSync } from 'node:child_process';
 import { filterConstructionDiff, filterConstructionSource } from '@mk3008/serene/filter';
 
 const prefix = "import { sql, bind } from '@mk3008/serene';\n";
-const fn = (name = 'run', body = 'SELECT :id') => `export async function ${name}(db, id) {\n  const q = bind(sql\`${body}\`, { id });\n  await db.query(q.text, q.params);\n}\n`;
+// Compression fixtures have an apparent restriction; content-signaled transitions
+// are covered independently in content-review.test.mjs.
+const fn = (name = 'run', body = 'SELECT :id') => `export async function ${name}(db, id) {\n  const q = bind(sql\`${body} WHERE :id IS NOT NULL\`, { id });\n  await db.query(q.text, q.params);\n}\n`;
 const raw = 'export async function raw(db, input) { await db.query("SELECT " + input); }\n';
 const context = (source, revision) => ({ source, revision, file: 'queries.ts' });
 const range = (source, start, end) => ({ start, end, text: source.slice(start, end) });

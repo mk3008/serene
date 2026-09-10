@@ -82,3 +82,7 @@ source. Ordinary must not discharge those reviews; retain an unfiltered path for
 them. Small snippets or repeated markers can exceed original response size; no
 universal token or cost saving is promised. See [validation](pre-exposure-filter-validation.md)
 and [audit coverage](review-coverage.md).
+
+Content [review suggestions](sql-content-review.md) also prevent suppression, even
+when construction remains ordinary. Eligibility transitions retain source and
+follow-up navigation under the existing diff contract.

@@ -71,3 +71,7 @@ for (const change of diffResult.changes) {
 filterConstructionDiff(diffSnapshot, { base: snapshot, changes: [] });
 // @ts-expect-error Patch text alone is not a complete paired edit range.
 filterConstructionDiff(diffSnapshot, { ...diffSnapshot, changes: [{ base: { text: '' }, head: { text: '' } }] });
+
+import type { ReviewSignal } from "@mk3008/serene/audit";
+const contentSignal: ReviewSignal = { code: "SQL_DROP", detail: "Review suggested: DROP keyword." };
+void contentSignal;

@@ -16,7 +16,7 @@ function constructionFunctions(source, file) {
     const p = position(node.getStart(sf));
     return findings.filter(f => f.line === p.line && f.column === p.column);
   };
-  const ordinary = (node, boundary) => at(node).find(f => f.boundary === boundary && f.level === 'ordinary');
+  const ordinary = (node, boundary) => at(node).find(f => f.boundary === boundary && f.level === 'ordinary' && !f.reviewSignals?.length);
   const simpleDriverArguments = call => {
     const [first, ...rest] = call.arguments;
     if (!first || !ts.isPropertyAccessExpression(first) || !ts.isIdentifier(first.expression) || first.name.text !== 'text') return false;

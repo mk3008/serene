@@ -117,11 +117,16 @@ npm install --save-dev typescript@^5.9.3
 | `review-required` | Raw or unresolved SQL path; inspect it |
 | `violation` | A detected Serene boundary violation |
 
-The audit also attaches independent **review suggestions** to recognized SQL for
-keywords such as DROP/TRUNCATE and operations without an apparent WHERE. Such
-findings remain actionable even when construction is `ordinary`; this is approximate
-triage, not SQL validation. See [SQL-content review](docs/sql-content-review.md)
-for the v0.4 behavior.
+### Independent content review
+
+Construction `level` and SQL-content review are separate axes. Recognized `ordinary` SQL can still carry `reviewSignals`.
+
+| Review area | Examples |
+| --- | --- |
+| Broad/destructive | `DROP`, `TRUNCATE`, `RENAME`, `SELECT` / `UPDATE` / `DELETE` without an apparent `WHERE` |
+| Operational/unclear | temporary tables, data-modifying CTEs, CTE bodies outside the lightweight recognizer |
+
+Signals are advisory: they keep SQL visible for review without changing construction `level` or causing `--strict` to fail. See [SQL-content review](docs/sql-content-review.md) for details.
 
 The audit is conservative and file-local. See [audit coverage](docs/review-coverage.md) for details.
 

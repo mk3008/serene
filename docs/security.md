@@ -109,6 +109,51 @@ terminators to avoid accidentally applying ordering to another statement.
 
 ## Review procedure
 
+### TEMP materialization
+
+`materializeTemp(body, 'name')` accepts only an existing unbound, identity-backed
+`Sql`. It prepends a fixed PostgreSQL `CREATE TEMPORARY TABLE "name"` /
+`ON COMMIT DROP` / `AS` wrapper with a newline before the unchanged body. No runtime
+values, prefix/suffix options or SQL fragments are accepted. Bind once afterward.
+Plain strings, extracted `sourceText`, casts, copied shapes and `BoundSql` do not
+establish runtime identity.
+
+Names must begin with an ASCII letter/underscore and contain only ASCII letters,
+digits/underscores, up to 63 characters. Quoting preserves case; no schema paths
+are accepted. Runtime checks cannot distinguish a valid dynamic string from a
+literal. Source audit therefore requires a direct string literal at the call site
+(parentheses allowed); even const name aliases remain unresolved. Recognized
+canonical import aliases and immutable local API/body aliases follow the existing
+file-local rules. Unknown imports/helpers, mutable flows and type assertions are
+not promoted. Runtime `review` alone does not establish source closure or human
+approval.
+
+The body guard rejects unquoted statement terminators, including a trailing `;`.
+It shares the existing scanner's common quotes, nested block comments, line
+comments, ASCII dollar quotes and E-string conventions. Unlike the general
+scanner, backticks are not quotes for this PostgreSQL operation. PostgreSQL
+`standard_conforming_strings=on` is required. Unsupported non-ASCII dollar tags
+fail. No SQL is trimmed, split or regenerated; incomplete SQL may still reach the
+database. The application must supply a query suitable for CTAS, review functions
+and CTE side effects, and use matching native parameter binding. A genuine `Sql`
+does not prove SELECT semantics, completeness or business safety.
+
+Create and consume the relation on the same checked-out connection inside an
+explicit transaction. `ON COMMIT DROP` removes it at commit; rollback undoes its
+creation. Connection/transaction ownership, resource usage, name collisions and
+authorization remain external responsibilities. There is no automatic drop/retry
+or `IF NOT EXISTS` fallback. Use `orderBy` on the body before materializing if needed.
+See [PostgreSQL CTAS](https://www.postgresql.org/docs/18/sql-createtableas.html).
+
+Audit propagates body content signals and adds `SQL_CREATE_TEMP`; it does not
+classify the generated lifecycle clause as destructive DROP. TEMP paths remain
+visible in actionable output and source/diff filtering, without changing strict
+exit status. See [content review](sql-content-review.md). Runtime semantics and
+source closure are tested separately; `npm run test:postgres` is the real-database
+transaction/binding regression run by Verify CI.
+
+### Application review
+
 Run source inventory for all changed application files and any call-site files they
 affect. Verify that candidate names cover the native execution APIs in the application.
 Review violation findings and additional-review items; do not treat an empty report

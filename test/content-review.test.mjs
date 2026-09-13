@@ -204,3 +204,24 @@ test('generic CTE signal prevents source/diff suppression without changing const
     assert.ok(JSON.parse(cli.stdout).findings.some(row=>row.boundary==='driver-candidate' && codes(row).includes('SQL_UNRESOLVED_CTE')));
   } finally {rmSync(dir,{recursive:true,force:true});}
 });
+
+test('TEMP lifecycle DROP is not a destructive DROP; other occurrences stay visible', () => {
+  for (const text of [
+    'CREATE TEMP TABLE x(id int) ON COMMIT DROP',
+    '/* header */ CREATE LOCAL TEMPORARY TABLE "x" ON /* note */ COMMIT DROP AS SELECT 1 WHERE true',
+    'SELECT 1 WHERE true; CREATE GLOBAL TEMP TABLE x(id int) ON COMMIT DROP',
+  ]) {
+    const row=auditSource(tagged(text))[0];
+    assert.equal(row.level,'ordinary');
+    assert.ok(codes(row).includes('SQL_CREATE_TEMP'));
+    assert.ok(!codes(row).includes('SQL_DROP'),text);
+  }
+  for (const text of [
+    'CREATE TEMP TABLE x ON COMMIT DROP AS SELECT 1; DROP TABLE users',
+    'DROP TABLE users; CREATE TEMP TABLE x ON COMMIT DROP AS SELECT 1',
+    "CREATE TEMP TABLE x ON COMMIT DROP AS SELECT 'DROP TABLE users'",
+    'CREATE TEMP TABLE x ON COMMIT DROP AS SELECT 1 -- DROP TABLE users',
+    'CREATE TEMP TABLE x AS SELECT 1; SELECT 1 /* ON COMMIT DROP */',
+    'CREATE TABLE x(id int); SELECT 1 -- ON COMMIT DROP',
+  ]) assert.ok(codes(auditSource(tagged(text))[0]).includes('SQL_DROP'),text);
+});

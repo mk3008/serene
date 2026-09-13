@@ -32,7 +32,9 @@ parser or depending on a full lint framework. TypeScript is the sole dev depende
 and an optional peer for tooling, never loaded by the runtime entry.
 
 The `sql` tag has no interpolated values or fragments. Named values are explicit at
-binding. ORDER BY is the sole composition operation and accepts a small sort grammar.
+binding. ORDER BY accepts a small sort grammar. `materializeTemp` is a second bounded
+operation: a fixed PostgreSQL TEMP CTAS wrapper around an identity-backed `Sql`,
+with a source-literal name and values bound afterward. It accepts no SQL fragments.
 No AST, generated artifacts, arbitrary renderer strings, dialect abstraction, unsafe
 constructor, plugin framework or driver execution adapter is introduced.
 
@@ -60,6 +62,13 @@ snapshot follows supplied own-property order, not SQL occurrence order.
 
 `orderBy` is a separate construction operation: its existing terminator scan and
 finite-sort restrictions remain in force before any binding mode is selected.
+
+Following [#26](https://github.com/mk3008/serene/issues/26), TEMP materialization
+reuses the terminator scan with PostgreSQL quote handling (backticks do not shield
+terminators). This is a lexical boundary guard, not proof of a complete SELECT or
+read-only behavior. Initial source-name recognition is literal-only; stored SQL
+strings and dynamic names do not acquire ordinary source provenance. DDL priority
+categories proposed in #26 are not part of this implementation.
 
 Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
 structural choices application-owned without enumerating all complete ORDER BY

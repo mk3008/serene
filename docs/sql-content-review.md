@@ -24,7 +24,13 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | `SQL_DATA_MODIFYING_CTE` | After WITH, an AS-opened body begins with INSERT/UPDATE/DELETE |
 
 Rules are case-insensitive and deduplicated by code per finding. DROP, TRUNCATE
-and RENAME intentionally also match comments and literals. For the other rules,
+and RENAME intentionally also match comments and literals. The DROP in a recognized
+`CREATE TEMP[ORARY] TABLE ... ON COMMIT DROP` lifecycle clause (before CTAS `AS`)
+is excluded by occurrence, not by clearing all DROP signals in TEMP SQL. Other
+DROP occurrences, including comments/literals, remain review suggestions. This
+bounded recognizer masks common quotes/comments and recognizes statement starts;
+unrecognized syntax may still receive `SQL_DROP`. It is not a general DDL parser.
+For the other rules,
 a small text mask removes common single/double quotes and line/block comments,
 so a comment or literal WHERE does not normally clear an unrestricted operation.
 SELECT/UPDATE/DELETE/INSERT words and semicolons delimit approximate regions;
@@ -59,6 +65,12 @@ execution-text provenance, including bounded native QueryConfig. Inline
 QueryConfig propagates the `text` receiver's content signals; values do not define
 executed SQL. Unsupported flow retains its construction referral, while any
 recognized tag at its definition can still carry its own content signals.
+
+`materializeTemp` inherits body signals and adds `SQL_CREATE_TEMP` once. Its fixed
+`ON COMMIT DROP` wrapper adds no destructive signal. This does not suppress DROP,
+data-modifying CTE or other suggestions inherited from the body. The signal schema
+and advisory gate behavior are unchanged; persistent-DDL severity categories are
+not added by this operation.
 
 `--actionable-only` retains signaled findings even with `level: "ordinary"`.
 `executionSiteCounts` continues to count construction levels only. The separate

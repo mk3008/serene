@@ -7,7 +7,7 @@ export type Scanned = { sourceText: string; parameters: Parameter[]; terminated:
 const identifier = (c: string) => /[A-Za-z0-9_$\u0080-\uffff]/.test(c);
 
 /** Locate requested names, not SQL grammar. Other source characters pass through. */
-export function scan(sourceText: string, requested?: ReadonlySet<string>): Scanned {
+export function scan(sourceText: string, requested?: ReadonlySet<string>, options: { postgres?: boolean } = {}): Scanned {
   const parameters: Parameter[] = [];
   const native: Scanned['native'] = [];
   let i = 0;
@@ -42,7 +42,7 @@ export function scan(sourceText: string, requested?: ReadonlySet<string>): Scann
         throw new SereneError('UNSUPPORTED_DOLLAR_QUOTE', 'Use $$ or an ASCII dollar-quote tag such as $body$.', i);
       }
     }
-    if (c === "'" || c === '"' || c === '`') {
+    if (c === "'" || c === '"' || c === '`' && !options.postgres) {
       const escape = c === "'" && /(?:^|[^A-Za-z0-9_$\u0080-\uffff])E$/i.test(sourceText.slice(0, i));
       i++;
       while (i < sourceText.length) {

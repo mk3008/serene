@@ -2,7 +2,7 @@ import ts from 'typescript';
 import * as serene from '../dist/index.js';
 
 const tags = new Set(['sql', 'sort']);
-const api = new Set([...tags, 'bind', 'orderBy', 'review']);
+const api = new Set([...tags, 'bind', 'orderBy', 'materializeTemp', 'review']);
 const result = (level, code, detail) => ({ level, code, detail });
 const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL through Serene; review SQL meaning and binding use separately.');
 const unknown = () => result('review-required', 'UNRESOLVED', 'SQL provenance cannot be established in this file.');
@@ -13,12 +13,21 @@ const violation = (code, detail) => result('violation', code, detail);
 function contentSignals(text) {
   const signals = [];
   const add = (code, detail) => signals.push({ code, detail: `Review suggested: ${detail}` });
+  // Preserve offsets so only a recognized lifecycle DROP is excluded. Other
+  // DROP occurrences, including comments/literals, keep the existing referral.
+  const apparent = text.replace(/--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)|'(?:''|[^'])*(?:'|$)|"(?:""|[^"])*(?:"|$)/g,
+    match => match.replace(/[^\r\n]/g, ' '));
+  const lifecycleDrops = new Set();
+  for (const match of apparent.matchAll(/(?:^|;)\s*CREATE\s+(?:(?:GLOBAL|LOCAL)\s+)?TEMP(?:ORARY)?\s+TABLE\b(?:(?!\bAS\b|;)[\s\S])*?\bON\s+COMMIT\s+(DROP)\b/gi)) {
+    lifecycleDrops.add(match.index + match[0].length - match[1].length);
+  }
   for (const word of ['DROP', 'TRUNCATE', 'RENAME']) {
-    if (new RegExp(`\\b${word}\\b`, 'i').test(text)) add(`SQL_${word}`, `${word} keyword may indicate an exceptional operation.`);
+    if ([...text.matchAll(new RegExp(`\\b${word}\\b`, 'gi'))].some(match => word !== 'DROP' || !lifecycleDrops.has(match.index))) {
+      add(`SQL_${word}`, `${word} keyword may indicate an exceptional operation.`);
+    }
   }
   // Mask common comments/quotes only to avoid accepting their WHERE as evidence
   // of a restriction. Unsupported dialect forms and nesting are not interpreted.
-  const apparent = text.replace(/--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)|'(?:''|[^'])*(?:'|$)|"(?:""|[^"])*(?:"|$)/g, ' ');
   if (/\bCREATE\s+(?:(?:GLOBAL|LOCAL)\s+)?TEMP(?:ORARY)?\b/i.test(apparent)) {
     add('SQL_CREATE_TEMP', 'Temporary creation may introduce operational state.');
   }
@@ -154,6 +163,27 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
       const name = apiName(node.expression);
       if (tags.has(name)) return violation('DIRECT_TAG_CALL', 'Serene tags must be literal template syntax; fabricated templates are not trusted.');
       if (name === 'bind' && kind === 'bound') return classify(node.arguments[0], 'sql', seen);
+      if (name === 'materializeTemp' && kind === 'sql') {
+        const base = classify(node.arguments[0], 'sql', seen);
+        if (base.level !== 'ordinary') return base;
+        const table = unparen(node.arguments[1]);
+        if (node.arguments.length !== 2 || !table || !ts.isStringLiteral(table)) return unknown();
+        // Only called after provenance succeeds. Finite sorts and TEMP wrappers
+        // introduce no terminators; validate the original cooked literal body.
+        let body = resolve(node.arguments[0]);
+        while (ts.isCallExpression(body)) body = resolve(body.arguments[0]);
+        if (!ts.isTaggedTemplateExpression(body) || !ts.isNoSubstitutionTemplateLiteral(body.template)) return unknown();
+        try {
+          const text = body.template.text;
+          const strings = Object.assign([text], { raw: Object.freeze([text]) });
+          serene.materializeTemp(serene.sql(Object.freeze(strings)), table.text);
+        } catch (error) { return violation(error.code ?? 'SQL_BOUNDARY', error.message); }
+        const reviewSignals = [...(base.reviewSignals ?? [])];
+        if (!reviewSignals.some(signal => signal.code === 'SQL_CREATE_TEMP')) {
+          reviewSignals.push({ code: 'SQL_CREATE_TEMP', detail: 'Review suggested: Temporary creation may introduce operational state.' });
+        }
+        return { ...base, reviewSignals };
+      }
       if (name === 'orderBy' && kind === 'sql') {
         const base = classify(node.arguments[0], 'sql', seen);
         if (base.level !== 'ordinary') return base;

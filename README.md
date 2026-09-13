@@ -190,6 +190,31 @@ const bound = bind(query);
 
 Runtime input chooses a reviewed key, not a SQL fragment.
 
+## PostgreSQL TEMP materialization
+
+Reuse a Serene SQL body in a fixed `CREATE TEMPORARY TABLE ... ON COMMIT DROP AS`
+wrapper, then bind values normally:
+
+```ts
+import { sql, materializeTemp, bind } from '@mk3008/serene';
+
+const source = sql`SELECT id FROM users WHERE tenant_id = :tenantId`;
+const snapshot = materializeTemp(source, 'user_snapshot');
+const query = bind(snapshot, { tenantId }, 'indexed');
+// Inside an explicit transaction on this same checked-out connection:
+await client.query(query.text, query.values);
+// Consume pg_temp.user_snapshot before committing or rolling back.
+```
+
+The name must be a literal at the call site for ordinary source classification.
+Only a single ASCII name of 1–63 characters is accepted; Serene quotes it and
+preserves case. Schema paths and arbitrary fragments are unsupported. The body
+must be an unbound Serene `Sql` without statement terminators outside recognized
+quotes/comments, including a trailing semicolon. SQL validity and CTAS suitability
+remain review responsibilities. This is a PostgreSQL contract, not a cross-database
+TEMP abstraction. TEMP content suggestions remain visible even for ordinary
+construction. See the [security contract](docs/security.md#temp-materialization).
+
 ## Optional search conditions without dynamic SQL
 
 Optional filters do not necessarily require building SQL strings. When the set of filters is known, normal fixed SQL can express any combination:

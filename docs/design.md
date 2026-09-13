@@ -67,8 +67,8 @@ Following [#26](https://github.com/mk3008/serene/issues/26), TEMP materializatio
 reuses the terminator scan with PostgreSQL quote handling (backticks do not shield
 terminators). This is a lexical boundary guard, not proof of a complete SELECT or
 read-only behavior. Initial source-name recognition is literal-only; stored SQL
-strings and dynamic names do not acquire ordinary source provenance. DDL priority
-categories proposed in #26 are not part of this implementation.
+strings and dynamic names do not acquire ordinary source provenance. Issue #30 separately adds elevated content priority for bounded persistent-DDL
+shapes; the TEMP wrapper itself remains advisory.
 
 Finite `Sort` tokens can be selected and ordered by a runtime key array. This keeps
 structural choices application-owned without enumerating all complete ORDER BY
@@ -121,3 +121,11 @@ recognized `sql` tags. A small keyword/absence heuristic set can recommend revie
 without changing construction provenance or runtime behavior. Source/diff delivery
 retains signaled paths. This is not a parser, correctness test or ORM feature; see
 [the rule set and limits](sql-content-review.md).
+
+
+Issue #30 uses one `SQL_PERSISTENT_DDL` code with optional elevated priority rather
+than per-object subcodes: the review question is shared, and SQL remains visible
+for object-specific inspection. The existing mask plus bounded CREATE/ALTER shapes
+adds no runtime dependency or procedural parser. TEMP stays advisory. Database-side
+dynamic execution receives no new signal because shallow EXEC/EXECUTE matching
+would also refer normal procedure invocation; the security limitation remains.

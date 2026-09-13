@@ -31,6 +31,16 @@ function contentSignals(text) {
   if (/\bCREATE\s+(?:(?:GLOBAL|LOCAL)\s+)?TEMP(?:ORARY)?\b/i.test(apparent)) {
     add('SQL_CREATE_TEMP', 'Temporary creation may introduce operational state.');
   }
+  // One bounded shape signal, independent of construction provenance. Do not
+  // descend into or validate procedural bodies, or infer an object's lifetime
+  // from its name. ALTER may consequently refer an existing temporary object.
+  if (/\b(?:CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?(?:UNLOGGED\s+)?|ALTER\s+)(?:TABLE|(?:MATERIALIZED\s+)?VIEW|FUNCTION|PROC(?:EDURE)?|TRIGGER)\b/i.test(apparent)) {
+    signals.push({
+      code: 'SQL_PERSISTENT_DDL',
+      priority: 'elevated',
+      detail: 'Review suggested: Why is persistent database definition happening on a runtime SQL path? Inspect object lifetime, operational impact and any procedural body separately.',
+    });
+  }
   for (const statement of apparent.split(';')) {
     // Inspect only the start of AS-opened bodies after WITH, including later
     // definitions. No closing-parenthesis matching or full CTE recognition.

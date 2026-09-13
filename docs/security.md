@@ -24,7 +24,9 @@ The independent [SQL-content axis](sql-content-review.md) can suggest review eve
 for ordinary construction. These approximate signals neither reject runtime SQL
 nor establish SQL correctness or SQLi freedom. No signal means no heuristic
 matched, not that the SQL has been approved. Signaled paths remain visible in
-specialized source/diff filtering.
+specialized source/diff filtering. Persistent-DDL candidates carry elevated review
+priority even with ordinary construction; this does not prove object lifetime or
+validate procedure bodies. CALL/function invocation is not a persistent definition.
 
 ## Threat examples
 

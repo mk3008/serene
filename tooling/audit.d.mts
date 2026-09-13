@@ -1,5 +1,7 @@
 export interface ReviewSignal {
   code: string;
+  /** Review priority only; omitted means advisory. Does not change construction level or gates. */
+  priority?: 'advisory' | 'elevated';
   /** Approximate SQL-content review suggestion, not a validation result. */
   detail: string;
 }

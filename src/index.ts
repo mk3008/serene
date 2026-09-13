@@ -43,7 +43,7 @@ export function materializeTemp(sql: Sql, name: string): Sql {
   if (scan(data.sourceText, new Set(), { postgres: true }).terminated) {
     throw new SereneError('TEMP_BODY', 'TEMP materialization requires a body without statement terminators.');
   }
-  return create({ sourceText: `CREATE TEMPORARY TABLE "${name}"\nON COMMIT DROP\nAS\n${data.sourceText}`, sorted: false });
+  return create({ sourceText: `CREATE TEMPORARY TABLE "${name}"\nON COMMIT DROP\nAS\n${data.sourceText}`, sorted: data.sorted });
 }
 
 /** Static, deliberately limited ORDER BY terms; no arbitrary fragments. */

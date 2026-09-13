@@ -165,3 +165,14 @@ test('TEMP retains destructive and CTE body signals without duplicating wrapper 
   assert.equal(row.level,'ordinary');
   assert.deepEqual(codes(row),['SQL_CREATE_TEMP']);
 });
+
+test('TEMP preserves the single-ORDER-BY guard from its input', () => {
+  const choices = { asc: sort`id ASC`, desc: sort`id DESC` };
+  const source = orderBy(sql`SELECT id FROM users`, choices, 'asc');
+  const temp = materializeTemp(source, 'snapshot');
+  assert.ok(temp.sourceText.endsWith('ORDER BY id ASC'));
+  assert.throws(() => orderBy(temp, choices, 'desc'), fail('SORT_POSITION'));
+  assert.equal(orderBy(temp, choices, []), temp);
+  const unsorted = materializeTemp(sql`SELECT id FROM users`, 'unsorted');
+  assert.ok(orderBy(unsorted, choices, 'desc').sourceText.endsWith('ORDER BY id DESC'));
+});

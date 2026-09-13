@@ -8,6 +8,25 @@ const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL throug
 const unknown = () => result('review-required', 'UNRESOLVED', 'SQL provenance cannot be established in this file.');
 const violation = (code, detail) => result('violation', code, detail);
 
+// Only entry forms, never procedural control flow. Keep this mask separate from
+// historical content heuristics so their coverage (including persistent DDL)
+// stays unchanged. Quoted bodies are opaque; their semicolons are not boundaries.
+function proceduralSignals(text) {
+  const entryText = text.replace(/--[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)|(\$(?:[A-Za-z_][A-Za-z0-9_]*)?\$)[\s\S]*?\1|\b[Ee]'(?:\\[\s\S]|''|[^'\\])*(?:'|$)|'(?:''|[^'])*(?:'|$)|"(?:""|[^"])*(?:"|$)|`(?:``|[^`])*(?:`|$)|\[(?:\]\]|[^\]])*(?:\]|$)/g,
+    match => /^--|^\/\*/.test(match) ? ' ' : /^["`\[]/.test(match) ? ' # ' : ' ? ');
+  const entries = entryText.split(';');
+  const signals = [];
+  if (entries.some(entry => /^\s*(?:(?:CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?|ALTER\s+)(?:FUNCTION|PROC(?:EDURE)?|TRIGGER)\b|DO\s+(?:LANGUAGE\s+(?:[A-Za-z_][A-Za-z0-9_]*|#)\s+)?\?)/i.test(entry))) {
+    signals.push({ code: 'SQL_PROCEDURAL_BODY', priority: 'elevated',
+      detail: 'Review suggested: A routine/trigger definition or anonymous code container may hide procedural behavior; inspect its body and effects separately.' });
+  }
+  if (entries.some(entry => /^\s*(?:CALL\b|EXEC(?:UTE)?\b(?!\s+AS\b))/i.test(entry))) {
+    signals.push({ code: 'SQL_ROUTINE_CALL', priority: 'elevated',
+      detail: 'Review suggested: An explicit routine or database-side execution form delegates behavior beyond this SQL text; inspect the target, effects and any dynamic construction.' });
+  }
+  return signals;
+}
+
 // Deliberately approximate content triage, not a SQL parser. Destructive words
 // are searched even in comments/literals: false positives are review suggestions.
 function contentSignals(text) {
@@ -70,7 +89,7 @@ function contentSignals(text) {
       }
     }
   }
-  return signals;
+  return [...signals, ...proceduralSignals(text)];
 }
 
 /** Conservative, file-local source inventory. No type assertion establishes trust. */

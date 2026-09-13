@@ -14,10 +14,10 @@ Serene is not an ORM, query builder, mapper, driver wrapper, or SQL parser.
 
 ## Install
 
-Current release: **0.4.0** (`v0.4.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
+Current release: **0.5.0** (`v0.5.0`). Serene is not published to the npm registry; install the tagged GitHub release directly:
 
 ```sh
-npm install github:mk3008/serene#v0.4.0
+npm install github:mk3008/serene#v0.5.0
 ```
 
 Use `github:mk3008/serene` only when you intentionally want the latest `main` instead of a pinned release.
@@ -74,6 +74,7 @@ const query = bind(findUser, { id }, 'anonymous');
 - **Native driver usage** — Serene does not own connections, execution, transactions, or mapping.
 - **Review triage** — recognized construction can be treated as ordinary; unresolved or dynamic construction stays visible for additional review.
 - **Controlled sorting** — runtime input can select from finite, source-defined `ORDER BY` choices without accepting arbitrary SQL fragments.
+- **Bounded TEMP materialization** — PostgreSQL can wrap an existing Serene `Sql` in a fixed TEMP CTAS operation without opening a general SQL-fragment API.
 
 Serene does not prove that a query is correct, authorized, fast, or free of every SQL vulnerability. Its job is narrower: make SQL construction easier to classify during review.
 

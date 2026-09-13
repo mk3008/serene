@@ -22,6 +22,10 @@ const rows=auditSource("import {sql,bind,materializeTemp} from '@mk3008/serene';
 if (!rows.some(r=>r.boundary==='driver-candidate' && r.level==='ordinary' && r.reviewSignals?.some(s=>s.code==='SQL_CREATE_TEMP'))) throw Error('audit');
 const definitions=auditSource("import {sql,bind} from '@mk3008/serene'; db.query(bind(sql\`CREATE TABLE users(id int)\`));");
 if (!definitions.some(r=>r.boundary==='driver-candidate' && r.level==='ordinary' && r.reviewSignals?.some(s=>s.code==='SQL_PERSISTENT_DDL' && s.priority==='elevated'))) throw Error('DDL priority');
+const procedural=auditSource("import {sql,bind} from '@mk3008/serene'; db.query(bind(sql\`DO $$ BEGIN NULL; END $$; CALL p()\`));");
+for (const code of ['SQL_PROCEDURAL_BODY','SQL_ROUTINE_CALL']) {
+  if (!procedural.some(r=>r.boundary==='driver-candidate' && r.level==='ordinary' && r.reviewSignals?.some(s=>s.code===code && s.priority==='elevated'))) throw Error('procedural priority');
+}
 if (typeof filterConstructionSource!=='function') throw Error('filter export');
 // @ts-expect-error strings cannot replace identity-backed SQL
 const invalid: Sql='SELECT 1';

@@ -16,6 +16,8 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | Code | Approximate trigger |
 | --- | --- |
 | `SQL_DROP` / `SQL_TRUNCATE` / `SQL_RENAME` | Standalone keyword anywhere in the SQL text |
+| `SQL_PROCEDURAL_BODY` | Statement-entry DO with quoted code, or CREATE / ALTER FUNCTION, PROC/PROCEDURE or TRIGGER; elevated priority |
+| `SQL_ROUTINE_CALL` | Statement-entry CALL / EXEC / EXECUTE (excluding EXECUTE AS); elevated priority |
 | `SQL_PERSISTENT_DDL` | CREATE / ALTER of TABLE, VIEW, FUNCTION, PROC/PROCEDURE or TRIGGER; elevated priority |
 | `SQL_CREATE_TEMP` | CREATE followed by TEMP/TEMPORARY, optionally GLOBAL/LOCAL |
 | `SQL_SELECT_WITHOUT_WHERE` | SELECT without an apparent WHERE before the next operation/semicolon |
@@ -61,8 +63,8 @@ introduced. Review the SQL; do not add a token WHERE merely to clear a signal.
 
 ## Persistent definitions on runtime paths
 
-`SQL_PERSISTENT_DDL` has `priority: "elevated"`. All existing signals, including
-`SQL_CREATE_TEMP`, omit `priority`, which means advisory. Priority expresses review
+`SQL_PERSISTENT_DDL` has `priority: "elevated"`. The procedural-body and routine-call signals also carry elevated priority. Other
+signals, including `SQL_CREATE_TEMP`, omit `priority`, which means advisory. Priority expresses review
 urgency, not a construction violation, SQLi diagnosis or mandatory code change.
 The review question is: **Why is persistent database definition happening on a
 runtime SQL path?** A fixed definition still has ordinary construction provenance.
@@ -86,15 +88,66 @@ of acceptable resource usage, authorization or business behavior.
 
 CALL and SELECT function invocation do not trigger this rule. Definition bodies
 are not parsed as PL/pgSQL, T-SQL or MySQL stored programs; incidental existing
-heuristics within them do not establish coverage or approval. No separate database
-EXEC/EXECUTE signal is added: these keywords can also invoke fixed procedures,
-and distinguishing dynamic construction requires more context than this rule.
-Database-side/second-order SQL construction remains outside the binding guarantee.
+heuristics within them do not establish coverage or approval. The separate routine-execution rule below refers EXEC/EXECUTE without claiming
+whether it is a fixed routine or dynamic SQL. Database-side/second-order SQL
+construction remains outside the binding guarantee.
 
 Coverage stays at recognized fixed Serene tags and their existing propagated
 paths, including definitions without a discovered execution. The audit cannot
 prove that a candidate is executed repeatedly or distinguish migration code by
 intent. It neither scans standalone migrations nor requires them to adopt Serene.
+
+## Procedural containers and explicit execution
+
+Issue #32 adds two separate reasons for elevated review. Neither proves that code
+is procedural, unsafe, read-only, deterministic or bounded:
+
+- `SQL_PROCEDURAL_BODY`: a routine/trigger definition or anonymous code container
+  merits inspection of its body and effects. CREATE FUNCTION/PROCEDURE/TRIGGER
+  normally carries both this signal and `SQL_PERSISTENT_DDL`. SQL-language functions,
+  external routines, single-statement triggers and ALTER of routine attributes may
+  also be referred; language, body complexity and presence are not determined.
+- `SQL_ROUTINE_CALL`: an explicit routine or database-side execution form delegates
+  behavior beyond the call site. The signal deliberately does not distinguish
+  fixed procedure calls, prepared statements or dynamic execution. It is a review
+  opacity signal, not an injection finding. CALL/EXEC do not become persistent DDL.
+
+| Dialect / form | Bounded coverage |
+| --- | --- |
+| PostgreSQL DO | DO followed by a single-, E- or ASCII dollar-quoted code body; optional LANGUAGE before the body (and a trailing LANGUAGE does not interfere) |
+| PostgreSQL routine/trigger definition | CREATE / ALTER FUNCTION, PROCEDURE or TRIGGER; optional CREATE OR REPLACE |
+| SQL Server | CREATE OR ALTER PROC/PROCEDURE, FUNCTION or TRIGGER and ALTER equivalents; explicit EXEC/EXECUTE including variable targets, return assignments, dynamic strings and sp_executesql |
+| MySQL / MariaDB | Direct CREATE FUNCTION/PROCEDURE/TRIGGER (also OR REPLACE where supported), ALTER equivalents, CALL and EXECUTE entry forms |
+| CALL | Explicit statement-entry invocation, including schema-qualified/quoted targets |
+
+Only the beginning of SQL text or the text after an unmasked semicolon is an entry.
+Common comments may precede it. A separate, small lexical mask shields comments,
+single/E strings, ASCII dollar-quoted bodies and double/backtick/bracket identifiers
+before looking for entries. It does not parse body internals. Plain dollar-quoted
+SELECT text, quoted CALL/EXEC/DO words, ordinary built-ins and function-style SELECT
+calls do not acquire these signals. BEGIN/END and transaction keywords alone are
+not evidence. EXECUTE AS context switching is excluded from the invocation rule.
+
+Known gaps are intentional: no control-flow traversal, statement discovery after
+BEGIN/IF or a newline without a semicolon, implicit routine calls, client GO or
+DELIMITER processing, MySQL DEFINER clauses/executable comments, non-ASCII dollar
+tags, nested comments, or complete dialect-specific quoting/escape handling.
+Semicolons in unquoted routine bodies can expose additional invocation candidates;
+this is incidental coverage, not procedural analysis. Valid unsupported forms may
+have no new signal. In MySQL a DO string expression can also match the PostgreSQL
+container shape; no dialect inference is attempted. Source is inspected using the
+existing raw-template convention, not by evaluating JavaScript escapes.
+
+The separate mask leaves #31's persistent-DDL rule and all previous content rules
+unchanged. Their broader heuristics can still match inside quoted procedural text;
+absence of any signal never approves a body. Recognized definitions without an
+execution candidate are retained too. No standalone migration scanning is added.
+
+Syntax references: [PostgreSQL DO](https://www.postgresql.org/docs/18/sql-do.html),
+[SQL Server CREATE PROCEDURE](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver17),
+[SQL Server EXECUTE](https://learn.microsoft.com/en-us/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver17),
+and [MySQL CREATE TRIGGER](https://dev.mysql.com/doc/refman/8.4/en/create-trigger.html).
+These are recognizer regression cases, not cross-DBMS execution certification.
 
 ## Delivery and gates
 

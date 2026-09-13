@@ -124,11 +124,12 @@ Construction `level` and SQL-content review are separate axes. Recognized `ordin
 
 | Review area | Examples |
 | --- | --- |
+| Procedural logic (elevated) | DO blocks, routine/trigger definitions, explicit CALL / EXEC / EXECUTE |
 | Persistent definitions (elevated) | Recognized `CREATE` / `ALTER` of tables, views, functions, procedures and triggers |
 | Broad/destructive | `DROP`, `TRUNCATE`, `RENAME`, `SELECT` / `UPDATE` / `DELETE` without an apparent `WHERE` |
 | Operational/unclear | temporary tables, data-modifying CTEs, CTE bodies outside the lightweight recognizer |
 
-Signals keep SQL visible for review without changing construction `level` or causing `--strict` to fail. Persistent-DDL candidates carry `priority: "elevated"`; existing signals, including TEMP creation, remain advisory. See [SQL-content review](docs/sql-content-review.md) for details.
+Signals keep SQL visible for review without changing construction `level` or causing `--strict` to fail. Persistent-DDL, procedural-container and explicit-execution candidates carry `priority: "elevated"`; other signals, including TEMP creation, remain advisory. See [SQL-content review](docs/sql-content-review.md) for details.
 
 The audit is conservative and file-local. See [audit coverage](docs/review-coverage.md) for details.
 

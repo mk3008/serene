@@ -126,6 +126,13 @@ retains signaled paths. This is not a parser, correctness test or ORM feature; s
 Issue #30 uses one `SQL_PERSISTENT_DDL` code with optional elevated priority rather
 than per-object subcodes: the review question is shared, and SQL remains visible
 for object-specific inspection. The existing mask plus bounded CREATE/ALTER shapes
-adds no runtime dependency or procedural parser. TEMP stays advisory. Database-side
-dynamic execution receives no new signal because shallow EXEC/EXECUTE matching
-would also refer normal procedure invocation; the security limitation remains.
+adds no runtime dependency or procedural parser. TEMP stays advisory.
+
+Issue #32 separately treats procedural containers and explicit routine/execution
+forms as review-heavy, including ordinary fixed calls. `SQL_PROCEDURAL_BODY` and
+`SQL_ROUTINE_CALL` retain separate reasons from persistent DDL. A small additional
+mask shields quoted bodies before matching statement-entry forms; it does not
+change older heuristics or parse control flow. EXEC/EXECUTE now receives a shared
+execution referral without claiming fixed versus dynamic behavior. Generic BEGIN,
+dollar quoting alone and SELECT function calls stay out of scope to limit noise.
+Database-side construction remains outside the binding guarantee.

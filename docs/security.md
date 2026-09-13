@@ -26,7 +26,10 @@ nor establish SQL correctness or SQLi freedom. No signal means no heuristic
 matched, not that the SQL has been approved. Signaled paths remain visible in
 specialized source/diff filtering. Persistent-DDL candidates carry elevated review
 priority even with ordinary construction; this does not prove object lifetime or
-validate procedure bodies. CALL/function invocation is not a persistent definition.
+validate procedure bodies. Separate procedural-container and CALL/EXEC execution
+signals keep recognized review-heavy paths visible; they do not identify dynamic
+SQL or prove body safety. CALL/function invocation is not a persistent definition,
+and SELECT-style function calls remain outside the invocation recognizer.
 
 ## Threat examples
 

@@ -31,6 +31,21 @@ export function sql(strings: TemplateStringsArray, ...values: never[]): Sql {
   return create({ sourceText: literal(strings, values), sorted: false });
 }
 
+/** PostgreSQL TEMP CTAS. Source audit additionally requires a literal name. */
+export function materializeTemp(sql: Sql, name: string): Sql {
+  const data = statements.get(sql);
+  if (!data) throw new SereneError('UNSCREENED', 'Expected an unbound Serene SQL object.');
+  // PostgreSQL's default identifier limit is 63 bytes. ASCII keeps this explicit;
+  // quoting preserves case without accepting a schema path or identifier fragment.
+  if (typeof name !== 'string' || !/^[A-Za-z_]/.test(name) || /[^A-Za-z0-9_]/.test(name) || name.length > 63) {
+    throw new SereneError('TEMP_NAME', 'Expected a single ASCII table name of 1–63 characters.');
+  }
+  if (scan(data.sourceText, new Set(), { postgres: true }).terminated) {
+    throw new SereneError('TEMP_BODY', 'TEMP materialization requires a body without statement terminators.');
+  }
+  return create({ sourceText: `CREATE TEMPORARY TABLE "${name}"\nON COMMIT DROP\nAS\n${data.sourceText}`, sorted: data.sorted });
+}
+
 /** Static, deliberately limited ORDER BY terms; no arbitrary fragments. */
 export function sort(strings: TemplateStringsArray, ...values: never[]): Sort {
   const text = literal(strings, values).trim();

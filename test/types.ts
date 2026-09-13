@@ -75,3 +75,17 @@ filterConstructionDiff(diffSnapshot, { ...diffSnapshot, changes: [{ base: { text
 import type { ReviewSignal } from "@mk3008/serene/audit";
 const contentSignal: ReviewSignal = { code: "SQL_DROP", detail: "Review suggested: DROP keyword." };
 void contentSignal;
+
+import { materializeTemp } from '../src/index.js';
+const temp: Sql = materializeTemp(stmt, 'snapshot');
+bind(temp, { id: 1 }, 'indexed');
+// @ts-expect-error Plain text does not carry provenance.
+materializeTemp(stmt.sourceText, 'snapshot');
+// @ts-expect-error A bound statement is not an unbound Sql.
+materializeTemp(q, 'snapshot');
+// @ts-expect-error Shape is not identity.
+materializeTemp({ sourceText: 'SELECT 1' }, 'snapshot');
+// @ts-expect-error A name must be a string (literal provenance is checked by audit).
+materializeTemp(stmt, 1);
+// @ts-expect-error No arbitrary suffix option exists.
+materializeTemp(stmt, 'snapshot', 'DROP TABLE users');

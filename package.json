@@ -14,6 +14,8 @@
     "test": "npm run build && node --test test/*.test.mjs",
     "lint": "node --check tooling/audit.mjs && node --check tooling/cli.mjs && node --check tooling/filter.mjs",
     "check": "npm run lint && npm run typecheck && npm test",
+    "test:packed": "node test/verify-packed.mjs",
+    "test:postgres": "node --test test/integration/postgres-temp.mjs",
     "prepare": "npm run build"
   },
   "engines": { "node": ">=22" },

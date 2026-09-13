@@ -6,7 +6,7 @@ Serene. It does not inspect arbitrary strings, SQL files/migrations, ORM builder
 or `sort` tags. Migrations should receive whole-change review.
 
 A finding keeps its construction `level`, `code` and `detail`. When a content
-heuristic matches it also carries `reviewSignals: [{ code, detail }]`. For example,
+heuristic matches it also carries `reviewSignals: [{ code, detail, priority? }]`. For example,
 a tagged `DELETE FROM users` has `level: "ordinary"` and a separate
 `SQL_DELETE_WITHOUT_WHERE` review suggestion. No signal means no heuristic matched;
 it is not approval of SQL meaning, authorization, performance or binding use.
@@ -16,6 +16,7 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | Code | Approximate trigger |
 | --- | --- |
 | `SQL_DROP` / `SQL_TRUNCATE` / `SQL_RENAME` | Standalone keyword anywhere in the SQL text |
+| `SQL_PERSISTENT_DDL` | CREATE / ALTER of TABLE, VIEW, FUNCTION, PROC/PROCEDURE or TRIGGER; elevated priority |
 | `SQL_CREATE_TEMP` | CREATE followed by TEMP/TEMPORARY, optionally GLOBAL/LOCAL |
 | `SQL_SELECT_WITHOUT_WHERE` | SELECT without an apparent WHERE before the next operation/semicolon |
 | `SQL_UPDATE_WITHOUT_WHERE` | UPDATE without an apparent WHERE before the next operation/semicolon |
@@ -58,6 +59,43 @@ SQL and other dialect details are not fully interpreted. Signals can be missed
 or added in those forms. No full SQL parser or DBMS-specific semantic layer is
 introduced. Review the SQL; do not add a token WHERE merely to clear a signal.
 
+## Persistent definitions on runtime paths
+
+`SQL_PERSISTENT_DDL` has `priority: "elevated"`. All existing signals, including
+`SQL_CREATE_TEMP`, omit `priority`, which means advisory. Priority expresses review
+urgency, not a construction violation, SQLi diagnosis or mandatory code change.
+The review question is: **Why is persistent database definition happening on a
+runtime SQL path?** A fixed definition still has ordinary construction provenance.
+
+One generic code covers TABLE, VIEW, FUNCTION, PROC/PROCEDURE and TRIGGER after
+CREATE or ALTER. CREATE optionally accepts OR REPLACE / OR ALTER and UNLOGGED;
+MATERIALIZED VIEW is also recognized. Common comments/quotes are masked using the
+existing content mask; shapes can match anywhere in the remaining text and across
+multiple statements, once per code. These are keyword candidates, not validation
+of legal modifier/object combinations. Other object kinds (such as INDEX, SCHEMA
+or TABLESPACE), intervening dialect clauses (such as MySQL DEFINER), unsupported
+quoting and procedural syntax are outside this bounded rule.
+
+CREATE TEMP[ORARY], optionally GLOBAL/LOCAL, retains `SQL_CREATE_TEMP` without
+acquiring elevated priority from that creation. A separate persistent definition
+in the same text still elevates. No catalog or lifetime tracking is performed:
+ALTER TABLE on an existing temporary table, CREATE TABLE with a SQL Server `#`
+name, or PostgreSQL `pg_temp` qualification can receive the elevated signal.
+Inspect actual lifetime when reviewing those candidates. TEMP is not a guarantee
+of acceptable resource usage, authorization or business behavior.
+
+CALL and SELECT function invocation do not trigger this rule. Definition bodies
+are not parsed as PL/pgSQL, T-SQL or MySQL stored programs; incidental existing
+heuristics within them do not establish coverage or approval. No separate database
+EXEC/EXECUTE signal is added: these keywords can also invoke fixed procedures,
+and distinguishing dynamic construction requires more context than this rule.
+Database-side/second-order SQL construction remains outside the binding guarantee.
+
+Coverage stays at recognized fixed Serene tags and their existing propagated
+paths, including definitions without a discovered execution. The audit cannot
+prove that a candidate is executed repeatedly or distinguish migration code by
+intent. It neither scans standalone migrations nor requires them to adopt Serene.
+
 ## Delivery and gates
 
 Signals follow existing recognized binding, const-alias, finite-ordering and
@@ -68,9 +106,9 @@ recognized tag at its definition can still carry its own content signals.
 
 `materializeTemp` inherits body signals and adds `SQL_CREATE_TEMP` once. Its fixed
 `ON COMMIT DROP` wrapper adds no destructive signal. This does not suppress DROP,
-data-modifying CTE or other suggestions inherited from the body. The signal schema
-and advisory gate behavior are unchanged; persistent-DDL severity categories are
-not added by this operation.
+data-modifying CTE or other suggestions inherited from the body. The TEMP signal
+remains advisory; elevated priority comes only from a matching DDL shape in the
+body, not from this wrapper.
 
 `--actionable-only` retains signaled findings even with `level: "ordinary"`.
 `executionSiteCounts` continues to count construction levels only. The separate

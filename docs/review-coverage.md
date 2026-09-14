@@ -110,3 +110,15 @@ intended to block. Legitimate native SQL exceptions and unresolved provenance st
 need application review; do not rewrite useful SQL just to make strict mode pass.
 Use the normal inventory plus the application's exception review process where
 such paths are intentional. There is no exception-approval manifest in this CLI.
+
+## Explicit external SQL
+
+Canonical named `externalSql` / `bindExternal` imports and immutable local aliases
+produce `review-required` / `EXTERNAL_SQL`, including recognized native query
+shapes. Literal text and local const text aliases can carry the existing content
+signals; dynamically loaded text is unavailable to source inspection. No runtime
+validation or external evidence promotes these paths to ordinary. Unsupported
+imports, assertions, mutable flows and wrappers retain existing unresolved/coverage
+limits. External findings remain actionable and fail strict mode. Regression
+coverage is in `test/external-sql.test.mjs` (runtime identity, shared binding,
+source classification, content propagation, CLI and source/diff retention).

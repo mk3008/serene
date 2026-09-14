@@ -12,7 +12,7 @@ try {
   assert.ok(!pack.files.some(f=>f.path.startsWith('test/') || f.path.startsWith('src/')));
   writeFileSync(join(dir,'package.json'),JSON.stringify({private:true,type:'module'}));
   run('npm',['install','--offline','--ignore-scripts','--no-audit','--no-fund',join(dir,pack.filename),join(root,'node_modules/typescript')]);
-  const probe=`import { sql, materializeTemp, bind, type Sql } from '@mk3008/serene';
+  const probe=`import { sql, materializeTemp, bind, externalSql, bindExternal, review, type ExternalSql, type BoundExternalSql, type Sql } from '@mk3008/serene';
 import { auditSource } from '@mk3008/serene/audit';
 import { filterConstructionSource } from '@mk3008/serene/filter';
 const stmt: Sql=materializeTemp(sql\`SELECT :id AS id\`,'snapshot');
@@ -26,6 +26,12 @@ const procedural=auditSource("import {sql,bind} from '@mk3008/serene'; db.query(
 for (const code of ['SQL_PROCEDURAL_BODY','SQL_ROUTINE_CALL']) {
   if (!procedural.some(r=>r.boundary==='driver-candidate' && r.level==='ordinary' && r.reviewSignals?.some(s=>s.code===code && s.priority==='elevated'))) throw Error('procedural priority');
 }
+const external: ExternalSql=externalSql('SELECT :id');
+const externalQuery: BoundExternalSql=bindExternal(external,{id:7},'indexed');
+if (externalQuery.text!=='SELECT $1' || externalQuery.values[0]!==7 || review(externalQuery).code!=='EXTERNAL_SQL') throw Error('external binding');
+// @ts-expect-error external identity cannot become source-backed identity
+const promoted: Sql=external;
+void promoted;
 if (typeof filterConstructionSource!=='function') throw Error('filter export');
 // @ts-expect-error strings cannot replace identity-backed SQL
 const invalid: Sql='SELECT 1';

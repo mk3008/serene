@@ -4,11 +4,18 @@ export { SereneError } from './error.js';
 export type { ParameterStyle } from './scanner.js';
 
 declare const sqlBrand: unique symbol;
+declare const externalBrand: unique symbol;
+declare const boundExternalBrand: unique symbol;
 declare const sortBrand: unique symbol;
 export type Sql = { readonly [sqlBrand]: true; readonly sourceText: string };
+/** Explicit external provenance; never a source-backed Sql. */
+export type ExternalSql = { readonly [externalBrand]: true; readonly sourceText: string };
+export type BoundExternalSql = BoundSql & { readonly [boundExternalBrand]: true };
 export type Sort = { readonly [sortBrand]: true };
 type Statement = { sourceText: string; sorted: boolean };
 const statements = new WeakMap<Sql, Statement>();
+const externalStatements = new WeakMap<ExternalSql, string>();
+const externalBound = new WeakSet<BoundExternalSql>();
 const sorts = new WeakMap<Sort, string>();
 const bound = new WeakSet<BoundSql>();
 
@@ -29,6 +36,14 @@ function create(data: Statement): Sql {
 /** Fixed native SQL; :name notation is needed only for positional lowering. */
 export function sql(strings: TemplateStringsArray, ...values: never[]): Sql {
   return create({ sourceText: literal(strings, values), sorted: false });
+}
+
+/** Accept external SQL text for binding, without approval or source provenance. */
+export function externalSql(text: string): ExternalSql {
+  if (typeof text !== 'string') throw new SereneError('EXTERNAL_SQL_TEXT', 'Expected external SQL text as a primitive string.');
+  const statement = Object.freeze({ sourceText: text }) as ExternalSql;
+  externalStatements.set(statement, text);
+  return statement;
 }
 
 /** PostgreSQL TEMP CTAS. Source audit additionally requires a literal name. */
@@ -100,6 +115,21 @@ export interface BoundSql {
 export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, style?: ParameterStyle): BoundSql {
   const data = statements.get(sql);
   if (!data) throw new SereneError('UNSCREENED', 'Expected a Serene SQL object.');
+  const result = bindText(data.sourceText, params, style);
+  bound.add(result);
+  return result;
+}
+
+/** Same binding mechanics as bind; the result remains externally sourced. */
+export function bindExternal(sql: ExternalSql, params: Readonly<Record<string, unknown>> = {}, style?: ParameterStyle): BoundExternalSql {
+  const text = externalStatements.get(sql);
+  if (text === undefined) throw new SereneError('UNSCREENED', 'Expected an unbound external SQL object.');
+  const result = bindText(text, params, style) as BoundExternalSql;
+  externalBound.add(result);
+  return result;
+}
+
+function bindText(sourceText: string, params: Readonly<Record<string, unknown>>, style?: ParameterStyle): BoundSql {
   if (!params || typeof params !== 'object') throw new SereneError('PARAMETERS', 'Expected named parameters.');
   if (style !== undefined && style !== 'indexed' && style !== 'anonymous') {
     throw new SereneError('PARAMETER_STYLE', 'Unknown parameter output style.');
@@ -117,21 +147,24 @@ export function bind(sql: Sql, params: Readonly<Record<string, unknown>> = {}, s
     requested.add(name);
   }
   // Native named binding needs no SQL inspection, including no collision checks.
-  const rendered = style === undefined ? { text: data.sourceText, names: [...requested] } :
-    compile(scan(data.sourceText, requested), style);
+  const rendered = style === undefined ? { text: sourceText, names: [...requested] } :
+    compile(scan(sourceText, requested), style);
   const required = new Set(rendered.names);
   for (const name of requested) {
     if (!required.has(name)) throw new SereneError('UNUSED_PARAMETER', `Unused parameter: ${name}`);
   }
-  const result: BoundSql = Object.freeze({ text: rendered.text, sourceText: data.sourceText,
+  const result: BoundSql = Object.freeze({ text: rendered.text, sourceText: sourceText,
     names: Object.freeze([...rendered.names]), values: rendered.names.map(name => descriptors[name]!.value),
     params: Object.freeze(Object.fromEntries([...required].map(name => [name, descriptors[name]!.value]))) });
-  bound.add(result);
   return result;
 }
 
 /** Runtime provenance only; ordinary source review also requires serene-audit. */
 export function review(value: unknown): { level: 'ordinary' | 'review-required'; code: string } {
+  if (value !== null && typeof value === 'object' &&
+      (externalStatements.has(value as ExternalSql) || externalBound.has(value as BoundExternalSql))) {
+    return { level: 'review-required', code: 'EXTERNAL_SQL' };
+  }
   const known = value !== null && typeof value === 'object' &&
     (statements.has(value as Sql) || bound.has(value as BoundSql));
   return known ? { level: 'ordinary', code: 'SERENE_PROVENANCE' } :

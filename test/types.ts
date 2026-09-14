@@ -89,3 +89,28 @@ materializeTemp({ sourceText: 'SELECT 1' }, 'snapshot');
 materializeTemp(stmt, 1);
 // @ts-expect-error No arbitrary suffix option exists.
 materializeTemp(stmt, 'snapshot', 'DROP TABLE users');
+
+import { externalSql, bindExternal, type ExternalSql, type BoundExternalSql } from '../src/index.js';
+const ext: ExternalSql = externalSql('SELECT :id');
+const extBound: BoundExternalSql = bindExternal(ext, { id: 1 }, 'indexed');
+const extDriverText: string = extBound.text;
+const extDriverValues: unknown[] = extBound.values;
+void extDriverText; void extDriverValues;
+// @ts-expect-error External identity is distinct from source-backed Sql.
+const promoted: Sql = ext;
+// @ts-expect-error External SQL needs its explicit binding boundary.
+bind(ext);
+// @ts-expect-error No TEMP composition of external SQL.
+materializeTemp(ext, 'snapshot');
+// @ts-expect-error No ORDER BY composition of external SQL.
+orderBy(ext, {}, []);
+// @ts-expect-error Already bound external SQL is not source-backed Sql.
+materializeTemp(extBound, 'snapshot');
+// @ts-expect-error Source-backed Sql is not an external statement.
+bindExternal(stmt);
+// @ts-expect-error Strings must cross the explicit external boundary first.
+bindExternal('SELECT 1');
+// @ts-expect-error Shape does not establish external identity.
+bindExternal({ sourceText: 'SELECT 1' });
+// @ts-expect-error No caller-controlled approval flag.
+externalSql('SELECT 1', { trusted: true });

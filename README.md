@@ -67,6 +67,28 @@ const findUser = sql`SELECT id, name FROM users WHERE id = :id`;
 const query = bind(findUser, { id }, 'anonymous');
 ```
 
+## Externally stored SQL
+
+External SQL can reuse binding mechanics while remaining explicitly review-required:
+
+```ts
+import { externalSql, bindExternal, review } from '@mk3008/serene';
+
+const statement = externalSql(storedSqlText);
+const query = bindExternal(statement, { id }, 'indexed');
+review(statement); // { level: 'review-required', code: 'EXTERNAL_SQL' }
+review(query);     // { level: 'review-required', code: 'EXTERNAL_SQL' }
+await pool.query(query.text, query.values);
+```
+
+`ExternalSql` has a separate identity from `Sql`. It cannot be used with `bind`,
+`orderBy` or `materializeTemp`; `bindExternal` shares `bind`'s parameter validation,
+passthrough/positional modes, scanner conventions and snapshots. Applications own
+SQL trust and review, including any deployment hash/revision checks. Successful
+binding never approves the SQL. Source audit retains this boundary, including in
+`--actionable-only` output, and `--strict` fails on it. See the
+[external SQL contract](docs/security.md#external-sql).
+
 ## What Serene adds
 
 - **A visible SQL boundary** — fixed SQL is created from a literal `sql` template.

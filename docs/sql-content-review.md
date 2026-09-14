@@ -207,3 +207,9 @@ eligible under the existing stricter syntax and freshness checks.
 These filters remain specialized review delivery tools. An unfiltered path is
 still required for general SQL-meaning, authorization and driver-binding review.
 This feature does not replace that review or expand runtime guarantees.
+
+For explicit external SQL, source literals and no-substitution templates passed to
+recognized `externalSql` calls (including local const aliases) reuse these signals.
+They remain `review-required` / `EXTERNAL_SQL` regardless of signals or successful
+binding. Runtime-loaded text is unavailable to source audit; runtime `review()`
+reports identity only and does not run content heuristics.

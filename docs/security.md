@@ -114,6 +114,33 @@ Correct placement of appended ORDER BY remains a SQL authoring duty. Fixed multi
 statement text is not universally prohibited; suffix sorting rejects statement
 terminators to avoid accidentally applying ordering to another statement.
 
+## External SQL
+
+`externalSql(text)` accepts a primitive string and creates an immutable,
+identity-backed `ExternalSql`, distinct from `Sql`. `bindExternal` accepts only
+that unbound identity and shares the exact binder/scanner with `bind`. Its
+`BoundExternalSql` exposes the same native-driver text/names/values/params shape.
+It preserves the existing shallow snapshot contract: the object, named snapshot
+and names are frozen, while the driver values array and contained objects remain
+mutable. It does not promise deep immutability or correct driver pairing.
+
+Runtime `review` returns `review-required` / `EXTERNAL_SQL` before and after
+binding. Neither object is registered as ordinary. Shapes, copies, prototypes and
+type assertions cannot establish runtime identity. Source-only composition
+(`orderBy`, `materializeTemp`) and `bind` reject external objects, including casts.
+There is no approval option and no implicit trust from storage location, hash,
+revision or signature. Such evidence and authorization belong to the application.
+Destructive, procedural or semantically incorrect SQL can still bind successfully.
+
+The source audit recognizes canonical named imports and immutable local aliases
+of `externalSql` / `bindExternal` as review-required. It does not interpret string
+validation as provenance, and strict mode continues to fail. Literal strings and
+no-substitution templates (including local const aliases) passed to `externalSql`
+receive existing content signals, independently of provenance. Runtime-loaded
+text cannot be inspected by source audit; runtime `review` remains identity-only.
+Unsupported source flows stay unresolved under existing file-local coverage rules.
+External paths stay visible in construction source/diff filtering.
+
 ## Review procedure
 
 ### TEMP materialization

@@ -2,9 +2,10 @@ import ts from 'typescript';
 import * as serene from '../dist/index.js';
 
 const tags = new Set(['sql', 'sort']);
-const api = new Set([...tags, 'bind', 'orderBy', 'materializeTemp', 'review']);
+const api = new Set([...tags, 'bind', 'externalSql', 'bindExternal', 'orderBy', 'materializeTemp', 'review']);
 const result = (level, code, detail) => ({ level, code, detail });
 const ordinary = () => result('ordinary', 'SCREENED_SOURCE', 'Literal SQL through Serene; review SQL meaning and binding use separately.');
+const external = () => result('review-required', 'EXTERNAL_SQL', 'External SQL has no Serene source provenance; binding does not grant approval.');
 const unknown = () => result('review-required', 'UNRESOLVED', 'SQL provenance cannot be established in this file.');
 const violation = (code, detail) => result('violation', code, detail);
 
@@ -237,6 +238,16 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     if (ts.isCallExpression(node)) {
       const name = apiName(node.expression);
       if (tags.has(name)) return violation('DIRECT_TAG_CALL', 'Serene tags must be literal template syntax; fabricated templates are not trusted.');
+      if (name === 'externalSql') {
+        const text = resolve(node.arguments[0]);
+        const reviewSignals = text && (ts.isStringLiteral(text) || ts.isNoSubstitutionTemplateLiteral(text))
+          ? contentSignals(text.text) : [];
+        return reviewSignals.length ? { ...external(), reviewSignals } : external();
+      }
+      if (name === 'bindExternal') {
+        const base = classify(node.arguments[0], 'external', seen);
+        return base.code === 'EXTERNAL_SQL' ? base : external();
+      }
       if (name === 'bind' && kind === 'bound') return classify(node.arguments[0], 'sql', seen);
       if (name === 'materializeTemp' && kind === 'sql') {
         const base = classify(node.arguments[0], 'sql', seen);
@@ -289,7 +300,7 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     if (!node) return undefined;
     // Only recognized identity-backed BoundSql, never a shape assertion.
     const bound = classify(node, 'bound');
-    if (bound.level === 'ordinary') return bound;
+    if (bound.level === 'ordinary' || bound.code === 'EXTERNAL_SQL') return bound;
     // Do not resolve object aliases: const does not prevent property writes.
     if (!ts.isObjectLiteralExpression(node)) return undefined;
     if (node.properties.length !== 2) return unknown();
@@ -305,6 +316,7 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     // Both properties must come from a recognized BoundSql. This does not claim
     // value integrity, serializer safety or semantic parameter correctness.
     const textSource = classify(text.expression, 'bound');
+    if (textSource.code === 'EXTERNAL_SQL') return textSource;
     if (textSource.level !== 'ordinary' ||
         classify(values.expression, 'bound').level !== 'ordinary') return unknown();
     return textSource;
@@ -348,7 +360,7 @@ export function auditSource(source, filename = 'input.ts', options = {}) {
     }
     if (ts.isCallExpression(node)) {
       const name = apiName(node.expression);
-      if (name && name !== 'review') emit(node, classify(node, name === 'bind' ? 'bound' : 'sql'), 'serene');
+      if (name && name !== 'review') emit(node, classify(node, ['bind', 'bindExternal'].includes(name) ? 'bound' : 'sql'), 'serene');
       else {
         const expr = node.expression;
         const sink = sinkInfo(expr);

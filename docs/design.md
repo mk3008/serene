@@ -144,3 +144,15 @@ same tag. The evidence is in the source target, not inferred from prior statemen
 search_path or runtime state. Optional modifiers and quoted schema variants remain
 elevated; adding those has no demonstrated need. The lexical entry guard is tooling
 only and does not change runtime parsing, provenance or source-filter eligibility.
+
+## Explicit external binding boundary
+
+Issue #36 adds `ExternalSql` / `BoundExternalSql` with separate runtime identity
+registries and `externalSql` / `bindExternal` entry points. Both binders delegate
+to one internal text binder, so lowering, validation and snapshots cannot diverge.
+Explicit APIs preserve the existing `bind(Sql)` contract and keep source-only
+composition closed. External identity is always review-required, including after
+binding; it confers no source provenance or semantic approval. The initial scope
+follows the issue comment: native-driver execution stays external, without a new
+connection or execution abstraction. Content inspection of available source
+literals reuses tooling heuristics; no runtime parser or content dependency is added.

@@ -19,6 +19,7 @@ it is not approval of SQL meaning, authorization, performance or binding use.
 | `SQL_PROCEDURAL_BODY` | Statement-entry DO with quoted code, or CREATE / ALTER FUNCTION, PROC/PROCEDURE or TRIGGER; elevated priority |
 | `SQL_ROUTINE_CALL` | Statement-entry CALL / EXEC / EXECUTE (excluding EXECUTE AS); elevated priority |
 | `SQL_PERSISTENT_DDL` | CREATE / ALTER of TABLE, VIEW, FUNCTION, PROC/PROCEDURE or TRIGGER; elevated priority |
+| `SQL_TEMP_DDL` | Statement-entry `ALTER TABLE pg_temp.<fixed identifier>`; advisory |
 | `SQL_CREATE_TEMP` | CREATE followed by TEMP/TEMPORARY, optionally GLOBAL/LOCAL |
 | `SQL_SELECT_WITHOUT_WHERE` | SELECT without an apparent WHERE before the next operation/semicolon |
 | `SQL_UPDATE_WITHOUT_WHERE` | UPDATE without an apparent WHERE before the next operation/semicolon |
@@ -64,7 +65,7 @@ introduced. Review the SQL; do not add a token WHERE merely to clear a signal.
 ## Persistent definitions on runtime paths
 
 `SQL_PERSISTENT_DDL` has `priority: "elevated"`. The procedural-body and routine-call signals also carry elevated priority. Other
-signals, including `SQL_CREATE_TEMP`, omit `priority`, which means advisory. Priority expresses review
+signals, including `SQL_CREATE_TEMP` and `SQL_TEMP_DDL`, omit `priority`, which means advisory. Priority expresses review
 urgency, not a construction violation, SQLi diagnosis or mandatory code change.
 The review question is: **Why is persistent database definition happening on a
 runtime SQL path?** A fixed definition still has ordinary construction provenance.
@@ -81,10 +82,29 @@ quoting and procedural syntax are outside this bounded rule.
 CREATE TEMP[ORARY], optionally GLOBAL/LOCAL, retains `SQL_CREATE_TEMP` without
 acquiring elevated priority from that creation. A separate persistent definition
 in the same text still elevates. No catalog or lifetime tracking is performed:
-ALTER TABLE on an existing temporary table, CREATE TABLE with a SQL Server `#`
-name, or PostgreSQL `pg_temp` qualification can receive the elevated signal.
-Inspect actual lifetime when reviewing those candidates. TEMP is not a guarantee
-of acceptable resource usage, authorization or business behavior.
+unqualified ALTER TABLE on an existing temporary table and CREATE TABLE with a
+SQL Server `#` name still receive the elevated signal.
+
+Issue #35 adds one local PostgreSQL exception: statement-entry
+`ALTER TABLE pg_temp.name ...` or `ALTER TABLE pg_temp."name" ...` emits advisory
+`SQL_TEMP_DDL` instead. The unquoted schema token is case-insensitive; whitespace
+around the dot and doubled quotes inside the table identifier are accepted.
+Unquoted table names use ASCII letters/underscore followed by letters, digits,
+underscore or dollar sign. Only that ALTER occurrence is excluded: another
+persistent definition in the same tag still emits elevated `SQL_PERSISTENT_DDL`.
+
+This relies on PostgreSQL's explicit [current-session temporary schema alias](https://www.postgresql.org/docs/18/runtime-config-client.html#GUC-SEARCH-PATH),
+not prior CREATE statements, search_path, internal `pg_temp_3` names or catalog
+inspection. ONLY / IF EXISTS, quoted schema tokens, intervening comments and
+other DDL families keep the conservative fallback. Entry means the beginning of
+the text or immediately after an unquoted semicolon, allowing whitespace only.
+A local lexical pass shields quoted text and nested comments from introducing
+false entries; it does not inspect procedural control flow. Tags containing raw
+backslashes retain the old elevated fallback rather than interpreting JavaScript
+escapes or SQL escape conventions. SQL validity remains the caller's duty.
+
+TEMP does not guarantee acceptable locking, resource usage, authorization or
+business behavior, and this signal does not imply ON COMMIT DROP was specified.
 
 CALL and SELECT function invocation do not trigger this rule. Definition bodies
 are not parsed as PL/pgSQL, T-SQL or MySQL stored programs; incidental existing

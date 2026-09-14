@@ -27,6 +27,49 @@ function proceduralSignals(text) {
   return signals;
 }
 
+// Only explicit, unquoted pg_temp at a statement entry can lower an ALTER.
+// Keep offsets in the original text: excluding one occurrence must not clear
+// another persistent definition. Opaque tokens cannot introduce statement starts.
+function temporaryAlterOffsets(text) {
+  const offsets = new Set();
+  // Raw JS escapes and SQL backslash conventions need interpretation we do not
+  // provide here. Preserve the old elevated fallback for the entire tag.
+  if (text.includes('\\')) return offsets;
+  const tokens = /--[^\r\n]*|\/\*|\$(?:[A-Za-z_\u0080-\uFFFF][A-Za-z0-9_\u0080-\uFFFF]*)?\$|'|"|`|\[|;/g;
+  let entry = 0, match;
+  const inspect = () => {
+    const target = /^\s*(ALTER\s+TABLE\s+pg_temp\s*\.\s*(?:[A-Za-z_][A-Za-z0-9_$]*|"(?:""|[^"])+"))(?=\s+[A-Za-z])/i.exec(text.slice(entry));
+    if (target) offsets.add(entry + target[0].length - target[1].length);
+  };
+  inspect();
+  while ((match = tokens.exec(text))) {
+    const token = match[0];
+    if (token === ';') { entry = tokens.lastIndex; inspect(); continue; }
+    if (token.startsWith('--')) continue;
+    let end = tokens.lastIndex;
+    if (token === '/*') {
+      let depth = 1;
+      while (end < text.length && depth) {
+        if (text.startsWith('/*', end)) { depth++; end += 2; }
+        else if (text.startsWith('*/', end)) { depth--; end += 2; }
+        else end++;
+      }
+    } else if (token.startsWith('$')) {
+      const close = text.indexOf(token, end);
+      end = close < 0 ? text.length : close + token.length;
+    } else {
+      const quote = token === '[' ? ']' : token.at(-1);
+      while (end < text.length) {
+        if (text[end++] !== quote) continue;
+        if (text[end] === quote) { end++; continue; }
+        break;
+      }
+    }
+    tokens.lastIndex = end;
+  }
+  return offsets;
+}
+
 // Deliberately approximate content triage, not a SQL parser. Destructive words
 // are searched even in comments/literals: false positives are review suggestions.
 function contentSignals(text) {
@@ -52,8 +95,11 @@ function contentSignals(text) {
   }
   // One bounded shape signal, independent of construction provenance. Do not
   // descend into or validate procedural bodies, or infer an object's lifetime
-  // from its name. ALTER may consequently refer an existing temporary object.
-  if (/\b(?:CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?(?:UNLOGGED\s+)?|ALTER\s+)(?:TABLE|(?:MATERIALIZED\s+)?VIEW|FUNCTION|PROC(?:EDURE)?|TRIGGER)\b/i.test(apparent)) {
+  // from its name, except for the explicit PostgreSQL pg_temp entry shape.
+  const temporaryAlters = temporaryAlterOffsets(text);
+  if (temporaryAlters.size) add('SQL_TEMP_DDL', 'Explicit pg_temp ALTER TABLE targets PostgreSQL temporary state; inspect locking, resources and effects.');
+  if ([...apparent.matchAll(/\b(?:CREATE\s+(?:OR\s+(?:REPLACE|ALTER)\s+)?(?:UNLOGGED\s+)?|ALTER\s+)(?:TABLE|(?:MATERIALIZED\s+)?VIEW|FUNCTION|PROC(?:EDURE)?|TRIGGER)\b/gi)]
+    .some(match => !temporaryAlters.has(match.index))) {
     signals.push({
       code: 'SQL_PERSISTENT_DDL',
       priority: 'elevated',

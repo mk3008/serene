@@ -136,3 +136,11 @@ change older heuristics or parse control flow. EXEC/EXECUTE now receives a share
 execution referral without claiming fixed versus dynamic behavior. Generic BEGIN,
 dollar quoting alone and SELECT function calls stay out of scope to limit noise.
 Database-side construction remains outside the binding guarantee.
+
+Issue #35 refines only explicit statement-entry ALTER TABLE targets qualified by
+PostgreSQL's unquoted `pg_temp` alias. A local occurrence exclusion and advisory
+`SQL_TEMP_DDL` distinguish temporary state without hiding other definitions in the
+same tag. The evidence is in the source target, not inferred from prior statements,
+search_path or runtime state. Optional modifiers and quoted schema variants remain
+elevated; adding those has no demonstrated need. The lexical entry guard is tooling
+only and does not change runtime parsing, provenance or source-filter eligibility.
